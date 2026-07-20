@@ -1,0 +1,35 @@
+import { describe, expect, it } from 'vitest';
+import { completeLostPuppyQuest, discoverWhisperGrove, findChewToy, findLostPuppy, findPawprints, photographAnimal, spotRareOwl, startLostPuppyQuest } from './gameState';
+import { createDefaultSave } from './saveGame';
+
+describe('Tutorial Park progression', () => {
+  it('enforces the Lost Puppy sequence', () => {
+    let save = createDefaultSave();
+    expect(findChewToy(save)).toEqual(save);
+    save = startLostPuppyQuest(save);
+    save = findPawprints(save);
+    save = findChewToy(save);
+    save = findLostPuppy(save);
+    save = completeLostPuppyQuest(save);
+    expect(save.questProgress.lostPuppy.completed).toBe(true);
+    expect(save.discoveredAnimals).toContain('lost-puppy');
+  });
+
+  it('blocks Rare Owl photography until the owl is spotted', () => {
+    let save = createDefaultSave();
+    expect(photographAnimal(save, 'rare-owl').photographedAnimals).not.toContain('rare-owl');
+    save = { ...save, currentLocation: 'Strange Old Tree' };
+    save = spotRareOwl(save);
+    save = photographAnimal(save, 'rare-owl');
+    expect(save.photographedAnimals).toContain('rare-owl');
+  });
+
+  it('unlocks the Wild Camper after all three objectives', () => {
+    let save = createDefaultSave();
+    save = { ...save, currentLocation: 'Strange Old Tree', questProgress: { lostPuppy: { started: true, foundPawprints: true, foundToy: true, foundPuppy: true, completed: true } } };
+    save = spotRareOwl(save);
+    save = photographAnimal(save, 'rare-owl');
+    save = discoverWhisperGrove(save);
+    expect(save.wildCamperUnlocked).toBe(true);
+  });
+});

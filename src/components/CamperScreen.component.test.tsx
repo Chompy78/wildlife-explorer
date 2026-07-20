@@ -1,0 +1,10 @@
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
+import { createDefaultSave } from '../state/saveGame';
+import { CamperScreen } from './CamperScreen';
+
+describe('CamperScreen',()=>{
+  it('selects stations, pins and clears a friendly destination preview',async()=>{const user=userEvent.setup();let save={...createDefaultSave(),wildCamperUnlocked:true,camperVisited:true,camperIntroductionSeen:true};const onSaveChange=vi.fn((next)=>{save=next;});render(<CamperScreen saveData={save} onSaveChange={onSaveChange} onReturnToPark={vi.fn()} onGoHome={vi.fn()}/>);await user.click(screen.getByRole('button',{name:/photo wall/i}));expect(screen.getByRole('heading',{name:/discovery summary/i})).toBeInTheDocument();await user.click(screen.getByRole('button',{name:/^foresttall trees/i}));expect(onSaveChange).toHaveBeenCalledWith(expect.objectContaining({selectedDestination:'forest'}));});
+  it('labels every destination preview and renders no travel action',()=>{const save={...createDefaultSave(),wildCamperUnlocked:true,camperIntroductionSeen:true};render(<CamperScreen saveData={save} onSaveChange={vi.fn()} onReturnToPark={vi.fn()} onGoHome={vi.fn()}/>);expect(screen.getAllByText('Preview only')).toHaveLength(6);expect(screen.queryByRole('button',{name:/travel/i})).not.toBeInTheDocument();});
+});

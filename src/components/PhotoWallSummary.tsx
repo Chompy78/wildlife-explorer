@@ -1,0 +1,19 @@
+import { animals, commonMilestoneAnimals } from '../data/animals';
+import type { SaveData } from '../types/SaveData';
+
+export function PhotoWallSummary({ saveData }: { saveData: SaveData }) {
+  const photographed = animals.filter((animal) => saveData.photographedAnimals.includes(animal.id));
+  const commonCount = photographed.filter((animal) => commonMilestoneAnimals.some((common) => common.id === animal.id)).length;
+  return (
+    <section className="photo-wall-summary" aria-label="Tutorial Park discovery summary">
+      <h3>Discovery Summary</h3>
+      <ul>
+        <li>{commonCount} of {commonMilestoneAnimals.length} common animals photographed</li>
+        <li>Rare Owl: {saveData.photographedAnimals.includes('rare-owl') ? 'photographed' : 'not photographed'}</li>
+        <li>Lost Puppy: {saveData.questProgress.lostPuppy.completed ? 'helped and reunited' : 'not completed'}</li>
+        <li>Whisper Grove: {saveData.whisperGroveDiscovered ? 'discovered' : 'hidden'}</li>
+      </ul>
+      {photographed.length ? <div className="photo-chip-list">{photographed.map((animal) => <span key={animal.id}>{animal.emoji} {animal.name}</span>)}</div> : <p className="muted">Photographed animals will appear here.</p>}
+    </section>
+  );
+}

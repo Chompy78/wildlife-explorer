@@ -1,0 +1,146 @@
+* { box-sizing: border-box; }
+
+:root {
+  color: #173823;
+  background: #eef7e7;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.1rem;
+  color: #ffffff;
+  background: #267043;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(36, 91, 53, 0.18);
+}
+
+button:hover:not(:disabled) { transform: translateY(-1px); background: #1d5e37; }
+button:disabled { cursor: not-allowed; opacity: 0.45; }
+button.secondary { color: #1f5133; background: #dff0d4; }
+button.link-button { color: #346244; background: transparent; box-shadow: none; text-decoration: underline; }
+
+.screen {
+  min-height: 100vh;
+  padding: 2rem;
+  background: radial-gradient(circle at top left, rgba(255, 232, 136, 0.55), transparent 34rem), linear-gradient(135deg, #dff5cd, #eaf8ff 55%, #f8ecd2);
+}
+
+.hero-screen { display: grid; place-items: center; }
+.hero-card, .panel, .journal-panel { border: 1px solid rgba(35, 99, 61, 0.12); border-radius: 28px; background: rgba(255, 255, 255, 0.88); box-shadow: 0 24px 60px rgba(49, 85, 59, 0.18); }
+.hero-card { width: min(740px, 100%); padding: 3rem; text-align: center; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { margin-bottom: 0.85rem; font-size: clamp(2.4rem, 8vw, 5rem); line-height: 0.95; }
+h2 { color: #235c3a; }
+.pitch { margin: 0 auto 1.5rem; max-width: 36rem; font-size: 1.2rem; }
+.eyebrow { margin-bottom: 0.55rem; color: #2f7d4b; font-size: 0.8rem; font-weight: 900; letter-spacing: 0.13em; text-transform: uppercase; }
+.muted { color: #547162; }
+.button-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+.save-summary { display: grid; gap: 0.25rem; margin: 0 auto 1.5rem; border-radius: 20px; padding: 1rem; max-width: 380px; background: #f4f2dc; }
+.wide-panel { width: min(1050px, 100%); margin: 0 auto; padding: 2rem; }
+.role-grid, .location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; }
+.role-card, .location-card { display: flex; min-height: 9.5rem; flex-direction: column; align-items: flex-start; justify-content: flex-start; border: 2px solid rgba(47, 125, 75, 0.15); border-radius: 22px; padding: 1rem; color: #19402b; background: #f8fff3; text-align: left; box-shadow: none; }
+.role-card span, .location-card span, .location-card em { margin-top: 0.45rem; font-weight: 500; }
+.location-card em { color: #49715b; font-size: 0.82rem; font-style: normal; font-weight: 900; }
+.location-card.active { border-color: #267043; background: #dff0d4; }
+.location-card.preview { background: #fff9dc; }
+.location-card.hidden { background: #edf0ec; opacity: 0.92; }
+.location-icon { font-size: 2.2rem; }
+.top-bar { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; margin: 0 auto 1.5rem; max-width: 1240px; }
+.top-bar h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+.park-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 420px); gap: 1rem; margin: 0 auto; max-width: 1240px; }
+.panel { padding: 1.5rem; }
+.camera-card, .progress-card, .quest-card { margin-top: 1rem; border-radius: 22px; padding: 1rem; background: #f4f2dc; }
+.quest-card { background: #fff7df; }
+.quest-hint { border-radius: 16px; padding: 0.8rem; background: #fffdf2; }
+.quest-steps, .quest-actions, .photo-target-list { display: grid; gap: 0.6rem; }
+.quest-step, .progress-card li { display: flex; gap: 0.5rem; padding: 0.25rem 0; }
+.quest-step.done, .progress-card li.done { color: #1d6a39; font-weight: 900; }
+.progress-card li.locked { color: #7b806f; }
+.complete-message { margin: 0; border-radius: 14px; padding: 0.75rem; background: #dff0d4; font-weight: 900; }
+.photo-target { display: flex; align-items: center; justify-content: flex-start; gap: 0.75rem; border-radius: 18px; }
+.photo-target span { font-size: 1.6rem; }
+.message-box { margin-top: 1rem; border-radius: 18px; padding: 1rem; background: #e9f7ff; font-weight: 700; }
+.progress-card ul { margin: 0; padding: 0; list-style: none; }
+.journal-overlay { position: fixed; inset: 0; display: grid; place-items: center; padding: 1rem; background: rgba(12, 35, 22, 0.42); }
+.journal-panel { width: min(850px, 100%); max-height: 88vh; overflow: auto; padding: 1.5rem; }
+.journal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.journal-list { display: grid; gap: 0.85rem; }
+.journal-entry { display: flex; gap: 1rem; border-radius: 22px; padding: 1rem; background: #f8fff3; }
+.journal-entry.undiscovered { background: #f2f4ed; }
+.animal-emoji { min-width: 3.25rem; font-size: 3rem; text-align: center; }
+
+@media (max-width: 850px) {
+  .screen { padding: 1rem; }
+  .hero-card { padding: 2rem; }
+  .top-bar, .park-grid { grid-template-columns: 1fr; flex-direction: column; }
+}
+
+.discovery-card {
+  margin-top: 1rem;
+  border-radius: 22px;
+  padding: 1rem;
+  background: #eef7ff;
+}
+
+.reward-message {
+  margin: 0;
+  border-radius: 14px;
+  padding: 0.75rem;
+  background: #ffe9a8;
+  font-weight: 900;
+}
+
+.journal-section {
+  margin-top: 1rem;
+}
+
+
+.clue-card { margin-top: 1rem; border-left: 5px solid #d49b25; border-radius: 18px; padding: 1rem; background: #fff8df; }
+.clue-card p:last-child { margin-bottom: 0; font-weight: 700; }
+.celebration-overlay { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 1rem; background: rgba(12,35,22,.58); }
+.celebration-card { width: min(520px,100%); border-radius: 30px; padding: 2rem; background: #fffdf3; box-shadow: 0 28px 70px rgba(20,60,32,.35); text-align: center; }
+.celebration-icon { font-size: 5rem; }
+button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
+
+
+.camper-button { background: #a55c16; }
+.camper-layout { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(340px,.85fr); gap: 1rem; margin: 0 auto; max-width: 1240px; }
+.camper-interior { background: linear-gradient(160deg,rgba(255,255,255,.95),rgba(255,242,211,.95)); }
+.camper-hero { display: flex; gap: 1rem; align-items: center; padding: 1rem; border-radius: 22px; background: #f4e1bc; }
+.camper-van-icon { font-size: 5rem; }
+.station-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .8rem; margin-top: 1rem; }
+.station-card,.destination-card { display: flex; flex-direction: column; align-items: flex-start; gap: .35rem; border-radius: 18px; color: #24402d; background: #f8fff3; box-shadow: none; text-align: left; }
+.station-card span,.destination-card span { font-size: 2rem; }
+.station-card.active,.destination-card.selected { outline: 4px solid #d49b25; background: #fff6d8; }
+.station-detail { display: flex; gap: 1rem; margin-top: 1rem; border-radius: 20px; padding: 1rem; background: #e9f7ff; }
+.station-detail > span { font-size: 2.5rem; }
+.journey-panel { align-self: start; }
+.destination-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .7rem; }
+.destination-card small { color: #547162; }
+.destination-card em { color: #8a5a1f; font-size: .8rem; font-style: normal; font-weight: 900; text-transform: uppercase; }
+.destination-preview { margin-top: 1rem; border-radius: 22px; padding: 1rem; background: #eef7ff; }
+.destination-preview-icon { font-size: 3.5rem; }
+.preview-notice { border-radius: 12px; padding: .7rem; background: #fff4cd; font-weight: 800; }
+@media(max-width:900px){.camper-layout{grid-template-columns:1fr}.station-grid,.destination-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.station-grid,.destination-grid{grid-template-columns:1fr}.camper-hero{align-items:flex-start}.camper-van-icon{font-size:3.5rem}}
+
+/* Milestone 4.1 */
+.camper-visual{position:relative;overflow:hidden;min-height:260px;padding:0;margin:0 auto 1rem;max-width:1240px;background:#193d28}
+.camper-visual img{display:block;width:100%;height:clamp(260px,38vw,470px);object-fit:cover}
+.camper-visual-copy{position:absolute;left:1rem;bottom:1rem;max-width:500px;padding:1rem 1.2rem;border-radius:20px;color:#fff;background:rgba(18,45,29,.88);backdrop-filter:blur(4px)}
+.camper-visual-copy h2,.camper-visual-copy p{margin-top:.25rem}.camper-visual-copy .eyebrow{color:#ffe08c}
+.modal-overlay{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:1rem;background:rgba(12,35,22,.66)}
+.intro-card{width:min(540px,100%);padding:2rem;border-radius:30px;background:#fffdf3;box-shadow:0 28px 70px rgba(20,60,32,.35);text-align:center}.intro-icon{font-size:5rem}
+.readiness-card,.photo-wall-summary{margin-top:1rem;padding:1rem;border-radius:20px;background:#f3fbef}.readiness-card ul,.photo-wall-summary ul{padding-left:0;list-style:none}.readiness-card li{display:flex;gap:.6rem;margin:.45rem 0}.travel-locked{padding:.75rem;border-radius:14px;background:#fff4cd;font-weight:800}
+.photo-chip-list{display:flex;flex-wrap:wrap;gap:.45rem}.photo-chip-list span{padding:.4rem .65rem;border-radius:999px;background:#fff;border:1px solid #cde0cc}
+.station-card small{font-weight:900;color:#805315}.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media(max-width:700px){.camper-visual-copy{position:static;max-width:none;border-radius:0}.camper-visual img{height:240px}.intro-card{padding:1.25rem}}
+
+/* Milestone 5 */
+.forest-screen{background:radial-gradient(circle at top left,rgba(219,238,174,.7),transparent 34rem),linear-gradient(135deg,#cde5b0,#e2f2d3 55%,#d8e8d1)}.forest-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);gap:1rem;margin:0 auto;max-width:1240px}@media(max-width:850px){.forest-layout{grid-template-columns:1fr}}
