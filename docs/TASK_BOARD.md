@@ -137,20 +137,6 @@ other two session-log files.
 ```
 **Done when:** all files under docs/sessions/ follow one naming convention.
 
-## Reconcile branch-model conflict — TODO
-`AGENTS.md`'s `D-2026-07-20-branch-model` decision says commit straight to `main`, no branches/PRs.
-Separately, at least one session has been explicitly instructed to develop on a dedicated feature branch
-instead. These two conventions currently disagree.
-**Effort:** low · **Risk:** medium — damage likelihood is medium (an agent following the wrong
-convention could push to the wrong place, or a real PR could go unmerged if abandoned).
-
-```text
-1. Decide whether feature-branch-per-session or straight-to-main is the actual current convention.
-2. Update AGENTS.md / DECISIONS.md to reflect the real answer, or log an explicit exception for
-   externally-instructed sessions (e.g. Claude Code on the web with a pinned branch).
-```
-**Done when:** AGENTS.md and DECISIONS.md agree with how sessions are actually being told to work.
-
 ## Wire npm run check into CI — TODO
 Logged as an explicit revisit trigger in `DECISIONS.md`'s `D-2026-07-20-branch-model`: a working
 `npm run check` gate already exists, so adding GitHub Actions CI is a small lift, and would make a

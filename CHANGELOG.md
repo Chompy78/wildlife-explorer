@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-20 · docs(process): confirmed commit-straight-to-`main` as the standing branch policy** —
+  even for harness-pinned sessions (fast-forward-merge the pinned branch into `main` before finishing,
+  no PR gate). Resolves `DECISIONS.md`'s `D-2026-07-20-web-session-branch-override` via the new
+  `D-2026-07-20-branch-model-confirmed`; graduated `docs/TASK_BOARD.md`'s "Reconcile branch-model
+  conflict" item off the board.
+
 - **2026-07-20 · docs(task-board): added 21 items surfaced by a full project status review** — new
   🟠 SOON section (critical vitest audit vulnerability, stale `README.md.txt`, `package-lock.json`
   drift, session-log naming, the branch-model conflict, CI wiring, verifying the ported

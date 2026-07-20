@@ -24,6 +24,12 @@ vitest + build + encoding audit) already exists and genuinely works (18 passing 
 PR-gated workflow worth the overhead. See `DECISIONS.md`'s `D-2026-07-20-branch-model` for the explicit
 revisit trigger — don't wait to be asked twice if you're the session that ends up adding CI.
 
+**If your harness pins you to a working branch** (e.g. Claude Code on the web given an explicit branch
+to develop on) — that's still fine, but it doesn't change the policy. Once the change is verified, fast-
+forward-merge (or otherwise land) that branch into `main` before finishing the session, same as any
+other commit. Don't introduce a PR gate just because a branch happened to exist. See `DECISIONS.md`'s
+`D-2026-07-20-branch-model-confirmed`.
+
 ## Task format (for `docs/TASK_BOARD.md`)
 ```
 ## <Short title> — TODO
