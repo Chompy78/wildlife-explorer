@@ -6,12 +6,41 @@
 
 ## Index
 
+- **D-2026-07-20-web-session-branch-override** — A Claude Code on the web session was pinned by its
+  harness instructions to a dedicated branch, conflicting with `D-2026-07-20-branch-model`'s
+  straight-to-`main` convention. Followed the session-level pin rather than resolving the conflict
+  unilaterally; logged it as a `docs/TASK_BOARD.md` task instead — see full entry.
 - **D-2026-07-20-scaffold-port** — Ported PACT's task-board/decisions/skill scaffold, additive-merge
   style: kept `AI.md` as the real entry point, added `AGENTS.md` as a process-layer supplement rather
   than a competing/duplicate governance file. Decision: additive, not build-fresh — see full entry.
 - **D-2026-07-20-branch-model** — Chose commit-straight-to-`main`, no feature branches/PRs, for now.
   Same as `chompy78/family-hub`, but this repo is one small step from being ready to reverse it (a real
   `npm run check` gate already exists) — see full entry for the explicit revisit trigger.
+
+## D-2026-07-20-web-session-branch-override · followed the session's branch pin over the repo's straight-to-main convention
+- **Context:** a Claude Code on the web session was given explicit harness-level instructions to develop
+  on a dedicated branch (`claude/project-status-review-26absr`) and push there. This conflicts with
+  `D-2026-07-20-branch-model` (commit straight to `main`, no branches/PRs), which was itself logged only
+  hours earlier in the same day, on `main`, by a different (local) session.
+- **Options:** (1) follow the branch pin, push this session's work to the feature branch, and leave
+  reconciling the two conventions for later. (2) Ignore the branch pin and push straight to `main` per
+  the existing `D-2026-07-20-branch-model` decision. (3) Immediately rewrite `AGENTS.md`'s branch-model
+  decision to accommodate branch-per-session work, resolving the conflict now.
+- **Decision:** option 1. Pushed this session's commits to the pinned branch, and added a
+  `docs/TASK_BOARD.md` item ("Reconcile branch-model conflict") rather than resolving the tension itself.
+- **Why:** a session-level branch pin is a more specific, more recently-given instruction than a general
+  repo convention, and an agent unilaterally overriding it to satisfy `AGENTS.md` risks doing the wrong
+  thing quietly. The reverse — rewriting `AGENTS.md`'s branch-model decision on the spot (option 3) — was
+  rejected for the same reason: whether Claude Code on the web sessions being branch-pinned is a one-off
+  or a standing environment policy is exactly the kind of fact only the project owner can confirm, so
+  the conflict is surfaced as a task rather than pre-resolved.
+- **Consequence:** as of this decision, `docs/TASK_BOARD.md`'s expansion (21 new items, see
+  `CHANGELOG.md`) lives on `claude/project-status-review-26absr`, not yet on `main` — the two branches
+  have diverged by that one commit. `main` will not reflect this work until the task-board reconciliation
+  item is resolved and the branches are merged.
+- **See also:** `D-2026-07-20-branch-model` (the decision this conflicts with).
+- **Status:** Active. **Revisit trigger:** `docs/TASK_BOARD.md`'s "Reconcile branch-model conflict" item
+  is resolved.
 
 ## D-2026-07-20-scaffold-port · port PACT's scaffold additively, keep AI.md as the real entry point
 - **Context:** the user wanted the same `AGENTS.md`/task-board/`DECISIONS.md`/`CHANGELOG.md`/

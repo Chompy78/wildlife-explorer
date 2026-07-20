@@ -5,6 +5,14 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-20 · docs(task-board): added 21 items surfaced by a full project status review** — new
+  🟠 SOON section (critical vitest audit vulnerability, stale `README.md.txt`, `package-lock.json`
+  drift, session-log naming, the branch-model conflict, CI wiring, verifying the ported
+  `.claude/commands`, a favicon, browser-test tooling choice, corrupted-save test coverage,
+  milestone-notes backfill), itemized README's Roadmap ideas under 🟡 NEXT, and a new 🟢 SOMEDAY
+  section (hosting, a privacy statement, PWA manifest, i18n, audio). See `DECISIONS.md`'s
+  `D-2026-07-20-web-session-branch-override` for the branch-model conflict this review surfaced.
+
 - **2026-07-20 · docs(tooling): ported PACT's AI-agent workflow scaffold (additive)** — `AGENTS.md`,
   `CLAUDE.md`, `.github/copilot-instructions.md`, `DECISIONS.md`, `docs/TASK_BOARD.md`, and 7 adapted
   `.claude/commands/*.md` skills, ported from `chompy78/PACT`. Unlike the same-session port to
