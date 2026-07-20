@@ -85,8 +85,170 @@ Rainforest and Alien Planet must stay preview-only.
 
 ---
 
+# 🟠 SOON — housekeeping, process and QA gaps
+
+Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
+
+## Fix critical vitest audit vulnerability — TODO
+`npm audit` reports a critical advisory for `vitest <4.1.0` (arbitrary file read/execute when the Vitest
+UI server is listening). `npm audit fix --force` would install `vitest@4.1.10`, outside the currently
+pinned range.
+**Effort:** low · **Risk:** medium — damage likelihood is low (UI server isn't used in this workflow),
+but a version bump outside the stated range could shift test behavior — verify `npm run check` still
+passes cleanly, not just that the install succeeds.
+
+```text
+1. Run npm audit for full advisory detail.
+2. Upgrade vitest (and any peer deps it drags along) to a patched version.
+3. Run npm run check; fix any test-runner behavior changes the bump introduces.
+```
+**Done when:** `npm audit` shows no critical vulnerabilities; `npm run check` passes.
+
+## Remove stale README.md.txt — TODO
+Leftover pre-cleanup draft of `README.md` from the Base64 transfer era, not referenced anywhere.
+**Effort:** low · **Risk:** low — pure deletion of an unreferenced file.
+
+```text
+1. Confirm nothing references README.md.txt (grep the repo).
+2. Delete it.
+```
+**Done when:** file is removed; `npm run check` passes.
+
+## Regenerate a clean package-lock.json — TODO
+A fresh `npm install` on a clean clone currently produces a lockfile diff, meaning the committed lockfile
+isn't perfectly reproducible.
+**Effort:** low · **Risk:** low — dependency-resolution only, no source change.
+
+```text
+1. Delete node_modules and package-lock.json.
+2. Run npm install fresh.
+3. Confirm npm run check passes and commit the regenerated lockfile.
+```
+**Done when:** a clean `npm install` from the committed lockfile produces no diff.
+
+## Normalize session-log file naming — TODO
+`docs/sessions/SESSION_LOG_2026-07-19.md` lacks the `WILDLIFE_EXPLORER_SESSION_LOG_` prefix used by the
+other two session-log files.
+**Effort:** low · **Risk:** low — a rename, no content change.
+
+```text
+1. Rename docs/sessions/SESSION_LOG_2026-07-19.md to match the WILDLIFE_EXPLORER_SESSION_LOG_ convention.
+2. Check for and update any links to the old filename.
+```
+**Done when:** all files under docs/sessions/ follow one naming convention.
+
+## Reconcile branch-model conflict — TODO
+`AGENTS.md`'s `D-2026-07-20-branch-model` decision says commit straight to `main`, no branches/PRs.
+Separately, at least one session has been explicitly instructed to develop on a dedicated feature branch
+instead. These two conventions currently disagree.
+**Effort:** low · **Risk:** medium — damage likelihood is medium (an agent following the wrong
+convention could push to the wrong place, or a real PR could go unmerged if abandoned).
+
+```text
+1. Decide whether feature-branch-per-session or straight-to-main is the actual current convention.
+2. Update AGENTS.md / DECISIONS.md to reflect the real answer, or log an explicit exception for
+   externally-instructed sessions (e.g. Claude Code on the web with a pinned branch).
+```
+**Done when:** AGENTS.md and DECISIONS.md agree with how sessions are actually being told to work.
+
+## Wire npm run check into CI — TODO
+Logged as an explicit revisit trigger in `DECISIONS.md`'s `D-2026-07-20-branch-model`: a working
+`npm run check` gate already exists, so adding GitHub Actions CI is a small lift, and would make a
+PR-gated workflow worth the overhead.
+**Effort:** low · **Risk:** low — additive CI config, doesn't change application behavior.
+
+```text
+1. Add a GitHub Actions workflow that runs npm ci && npm run check on push/PR.
+2. Confirm it passes on the current main.
+```
+**Done when:** CI runs `npm run check` automatically and is green on `main`.
+
+## Verify the ported .claude/commands actually work here — TODO
+`add-task`, `close-session`, `cold-plan-review`, `log-lesson`, `pick-task`, `run-task`, `sweep-tasks`
+were ported from `chompy78/PACT` in the 2026-07-20 scaffold port but haven't been exercised against this
+repo's actual `docs/TASK_BOARD.md` format or session-log convention yet.
+**Effort:** medium · **Risk:** low — using an assistant command, not touching game code.
+
+```text
+1. Run each ported command at least once against this repo's real files.
+2. Fix any assumptions that don't match this repo's conventions (task format, file naming, etc.).
+```
+**Done when:** all 7 commands have been run at least once here without producing wrong output.
+
+## Add a favicon — TODO
+`index.html` has no favicon at all.
+**Effort:** low · **Risk:** low — presentation only.
+
+```text
+1. Add a favicon asset and link it from index.html.
+```
+**Done when:** the browser tab shows a favicon in dev and in the production build.
+
+## Decide on browser-level test tooling — TODO
+The existing "Browser-level travel and Continue restoration tests" NOW item doesn't specify what runs
+those tests. Playwright is already available in this environment.
+**Effort:** low · **Risk:** low — a tooling decision, not an implementation.
+
+```text
+1. Decide whether Playwright (or another tool) is adopted for browser-level tests.
+2. Document the choice (README.md's Validation Commands, or AGENTS.md) and add the relevant script.
+```
+**Done when:** a browser-level test tool is chosen, documented, and runnable via an npm script.
+
+## Add test coverage for corrupted/malformed save data — TODO
+`saveMigration.ts` defensively handles missing/malformed fields, but no test currently feeds it fully
+garbage input (wrong types, unexpected shape, non-object JSON) to confirm the fallbacks actually hold.
+**Effort:** low · **Risk:** medium — damage likelihood is medium; a silent migration bug here would
+corrupt a player's save, which `npm run check`'s current suite may not catch.
+
+```text
+1. Add tests feeding migrateSaveData garbage/malformed/non-object input.
+2. Confirm it always returns a valid, safe SaveData shape.
+```
+**Done when:** malformed-save-input tests exist and pass; `npm run check` passes.
+
+## Backfill missing milestone-notes files — TODO
+Only `MILESTONE_5_NOTES.md` exists in-repo; Milestones 3.2, 4.0 and 4.1 notes currently live only in
+`docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md`, not as their own files.
+**Effort:** low · **Risk:** low — documentation backfill, no behavior change.
+
+```text
+1. Extract the Milestone 3.2 / 4.0 / 4.1 sections from the existing session log.
+2. Write MILESTONE_3_2_NOTES.md, MILESTONE_4_0_NOTES.md, MILESTONE_4_1_NOTES.md following
+   MILESTONE_5_NOTES.md's format.
+```
+**Done when:** each shipped milestone has its own notes file, consistent with MILESTONE_5_NOTES.md.
+
+---
+
 # 🟡 NEXT — deferred by Scope boundary (see AI.md)
 
 Not started until a later milestone explicitly requires it: full Forest biome expansion, complex quests,
 rare Forest animals, companions, inventory, crafting, shops, economy, another playable destination
 (Mountains/Lake/Safari/Rainforest/Alien Planet going live).
+
+Also ideas from README.md's Roadmap section — commitments to a direction, not to a timeline:
+
+- Advanced photography features
+- Expanded Wildlife Journal features
+- Cooperative discovery systems
+- Day and night wildlife behaviour
+- Progressive Web App support (full — see the SOMEDAY favicon/manifest split below)
+
+---
+
+# 🟢 SOMEDAY — long-term, no current plan
+
+Not urgent, not scheduled, but worth keeping on record so they aren't lost.
+
+- **Deployment/hosting configuration** — no hosting target (Pages, Vercel, etc.) is defined yet; matters
+  once this needs to reach an actual child player rather than just `npm run dev`.
+- **Privacy/data-handling statement** — all state is currently local-storage only (good, low risk), but
+  given the target audience (ages 8-14, families) a short written statement that no data leaves the
+  device would be worth having before this is ever made public, and especially before any cloud-save
+  feature is considered.
+- **PWA manifest and install icons** — the full Progressive Web App roadmap item, beyond just the
+  favicon housekeeping task above.
+- **Localization / i18n** — not mentioned anywhere; only relevant if the game grows beyond English.
+- **Sound/audio system** — no audio exists or is planned; a natural fit for a calm nature game
+  eventually, but genuinely not started.
