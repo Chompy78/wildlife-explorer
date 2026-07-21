@@ -16,18 +16,7 @@
 
 # 🔴 NOW — Milestone 5 review priorities
 
-## New game and reset edge cases after Forest travel — TODO
-**Effort:** medium · **Risk:** medium — same reasoning: save-schema/state edge cases are exactly what
-`npm run check`'s existing suite may not yet cover for the newest (Forest) content.
-
-```text
-1. Identify what "new game" and "reset" actually do to persisted state (check saveMigration.ts /
-   saveDefaults.ts per MILESTONE_5_NOTES.md's architecture).
-2. Test: starting a new game after having visited Forest; resetting after Forest travel. Confirm no
-   stale Forest state leaks into a fresh game.
-3. Run npm run check.
-```
-**Done when:** both edge cases have a passing test; `npm run check` passes.
+All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026-07-21's sweep.
 
 ---
 

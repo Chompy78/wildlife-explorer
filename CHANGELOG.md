@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · test(app): covered New Game and Reset Save edge cases after Forest travel** —
+  confirmed `createDefaultSave()` leaves no stale Forest state behind: New Game and Reset Save both land
+  on a clean slate (`lastPlayArea` back to `'park'`, `forestLocation` back to `'Forest Arrival'`,
+  `wildCamperUnlocked` false, no leftover photographed/discovered animals) both in the persisted save and
+  by continuing play into a fresh Tutorial Park. Graduated off `docs/TASK_BOARD.md` — this was the last
+  of the five 2026-07-20 NOW-section review priorities.
+
 - **2026-07-21 · test(app): covered Forest travel and Continue restoration end-to-end** — no test
   previously exercised `App.tsx`'s `continueGame()` screen-selection logic (`forestState.test.ts` only
   covered the pure state-transition functions). Added `src/App.test.tsx`: Forest travel completing from
