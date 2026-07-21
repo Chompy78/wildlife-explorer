@@ -37,15 +37,6 @@ repo's actual `docs/TASK_BOARD.md` format or session-log convention yet.
 ```
 **Done when:** all 7 commands have been run at least once here without producing wrong output.
 
-## Add a favicon — TODO
-`index.html` has no favicon at all.
-**Effort:** low · **Risk:** low — presentation only.
-
-```text
-1. Add a favicon asset and link it from index.html.
-```
-**Done when:** the browser tab shows a favicon in dev and in the production build.
-
 ## Decide on browser-level test tooling — TODO
 The existing "Browser-level travel and Continue restoration tests" NOW item doesn't specify what runs
 those tests. Playwright is already available in this environment.

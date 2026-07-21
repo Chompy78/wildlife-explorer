@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · feat(ui): added a favicon** — `public/favicon.svg` (a simple 🌲 emoji glyph, matching
+  the game's existing icon style) linked from `index.html`; verified it serves in both `npm run dev` and
+  the production build (previously a bare browser default-favicon 404 on every load). Graduated off
+  `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · ci: wired `npm run check` into GitHub Actions** — added `.github/workflows/check.yml`
   (`npm ci && npm run check` on push to `main` and on PRs); verified locally by running the same
   commands in a clean checkout. This fires `DECISIONS.md`'s `D-2026-07-21-branch-model` "CI gets added"
