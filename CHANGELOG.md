@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · test(app): covered Forest travel and Continue restoration end-to-end** — no test
+  previously exercised `App.tsx`'s `continueGame()` screen-selection logic (`forestState.test.ts` only
+  covered the pure state-transition functions). Added `src/App.test.tsx`: Forest travel completing from
+  the Camper, Continue restoring the Forest play area (with the correct `forestLocation`) after Forest
+  travel, Continue still restoring Camper when Forest was never visited, and Continue restoring Camper
+  (not Forest) after returning from Forest across a simulated reload. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · test(canon): confirmed non-Forest destinations remain preview-only** — audited every
   destination card (Mountains, Lake, Safari, Rainforest, Alien Planet) via Playwright; pinning any of
   them keeps the screen on the Wild Camper with no travel action rendered, only Forest travels, per

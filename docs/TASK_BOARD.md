@@ -16,22 +16,6 @@
 
 # 🔴 NOW — Milestone 5 review priorities
 
-## Browser-level travel and Continue restoration tests — TODO
-Forest travel and the Continue-game flow need real browser-level verification, not just unit tests.
-**Effort:** medium · **Risk:** medium — damage likelihood is medium (nothing automated currently proves
-Continue restores the correct play area after Forest travel; `npm run check`'s existing tests may not
-cover this specific path — verify before assuming they do).
-
-```text
-1. Check what testing/tests currently cover for travel + Continue restoration (search src/ for existing
-   test files touching this).
-2. Add browser-level (or expanded unit-level, if that's this repo's actual practice) tests for: Forest
-   travel completing correctly, Continue restoring the correct lastPlayArea after Forest travel.
-3. Run npm run check.
-```
-**Done when:** Forest travel and Continue-after-Forest-travel are covered by a real, passing test;
-`npm run check` passes.
-
 ## New game and reset edge cases after Forest travel — TODO
 **Effort:** medium · **Risk:** medium — same reasoning: save-schema/state edge cases are exactly what
 `npm run check`'s existing suite may not yet cover for the newest (Forest) content.
