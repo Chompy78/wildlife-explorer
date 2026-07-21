@@ -45,17 +45,6 @@ cover this specific path — verify before assuming they do).
 ```
 **Done when:** both edge cases have a passing test; `npm run check` passes.
 
-## Responsive Forest layout review — TODO
-**Effort:** low · **Risk:** low — visual/CSS review, `npm run check`'s build step plus manual check
-catches regressions; no state/save-schema risk.
-
-```text
-1. Manually review Forest Arrival and Fern Trail screens at mobile and desktop widths.
-2. Fix any layout issues found, following the same responsive patterns already used for the Wild Camper
-   (per MILESTONE_5_NOTES.md's "Keyboard focus handling, responsive styling and reduced-motion support").
-```
-**Done when:** Forest screens verified responsive at both widths; `npm run check` passes.
-
 ## Keyboard and screen-reader review of Forest interactions — TODO
 **Effort:** low · **Risk:** low — the reusable modal-focus-hook pattern already exists (see
 MILESTONE_5_NOTES.md / the Camper's accessibility work) — this is applying/verifying an established

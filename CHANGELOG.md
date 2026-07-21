@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · fix(ui): Forest layout review — Wildlife Journal panel made opaque** — reviewed Forest
+  Arrival and Fern Trail at 360/390px (mobile) and 1280px (desktop) via Playwright screenshots; no
+  horizontal-overflow or reflow issues found there. Found and fixed a real pre-existing bug along the
+  way: `.journal-panel` inherited `.panel`'s 88%-opacity background, so opening the Journal (shared with
+  the Park screen, not Forest-specific) let page content bleed through and overlap its own text. Now
+  opaque. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · fix(deps): upgraded vitest to 4.1.10** — patched a critical `npm audit` advisory
   (GHSA-5xrq-8626-4rwp, arbitrary file read/execute when the Vitest UI server is listening).
   `npm run check` passes cleanly on the patched version; `npm audit` now reports 0 vulnerabilities.
