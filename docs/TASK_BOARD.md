@@ -89,21 +89,6 @@ Rainforest and Alien Planet must stay preview-only.
 
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
-## Fix critical vitest audit vulnerability — TODO
-`npm audit` reports a critical advisory for `vitest <4.1.0` (arbitrary file read/execute when the Vitest
-UI server is listening). `npm audit fix --force` would install `vitest@4.1.10`, outside the currently
-pinned range.
-**Effort:** low · **Risk:** medium — damage likelihood is low (UI server isn't used in this workflow),
-but a version bump outside the stated range could shift test behavior — verify `npm run check` still
-passes cleanly, not just that the install succeeds.
-
-```text
-1. Run npm audit for full advisory detail.
-2. Upgrade vitest (and any peer deps it drags along) to a patched version.
-3. Run npm run check; fix any test-runner behavior changes the bump introduces.
-```
-**Done when:** `npm audit` shows no critical vulnerabilities; `npm run check` passes.
-
 ## Remove stale README.md.txt — TODO
 Leftover pre-cleanup draft of `README.md` from the Base64 transfer era, not referenced anywhere.
 **Effort:** low · **Risk:** low — pure deletion of an unreferenced file.

@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · fix(deps): upgraded vitest to 4.1.10** — patched a critical `npm audit` advisory
+  (GHSA-5xrq-8626-4rwp, arbitrary file read/execute when the Vitest UI server is listening).
+  `npm run check` passes cleanly on the patched version; `npm audit` now reports 0 vulnerabilities.
+  Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-20 · docs(process): confirmed commit-straight-to-`main` as the standing branch policy** —
   even for harness-pinned sessions (fast-forward-merge the pinned branch into `main` before finishing,
   no PR gate). Resolves `DECISIONS.md`'s `D-2026-07-20-web-session-branch-override` via the new
