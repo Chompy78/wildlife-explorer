@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · ci: wired `npm run check` into GitHub Actions** — added `.github/workflows/check.yml`
+  (`npm ci && npm run check` on push to `main` and on PRs); verified locally by running the same
+  commands in a clean checkout. This fires `DECISIONS.md`'s `D-2026-07-21-branch-model` "CI gets added"
+  revisit trigger for the no-PR-gate policy — logged as `D-2026-07-21-ci-added`, left the policy itself
+  for the user to decide on. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · docs: normalized session-log file naming** — renamed
   `docs/sessions/SESSION_LOG_2026-07-19.md` to `WILDLIFE_EXPLORER_SESSION_LOG_2026-07-19.md` to match
   the other session logs' naming convention. Left the one historical-narrative mention of the old

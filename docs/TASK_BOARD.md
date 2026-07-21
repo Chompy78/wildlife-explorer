@@ -24,17 +24,6 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
-## Wire npm run check into CI — TODO
-Logged as an explicit revisit trigger in `DECISIONS.md`'s `D-2026-07-21-branch-model`: a working
-`npm run check` gate already exists, so adding GitHub Actions CI is a small lift, and would make a
-PR-gated workflow worth the overhead.
-**Effort:** low · **Risk:** low — additive CI config, doesn't change application behavior.
-
-```text
-1. Add a GitHub Actions workflow that runs npm ci && npm run check on push/PR.
-2. Confirm it passes on the current main.
-```
-**Done when:** CI runs `npm run check` automatically and is green on `main`.
 
 ## Verify the ported .claude/commands actually work here — TODO
 `add-task`, `close-session`, `cold-plan-review`, `log-lesson`, `pick-task`, `run-task`, `sweep-tasks`

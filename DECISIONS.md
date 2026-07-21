@@ -6,6 +6,9 @@
 
 ## Index
 
+- **D-2026-07-21-ci-added** — Added `npm run check` as a GitHub Actions workflow on push/PR. This fires
+  `D-2026-07-21-branch-model`'s explicit "CI gets added" revisit trigger for the no-PR-gate policy — left
+  the branch-model decision itself unchanged (that's the user's call), flagged for a follow-up decision.
 - **D-2026-07-20-branch-model-confirmed** — User explicitly confirmed commit-straight-to-`main` remains
   the standing policy, including for harness-pinned sessions: fast-forward-merge the pinned branch into
   `main` before finishing rather than introducing a PR gate. Resolves `D-2026-07-20-web-session-branch-
@@ -21,6 +24,28 @@
 - **D-2026-07-21-branch-model** — Chose commit-straight-to-`main`, no feature branches/PRs, for now.
   Same as `chompy78/family-hub`, but this repo is one small step from being ready to reverse it (a real
   `npm run check` gate already exists) — see full entry for the explicit revisit trigger.
+
+## D-2026-07-21-ci-added · wired npm run check into GitHub Actions
+- **Context:** `D-2026-07-21-branch-model` named "CI gets added" as an explicit revisit trigger for the
+  commit-straight-to-`main`, no-PR-gate policy, and `docs/TASK_BOARD.md` carried a low-effort/low-risk
+  task to add it, since `npm run check` already exists as a real, working gate. Picked up during an
+  unattended `/sweep-tasks` run over the task board.
+- **Options:** (A1) add the CI workflow only, leave the branch-model policy untouched and surface the
+  now-fired revisit trigger for the user to decide on separately. (A2) add CI and unilaterally switch to
+  a PR-gated workflow in the same change, reasoning the trigger firing implies the switch should happen
+  automatically.
+- **Decision:** A1.
+- **Why:** whether a fired revisit trigger should actually change the standing policy is exactly the
+  kind of judgment call `AGENTS.md`'s communication conventions reserve for the user, not something an
+  unattended sweep should decide on its own — especially for a process/workflow change this consequential
+  (it would mean no more direct-to-`main` commits going forward). Adding the workflow file itself is pure
+  addition (doesn't change how `main` currently gets committed to) and squarely low-risk; switching the
+  policy is not.
+- **Consequence:** `.github/workflows/check.yml` runs `npm ci && npm run check` on push to `main` and on
+  pull requests. `docs/TASK_BOARD.md`'s "Wire npm run check into CI" item is graduated to `CHANGELOG.md`.
+  The branch-model policy in `AGENTS.md`/`D-2026-07-21-branch-model` is unchanged pending the user's call.
+- **See also:** `D-2026-07-21-branch-model` (the policy whose revisit trigger this fires).
+- **Status:** Active. Follow-up (not yet decided): whether to now introduce a PR-gated workflow.
 
 ## D-2026-07-20-branch-model-confirmed · commit-straight-to-main stands, even for harness-pinned sessions
 - **Context:** `D-2026-07-20-web-session-branch-override` left open whether a harness-pinned working
