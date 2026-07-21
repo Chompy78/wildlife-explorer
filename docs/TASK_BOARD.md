@@ -24,17 +24,6 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
-## Normalize session-log file naming — TODO
-`docs/sessions/SESSION_LOG_2026-07-19.md` lacks the `WILDLIFE_EXPLORER_SESSION_LOG_` prefix used by the
-other two session-log files.
-**Effort:** low · **Risk:** low — a rename, no content change.
-
-```text
-1. Rename docs/sessions/SESSION_LOG_2026-07-19.md to match the WILDLIFE_EXPLORER_SESSION_LOG_ convention.
-2. Check for and update any links to the old filename.
-```
-**Done when:** all files under docs/sessions/ follow one naming convention.
-
 ## Wire npm run check into CI — TODO
 Logged as an explicit revisit trigger in `DECISIONS.md`'s `D-2026-07-21-branch-model`: a working
 `npm run check` gate already exists, so adding GitHub Actions CI is a small lift, and would make a

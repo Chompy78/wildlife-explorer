@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · docs: normalized session-log file naming** — renamed
+  `docs/sessions/SESSION_LOG_2026-07-19.md` to `WILDLIFE_EXPLORER_SESSION_LOG_2026-07-19.md` to match
+  the other session logs' naming convention. Left the one historical-narrative mention of the old
+  filename (in the 2026-07-20 status-review log) as-is - it accurately describes what the file was
+  called at that point in time; not a broken link. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · chore(deps): regenerated a clean, reproducible `package-lock.json`** — a fresh
   `npm install` on the old committed lockfile produced a diff; regenerated from scratch
   (`rm -rf node_modules package-lock.json && npm install`), then confirmed `npm ci` from the new
