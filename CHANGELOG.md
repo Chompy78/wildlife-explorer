@@ -5,6 +5,14 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · chore(deps): regenerated a clean, reproducible `package-lock.json`** — a fresh
+  `npm install` on the old committed lockfile produced a diff; regenerated from scratch
+  (`rm -rf node_modules package-lock.json && npm install`), then confirmed `npm ci` from the new
+  lockfile produces no further diff. The diff itself just reflects that `vite@8.1.5`'s own dependency
+  tree has moved on upstream since the lockfile was last generated — it no longer depends on `esbuild`
+  (dropping ~78 `@esbuild/<platform>` optional entries) in favor of `lightningcss`/newer `postcss` for
+  its CSS pipeline; `npm run check` passes unchanged. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · chore: removed stale `README.md.txt`** — a leftover pre-cleanup draft from the Base64
   transfer era, confirmed unreferenced anywhere in the repo. Graduated off `docs/TASK_BOARD.md`.
 

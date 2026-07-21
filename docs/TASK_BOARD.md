@@ -24,18 +24,6 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
-## Regenerate a clean package-lock.json — TODO
-A fresh `npm install` on a clean clone currently produces a lockfile diff, meaning the committed lockfile
-isn't perfectly reproducible.
-**Effort:** low · **Risk:** low — dependency-resolution only, no source change.
-
-```text
-1. Delete node_modules and package-lock.json.
-2. Run npm install fresh.
-3. Confirm npm run check passes and commit the regenerated lockfile.
-```
-**Done when:** a clean `npm install` from the committed lockfile produces no diff.
-
 ## Normalize session-log file naming — TODO
 `docs/sessions/SESSION_LOG_2026-07-19.md` lacks the `WILDLIFE_EXPLORER_SESSION_LOG_` prefix used by the
 other two session-log files.
