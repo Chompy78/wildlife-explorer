@@ -5,6 +5,16 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · chore(tooling): verified all 7 ported `.claude/commands` against this repo** — ran
+  `add-task`, `pick-task`, `run-task`, `cold-plan-review`, `log-lesson`, `close-session`, and
+  `sweep-tasks` (this session) for real. Found and fixed a real gap in `pick-task.md`: its fallback
+  assumed 🔴 NOW always has a TODO, which broke once this sweep emptied it for the first time — now falls
+  through to 🟠 SOON instead. Confirmed `run-task` correctly refuses to auto-decide an ambiguous
+  judgment-call task via its own "stop and flag" escape hatch. `log-lesson` drafted two candidates for
+  `chompy78/ai-lessons-learned` but couldn't write them - that repo isn't in this session's scope. See
+  `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-21-sweep.md` for the full sweep narrative.
+  Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · docs: backfilled milestone-notes files for 3.2, 4.0 and 4.1** — added
   `MILESTONE_3_2_NOTES.md`, `MILESTONE_4_0_NOTES.md`, `MILESTONE_4_1_NOTES.md`, extracted from
   `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and matching `MILESTONE_5_NOTES.md`'s

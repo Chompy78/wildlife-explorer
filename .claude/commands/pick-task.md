@@ -20,7 +20,10 @@ Read `AI.md`, `AGENTS.md`, and `docs/TASK_BOARD.md` directly.
   the topmost TODO that's genuinely low-risk (docs-only, a single-component fix), skipping bigger items.
   **Never treat a Canon/Scope-boundary/save-migration task as "quick" regardless of its Effort tag** —
   those are always at least Risk: medium by `AGENTS.md`'s own rule.
-- Otherwise, pick the topmost `— TODO` task in 🔴 NOW.
+- Otherwise, pick the topmost `— TODO` task in 🔴 NOW. **If 🔴 NOW has no TODOs left** (it's meant to
+  empty out as a milestone's review priorities get graduated), fall through to the topmost TODO in
+  🟠 SOON instead. Never fall through to 🟡 NEXT — those are explicitly deferred by the Scope boundary
+  and only become pickable once a milestone decision promotes one out of that section.
 
 ## Step 3 — calibrate engine/effort
 

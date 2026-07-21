@@ -25,18 +25,6 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
 
-## Verify the ported .claude/commands actually work here — TODO
-`add-task`, `close-session`, `cold-plan-review`, `log-lesson`, `pick-task`, `run-task`, `sweep-tasks`
-were ported from `chompy78/PACT` in the 2026-07-21 scaffold port but haven't been exercised against this
-repo's actual `docs/TASK_BOARD.md` format or session-log convention yet.
-**Effort:** medium · **Risk:** low — using an assistant command, not touching game code.
-
-```text
-1. Run each ported command at least once against this repo's real files.
-2. Fix any assumptions that don't match this repo's conventions (task format, file naming, etc.).
-```
-**Done when:** all 7 commands have been run at least once here without producing wrong output.
-
 ## Decide whether to introduce a PR-gated workflow — TODO
 Now that CI (`npm run check` via GitHub Actions) is wired up, `DECISIONS.md`'s `D-2026-07-21-branch-model`
 "CI gets added" revisit trigger has fired (see `D-2026-07-21-ci-added`) — decide whether to keep
