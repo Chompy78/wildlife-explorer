@@ -19,13 +19,13 @@
   section (hosting, a privacy statement, PWA manifest, i18n, audio). See `DECISIONS.md`'s
   `D-2026-07-20-web-session-branch-override` for the branch-model conflict this review surfaced.
 
-- **2026-07-20 · docs(tooling): ported PACT's AI-agent workflow scaffold (additive)** — `AGENTS.md`,
+- **2026-07-21 · docs(tooling): ported PACT's AI-agent workflow scaffold (additive)** — `AGENTS.md`,
   `CLAUDE.md`, `.github/copilot-instructions.md`, `DECISIONS.md`, `docs/TASK_BOARD.md`, and 7 adapted
   `.claude/commands/*.md` skills, ported from `chompy78/PACT`. Unlike the same-session port to
   `chompy78/family-hub` (build-fresh), this one is additive — `AI.md` stays the real entry point
   untouched, `AGENTS.md` only adds the process layer it doesn't cover. `npm run check` (not a plain
-  build) is the skills' verification command. See `DECISIONS.md`'s `D-2026-07-20-scaffold-port` and
-  `D-2026-07-20-branch-model`.
+  build) is the skills' verification command. See `DECISIONS.md`'s `D-2026-07-21-scaffold-port` and
+  `D-2026-07-21-branch-model`.
 
 - **2026-07-20 · feat: Milestone 5 — Forest arrival shell** — Forest Arrival, one short Fern Trail,
   three common animals (Forest Wren, Forest Wallaby, Shiny Forest Beetle) with photography, Wildlife

@@ -138,7 +138,7 @@ other two session-log files.
 **Done when:** all files under docs/sessions/ follow one naming convention.
 
 ## Wire npm run check into CI — TODO
-Logged as an explicit revisit trigger in `DECISIONS.md`'s `D-2026-07-20-branch-model`: a working
+Logged as an explicit revisit trigger in `DECISIONS.md`'s `D-2026-07-21-branch-model`: a working
 `npm run check` gate already exists, so adding GitHub Actions CI is a small lift, and would make a
 PR-gated workflow worth the overhead.
 **Effort:** low · **Risk:** low — additive CI config, doesn't change application behavior.
@@ -151,7 +151,7 @@ PR-gated workflow worth the overhead.
 
 ## Verify the ported .claude/commands actually work here — TODO
 `add-task`, `close-session`, `cold-plan-review`, `log-lesson`, `pick-task`, `run-task`, `sweep-tasks`
-were ported from `chompy78/PACT` in the 2026-07-20 scaffold port but haven't been exercised against this
+were ported from `chompy78/PACT` in the 2026-07-21 scaffold port but haven't been exercised against this
 repo's actual `docs/TASK_BOARD.md` format or session-log convention yet.
 **Effort:** medium · **Risk:** low — using an assistant command, not touching game code.
 

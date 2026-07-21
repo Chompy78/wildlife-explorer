@@ -21,7 +21,7 @@ directly on `main`: pull latest, make the change, run `npm run check`, commit, p
 **This repo is one step closer to changing this than family-hub was** — `npm run check` (typecheck +
 vitest + build + encoding audit) already exists and genuinely works (18 passing tests as of Milestone
 5). Wiring it into GitHub Actions CI would be a small lift, not a redesign, and would immediately make a
-PR-gated workflow worth the overhead. See `DECISIONS.md`'s `D-2026-07-20-branch-model` for the explicit
+PR-gated workflow worth the overhead. See `DECISIONS.md`'s `D-2026-07-21-branch-model` for the explicit
 revisit trigger — don't wait to be asked twice if you're the session that ends up adding CI.
 
 **If your harness pins you to a working branch** (e.g. Claude Code on the web given an explicit branch

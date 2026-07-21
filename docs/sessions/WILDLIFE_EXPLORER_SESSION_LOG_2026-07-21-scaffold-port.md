@@ -1,6 +1,6 @@
 # Wildlife Explorer — Session Log
 
-**Session date:** 20 July 2026
+**Session date:** 21 July 2026
 **User:** John Chow
 **Project folder:** `C:\Users\user\dev\wildlife-explorer`
 

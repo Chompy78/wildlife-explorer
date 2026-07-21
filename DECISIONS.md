@@ -11,20 +11,20 @@
   `main` before finishing rather than introducing a PR gate. Resolves `D-2026-07-20-web-session-branch-
   override`'s open question — see full entry.
 - **D-2026-07-20-web-session-branch-override** — A Claude Code on the web session was pinned by its
-  harness instructions to a dedicated branch, conflicting with `D-2026-07-20-branch-model`'s
+  harness instructions to a dedicated branch, conflicting with `D-2026-07-21-branch-model`'s
   straight-to-`main` convention. Followed the session-level pin rather than resolving the conflict
   unilaterally; logged it as a `docs/TASK_BOARD.md` task instead — see full entry. **Resolved** by
   `D-2026-07-20-branch-model-confirmed`.
-- **D-2026-07-20-scaffold-port** — Ported PACT's task-board/decisions/skill scaffold, additive-merge
+- **D-2026-07-21-scaffold-port** — Ported PACT's task-board/decisions/skill scaffold, additive-merge
   style: kept `AI.md` as the real entry point, added `AGENTS.md` as a process-layer supplement rather
   than a competing/duplicate governance file. Decision: additive, not build-fresh — see full entry.
-- **D-2026-07-20-branch-model** — Chose commit-straight-to-`main`, no feature branches/PRs, for now.
+- **D-2026-07-21-branch-model** — Chose commit-straight-to-`main`, no feature branches/PRs, for now.
   Same as `chompy78/family-hub`, but this repo is one small step from being ready to reverse it (a real
   `npm run check` gate already exists) — see full entry for the explicit revisit trigger.
 
 ## D-2026-07-20-branch-model-confirmed · commit-straight-to-main stands, even for harness-pinned sessions
 - **Context:** `D-2026-07-20-web-session-branch-override` left open whether a harness-pinned working
-  branch (as this session had) should become a standing exception to `D-2026-07-20-branch-model`'s
+  branch (as this session had) should become a standing exception to `D-2026-07-21-branch-model`'s
   commit-straight-to-`main` policy, and logged it as `docs/TASK_BOARD.md`'s "Reconcile branch-model
   conflict" item. Asked directly, the user answered: commit straight to `main`.
 - **Options:** (1) keep commit-straight-to-`main` as the only policy; a pinned branch is a session-level
@@ -32,25 +32,25 @@
   finishing. (2) Formalize branch-per-session as a parallel accepted pattern, with no PR requirement.
   (3) Introduce a real PR-gated workflow now.
 - **Decision:** option 1. Confirmed directly by the user.
-- **Why:** no new fact changed since `D-2026-07-20-branch-model`'s original reasoning (no CI, no second
+- **Why:** no new fact changed since `D-2026-07-21-branch-model`'s original reasoning (no CI, no second
   contributor, no PR-worthy automated gate yet) — a session being externally pinned to a branch doesn't
   itself justify a process change; it's an environment detail this session's own workflow already showed
   how to absorb (push to the pinned branch, verify, then fast-forward-merge into `main` before
   finishing — exactly what happened with commits `afee9e5`/`c02dfd2`).
 - **Consequence:** `AGENTS.md`'s branch-model section now explicitly covers the pinned-branch case.
   `docs/TASK_BOARD.md`'s "Reconcile branch-model conflict" item is graduated to `CHANGELOG.md`.
-- **See also:** `D-2026-07-20-branch-model` (the policy being reaffirmed); `D-2026-07-20-web-session-
+- **See also:** `D-2026-07-21-branch-model` (the policy being reaffirmed); `D-2026-07-20-web-session-
   branch-override` (the open question this resolves).
-- **Status:** Resolved. Active going forward as part of `D-2026-07-20-branch-model`.
+- **Status:** Resolved. Active going forward as part of `D-2026-07-21-branch-model`.
 
 ## D-2026-07-20-web-session-branch-override · followed the session's branch pin over the repo's straight-to-main convention
 - **Context:** a Claude Code on the web session was given explicit harness-level instructions to develop
   on a dedicated branch (`claude/project-status-review-26absr`) and push there. This conflicts with
-  `D-2026-07-20-branch-model` (commit straight to `main`, no branches/PRs), which was itself logged only
+  `D-2026-07-21-branch-model` (commit straight to `main`, no branches/PRs), which was itself logged only
   hours earlier in the same day, on `main`, by a different (local) session.
 - **Options:** (1) follow the branch pin, push this session's work to the feature branch, and leave
   reconciling the two conventions for later. (2) Ignore the branch pin and push straight to `main` per
-  the existing `D-2026-07-20-branch-model` decision. (3) Immediately rewrite `AGENTS.md`'s branch-model
+  the existing `D-2026-07-21-branch-model` decision. (3) Immediately rewrite `AGENTS.md`'s branch-model
   decision to accommodate branch-per-session work, resolving the conflict now.
 - **Decision:** option 1. Pushed this session's commits to the pinned branch, and added a
   `docs/TASK_BOARD.md` item ("Reconcile branch-model conflict") rather than resolving the tension itself.
@@ -63,11 +63,11 @@
 - **Consequence:** as of this decision, `docs/TASK_BOARD.md`'s expansion (21 new items, see
   `CHANGELOG.md`) lived on `claude/project-status-review-26absr` until it was fast-forward-merged into
   `main` the same session (commits `afee9e5`/`c02dfd2`).
-- **See also:** `D-2026-07-20-branch-model` (the decision this conflicted with); `D-2026-07-20-branch-
+- **See also:** `D-2026-07-21-branch-model` (the decision this conflicted with); `D-2026-07-20-branch-
   model-confirmed` (the resolution).
 - **Status:** Resolved by `D-2026-07-20-branch-model-confirmed`.
 
-## D-2026-07-20-scaffold-port · port PACT's scaffold additively, keep AI.md as the real entry point
+## D-2026-07-21-scaffold-port · port PACT's scaffold additively, keep AI.md as the real entry point
 - **Context:** the user wanted the same `AGENTS.md`/task-board/`DECISIONS.md`/`CHANGELOG.md`/
   `docs/sessions/`/`.claude/commands/*.md` system used on `chompy78/PACT` (and, moments earlier the same
   session, ported to `chompy78/family-hub`) replicated here too. Unlike family-hub (which had product-
@@ -104,11 +104,11 @@
   PACT's `<date>-<topic>.md` pattern — matching the existing style rather than importing a new one.
 - **See also:** `chompy78/PACT`'s `DECISIONS.md` `D-GH-2026-07-16-agents-workflow-reconcile` (the
   original "read the target's real state, adapt vs. build fresh" precedent, from PACT's own reconciliation
-  with an external standard); `chompy78/family-hub`'s `DECISIONS.md` `D-2026-07-20-scaffold-port` (this
+  with an external standard); `chompy78/family-hub`'s `DECISIONS.md` `D-2026-07-21-scaffold-port` (this
   port's immediate predecessor, same session, opposite shape — build-fresh there, additive here).
 - **Status:** Active.
 
-## D-2026-07-20-branch-model · commit straight to `main`, no feature branches or PRs, for now
+## D-2026-07-21-branch-model · commit straight to `main`, no feature branches or PRs, for now
 - **Context:** PACT's ported skills (`run-task`, `sweep-tasks`) assume a branch-per-task, PR-reviewed
   workflow. This repo has one branch (`main`), no CI configured, and no second contributor.
 - **Options:** (A1) commit straight to `main`. (A2) introduce branches/PRs now.
