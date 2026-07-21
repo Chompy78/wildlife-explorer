@@ -37,17 +37,6 @@ repo's actual `docs/TASK_BOARD.md` format or session-log convention yet.
 ```
 **Done when:** all 7 commands have been run at least once here without producing wrong output.
 
-## Decide on browser-level test tooling — TODO
-The existing "Browser-level travel and Continue restoration tests" NOW item doesn't specify what runs
-those tests. Playwright is already available in this environment.
-**Effort:** low · **Risk:** low — a tooling decision, not an implementation.
-
-```text
-1. Decide whether Playwright (or another tool) is adopted for browser-level tests.
-2. Document the choice (README.md's Validation Commands, or AGENTS.md) and add the relevant script.
-```
-**Done when:** a browser-level test tool is chosen, documented, and runnable via an npm script.
-
 ## Add test coverage for corrupted/malformed save data — TODO
 `saveMigration.ts` defensively handles missing/malformed fields, but no test currently feeds it fully
 garbage input (wrong types, unexpected shape, non-object JSON) to confirm the fallbacks actually hold.

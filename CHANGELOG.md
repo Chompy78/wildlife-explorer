@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · docs: decided browser-level test tooling stays vitest + testing-library** — the
+  concrete gap ("nothing proves Continue restores the right play area") is already closed by
+  `src/App.test.tsx`'s jsdom-level tests. Decided against adopting Playwright as a committed
+  devDependency/CI tool for now, even though it caught two real bugs as an ad hoc manual-QA aid this
+  same sweep (see `D-2026-07-21-browser-test-tooling`); no new devDependency or npm script added.
+  Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · feat(ui): added a favicon** — `public/favicon.svg` (a simple 🌲 emoji glyph, matching
   the game's existing icon style) linked from `index.html`; verified it serves in both `npm run dev` and
   the production build (previously a bare browser default-favicon 404 on every load). Graduated off
