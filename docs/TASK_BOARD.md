@@ -37,18 +37,6 @@ repo's actual `docs/TASK_BOARD.md` format or session-log convention yet.
 ```
 **Done when:** all 7 commands have been run at least once here without producing wrong output.
 
-## Add test coverage for corrupted/malformed save data — TODO
-`saveMigration.ts` defensively handles missing/malformed fields, but no test currently feeds it fully
-garbage input (wrong types, unexpected shape, non-object JSON) to confirm the fallbacks actually hold.
-**Effort:** low · **Risk:** medium — damage likelihood is medium; a silent migration bug here would
-corrupt a player's save, which `npm run check`'s current suite may not catch.
-
-```text
-1. Add tests feeding migrateSaveData garbage/malformed/non-object input.
-2. Confirm it always returns a valid, safe SaveData shape.
-```
-**Done when:** malformed-save-input tests exist and pass; `npm run check` passes.
-
 ## Backfill missing milestone-notes files — TODO
 Only `MILESTONE_5_NOTES.md` exists in-repo; Milestones 3.2, 4.0 and 4.1 notes currently live only in
 `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md`, not as their own files.

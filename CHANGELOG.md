@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · test(save): covered corrupted and malformed save data** — fed `migrateSaveData`
+  non-object top-levels, entirely-wrong-shaped `questProgress`/`lostPuppy`, wrong-typed array fields,
+  unknown IDs mixed into valid arrays, and deeply nested garbage; confirmed it always returns a valid,
+  safe `SaveData` shape. Added `saveGame.test.ts` covering `loadSave()` against unparseable JSON and
+  JSON that parses but isn't an object - neither had any test before. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · docs: decided browser-level test tooling stays vitest + testing-library** — the
   concrete gap ("nothing proves Continue restores the right play area") is already closed by
   `src/App.test.tsx`'s jsdom-level tests. Decided against adopting Playwright as a committed
