@@ -1,10 +1,21 @@
-import { useEffect, type RefObject } from 'react';
+import { useEffect, useRef, type RefObject } from 'react';
 
 const selector = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 export function useModalFocus(containerRef: RefObject<HTMLElement | null>, onClose: () => void, initialRef?: RefObject<HTMLElement | null>) {
+  // Persists across React StrictMode's development-only double-invoke (mount, cleanup, mount again)
+  // of this effect within the same real mount. `previous` must be captured only once - on the first
+  // invocation - or the second invocation would capture the dialog's own just-focused element (set by
+  // the first invocation) instead of the true pre-dialog trigger element. `generation` guards against
+  // the discarded first invocation's cleanup firing its deferred restore after the second (real) one.
+  const state = useRef<{ generation: number; previous: HTMLElement | null } | null>(null);
   useEffect(() => {
-    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (!state.current) {
+      state.current = { generation: 0, previous: document.activeElement instanceof HTMLElement ? document.activeElement : null };
+    }
+    state.current.generation += 1;
+    const myGeneration = state.current.generation;
+    const previous = state.current.previous;
     const container = containerRef.current;
     if (!container) return;
     const activeContainer: HTMLElement = container;
@@ -22,6 +33,9 @@ export function useModalFocus(containerRef: RefObject<HTMLElement | null>, onClo
     }
 
     document.addEventListener('keydown', onKeyDown);
-    return () => { document.removeEventListener('keydown', onKeyDown); requestAnimationFrame(() => previous?.focus()); };
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      requestAnimationFrame(() => { if (state.current?.generation === myGeneration) previous?.focus(); });
+    };
   }, [containerRef, initialRef, onClose]);
 }
