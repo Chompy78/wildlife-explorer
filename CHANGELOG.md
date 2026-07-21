@@ -5,6 +5,18 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · fix(a11y): keyboard review of Forest interactions — fixed a real `useModalFocus` bug**
+  — keyboard-navigated Forest Arrival/Fern Trail via Playwright: tab order, initial dialog focus, Tab
+  trap, Escape-close-and-restore. Found opening the Journal never moved focus into the dialog under
+  `npm run dev`. Root cause: React StrictMode double-invokes effects in development, and the old
+  cleanup's `requestAnimationFrame`-deferred focus-restore from the discarded first invocation fired
+  after the real second invocation had already focused the dialog, stealing focus back. Fixed by
+  capturing the pre-dialog "previous" element once per real mount and guarding the deferred restore
+  with a generation counter; confirmed via Playwright this never affected production builds (no
+  double-invoke there), only made dev-mode keyboard testing misleading. Added a StrictMode-wrapped
+  regression test (`src/hooks/useModalFocus.test.tsx`). Screen-reader live region already matched the
+  existing Park/Camper pattern, no changes needed. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · fix(ui): Forest layout review — Wildlife Journal panel made opaque** — reviewed Forest
   Arrival and Fern Trail at 360/390px (mobile) and 1280px (desktop) via Playwright screenshots; no
   horizontal-overflow or reflow issues found there. Found and fixed a real pre-existing bug along the

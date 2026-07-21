@@ -45,20 +45,6 @@ cover this specific path — verify before assuming they do).
 ```
 **Done when:** both edge cases have a passing test; `npm run check` passes.
 
-## Keyboard and screen-reader review of Forest interactions — TODO
-**Effort:** low · **Risk:** low — the reusable modal-focus-hook pattern already exists (see
-MILESTONE_5_NOTES.md / the Camper's accessibility work) — this is applying/verifying an established
-pattern, not designing a new one.
-
-```text
-1. Manually keyboard-navigate Forest Arrival and Fern Trail interactions.
-2. Check screen-reader announcements match the pattern already used for Camper/Journal (live status
-   messages, focus trapping where a dialog is involved).
-3. Fix any gaps against that existing pattern.
-```
-**Done when:** Forest interactions keyboard/screen-reader verified against the existing accessibility
-pattern; `npm run check` passes.
-
 ## Ensure non-Forest destinations remain preview-only — TODO
 A Canon/Scope-boundary check, not a feature — see `AI.md`'s Scope boundary: Mountains, Lake, Safari,
 Rainforest and Alien Planet must stay preview-only.
