@@ -5,6 +5,15 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · fix(a11y): stop `useModalFocus` stealing focus back to the initial control on
+  unrelated re-renders** — found during a post-sweep code review of `useModalFocus.ts`'s earlier
+  StrictMode fix. The hook re-focused the dialog's initial control on *every* effect re-run, not just
+  first mount; since `ForestScreen`/`ParkScreen` define `closeJournal` inline (a fresh function every
+  render), any unrelated parent re-render while the Journal was open would snap focus back to the Close
+  button, away from wherever the user had tabbed to. Fixed by gating the initial-focus move behind the
+  same once-per-real-mount guard already used for the StrictMode fix. Added a regression test
+  (confirmed it fails without the fix, passes with it).
+
 - **2026-07-21 · chore(tooling): verified all 7 ported `.claude/commands` against this repo** — ran
   `add-task`, `pick-task`, `run-task`, `cold-plan-review`, `log-lesson`, `close-session`, and
   `sweep-tasks` (this session) for real. Found and fixed a real gap in `pick-task.md`: its fallback

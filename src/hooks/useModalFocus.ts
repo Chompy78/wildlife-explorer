@@ -4,14 +4,17 @@ const selector = 'button:not([disabled]), [href], input:not([disabled]), select:
 
 export function useModalFocus(containerRef: RefObject<HTMLElement | null>, onClose: () => void, initialRef?: RefObject<HTMLElement | null>) {
   // Persists across React StrictMode's development-only double-invoke (mount, cleanup, mount again)
-  // of this effect within the same real mount. `previous` must be captured only once - on the first
-  // invocation - or the second invocation would capture the dialog's own just-focused element (set by
-  // the first invocation) instead of the true pre-dialog trigger element. `generation` guards against
-  // the discarded first invocation's cleanup firing its deferred restore after the second (real) one.
-  const state = useRef<{ generation: number; previous: HTMLElement | null } | null>(null);
+  // of this effect within the same real mount, and across any other re-run of this effect while the
+  // dialog stays open (e.g. a parent passing a new `onClose` identity on an unrelated re-render).
+  // `previous` and the initial-focus move must each happen only once per real mount - re-running them
+  // on every invocation would either capture the dialog's own just-focused element as `previous`
+  // (instead of the true pre-dialog trigger element), or snap focus back to the initial control away
+  // from whatever the user has since tabbed to. `generation` guards against a superseded invocation's
+  // cleanup firing its deferred restore after a later (real) invocation already took over.
+  const state = useRef<{ generation: number; previous: HTMLElement | null; focused: boolean } | null>(null);
   useEffect(() => {
     if (!state.current) {
-      state.current = { generation: 0, previous: document.activeElement instanceof HTMLElement ? document.activeElement : null };
+      state.current = { generation: 0, previous: document.activeElement instanceof HTMLElement ? document.activeElement : null, focused: false };
     }
     state.current.generation += 1;
     const myGeneration = state.current.generation;
@@ -20,7 +23,10 @@ export function useModalFocus(containerRef: RefObject<HTMLElement | null>, onClo
     if (!container) return;
     const activeContainer: HTMLElement = container;
     const focusables = () => Array.from(activeContainer.querySelectorAll<HTMLElement>(selector));
-    (initialRef?.current ?? focusables()[0] ?? activeContainer).focus();
+    if (!state.current.focused) {
+      state.current.focused = true;
+      (initialRef?.current ?? focusables()[0] ?? activeContainer).focus();
+    }
 
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') { event.preventDefault(); onClose(); return; }
