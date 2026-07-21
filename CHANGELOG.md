@@ -5,6 +5,9 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · chore: removed stale `README.md.txt`** — a leftover pre-cleanup draft from the Base64
+  transfer era, confirmed unreferenced anywhere in the repo. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · test(app): covered New Game and Reset Save edge cases after Forest travel** —
   confirmed `createDefaultSave()` leaves no stale Forest state behind: New Game and Reset Save both land
   on a clean slate (`lastPlayArea` back to `'park'`, `forestLocation` back to `'Forest Arrival'`,

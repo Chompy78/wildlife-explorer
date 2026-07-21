@@ -24,16 +24,6 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
-## Remove stale README.md.txt — TODO
-Leftover pre-cleanup draft of `README.md` from the Base64 transfer era, not referenced anywhere.
-**Effort:** low · **Risk:** low — pure deletion of an unreferenced file.
-
-```text
-1. Confirm nothing references README.md.txt (grep the repo).
-2. Delete it.
-```
-**Done when:** file is removed; `npm run check` passes.
-
 ## Regenerate a clean package-lock.json — TODO
 A fresh `npm install` on a clean clone currently produces a lockfile diff, meaning the committed lockfile
 isn't perfectly reproducible.
