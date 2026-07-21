@@ -45,19 +45,6 @@ cover this specific path — verify before assuming they do).
 ```
 **Done when:** both edge cases have a passing test; `npm run check` passes.
 
-## Ensure non-Forest destinations remain preview-only — TODO
-A Canon/Scope-boundary check, not a feature — see `AI.md`'s Scope boundary: Mountains, Lake, Safari,
-Rainforest and Alien Planet must stay preview-only.
-**Effort:** low · **Risk:** medium — damage likelihood is medium (this is exactly the kind of thing
-`npm run check` won't catch — it's a design-intent check, not a type/test/build check).
-
-```text
-1. Audit every non-Forest destination card/route for any way a player could actually enter it (not just
-   preview it) — a regression here would violate AI.md's Canon, not just be a bug.
-2. Fix any found; add a regression test if the codebase's testing patterns support it cleanly.
-```
-**Done when:** manually confirmed no non-Forest destination is enterable; `npm run check` passes.
-
 ---
 
 # 🟠 SOON — housekeeping, process and QA gaps

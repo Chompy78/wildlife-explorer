@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · test(canon): confirmed non-Forest destinations remain preview-only** — audited every
+  destination card (Mountains, Lake, Safari, Rainforest, Alien Planet) via Playwright; pinning any of
+  them keeps the screen on the Wild Camper with no travel action rendered, only Forest travels, per
+  `AI.md`'s Scope boundary. No violation found; added a regression test per destination. Also fixed a
+  harmless duplicate `'forest'` union member in `GameScreen`. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · fix(a11y): keyboard review of Forest interactions — fixed a real `useModalFocus` bug**
   — keyboard-navigated Forest Arrival/Fern Trail via Playwright: tab order, initial dialog focus, Tab
   trap, Escape-close-and-restore. Found opening the Journal never moved focus into the dialog under
