@@ -37,18 +37,6 @@ repo's actual `docs/TASK_BOARD.md` format or session-log convention yet.
 ```
 **Done when:** all 7 commands have been run at least once here without producing wrong output.
 
-## Backfill missing milestone-notes files — TODO
-Only `MILESTONE_5_NOTES.md` exists in-repo; Milestones 3.2, 4.0 and 4.1 notes currently live only in
-`docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md`, not as their own files.
-**Effort:** low · **Risk:** low — documentation backfill, no behavior change.
-
-```text
-1. Extract the Milestone 3.2 / 4.0 / 4.1 sections from the existing session log.
-2. Write MILESTONE_3_2_NOTES.md, MILESTONE_4_0_NOTES.md, MILESTONE_4_1_NOTES.md following
-   MILESTONE_5_NOTES.md's format.
-```
-**Done when:** each shipped milestone has its own notes file, consistent with MILESTONE_5_NOTES.md.
-
 ---
 
 # 🟡 NEXT — deferred by Scope boundary (see AI.md)

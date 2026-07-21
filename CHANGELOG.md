@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-21 · docs: backfilled milestone-notes files for 3.2, 4.0 and 4.1** — added
+  `MILESTONE_3_2_NOTES.md`, `MILESTONE_4_0_NOTES.md`, `MILESTONE_4_1_NOTES.md`, extracted from
+  `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and matching `MILESTONE_5_NOTES.md`'s
+  terse one-paragraph-per-milestone format. Graduated off `docs/TASK_BOARD.md`.
+
 - **2026-07-21 · test(save): covered corrupted and malformed save data** — fed `migrateSaveData`
   non-object top-levels, entirely-wrong-shaped `questProgress`/`lostPuppy`, wrong-typed array fields,
   unknown IDs mixed into valid arrays, and deeply nested garbage; confirmed it always returns a valid,

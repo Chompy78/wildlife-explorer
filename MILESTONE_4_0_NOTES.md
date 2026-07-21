@@ -1,0 +1,3 @@
+# Milestone 4.0 Notes
+
+Added the first playable Wild Camper hub, reached after completing Tutorial Park: unlock Wild Camper, enter it, inspect its stations (Route Map, Field Desk, Gear Rack, Photo Wall), preview the six future destinations (Forest, Mountains, Lake, Safari, Rainforest, Alien Planet - all explicitly marked Preview only), pin one to the route map, and return to Tutorial Park or Home. Save schema moved to version 3, adding `camperVisited`, `selectedDestination`, and `lastPlayArea`; Continue restores the last valid play area, and locked-camper states normalise back to Tutorial Park. Also fixed an inherited double-escaped Unicode issue so the interface renders actual icons instead of raw `🚐`-style escape strings.
