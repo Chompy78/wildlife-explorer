@@ -9,7 +9,9 @@ This session ran `/sweep-tasks` unattended over the entire task board (all 5 �
 priorities plus 9 of 10 🟠 SOON housekeeping items — the batch size chosen was "all eligible"), closing
 out every low/medium-risk TODO in one pass, then used the last SOON item itself
 ("verify the ported `.claude/commands` actually work") to exercise all 7 ported PACT skills for real
-against this repo's live state.
+against this repo's live state. Afterward, at the user's request, ran a follow-up code review of the
+sweep's own diff and found (and fixed) a second real bug in the same `useModalFocus` hook the sweep had
+already touched.
 
 ## What we did
 
@@ -49,6 +51,20 @@ against this repo's live state.
      instructions. Not a skill defect - an environment/scope limitation.
    - `/close-session` — this section of this log is that verification.
    - `/sweep-tasks` — this entire session.
+4. **Post-sweep code review (user-requested).** Attempted to run the review via the `Workflow` tool for
+   a multi-agent pass; that tool call was denied twice, so switched to reviewing the diff directly
+   instead of retrying the same approach. Read `useModalFocus.ts`'s StrictMode fix, `styles.css`'s
+   opacity fix, every new/extended test file, the vitest/lockfile/CI changes, and the `pick-task.md` fix
+   against the live codebase (not just diff context). Found one real, pre-existing-but-newly-relevant
+   issue: `useModalFocus` re-focused the dialog's initial control on *every* effect re-run, not just
+   first mount - since `ForestScreen`/`ParkScreen` define `closeJournal` inline (a fresh function every
+   render), any unrelated parent re-render while the Journal was open would snap focus back to the Close
+   button, discarding wherever the user had tabbed to. Fixed by gating the initial-focus move behind the
+   same once-per-real-mount guard the sweep had already added for the StrictMode issue. Added a
+   regression test using `rerender()` to isolate an unrelated parent re-render from any click-driven
+   focus changes; confirmed the test fails without the fix and passes with it (commit `15c3d62`),
+   verified with the same real-browser Playwright pass used earlier in the sweep, then fast-forwarded
+   `main` again to pick it up.
 
 ## Decisions made
 
@@ -66,6 +82,10 @@ against this repo's live state.
   never affected players - only made keyboard-navigation testing via `npm run dev` misleading. Fixed by
   capturing the pre-dialog "previous" element once per real mount and guarding the deferred restore with
   a generation counter; added a StrictMode-wrapped regression test.
+- Found and fixed a second, related `useModalFocus` bug during the post-sweep review: the initial-focus
+  move itself was still unconditional on every effect re-run, so an unrelated parent re-render while the
+  dialog was open could steal focus back to the initial control. Fixed by reusing the same once-per-
+  real-mount guard.
 
 ## New tasks discovered
 
