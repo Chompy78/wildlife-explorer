@@ -25,10 +25,12 @@ package says exactly which ones, kept well under the 20-file ceiling.
 
 - **Canon and Scope boundary** (from `AI.md`) are restated in full in every package — Copilot has no
   other way to know them, and violating either is the one thing `npm run check` won't catch.
-- **Art style anchor**: `public/assets/wild-camper/wild-camper-direction.png` (1536×1024 PNG) is the
-  established visual direction — warm, detailed, semi-realistic digital-painting/concept-art style, not
-  flat cartoon and not photographic. Attach this file directly in Copilot 365 alongside any Track A art
-  brief so new assets match it, rather than relying on the text description alone.
+- **Art style**: `docs/VISUAL_DIRECTION.md` is the written source-of-truth for style, characters,
+  environments and the avoid-list — subordinate to `AI.md`'s Canon/Scope, with a Scope note reconciling
+  the two (notably: Forest ≠ Rainforest, and several environments/secret areas it describes are
+  long-term/aspirational, not current scope). `public/assets/wild-camper/wild-camper-direction.png`
+  (1536×1024 PNG) is the one concrete image anchor that exists today. Attach **both** in Copilot 365
+  alongside any Track A art brief so new assets match — don't rely on either alone.
 - **Task-board format**: each package ends with a "Done when" block written in this repo's
   `docs/TASK_BOARD.md` task format (see `AGENTS.md`), so finished work graduates into `CHANGELOG.md` the
   same way any other task does.

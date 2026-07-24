@@ -27,14 +27,21 @@ companions, inventory, crafting, shops, economy, or another playable destination
 *visuals* for locations that already exist in the shipped game (Tutorial Park, Forest Arrival/Fern
 Trail) — it does not expand gameplay scope.
 
-**Established art direction** — `public/assets/wild-camper/wild-camper-direction.png` (1536×1024 PNG,
-already live in the app on the Camper screen). **Attach this actual file in Copilot 365** alongside the
-Track A prompts below — it is the ground truth for style, not just the text description of it:
-warm, richly detailed digital-painting / concept-art illustration; semi-realistic proportions and
-lighting (not flat vector cartoon, not photographic); lush saturated greens; soft warm, dappled light;
-fine painterly texture on fur/foliage/fabric; cinematic wide framing with foreground props, midground
-action, background vista; calm, non-threatening compositions even with multiple species in frame
-(matches the Canon); an inviting storybook-adventure mood.
+**Established art direction** — full detail lives in `docs/VISUAL_DIRECTION.md` (read it before running
+Track A; it also has a Scope note on what's in/out of bounds for the shipped game). Summary as it
+applies to this package:
+- **Style anchor image:** `public/assets/wild-camper/wild-camper-direction.png` (1536×1024 PNG, already
+  live in the app on the Camper screen). **Attach this actual file in Copilot 365** alongside the Track A
+  prompts below — it is the ground truth for style, not just the text description of it.
+- **Style summary:** bright, colourful, storybook-realistic wildlife adventure art — cute but believable
+  animals (not flat vector cartoon, not photographic), rich natural habitats with discoverable detail,
+  warm dappled lighting, fine painterly texture, calm exploration feeling.
+- **Rules that apply to these two images specifically** (full list in `VISUAL_DIRECTION.md`): animals
+  must look recognisable/believable, must not talk or wear clothing, must stay in their natural habitat
+  and behave naturally; no dark/horror mood, no empty flat backgrounds, no danger or distress.
+- **Do not use rainforest-dense styling for the Forest hero** — `VISUAL_DIRECTION.md`'s Scope note
+  explains why: Rainforest is a separate, preview-only destination in `AI.md`, distinct from the shipped
+  Forest biome this package covers.
 
 **Existing pattern to match** (`src/components/CamperScreen.tsx`, relevant excerpt):
 ```tsx
@@ -80,27 +87,29 @@ Generate two new hero images at **1536×1024**, PNG, landscape, no text/logos/wa
 matching the attached `wild-camper-direction.png` reference exactly in style (see art direction above).
 
 ### A1. Tutorial Park hero
-> A warm, richly detailed digital painting in a semi-realistic concept-art style — matching the
-> attached reference image's warm dappled lighting, lush saturated greens, fine painterly texture, and
-> calm storybook-adventure mood (not flat cartoon, not photographic). Wide cinematic composition of a
-> gentle sunlit park: a grassy open meadow bordered by a calm duck pond on one side and the shaded edge
-> of a forest trail on the other, a small wooden signpost, a mallard duck resting calmly on the pond,
-> butterflies over scattered wildflowers, soft golden-hour light through scattered trees. Inviting and
-> entirely safe atmosphere suitable for a children's calm wildlife-photography game — no danger, no
-> predators, no people or animals in distress.
+> Bright, colourful, storybook-realistic wildlife adventure art — matching the attached reference
+> image's warm dappled lighting, lush saturated greens, fine painterly texture, and calm exploration
+> mood (not flat vector cartoon, not photographic). Wide cinematic composition of a gentle sunlit park:
+> a grassy open meadow bordered by a calm duck pond on one side and the shaded edge of a forest trail on
+> the other, a small wooden signpost, a mallard duck resting calmly on the pond behaving naturally,
+> butterflies over scattered wildflowers, soft golden-hour light through scattered trees, rich
+> discoverable detail (rocks, reeds, dragonflies) without feeling busy. The duck is a real, recognisable,
+> unclothed animal, not a character. Inviting and entirely safe atmosphere suitable for a child audience
+> (ages 8-14) — no danger, no predators, no people or animals in distress, no cages or captivity framing.
 
 - **Save as:** `public/assets/tutorial-park/park-direction.png`
 - **Alt text to use in code:** `"Illustrated Tutorial Park with a duck pond, meadow and forest trail edge"`
 
 ### A2. Forest hero
-> A warm, richly detailed digital painting in a semi-realistic concept-art style — matching the
-> attached reference image's warm dappled lighting, lush saturated greens, fine painterly texture, and
-> calm storybook-adventure mood (not flat cartoon, not photographic). Wide cinematic composition of a
-> quiet forest clearing beside a dirt camper track: tall trees with dappled canopy light, ferns and moss
-> in the foreground, a small brown-and-white wren perched calmly on a low branch, a forest wallaby
-> resting in the ferns at a comfortable distance, a small iridescent beetle on a leaf in the immediate
-> foreground. Calm, unhurried, entirely safe atmosphere suitable for a children's calm
-> wildlife-photography game — no danger, no predators, no animals in distress.
+> Bright, colourful, storybook-realistic wildlife adventure art — matching the attached reference
+> image's warm dappled lighting, lush saturated greens, fine painterly texture, and calm exploration
+> mood (not flat vector cartoon, not photographic). Wide cinematic composition of a quiet **temperate
+> forest** clearing beside a dirt camper track — not a dense rainforest: moderate tree cover, ferns and
+> moss in the foreground, dappled canopy light. A small brown-and-white wren perched calmly on a low
+> branch, a forest wallaby resting in the ferns at a comfortable distance, a small iridescent beetle on a
+> leaf in the immediate foreground — all real, recognisable, unclothed animals behaving naturally in
+> their habitat, not characters. Calm, unhurried, entirely safe atmosphere suitable for a child audience
+> (ages 8-14) — no danger, no predators, no distress, no cages or captivity framing.
 
 - **Save as:** `public/assets/forest/forest-direction.png`
 - **Alt text to use in code:** `"Illustrated forest clearing with ferns, a wren and a forest wallaby"`
@@ -174,9 +183,10 @@ Copy the two PNGs from Track A into:
 
 ## Handing this to Copilot 365
 
-1. **Track A** — open Copilot 365's image generation, attach
-   `public/assets/wild-camper/wild-camper-direction.png` as a style reference, and paste prompts A1 and
-   A2 one at a time. Save the results locally with the exact filenames given above.
+1. **Track A** — open Copilot 365's image generation, attach both
+   `public/assets/wild-camper/wild-camper-direction.png` (style reference) and `docs/VISUAL_DIRECTION.md`
+   (written direction), then paste prompts A1 and A2 one at a time. Save the results locally with the
+   exact filenames given above.
 2. **Track B** — open Copilot 365 Chat, attach only the 4 files listed at the top of Track B (not the
    whole repo — stays well inside the 20-file limit), paste this document's Track B section, and ask it
    to produce the diffs for B1–B4.

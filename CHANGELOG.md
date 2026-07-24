@@ -5,6 +5,15 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-24 · docs(visual-direction): checked in `docs/VISUAL_DIRECTION.md` and reconciled it with
+  Package 01** — the user supplied an existing approved art-direction doc (style, character/animal
+  rules, environments, secret areas, avoid-list). Committed it as the persistent style source-of-truth,
+  subordinate to `AI.md`'s Canon/Scope, with an added Scope note flagging two reconciliations: Forest
+  (shipped) is not Rainforest (preview-only destination) and must not borrow its imagery, and
+  Crystal Cave/Safari/Mountains/Snowlands/Beach/Wetlands are long-term direction, not current scope. The
+  4 confirmation images it references aren't in the repo, so `01-biome-backgrounds.md`'s Track A prompts
+  were refined to match its written style language directly rather than waiting on those images.
+
 - **2026-07-24 · docs(copilot-handoff): added a Copilot 365 handoff package for Park/Forest biome
   background visuals** — `docs/copilot-packages/` is a new self-contained-spec workflow for outsourcing
   graphics/UI drafting to Copilot 365 (worked around its 20-file read limit and lack of zip support by
