@@ -1,7 +1,7 @@
 # Package 02 — Animal portrait art (Wildlife Journal + Camera Panel + Photo Wall)
 
-**Status:** ready to hand to Copilot 365 for Track A. Track B (code) will most likely be implemented by
-Claude directly — see the note at the end of "Handing this to Copilot 365".
+**Status:** ready to hand to Copilot 365 for Track A only. Track B (code) is implemented by Claude
+directly, not routed through Copilot 365 Chat — see "Handing this to Copilot 365" below.
 **Track A:** art brief (image generation, 11 animal portraits). **Track B:** code spec (React/CSS).
 **Scope:** replace the plain emoji currently used for every animal with real portrait art, in the
 Wildlife Journal, the Camera Panel (Tutorial Park photography), the Photo Wall summary (Camper), and the
@@ -247,12 +247,8 @@ portrait is decorative — an empty `alt` avoids a screen reader announcing the 
 1. **Track A** — open Copilot 365's image generation, attach `wild-camper-direction.png` and
    `docs/VISUAL_DIRECTION.md`, then run the master prompt once per animal (11 times), swapping in each
    row's subject line. Save each result with the exact filename from the table.
-2. **Track B** — based on Package 01's experience, Copilot 365 Chat may not reliably produce this kind of
-   multi-file code change. **Recommendation: skip straight to sending the 11 images back to Claude** and
-   let Claude implement Track B directly — it's a small, fully-specified, low-risk change (one new file,
-   one CSS addition, four small edits), the same situation as last time.
-3. If you'd still like to try Copilot 365 Chat for Track B first: attach the 6 files listed at the top of
-   Track B and paste that section, same as Package 01's approach.
+2. **Track B** — Copilot 365 is not used for this. Send the 11 images straight back to Claude, which
+   implements Track B directly (one new file, one CSS addition, four small edits).
 
 ---
 

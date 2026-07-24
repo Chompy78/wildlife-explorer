@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · docs(copilot-handoff): made "Claude implements Track B" the standing policy** — per
+  explicit user direction, Copilot 365 is used for Track A (art) only, going forward; Track B is no
+  longer offered to Copilot 365 Chat as an option even as a fallback. Updated
+  `docs/copilot-packages/README.md`'s conventions and Package 02's handoff instructions to match (Package
+  03 already read this way).
+
 - **2026-07-25 · docs(copilot-handoff): drafted Package 03 — illustrated Park Map** —
   `docs/copilot-packages/03-park-map.md` specs replacing `ParkScreen.tsx`'s plain grid of location
   button-cards with a single illustrated map image and clickable location pins positioned on top of it.

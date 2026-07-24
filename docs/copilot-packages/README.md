@@ -34,10 +34,12 @@ package says exactly which ones, kept well under the 20-file ceiling.
 - **Task-board format**: each package ends with a "Done when" block written in this repo's
   `docs/TASK_BOARD.md` task format (see `AGENTS.md`), so finished work graduates into `CHANGELOG.md` the
   same way any other task does.
-- **Track B may need to fall back to Claude.** Package 01 found that Copilot 365 Chat couldn't reliably
-  complete a small, fully-specified multi-file code change — Claude implemented it directly instead.
-  Later packages plan for that as the likely outcome rather than a surprise; Track A (art, which Claude
-  can't do) stays Copilot's job either way.
+- **Copilot 365 only does Track A (art).** Package 01 found that Copilot 365 Chat couldn't reliably
+  complete even a small, fully-specified multi-file code change — Claude implemented it directly instead.
+  As of 2026-07-25 that's the standing approach, not a case-by-case fallback: packages still write a full
+  Track B spec (it documents the change precisely and is useful either way), but the instructions no
+  longer route it through Copilot 365 Chat at all. Send Track A's output straight to Claude and it
+  implements Track B directly.
 
 ## Index
 

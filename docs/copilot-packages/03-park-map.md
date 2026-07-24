@@ -1,7 +1,7 @@
 # Package 03 — Illustrated Park Map
 
-**Status:** ready to hand to Copilot 365 for Track A. Track B (code) will be implemented by Claude
-directly — see Package 01/02's experience with Track B in Copilot 365 Chat.
+**Status:** ready to hand to Copilot 365 for Track A only. Track B (code) is implemented by Claude
+directly, not routed through Copilot 365 Chat — see "Handing this to Copilot 365" below.
 **Track A:** art brief (one map illustration). **Track B:** code spec (React/CSS).
 **Scope:** replace the Park Map's plain grid of button-cards with a single illustrated map image and
 clickable location pins positioned on top of it. Same underlying navigation logic
