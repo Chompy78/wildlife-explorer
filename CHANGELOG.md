@@ -5,6 +5,18 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-24 · docs(copilot-handoff): sharpened Package 01's Track A prompts against the actual
+  confirmation images** — the user located and shared the 4 reference images `VISUAL_DIRECTION.md`
+  describes. Confirmed `03_campervan_base_direction.png` matches the already-shipped
+  `wild-camper-direction.png` exactly, and that `01_tutorial_nature_park_direction.png` is a direct,
+  specific reference for the Park hero (explorer + dog companion, duck family, lizard, ivy archway
+  path) — rewrote the A1 prompt to match it precisely instead of a generic landscape description.
+  Confirmed `02_rainforest_many_animals_direction.png` is the separate, preview-only Rainforest
+  destination and must not inform the Forest hero (A2 now explicitly excludes rainforest-only species).
+  Noted the recurring explorer/dog characters are decorative art only, not a companion game mechanic —
+  `AI.md`'s Scope boundary still excludes companions as gameplay. Images not yet committed to the repo
+  (shared inline in chat, not as files); pending user decision on whether/how to add them.
+
 - **2026-07-24 · docs(visual-direction): checked in `docs/VISUAL_DIRECTION.md` and reconciled it with
   Package 01** — the user supplied an existing approved art-direction doc (style, character/animal
   rules, environments, secret areas, avoid-list). Committed it as the persistent style source-of-truth,
