@@ -5,6 +5,35 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-24 · docs(copilot-handoff): sharpened Package 01's Track A prompts against the actual
+  confirmation images** — the user located and shared the 4 reference images `VISUAL_DIRECTION.md`
+  describes. Confirmed `03_campervan_base_direction.png` matches the already-shipped
+  `wild-camper-direction.png` exactly, and that `01_tutorial_nature_park_direction.png` is a direct,
+  specific reference for the Park hero (explorer + dog companion, duck family, lizard, ivy archway
+  path) — rewrote the A1 prompt to match it precisely instead of a generic landscape description.
+  Confirmed `02_rainforest_many_animals_direction.png` is the separate, preview-only Rainforest
+  destination and must not inform the Forest hero (A2 now explicitly excludes rainforest-only species).
+  Noted the recurring explorer/dog characters are decorative art only, not a companion game mechanic —
+  `AI.md`'s Scope boundary still excludes companions as gameplay. Images not yet committed to the repo
+  (shared inline in chat, not as files); pending user decision on whether/how to add them.
+
+- **2026-07-24 · docs(visual-direction): checked in `docs/VISUAL_DIRECTION.md` and reconciled it with
+  Package 01** — the user supplied an existing approved art-direction doc (style, character/animal
+  rules, environments, secret areas, avoid-list). Committed it as the persistent style source-of-truth,
+  subordinate to `AI.md`'s Canon/Scope, with an added Scope note flagging two reconciliations: Forest
+  (shipped) is not Rainforest (preview-only destination) and must not borrow its imagery, and
+  Crystal Cave/Safari/Mountains/Snowlands/Beach/Wetlands are long-term direction, not current scope. The
+  4 confirmation images it references aren't in the repo, so `01-biome-backgrounds.md`'s Track A prompts
+  were refined to match its written style language directly rather than waiting on those images.
+
+- **2026-07-24 · docs(copilot-handoff): added a Copilot 365 handoff package for Park/Forest biome
+  background visuals** — `docs/copilot-packages/` is a new self-contained-spec workflow for outsourcing
+  graphics/UI drafting to Copilot 365 (worked around its 20-file read limit and lack of zip support by
+  inlining the exact code/context each package needs). Package 01 covers hero images for the Tutorial
+  Park and Forest screens, matching the existing Camper screen's visual pattern and the established art
+  direction (`public/assets/wild-camper/wild-camper-direction.png`). Not yet implemented — tracked as a
+  TODO on `docs/TASK_BOARD.md` pending the user running it through Copilot and bringing back results.
+
 - **2026-07-21 · fix(a11y): stop `useModalFocus` stealing focus back to the initial control on
   unrelated re-renders** — found during a post-sweep code review of `useModalFocus.ts`'s earlier
   StrictMode fix. The hook re-focused the dialog's initial control on *every* effect re-run, not just
