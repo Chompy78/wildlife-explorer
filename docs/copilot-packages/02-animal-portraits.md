@@ -105,6 +105,71 @@ Make the art lost-puppy
 These are shorthand, not standalone prompts — "duck" alone doesn't carry the style or pose. If starting a
 fresh chat, paste the master prompt + table once first.
 
+**Variation sets (for randomising / picking a favorite)** — same shorthand, each set adds one consistent
+modifier so the 4 sets produce visibly different results per animal instead of Copilot repeating the same
+output. You don't need to run every set for every animal — use them to get a second opinion when the
+first result isn't quite right, and pick whichever you like best.
+
+*Variant A — soft morning light, calm resting pose*
+```
+Make the art duck — soft morning light, calm resting pose
+Make the art frog — soft morning light, calm resting pose
+Make the art butterfly — soft morning light, calm resting pose
+Make the art rabbit — soft morning light, calm resting pose
+Make the art lizard — soft morning light, calm resting pose
+Make the art park-bird — soft morning light, calm resting pose
+Make the art rare-owl — soft morning light, calm resting pose
+Make the art forest-wren — soft morning light, calm resting pose
+Make the art forest-wallaby — soft morning light, calm resting pose
+Make the art forest-beetle — soft morning light, calm resting pose
+Make the art lost-puppy — soft morning light, calm resting pose
+```
+
+*Variant B — warm golden-hour light, alert active pose*
+```
+Make the art duck — warm golden-hour light, alert active pose
+Make the art frog — warm golden-hour light, alert active pose
+Make the art butterfly — warm golden-hour light, alert active pose
+Make the art rabbit — warm golden-hour light, alert active pose
+Make the art lizard — warm golden-hour light, alert active pose
+Make the art park-bird — warm golden-hour light, alert active pose
+Make the art rare-owl — warm golden-hour light, alert active pose
+Make the art forest-wren — warm golden-hour light, alert active pose
+Make the art forest-wallaby — warm golden-hour light, alert active pose
+Make the art forest-beetle — warm golden-hour light, alert active pose
+Make the art lost-puppy — warm golden-hour light, alert active pose
+```
+
+*Variant C — soft overcast light, closer crop with more habitat detail*
+```
+Make the art duck — soft overcast light, closer crop with more habitat detail visible
+Make the art frog — soft overcast light, closer crop with more habitat detail visible
+Make the art butterfly — soft overcast light, closer crop with more habitat detail visible
+Make the art rabbit — soft overcast light, closer crop with more habitat detail visible
+Make the art lizard — soft overcast light, closer crop with more habitat detail visible
+Make the art park-bird — soft overcast light, closer crop with more habitat detail visible
+Make the art rare-owl — soft overcast light, closer crop with more habitat detail visible
+Make the art forest-wren — soft overcast light, closer crop with more habitat detail visible
+Make the art forest-wallaby — soft overcast light, closer crop with more habitat detail visible
+Make the art forest-beetle — soft overcast light, closer crop with more habitat detail visible
+Make the art lost-puppy — soft overcast light, closer crop with more habitat detail visible
+```
+
+*Variant D — dappled shade lighting, three-quarter angle view*
+```
+Make the art duck — dappled shade lighting, three-quarter angle view
+Make the art frog — dappled shade lighting, three-quarter angle view
+Make the art butterfly — dappled shade lighting, three-quarter angle view
+Make the art rabbit — dappled shade lighting, three-quarter angle view
+Make the art lizard — dappled shade lighting, three-quarter angle view
+Make the art park-bird — dappled shade lighting, three-quarter angle view
+Make the art rare-owl — dappled shade lighting, three-quarter angle view
+Make the art forest-wren — dappled shade lighting, three-quarter angle view
+Make the art forest-wallaby — dappled shade lighting, three-quarter angle view
+Make the art forest-beetle — dappled shade lighting, three-quarter angle view
+Make the art lost-puppy — dappled shade lighting, three-quarter angle view
+```
+
 ---
 
 ## Track B — Code spec
