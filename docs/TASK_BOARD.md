@@ -25,6 +25,27 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
 
+## Integrate animal portrait art (Journal, Camera Panel, Photo Wall, Forest) — TODO
+`docs/copilot-packages/02-animal-portraits.md` is a ready-to-run handoff package (art brief + code spec)
+replacing the emoji used for all 11 animals with real portrait art in `Journal.tsx`, `CameraPanel.tsx`,
+`PhotoWallSummary.tsx` and `ForestScreen.tsx`. Waiting on the user to run Track A through Copilot 365 and
+bring back the 11 generated images.
+**Effort:** low · **Risk:** low — additive visual-only change (11 new images, one new small data-lookup
+file, a CSS addition, four small display-logic edits), no state/save-schema/gameplay logic touched.
+
+```text
+1. Receive the 11 generated PNGs from the user; place at public/assets/animals/<id>.png per Track A.
+2. Implement Track B directly (per Package 01's experience, Copilot 365 Chat likely won't complete this
+   part reliably): create src/data/animalPortraits.ts, add the .animal-portrait CSS, and update
+   Journal.tsx, CameraPanel.tsx, PhotoWallSummary.tsx and ForestScreen.tsx per the package's B1-B6.
+3. Verify Journal still hides portraits for undiscovered animals (no spoiler regression).
+4. Verify Canon/Scope compliance on the generated art (no new animals invented, no distress/combat).
+5. Run npm run check.
+```
+**Done when:** the package's own "Done when" section (bottom of
+`docs/copilot-packages/02-animal-portraits.md`) is satisfied and `npm run check` passes.
+
+
 ## Decide whether to introduce a PR-gated workflow — TODO
 Now that CI (`npm run check` via GitHub Actions) is wired up, `DECISIONS.md`'s `D-2026-07-21-branch-model`
 "CI gets added" revisit trigger has fired (see `D-2026-07-21-ci-added`) — decide whether to keep

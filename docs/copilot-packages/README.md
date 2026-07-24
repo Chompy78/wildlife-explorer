@@ -34,8 +34,14 @@ package says exactly which ones, kept well under the 20-file ceiling.
 - **Task-board format**: each package ends with a "Done when" block written in this repo's
   `docs/TASK_BOARD.md` task format (see `AGENTS.md`), so finished work graduates into `CHANGELOG.md` the
   same way any other task does.
+- **Track B may need to fall back to Claude.** Package 01 found that Copilot 365 Chat couldn't reliably
+  complete a small, fully-specified multi-file code change — Claude implemented it directly instead.
+  Later packages plan for that as the likely outcome rather than a surprise; Track A (art, which Claude
+  can't do) stays Copilot's job either way.
 
 ## Index
 
 - `01-biome-backgrounds.md` — Park and Forest screen hero visuals, matching the Camper screen's existing
-  pattern.
+  pattern. Done (2026-07-25).
+- `02-animal-portraits.md` — real portrait art for all 11 animals, replacing emoji in the Wildlife
+  Journal, Camera Panel, Photo Wall, and Forest photo buttons.

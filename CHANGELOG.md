@@ -5,6 +5,15 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · docs(copilot-handoff): drafted Package 02 — animal portrait art** —
+  `docs/copilot-packages/02-animal-portraits.md` specs real portrait art for all 11 animals (replacing
+  emoji) across the Wildlife Journal, Camera Panel, Photo Wall summary and Forest photo buttons. Track A
+  is 11 image-generation prompts sharing one master style preamble; Track B is a small new
+  `animalPortraits.ts` lookup plus four small display-logic edits, preserving the Journal's existing
+  no-spoiler-before-discovery behaviour. Based on Package 01's experience, the package recommends
+  skipping Copilot 365 Chat for Track B and having Claude implement it directly once the images are
+  back. Not yet implemented — tracked as a TODO on `docs/TASK_BOARD.md`.
+
 - **2026-07-25 · feat(visuals): added Tutorial Park and Forest hero images, generalized the biome-visual
   pattern** — graduates the `docs/copilot-packages/01-biome-backgrounds.md` task. Copilot 365 generated
   both hero images from the package's Track A prompts (matching the established art direction); Copilot
