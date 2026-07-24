@@ -5,6 +5,14 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-24 · docs(copilot-handoff): added a Copilot 365 handoff package for Park/Forest biome
+  background visuals** — `docs/copilot-packages/` is a new self-contained-spec workflow for outsourcing
+  graphics/UI drafting to Copilot 365 (worked around its 20-file read limit and lack of zip support by
+  inlining the exact code/context each package needs). Package 01 covers hero images for the Tutorial
+  Park and Forest screens, matching the existing Camper screen's visual pattern and the established art
+  direction (`public/assets/wild-camper/wild-camper-direction.png`). Not yet implemented — tracked as a
+  TODO on `docs/TASK_BOARD.md` pending the user running it through Copilot and bringing back results.
+
 - **2026-07-21 · fix(a11y): stop `useModalFocus` stealing focus back to the initial control on
   unrelated re-renders** — found during a post-sweep code review of `useModalFocus.ts`'s earlier
   StrictMode fix. The hook re-focused the dialog's initial control on *every* effect re-run, not just
