@@ -45,3 +45,5 @@ package says exactly which ones, kept well under the 20-file ceiling.
   pattern. Done (2026-07-25).
 - `02-animal-portraits.md` — real portrait art for all 11 animals, replacing emoji in the Wildlife
   Journal, Camera Panel, Photo Wall, and Forest photo buttons.
+- `03-park-map.md` — a single illustrated Park Map image with clickable location pins, replacing the
+  plain grid of button-cards.

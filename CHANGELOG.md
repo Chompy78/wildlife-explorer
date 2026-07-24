@@ -5,6 +5,16 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · docs(copilot-handoff): drafted Package 03 — illustrated Park Map** —
+  `docs/copilot-packages/03-park-map.md` specs replacing `ParkScreen.tsx`'s plain grid of location
+  button-cards with a single illustrated map image and clickable location pins positioned on top of it.
+  Track A is one map-illustration prompt; Track B is a new `parkMapCoordinates.ts` lookup (percentage pin
+  positions, tuned against the actual art once generated), `.park-map`/`.map-pin` CSS, and replacing the
+  `.location-grid` block — same underlying `goToLocation`/`visitLocation` logic, no state changes.
+  Rated medium effort/risk (Package 01/02's first medium-risk package) since it touches the Park screen's
+  primary navigation UI and needs care to keep pins keyboard-accessible and correctly positioned. Not yet
+  implemented — tracked as a TODO on `docs/TASK_BOARD.md`.
+
 - **2026-07-25 · docs(copilot-handoff): drafted Package 02 — animal portrait art** —
   `docs/copilot-packages/02-animal-portraits.md` specs real portrait art for all 11 animals (replacing
   emoji) across the Wildlife Journal, Camera Panel, Photo Wall summary and Forest photo buttons. Track A
