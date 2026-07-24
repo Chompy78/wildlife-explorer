@@ -131,17 +131,17 @@ button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
 @media(max-width:520px){.station-grid,.destination-grid{grid-template-columns:1fr}.camper-hero{align-items:flex-start}.camper-van-icon{font-size:3.5rem}}
 
 /* Milestone 4.1 */
-.camper-visual{position:relative;overflow:hidden;min-height:260px;padding:0;margin:0 auto 1rem;max-width:1240px;background:#193d28}
-.camper-visual img{display:block;width:100%;height:clamp(260px,38vw,470px);object-fit:cover}
-.camper-visual-copy{position:absolute;left:1rem;bottom:1rem;max-width:500px;padding:1rem 1.2rem;border-radius:20px;color:#fff;background:rgba(18,45,29,.88);backdrop-filter:blur(4px)}
-.camper-visual-copy h2,.camper-visual-copy p{margin-top:.25rem}.camper-visual-copy .eyebrow{color:#ffe08c}
+.biome-visual{position:relative;overflow:hidden;min-height:260px;padding:0;margin:0 auto 1rem;max-width:1240px;background:#193d28}
+.biome-visual img{display:block;width:100%;height:clamp(260px,38vw,470px);object-fit:cover}
+.biome-visual-copy{position:absolute;left:1rem;bottom:1rem;max-width:500px;padding:1rem 1.2rem;border-radius:20px;color:#fff;background:rgba(18,45,29,.88);backdrop-filter:blur(4px)}
+.biome-visual-copy h2,.biome-visual-copy p{margin-top:.25rem}.biome-visual-copy .eyebrow{color:#ffe08c}
 .modal-overlay{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:1rem;background:rgba(12,35,22,.66)}
 .intro-card{width:min(540px,100%);padding:2rem;border-radius:30px;background:#fffdf3;box-shadow:0 28px 70px rgba(20,60,32,.35);text-align:center}.intro-icon{font-size:5rem}
 .readiness-card,.photo-wall-summary{margin-top:1rem;padding:1rem;border-radius:20px;background:#f3fbef}.readiness-card ul,.photo-wall-summary ul{padding-left:0;list-style:none}.readiness-card li{display:flex;gap:.6rem;margin:.45rem 0}.travel-locked{padding:.75rem;border-radius:14px;background:#fff4cd;font-weight:800}
 .photo-chip-list{display:flex;flex-wrap:wrap;gap:.45rem}.photo-chip-list span{padding:.4rem .65rem;border-radius:999px;background:#fff;border:1px solid #cde0cc}
 .station-card small{font-weight:900;color:#805315}.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-@media(max-width:700px){.camper-visual-copy{position:static;max-width:none;border-radius:0}.camper-visual img{height:240px}.intro-card{padding:1.25rem}}
+@media(max-width:700px){.biome-visual-copy{position:static;max-width:none;border-radius:0}.biome-visual img{height:240px}.intro-card{padding:1.25rem}}
 
 /* Milestone 5 */
 .forest-screen{background:radial-gradient(circle at top left,rgba(219,238,174,.7),transparent 34rem),linear-gradient(135deg,#cde5b0,#e2f2d3 55%,#d8e8d1)}.forest-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);gap:1rem;margin:0 auto;max-width:1240px}@media(max-width:850px){.forest-layout{grid-template-columns:1fr}}

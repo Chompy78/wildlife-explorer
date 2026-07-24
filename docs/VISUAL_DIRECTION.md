@@ -21,11 +21,11 @@ package or asset brief:
   milestone explicitly requires it," and none of these exist in the shipped game yet. Treat everything
   below about them as future-milestone direction to keep on record, not something to brief Copilot on
   today.
-- The four "New Confirmation Images" referenced below (`01_tutorial_nature_park_direction.png` etc.)
-  are **not present in this repo** — only this markdown description exists. If they're found/recreated
-  later, add them under `public/assets/` or a `docs/design-reference/` folder and link them from here.
-  Until then, `public/assets/wild-camper/wild-camper-direction.png` (already live in the app) is the one
-  concrete image anchor available.
+- The four "New Confirmation Images" referenced below now live in `docs/design-reference/` (added
+  2026-07-25). They are reference/mood material only, not shipped assets — kept out of `public/` so they
+  don't get bundled into the production build. `public/assets/wild-camper/wild-camper-direction.png` is
+  the one confirmation image that's also a live, shipped in-game asset (same picture as
+  `docs/design-reference/03_campervan_base_direction.png`).
 
 ---
 

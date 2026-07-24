@@ -5,6 +5,21 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(visuals): added Tutorial Park and Forest hero images, generalized the biome-visual
+  pattern** — graduates the `docs/copilot-packages/01-biome-backgrounds.md` task. Copilot 365 generated
+  both hero images from the package's Track A prompts (matching the established art direction); Copilot
+  365 Chat could not complete Track B's code changes, so Claude implemented them directly: renamed
+  `.camper-visual`/`.camper-visual-copy` to `.biome-visual`/`.biome-visual-copy` in `styles.css` (shared
+  across all three biome screens now), updated `CamperScreen.tsx` to match, and added matching hero
+  sections to `ParkScreen.tsx` and `ForestScreen.tsx`. Fixed one test regression along the way — the new
+  Park hero's caption originally repeated the header's literal "Tutorial Park" text, breaking
+  `App.test.tsx`'s `getByText('Tutorial Park')` assertion (expected exactly one match); changed the
+  caption's eyebrow text to "Wildlife photography" instead. Verified visually in a real browser (both
+  screens screenshotted, hero images confirmed loading) in addition to `npm run check` passing. Also
+  relocated the 4 `VISUAL_DIRECTION.md` reference/mood images the user supplied from a wrongly-placed
+  top-level `assets/images/` folder (not served by Vite) into `docs/design-reference/` — kept out of
+  `public/` since they're reference material, not shipped assets.
+
 - **2026-07-24 · docs(copilot-handoff): sharpened Package 01's Track A prompts against the actual
   confirmation images** — the user located and shared the 4 reference images `VISUAL_DIRECTION.md`
   describes. Confirmed `03_campervan_base_direction.png` matches the already-shipped

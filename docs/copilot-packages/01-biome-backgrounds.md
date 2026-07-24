@@ -1,6 +1,8 @@
 # Package 01 — Biome background visuals (Tutorial Park + Forest)
 
-**Status:** ready to hand to Copilot 365. Not yet implemented in the repo.
+**Status:** done (2026-07-25) — Copilot 365 generated both hero images; Claude implemented Track B
+directly after Copilot wasn't able to produce it. Kept here as the record and as a template for the next
+package.
 **Track A:** art brief (image generation). **Track B:** code spec (React/CSS).
 **Scope:** two new hero images (Tutorial Park, Forest) plus a small CSS/JSX change so all three biome
 screens (Camper, Park, Forest) share one visual pattern. No gameplay, save-schema, or state logic
@@ -86,8 +88,7 @@ file as a side effect.
 Generate two new hero images at **1536×1024**, PNG, landscape, no text/logos/watermarks in the image,
 matching the attached reference images exactly in style (see art direction above).
 
-**Reference images now confirmed** (the user located the 4 images `VISUAL_DIRECTION.md` refers to;
-they are not yet committed to this repo — see the note in that file's "Confirmation images" section):
+**Reference images confirmed** (now in `docs/design-reference/`, see `VISUAL_DIRECTION.md`'s Scope note):
 - `03_campervan_base_direction.png` is the same picture as the already-shipped
   `public/assets/wild-camper/wild-camper-direction.png` — confirms it as the style anchor.
 - `01_tutorial_nature_park_direction.png` is the direct, specific reference for A1 below — use it, not
@@ -172,14 +173,17 @@ Insert immediately after the closing `</header>` tag and before `<section classN
 
 ```tsx
 <section className="biome-visual panel">
-  <img src="/assets/tutorial-park/park-direction.png" alt="Illustrated Tutorial Park with a duck pond, meadow and forest trail edge"/>
+  <img src="/assets/tutorial-park/park-direction.png" alt="Illustrated wildlife explorer and dog photographing a duck family at a woodland pond in Tutorial Park"/>
   <div className="biome-visual-copy">
-    <p className="eyebrow">Tutorial Park</p>
+    <p className="eyebrow">Wildlife photography</p>
     <h2>Explore the park</h2>
     <p>Visit each location and photograph wildlife calmly.</p>
   </div>
 </section>
 ```
+Note: the eyebrow text is "Wildlife photography", not "Tutorial Park" — the header directly above already
+renders the literal text "Tutorial Park" (`src/components/ParkScreen.tsx` line 56), and `App.test.tsx`
+asserts `getByText('Tutorial Park')` expecting exactly one match.
 
 ### B4. Add the hero section to ForestScreen.tsx
 
@@ -188,7 +192,7 @@ Insert the equivalent section immediately after that file's `</header>` and befo
 reformatting the whole file:
 
 ```tsx
-<section className="biome-visual panel"><img src="/assets/forest/forest-direction.png" alt="Illustrated forest clearing with ferns, a wren and a forest wallaby"/><div className="biome-visual-copy"><p className="eyebrow">Forest</p><h2>A quiet arrival</h2><p>Follow the Fern Trail and photograph what you find.</p></div></section>
+<section className="biome-visual panel"><img src="/assets/forest/forest-direction.png" alt="Illustrated wildlife explorer and dog with a Forest Wren and Forest Wallaby in a quiet temperate forest clearing"/><div className="biome-visual-copy"><p className="eyebrow">Forest</p><h2>A quiet arrival</h2><p>Follow the Fern Trail and photograph what you find.</p></div></section>
 ```
 
 ### B5. Place the generated images
@@ -213,6 +217,12 @@ Copy the two PNGs from Track A into:
    to produce the diffs for B1–B4.
 3. Bring both back here: drop the two PNGs into the paths in B5, apply/adjust the code diffs, then let
    Claude run the verification and integration pass below.
+
+**What actually happened (2026-07-25):** Track A worked as planned — Copilot 365 generated both hero
+images matching the reference style. Copilot 365 Chat was not able to complete Track B's code changes,
+so Claude implemented B1–B5 directly instead (it's a small, fully-specified, low-risk change — faster to
+do directly than to keep iterating with Copilot on it). Worth knowing for the next package: budget for
+Track B possibly needing to fall back to Claude rather than assuming Copilot 365 Chat will complete it.
 
 ---
 

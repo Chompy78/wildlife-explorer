@@ -59,6 +59,14 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
           {saveData.wildCamperUnlocked ? <button className="camper-button" onClick={onOpenCamper}>{'\uD83D\uDE90'} Enter Wild Camper</button> : null}<button className="secondary" onClick={onGoHome}>Home</button>
         </div>
       </header>
+      <section className="biome-visual panel">
+        <img src="/assets/tutorial-park/park-direction.png" alt="Illustrated wildlife explorer and dog photographing a duck family at a woodland pond in Tutorial Park"/>
+        <div className="biome-visual-copy">
+          <p className="eyebrow">Wildlife photography</p>
+          <h2>Explore the park</h2>
+          <p>Visit each location and photograph wildlife calmly.</p>
+        </div>
+      </section>
       <section className="park-grid">
         <div className="panel map-panel">
           <h2>Park Map</h2>

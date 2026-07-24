@@ -25,27 +25,6 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
 
-## Integrate Copilot-drafted Park/Forest biome background visuals — TODO
-`docs/copilot-packages/01-biome-backgrounds.md` is a ready-to-run handoff package (art brief + code spec)
-for adding hero visuals to `ParkScreen.tsx` and `ForestScreen.tsx`, matching the existing Camper screen
-pattern. Waiting on the user to run it through Copilot 365 and bring back the generated images/diffs.
-**Effort:** low · **Risk:** low — additive visual-only change (new images + a CSS class rename + two
-inserted JSX sections), no state/save-schema/gameplay logic touched.
-
-```text
-1. Receive the two generated PNGs and Copilot's proposed diffs from the user.
-2. Place the PNGs at public/assets/tutorial-park/park-direction.png and
-   public/assets/forest/forest-direction.png per the package's B5 step.
-3. Apply/adjust the code diffs (styles.css shared .biome-visual class, CamperScreen.tsx class rename,
-   new hero sections in ParkScreen.tsx and ForestScreen.tsx) per the package's Track B.
-4. Verify Canon/Scope compliance on the generated art and copy (no combat/collection imagery, no
-   preview-only destination depicted as playable).
-5. Run npm run check; visually confirm the Camper screen still renders identically after the rename.
-```
-**Done when:** the package's own "Done when" section (bottom of
-`docs/copilot-packages/01-biome-backgrounds.md`) is satisfied and `npm run check` passes.
-
-
 ## Decide whether to introduce a PR-gated workflow — TODO
 Now that CI (`npm run check` via GitHub Actions) is wired up, `DECISIONS.md`'s `D-2026-07-21-branch-model`
 "CI gets added" revisit trigger has fired (see `D-2026-07-21-ci-added`) — decide whether to keep
