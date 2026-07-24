@@ -85,6 +85,26 @@ Save each result as `public/assets/animals/<filename>` (new folder).
 If Copilot's tool can't hit exactly 1024×1024, any square (1:1) result is fine — the CSS crops to a
 circle with `object-fit: cover`.
 
+**Quick-reference trigger list** — once the master prompt and the table above are in view (pasted earlier
+in the same Copilot chat, or the chat has this file attached), these one-liners are enough to trigger each
+image in turn:
+
+```
+Make the art duck
+Make the art frog
+Make the art butterfly
+Make the art rabbit
+Make the art lizard
+Make the art park-bird
+Make the art rare-owl
+Make the art forest-wren
+Make the art forest-wallaby
+Make the art forest-beetle
+Make the art lost-puppy
+```
+These are shorthand, not standalone prompts — "duck" alone doesn't carry the style or pose. If starting a
+fresh chat, paste the master prompt + table once first.
+
 ---
 
 ## Track B — Code spec
