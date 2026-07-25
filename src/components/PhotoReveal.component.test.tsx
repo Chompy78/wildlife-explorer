@@ -17,6 +17,13 @@ describe('PhotoReveal', () => {
     expect(screen.getByText('3 of 5 photos collected.')).toBeInTheDocument();
   });
 
+  it('shows a fact when one is provided, and nothing extra when it is not', () => {
+    const { rerender } = render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-2.jpg" collectedCount={2} totalCount={5} fact="Ducks have waterproof feathers." onClose={vi.fn()} />);
+    expect(screen.getByText('Ducks have waterproof feathers.')).toBeInTheDocument();
+    rerender(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-2.jpg" collectedCount={2} totalCount={5} fact={null} onClose={vi.fn()} />);
+    expect(screen.queryByText(/Did you know/i)).not.toBeInTheDocument();
+  });
+
   it('announces collection completion distinctly', () => {
     render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-5.jpg" collectedCount={5} totalCount={5} onClose={vi.fn()} />);
     expect(screen.getByText(/collection complete!/i)).toBeInTheDocument();

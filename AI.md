@@ -34,6 +34,10 @@ Implemented:
   (or, for Lost Puppy, completing the reunion) shows a randomly-picked not-yet-collected one in a "New
   photo!" reveal, duplicates are never handed out, and the Journal/Camera Panel/Photo Wall show
   collection progress and thumbnails instead of emoji
+- Animal facts: each of the 11 animals with photo art has 5 facts tied 1:1 to its 5 photo variants —
+  getting variant N reveals fact N in the photo reveal ("Did you know?") and permanently in the Journal
+  ("X of 5 facts learned"). No new save state — a fact is learned iff its variant is already in
+  `collectedPhotoVariants` (`src/data/animalFacts.ts`)
 - Save schema version 7 and migration of older saves
 - Keyboard focus handling, responsive styling and reduced-motion support
 - TypeScript, state tests, component tests, production build and encoding audit

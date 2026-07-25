@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { assetUrl } from '../assetUrl';
 import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
+import { getFactForVariantKey } from '../data/animalFacts';
 import { parkMapCoordinates } from '../data/parkMapCoordinates';
 import { getAnimalById, getAnimalsForLocation, getLocationByName, getVisibleParkLocations, photographAnimal, visitLocation } from '../state/gameState';
 import type { Animal } from '../types/Animal';
@@ -149,6 +150,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
           photoUrl={getPhotoVariantUrlFromKey(photoReveal.variantKey)}
           collectedCount={countCollectedVariants(photoReveal.animal.id, saveData.collectedPhotoVariants)}
           totalCount={getPhotoVariantCount(photoReveal.animal.id)}
+          fact={getFactForVariantKey(photoReveal.animal.id, photoReveal.variantKey)}
           onClose={() => setPhotoReveal(null)}
         />
       ) : null}

@@ -2,9 +2,9 @@ import { useCallback, useRef } from 'react';
 import { useModalFocus } from '../hooks/useModalFocus';
 import type { Animal } from '../types/Animal';
 
-type Props = { animal: Animal; photoUrl: string; collectedCount: number; totalCount: number; onClose: () => void };
+type Props = { animal: Animal; photoUrl: string; collectedCount: number; totalCount: number; fact?: string | null; onClose: () => void };
 
-export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, onClose }: Props) {
+export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact, onClose }: Props) {
   const dialogRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const close = useCallback(onClose, [onClose]);
@@ -22,6 +22,9 @@ export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, onCl
             ? `${collectedCount} of ${totalCount} photos collected — collection complete!`
             : `${collectedCount} of ${totalCount} photos collected.`}
         </p>
+        {fact ? (
+          <p className="reveal-fact"><span className="eyebrow">Did you know?</span>{fact}</p>
+        ) : null}
         <button ref={closeRef} onClick={onClose}>Continue Exploring</button>
       </section>
     </div>

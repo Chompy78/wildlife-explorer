@@ -47,41 +47,86 @@ The invasive-species habitat quiz shipped 2026-07-25 with one non-native animal 
 `npm run check` passes.
 
 
-## Photo "quality" progression — sharper photos as skill improves — TODO, needs design discussion first
-User idea (2026-07-25): photos should get better over time, e.g. a blur or poor-crop effect on early/
-"poor quality" photos that improves with practice. Layers onto the photo-collection mechanic shipped
-2026-07-25 (`DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`) — not yet designed, needs a
-decision on what "quality" tracks before implementation starts.
-**Effort:** medium · **Risk:** medium — real ambiguity in what "quality" should track, and it changes the
-feel of an already-shipped, already-tested mechanic.
+## Photo "quality" progression — sharper photos as skill improves — TODO, design confirmed
+User idea (2026-07-25): photos should get better over time. Design confirmed 2026-07-25 in the "gameplay
+excitement" brainstorm: **option B** (per-species practice counter, independent of which variant is
+randomly picked) plus a new **pose-capture layer** — while framing an animal, it cycles through poses with
+a soft visual pulse on a "great pose" moment; shooting anytime still works (no fail state), shooting on
+the pulse gives a "Great shot!" bonus. Both layer onto the existing photo-collection mechanic
+(`DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`) without changing the current random-variant
+selection.
+**Effort:** medium · **Risk:** medium — touches save schema (new per-species practice counters) and
+changes the feel of an already-shipped, already-tested photograph interaction.
 
 ```text
-1. Get an explicit decision from the user on what quality should track — present tiered options, do not
-   auto-decide:
-   A. Per-species, ordered by variant number (variant 1 = blurriest/first attempt ... variant 5 =
-      sharpest) - reuses the existing 5-variant slots directly, but requires switching variant selection
-      from the current random-among-uncollected to sequential, which changes the "random photo" feel
-      already shipped and tested.
-   B. A persistent per-species photo count, separate from which variant is randomly picked - quality
-      scales with practice on that species; keeps the existing random-variant selection untouched.
-      Recommended: avoids regressing the tested random-selection mechanic, and reads more true-to-life
-      ("practice with this species") than a single global number.
-   C. A single global photography-skill counter across all species - simplest to reason about, but
-      narratively odd (photographing ducks shouldn't make heron photos sharper).
-2. No new art needed for any option: simulate poor quality with CSS (e.g. filter: blur(Npx) and/or
-   transform/object-position to simulate poor cropping), scaling down as quality improves. Verify against
-   a real generated photo that the effect reads as intentional, not broken image loading.
-3. Canon check (AI.md "no harsh failure"): the effect must stay encouraging - never label a photo "bad"
-   or "poor quality" in visible copy. Frame it positively (e.g. "getting closer!" / "steadier shots
-   ahead") rather than critically. Flag this as the main risk point if not handled carefully.
-4. Implement the chosen option; update save schema only if it needs new persisted state (bump
-   CURRENT_SAVE_SCHEMA_VERSION, update saveDefaults.ts/saveMigration.ts in lockstep, per this session's
-   established pattern).
-5. Run npm run check; verify visually in a real browser across a few photo captures to confirm the
-   progression reads clearly and stays encouraging in tone.
+1. Add a persistent per-species photograph count (new save field, e.g. photographCounts: Partial<Record
+   <AnimalId, number>>, bumped every time that species is photographed regardless of which variant is
+   picked). Bump CURRENT_SAVE_SCHEMA_VERSION, update saveDefaults.ts/saveMigration.ts in lockstep.
+2. Simulate quality with CSS only (filter: blur(Npx) and/or transform/object-position for poor cropping),
+   scaling down as the per-species count rises - no new art needed. Verify against a real generated photo
+   that the effect reads as intentional.
+3. Add the pose-capture cue: while CameraPanel/the photo-mode view is open on an animal, cycle a soft
+   visual pulse (e.g. a ring around the shutter/viewfinder) on an interval; capture always succeeds,
+   capturing during the pulse marks that specific photo as a "Great shot!" (cosmetic badge/label only).
+4. Canon check (AI.md "no harsh failure"): stay encouraging - never label a photo "bad"/"poor quality" in
+   visible copy; frame progress positively ("getting steadier!"). Never label a non-pulse shot as a miss.
+5. Run npm run check; verify visually in a real browser across several photo captures per species to
+   confirm the progression reads clearly, the pulse cue is legible but not stressful, and stays encouraging.
 ```
-**Done when:** the user has confirmed which design option (or an alternative) to build, it's implemented,
-and `npm run check` passes.
+**Done when:** photos visibly sharpen with practice per species, the pose-capture pulse works and never
+blocks a photo, and `npm run check` passes.
+
+
+## Animal facts on photograph, shown in Journal, unlocked by photographing — TODO
+User idea (2026-07-25), design confirmed same day: each of the 11 animals-with-photo-art gets exactly 5
+facts, tied 1:1 to its 5 photo variants — getting photo variant N reveals fact N. No new save field needed
+(a fact is "learned" iff its matching key is already in `collectedPhotoVariants`), so this is presentation
++ data only.
+**Effort:** medium · **Risk:** low — no save-schema change, additive data + display only.
+
+```text
+1. New src/data/animalFacts.ts: a Partial<Record<AnimalId, string[]>> with exactly 5 kid-friendly,
+   accurate, Canon-safe facts per animal (duck, frog, butterfly, rabbit, lizard, park-bird, rare-owl,
+   forest-wren, forest-wallaby, forest-beetle, lost-puppy). Helpers: getFactForVariant(id, variantNumber),
+   getFactForVariantKey(id, variantKey) (derives variant number from the "<id>-<variant>" key format
+   already used by collectedPhotoVariants), getLearnedFacts(id, collected) for the Journal.
+2. PhotoReveal.tsx: accept an optional fact prop, show it below the photo in the reveal modal.
+3. ParkScreen.tsx/ForestScreen.tsx/QuestPanel.tsx (Lost Puppy reunion): when a new variant is revealed,
+   look up its fact via getFactForVariantKey and pass it to PhotoReveal.
+4. Journal.tsx: show learned facts per animal (e.g. "3 of 5 facts learned" + the list of learned facts),
+   next to the existing photo-progress display.
+5. Run npm run check; verify in a real browser that a fact appears on photograph and the Journal's fact
+   list updates and matches what's been revealed.
+```
+**Done when:** every photograph of an animal-with-facts shows its matching fact, the Journal shows learned
+facts and an accurate progress count, and `npm run check` passes.
+
+
+## Biome-completion quiz and achievement — TODO
+User idea (2026-07-25): finishing a biome (e.g. Tutorial Park's existing completion condition that
+already triggers `CompletionCelebration`) should also offer a short, encouraging trivia quiz drawn from
+facts the player has already learned, awarding an achievement on completion (participation-based, not
+score-gated, per Canon's "no harsh failure").
+**Effort:** medium · **Risk:** medium — new `achievements` save field (schema change), and needs the
+animal-facts feature above shipped first (quiz content depends on it).
+**Depends on:** "Animal facts on photograph" above.
+
+```text
+1. Add achievements: string[] to save data (new field, bump schema version, update saveDefaults.ts/
+   saveMigration.ts).
+2. New src/data/achievements.ts: a small list of achievement ids/labels/icons, starting with one for
+   Tutorial Park completion.
+3. Reuse HabitatQuiz.tsx's modal/quiz-card pattern for a new BiomeQuiz component: 3-5 questions drawn from
+   already-learned facts for that biome's animals, encouraging wrong-answer handling (same pattern as
+   HabitatQuiz), awarded achievement on completion regardless of score.
+4. Trigger alongside the existing CompletionCelebration condition (Tutorial Park finishing).
+5. Show unlocked achievements somewhere in the Journal (extends the existing "Places and Rewards" /
+   SpecialEntry pattern).
+6. Run npm run check; verify the quiz triggers correctly, awards the achievement once, and displays in
+   the Journal.
+```
+**Done when:** finishing Tutorial Park offers the quiz, completing it awards a visible achievement, and
+`npm run check` passes.
 
 
 ## Decide whether to introduce a PR-gated workflow — TODO
@@ -121,10 +166,20 @@ rare Forest animals, companions, inventory, crafting, shops, economy, another pl
 
 Also ideas from README.md's Roadmap section — commitments to a direction, not to a timeline:
 
-- Advanced photography features
+- **Advanced photography features** — 2026-07-25 brainstorm gave this concrete shape: replace
+  `CameraPanel`'s static button list with a live, animated scene per location where the animal wanders
+  in and out of view (rather than always being available to photograph on demand), with a "photo mode"
+  timing beat layered on top of the pose-capture mechanic above. By far the biggest of the 2026-07-25
+  ideas — deliberately deferred until the smaller wins (facts, quiz, pose-capture) ship first, since it
+  needs its own design pass: what renders the "scene" (new per-location art vs. animating existing photo
+  art over a simple backdrop), and how animal appearance timing interacts with the pose-capture pulse.
+- **Day and night wildlife behaviour** — 2026-07-25 brainstorm: time-of-day/weather selection **inside**
+  the (not-yet-built) photo mode above, cosmetic only — it changes the mood/backdrop while framing a shot,
+  but which photo variant you get stays random-from-uncollected as it already is (deliberately not tied to
+  a real day/night clock or a deterministic variant picker, to avoid undermining the existing "no
+  duplicates, surprise reveal" collection design). Depends on the photo-mode rework above existing first.
 - Expanded Wildlife Journal features
 - Cooperative discovery systems
-- Day and night wildlife behaviour
 - Progressive Web App support (full — see the SOMEDAY favicon/manifest split below)
 
 ---

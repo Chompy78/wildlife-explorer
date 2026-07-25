@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react';
 import { animals } from '../data/animals';
+import { getFactCount, getLearnedFacts } from '../data/animalFacts';
 import { countCollectedVariants, getFirstCollectedVariant, getPhotoVariantCount, getPhotoVariantUrl } from '../data/animalPhotoVariants';
 import { useModalFocus } from '../hooks/useModalFocus';
 import { hasHelpedLostPuppy, hasPhotographedAnimal } from '../state/gameState';
@@ -22,9 +23,15 @@ function PhotoProgress({ animal, saveData }: { animal:Animal; saveData:SaveData 
   if (total===0) return null;
   return <p className="photo-progress"><span>{collected} of {total} photos collected</span><span className="photo-progress-dots" aria-hidden="true">{Array.from({length:total},(_,i)=>(<span key={i} className={i<collected?'collected':''}/>))}</span></p>;
 }
+function FactsProgress({ animal, saveData }: { animal:Animal; saveData:SaveData }) {
+  const total=getFactCount(animal.id);
+  if (total===0) return null;
+  const learned=getLearnedFacts(animal.id,saveData.collectedPhotoVariants);
+  return <div className="facts-progress"><p className="facts-progress-count">{'\uD83D\uDCA1'} {learned.length} of {total} facts learned</p>{learned.length>0 ? <ul className="facts-list">{learned.map((fact,i)=><li key={i}>{fact}</li>)}</ul> : null}</div>;
+}
 function JournalEntry({ animal, saveData }: { animal:Animal; saveData:SaveData }) {
   const photographed=hasPhotographedAnimal(saveData,animal.id); const helped=animal.id==='lost-puppy'&&hasHelpedLostPuppy(saveData); const owlSpotted=animal.id==='rare-owl'&&saveData.rareOwlSpotted; const discovered=photographed||helped||owlSpotted; const locked=!animal.availableInMilestone&&!helped&&!owlSpotted;
   const firstCollected=photographed?getFirstCollectedVariant(animal.id,saveData.collectedPhotoVariants):null;
   const icon=discovered&&firstCollected ? <img className="animal-thumb" src={getPhotoVariantUrl(animal.id,firstCollected)} alt=""/> : <div className="animal-emoji" aria-hidden="true">{discovered ? animal.emoji : locked ? '\uD83D\uDD12' : '\u2B1C'}</div>;
-  return <article className={discovered ? 'journal-entry' : 'journal-entry undiscovered'}>{icon}<div><h3>{discovered ? animal.name : locked ? `${animal.name} - later` : animal.name}</h3>{helped ? <><p><strong>Status:</strong> Helped and reunited with owner.</p><p>{animal.funFact}</p></> : null}{!helped&&photographed ? <><p><strong>Habitat:</strong> {animal.habitat}</p><p>{animal.funFact}</p><PhotoProgress animal={animal} saveData={saveData}/>{animal.nonNative ? <p className="invasive-note"><strong>Logged for the park rangers:</strong> {animal.nonNative.impactNote}</p> : null}</> : null}{!helped&&!photographed&&owlSpotted ? <p className="muted">Spotted at the Strange Old Tree. Use the camera to photograph the owl.</p> : null}{!discovered ? <p className="muted">{locked ? 'This entry belongs to a later milestone or quest.' : `Not photographed yet. Explore ${animal.habitat}.`}</p> : null}</div></article>;
+  return <article className={discovered ? 'journal-entry' : 'journal-entry undiscovered'}>{icon}<div><h3>{discovered ? animal.name : locked ? `${animal.name} - later` : animal.name}</h3>{helped ? <><p><strong>Status:</strong> Helped and reunited with owner.</p><p>{animal.funFact}</p><FactsProgress animal={animal} saveData={saveData}/></> : null}{!helped&&photographed ? <><p><strong>Habitat:</strong> {animal.habitat}</p><p>{animal.funFact}</p><PhotoProgress animal={animal} saveData={saveData}/><FactsProgress animal={animal} saveData={saveData}/>{animal.nonNative ? <p className="invasive-note"><strong>Logged for the park rangers:</strong> {animal.nonNative.impactNote}</p> : null}</> : null}{!helped&&!photographed&&owlSpotted ? <p className="muted">Spotted at the Strange Old Tree. Use the camera to photograph the owl.</p> : null}{!discovered ? <p className="muted">{locked ? 'This entry belongs to a later milestone or quest.' : `Not photographed yet. Explore ${animal.habitat}.`}</p> : null}</div></article>;
 }
