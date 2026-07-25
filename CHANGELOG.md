@@ -5,6 +5,14 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · docs(copilot-handoff): added Package 04 — Lake biome animal art prep** —
+  `docs/copilot-packages/04-lake-biome-animals.md` specs 6 animals (Great Blue Heron, Beaver, Rainbow
+  Trout, Loon, Dragonfly, Painted Turtle) across 3 proposed sections (Shoreline, Open Water, Reeds &
+  Shallows), 5 photo variants each — 30 images total, same master-prompt + 4-variation-modifier pattern
+  as the Park animals. Pure art prep: Lake has no gameplay built yet (preview-only destination, no
+  locations/data model), so this produces no code changes today — ready to convert/wire in whenever a
+  future milestone builds Lake out for real. Not yet run through Copilot.
+
 - **2026-07-25 · feat(gameplay): wired a Lost Puppy reunion photo into the collection mechanic** — the
   5 generated `lost-puppy-*.jpg` images existed but were unused since Lost Puppy (`rarity: 'quest'`)
   never goes through the camera flow the mechanic hooks into. `completeLostPuppyQuest()` (`questState.ts`)

@@ -50,3 +50,5 @@ package says exactly which ones, kept well under the 20-file ceiling.
   collection mechanic — see `DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`. Done (2026-07-25).
 - `03-park-map.md` — a single illustrated Park Map image with clickable location pins, replacing the
   plain grid of button-cards.
+- `04-lake-biome-animals.md` — pre-milestone art prep for the (currently preview-only) Lake destination:
+  6 animals × 5 photo variants each, no code changes until Lake is actually built.

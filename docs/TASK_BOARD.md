@@ -98,6 +98,12 @@ Not started until a later milestone explicitly requires it: full Forest biome ex
 rare Forest animals, companions, inventory, crafting, shops, economy, another playable destination
 (Mountains/Lake/Safari/Rainforest/Alien Planet going live).
 
+- **Lake biome art is pre-generated and waiting** — `docs/copilot-packages/04-lake-biome-animals.md`
+  covers 6 animals (Great Blue Heron, Beaver, Rainbow Trout, Loon, Dragonfly, Painted Turtle) × 5 photo
+  variants, proposed across 3 sections (Shoreline / Open Water / Reeds & Shallows). No Lake locations/
+  data model exist yet — this is art prep only, ready to convert/wire in whenever a milestone builds Lake
+  out for real, same pattern as Tutorial Park/Forest's photo-collection mechanic.
+
 Also ideas from README.md's Roadmap section — commitments to a direction, not to a timeline:
 
 - Advanced photography features
