@@ -1,4 +1,5 @@
 import { getAnimalById } from './animalState';
+import { pickRandomUncollectedVariant } from '../data/animalPhotoVariants';
 import type { AnimalId } from '../types/Ids';
 import type { SaveData } from '../types/SaveData';
 export const forestAnimalIds: AnimalId[] = ['forest-wren', 'forest-wallaby', 'forest-beetle', 'cane-toad'];
@@ -8,10 +9,12 @@ export function returnToCamperFromForest(save: SaveData): SaveData { return { ..
 export function photographForestAnimal(save: SaveData, id: AnimalId): SaveData {
   if (!forestAnimalIds.includes(id)) return save;
   const animal = getAnimalById(id);
+  const variant = pickRandomUncollectedVariant(id, save.collectedPhotoVariants);
   return {
     ...save,
     discoveredAnimals: [...new Set([...save.discoveredAnimals, id])],
     photographedAnimals: [...new Set([...save.photographedAnimals, id])],
     reportedInvasiveSpecies: animal?.nonNative ? [...new Set([...save.reportedInvasiveSpecies, id])] : save.reportedInvasiveSpecies,
+    collectedPhotoVariants: variant ? [...new Set([...save.collectedPhotoVariants, `${id}-${variant}`])] : save.collectedPhotoVariants,
   };
 }

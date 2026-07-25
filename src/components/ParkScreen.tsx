@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
 import { getAnimalById, getAnimalsForLocation, getLocationByName, getRoleName, getVisibleParkLocations, photographAnimal, visitLocation } from '../state/gameState';
 import type { Animal } from '../types/Animal';
 import type { AnimalId, LocationName } from '../types/Ids';
@@ -9,6 +10,7 @@ import { DiscoveryPanel } from './DiscoveryPanel';
 import { HabitatQuiz } from './HabitatQuiz';
 import { Journal } from './Journal';
 import { LocationClues } from './LocationClues';
+import { PhotoReveal } from './PhotoReveal';
 import { ProgressTracker } from './ProgressTracker';
 import { QuestPanel } from './QuestPanel';
 
@@ -19,6 +21,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
   const [journalOpen, setJournalOpen] = useState(false);
   const [celebrationOpen, setCelebrationOpen] = useState(false);
   const [quizAnimal, setQuizAnimal] = useState<Animal | null>(null);
+  const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string } | null>(null);
   const previousUnlocked = useRef(saveData.wildCamperUnlocked);
   const journalButtonRef = useRef<HTMLButtonElement>(null);
   const visibleLocations = useMemo(() => getVisibleParkLocations(saveData), [saveData]);
@@ -50,8 +53,12 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
     const animal = getAnimalById(animalId);
     if (!animal) return;
     const isNewReport = Boolean(animal.nonNative) && !saveData.reportedInvasiveSpecies.includes(animalId);
-    onSaveChange(photographAnimal(saveData, animal.id));
+    const previousVariants = saveData.collectedPhotoVariants;
+    const updated = photographAnimal(saveData, animal.id);
+    onSaveChange(updated);
     setMessage(`Great photo! ${animal.name} added to your Wildlife Journal.`);
+    const newVariant = updated.collectedPhotoVariants.find((key) => !previousVariants.includes(key));
+    if (newVariant) setPhotoReveal({ animal, variantKey: newVariant });
     if (isNewReport) setQuizAnimal(animal);
   }
 
@@ -94,6 +101,15 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
       </section>
       {journalOpen ? <Journal saveData={saveData} onClose={closeJournal} /> : null}
       {celebrationOpen ? <CompletionCelebration onClose={() => setCelebrationOpen(false)} /> : null}
+      {photoReveal ? (
+        <PhotoReveal
+          animal={photoReveal.animal}
+          photoUrl={getPhotoVariantUrlFromKey(photoReveal.variantKey)}
+          collectedCount={countCollectedVariants(photoReveal.animal.id, saveData.collectedPhotoVariants)}
+          totalCount={getPhotoVariantCount(photoReveal.animal.id)}
+          onClose={() => setPhotoReveal(null)}
+        />
+      ) : null}
       {quizAnimal ? <HabitatQuiz animal={quizAnimal} onClose={() => setQuizAnimal(null)} /> : null}
     </main>
   );

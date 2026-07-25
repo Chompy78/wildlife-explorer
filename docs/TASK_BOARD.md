@@ -25,31 +25,26 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
 
-## Implement the multi-photo-variant collection mechanic — PROPOSED, awaiting confirmation
-Supersedes the original "Integrate animal portrait art" task. `docs/copilot-packages/02-animal-portraits.md`
-was written for one portrait per animal; the user clarified afterward that all 5 generated variants per
-animal should ship as separate collectible "photos" — photographing an animal shows a randomly-picked one
-of its 5, and the player collects all 5 over repeat sightings. Assets are ready: every animal has exactly
-5 numbered files at `public/assets/animals/<id>-1.jpg` through `<id>-5.jpg`. Code not yet written — see
-Claude's proposed design in the chat session before implementing.
-**Effort:** medium · **Risk:** medium — new `collectedPhotoVariants` save field (another schema version
-bump, following the `reportedInvasiveSpecies` precedent), new random-selection logic in
-`animalState.ts`/`forestState.ts`, and a Journal redesign to show per-animal collection progress instead
-of a single static portrait.
+## Wire a Lost Puppy reunion photo into the collection mechanic — TODO
+`public/assets/animals/lost-puppy-1.jpg` through `-5.jpg` exist (real generated art) but are unused —
+Lost Puppy was deliberately excluded from the photo-collection mechanic shipped 2026-07-25 because it's
+`rarity: 'quest'` and completed via `QuestPanel`'s own flow (`completeLostPuppyQuest`), never the camera
+that the mechanic hooks into. See `DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic` for the full
+reasoning. A natural fit: award a random photo variant as a keepsake at the moment the puppy is reunited.
+**Effort:** low · **Risk:** low — one new call site in `questState.ts`'s `completeLostPuppyQuest`, reusing
+the existing `pickRandomUncollectedVariant`/`PhotoReveal` infrastructure; add `lost-puppy: 5` back to
+`PHOTO_VARIANT_COUNTS` in `animalPhotoVariants.ts` as part of this.
 
 ```text
-1. Confirm the proposed design with the user (random-vs-not-yet-collected selection rule, where the
-   "you got a new photo" moment is shown, how the Journal displays collection progress) before writing
-   code.
-2. Add collectedPhotoVariants: string[] to SaveData (entries like "duck-3"), bump
-   CURRENT_SAVE_SCHEMA_VERSION, update saveDefaults.ts and saveMigration.ts.
-3. Add variant-selection logic to photographAnimal (animalState.ts) and photographForestAnimal
-   (forestState.ts), reusing the addUnique pattern already used for other array fields.
-4. Redesign the relevant Journal/Camera Panel/Photo Wall display to show collection progress per animal
-   (e.g. "3 of 5 photos collected") rather than one static portrait.
-5. Verify Canon/Scope compliance, run npm run check, verify visually in a real browser.
+1. Add lost-puppy: 5 back to PHOTO_VARIANT_COUNTS in src/data/animalPhotoVariants.ts.
+2. In completeLostPuppyQuest (questState.ts), pick a random variant and add it to
+   collectedPhotoVariants, same pattern as photographAnimal/photographForestAnimal.
+3. Wire the PhotoReveal trigger into QuestPanel's "Reunite Puppy" flow (it currently calls onSaveChange
+   directly rather than going through ParkScreen's handlePhotographAnimal-style diffing).
+4. Run npm run check; verify in a real browser that the reveal shows on reunion, not before.
 ```
-**Done when:** the user has confirmed the design, it's implemented, and `npm run check` passes.
+**Done when:** reuniting the Lost Puppy shows a `PhotoReveal` with one of its 5 photos, and
+`npm run check` passes.
 
 
 ## Integrate illustrated Park Map with location pins — TODO

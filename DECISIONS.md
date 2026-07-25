@@ -6,6 +6,12 @@
 
 ## Index
 
+- **D-2026-07-25-photo-collection-mechanic** — Animals with generated art (10 of them) now have 5
+  collectible photo variants each instead of one static portrait. Random selection only ever draws from
+  *uncollected* variants (duplicates are impossible by construction, not by chance), the reveal is a
+  modal (reused pattern, and every trigger is now guaranteed meaningful since duplicates can't happen),
+  and Lost Puppy is deliberately excluded despite having 5 generated variants sitting unused — see full
+  entry for why.
 - **D-2026-07-25-invasive-species-quiz-eligible-flag** — The new "where does it belong" habitat quiz
   (shown after photographing a non-native animal) draws its answer choices from an explicit
   `quizEligible: boolean` field on `DestinationPreview`, not an exclusion list. Alien Planet is `false`;
@@ -33,6 +39,32 @@
 - **D-2026-07-21-branch-model** — Chose commit-straight-to-`main`, no feature branches/PRs, for now.
   Same as `chompy78/family-hub`, but this repo is one small step from being ready to reverse it (a real
   `npm run check` gate already exists) — see full entry for the explicit revisit trigger.
+
+## D-2026-07-25-photo-collection-mechanic · Uncollected-only random selection, modal reveal, Lost Puppy excluded
+- **Context:** Copilot generated 5 style variants per animal (originally treated as disposable "pick a
+  favorite" drafts, per `docs/copilot-packages/02-animal-portraits.md`). The user clarified afterward
+  that all 5 should ship as separate collectible "photos": photographing an animal shows a random one,
+  and the player collects the full set over repeat sightings.
+- **Decision 1 — no duplicates, ever:** `pickRandomUncollectedVariant()` only draws from variants not
+  yet in `collectedPhotoVariants`; once all 5 are collected it returns `null` and the Camera
+  Panel/Forest photo buttons disable with a "collection complete" label instead of offering a pointless
+  retake. Considered allowing duplicates with the collection state simply not advancing, but the user
+  was explicit ("duplicates should not be possible") — a disabled button is a cleaner signal than a
+  photo that silently does nothing new.
+- **Decision 2 — reveal is a modal, not inline:** Reuses the same overlay/focus-trap pattern already
+  built for `HabitatQuiz`/`CompletionCelebration`. The usual objection to modals — they get old fast if
+  they fire on something routine — doesn't apply here specifically *because* Decision 1 guarantees every
+  trigger is genuinely new content, never a repeat. See the chat discussion for the fuller inline-vs-modal
+  tradeoff; the "no duplicates" decision is what tipped it.
+- **Decision 3 — Lost Puppy excluded from the mechanic despite having 5 generated variants:** it's
+  `rarity: 'quest'`, and `photographAnimal()` refuses anything but `'common'` (and `rare-owl`) — Lost
+  Puppy is completed via `QuestPanel`'s own flow, never the camera. Including it in
+  `PHOTO_VARIANT_COUNTS` would ship a permanently-stuck "0 of 5 collected" Journal entry with no way to
+  progress. The 5 images exist at `public/assets/animals/lost-puppy-*.jpg` but are unreferenced by any
+  code until a follow-up wires a photo into the quest-completion moment instead — logged on
+  `docs/TASK_BOARD.md`, not implemented.
+- **Status:** Implemented. 10 animals have working collection (Lost Puppy's 2 invasive-species
+  siblings, Red-eared Slider Turtle and Cane Toad, have no generated art at all and stay emoji-only).
 
 ## D-2026-07-25-invasive-species-quiz-eligible-flag · Habitat quiz answers come from a quizEligible allowlist, not exclusion logic
 - **Context:** Added a calm "where does it belong" habitat quiz (`HabitatQuiz.tsx`) shown once, the first

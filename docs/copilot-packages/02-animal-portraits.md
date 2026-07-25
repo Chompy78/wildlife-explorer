@@ -1,7 +1,9 @@
 # Package 02 — Animal portrait art (Wildlife Journal + Camera Panel + Photo Wall)
 
-**Status:** Track A done, but the plan below is superseded (2026-07-25) — see the note at the bottom of
-this section before implementing anything.
+**Status:** Done, in its superseded form (2026-07-25) — see the note below for what actually shipped.
+The photo-collection mechanic this package evolved into is implemented: `src/data/animalPhotoVariants.ts`,
+`PhotoReveal.tsx`, and the `Journal`/`CameraPanel`/`PhotoWallSummary`/`ForestScreen` updates described in
+`DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`. This doc is kept as history, not a live spec.
 
 Original Track A history: Copilot generated all 11 base portraits plus variation-set alternates not
 called for by this package's original spec. Claude post-processed everything: converted PNG → JPEG
@@ -15,8 +17,8 @@ favorite" drafts. The user clarified afterward that all variants are meant to sh
 randomly show one of several "photos" each time an animal is photographed, and the player collects all
 of them over repeat sightings. Every animal now has exactly 5 numbered files:
 `public/assets/animals/<id>-1.jpg` through `<id>-5.jpg`. **The Track B code spec below (single portrait
-per animal, no collection state) is out of date and should not be implemented as written.** See
-`docs/TASK_BOARD.md`'s "Implement the multi-photo-variant collection mechanic" task for the current plan.
+per animal, no collection state) is out of date — it was not implemented as written.** The actual
+implementation is described in `DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`.
 
 **Track A:** art brief (image generation, 11 animal portraits). **Track B:** code spec (React/CSS) — superseded.
 **Scope:** replace the plain emoji currently used for every animal with real portrait art, in the

@@ -45,4 +45,18 @@ describe('Tutorial Park progression', () => {
     const save = photographAnimal(createDefaultSave(), 'duck');
     expect(save.reportedInvasiveSpecies).toEqual([]);
   });
+
+  it('collects a random photo variant on each new photograph, with no duplicates ever, capped at the total available', () => {
+    let save = createDefaultSave();
+    for (let i = 0; i < 10; i++) save = photographAnimal(save, 'duck');
+    const duckVariants = save.collectedPhotoVariants.filter((key) => key.startsWith('duck-'));
+    expect(duckVariants.length).toBe(5);
+    expect(new Set(duckVariants).size).toBe(5);
+    expect(duckVariants.sort()).toEqual(['duck-1', 'duck-2', 'duck-3', 'duck-4', 'duck-5']);
+  });
+
+  it('does not add photo variants for an animal with no photo art', () => {
+    const save = photographAnimal(createDefaultSave(), 'red-eared-slider');
+    expect(save.collectedPhotoVariants).toEqual([]);
+  });
 });

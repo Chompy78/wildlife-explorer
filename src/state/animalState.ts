@@ -1,4 +1,5 @@
 import { animals, commonMilestoneAnimals } from '../data/animals';
+import { pickRandomUncollectedVariant } from '../data/animalPhotoVariants';
 import type { Animal } from '../types/Animal';
 import type { AnimalId, LocationName } from '../types/Ids';
 import type { SaveData } from '../types/SaveData';
@@ -27,11 +28,14 @@ export function photographAnimal(saveData: SaveData, animalId: AnimalId): SaveDa
   if (animal.id === 'rare-owl' && !saveData.rareOwlSpotted) return saveData;
   if (animal.rarity !== 'common' && animal.id !== 'rare-owl') return saveData;
 
+  const variant = pickRandomUncollectedVariant(animalId, saveData.collectedPhotoVariants);
+
   return checkTutorialCompletion({
     ...saveData,
     discoveredAnimals: addUnique(saveData.discoveredAnimals, animalId),
     photographedAnimals: addUnique(saveData.photographedAnimals, animalId),
     reportedInvasiveSpecies: animal.nonNative ? addUnique(saveData.reportedInvasiveSpecies, animalId) : saveData.reportedInvasiveSpecies,
+    collectedPhotoVariants: variant ? addUnique(saveData.collectedPhotoVariants, `${animalId}-${variant}`) : saveData.collectedPhotoVariants,
   });
 }
 

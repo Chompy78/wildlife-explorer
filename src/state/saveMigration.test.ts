@@ -26,6 +26,11 @@ describe('save migration', () => {
     expect(save.reportedInvasiveSpecies).toEqual(['cane-toad', 'red-eared-slider']);
   });
 
+  it('preserves valid collectedPhotoVariants entries and filters unknown ones', () => {
+    const save = migrateSaveData({ collectedPhotoVariants: ['duck-1', 'duck-9', 'not-real', 'lost-puppy-1', 'forest-wren-3'] });
+    expect(save.collectedPhotoVariants).toEqual(['duck-1', 'forest-wren-3']);
+  });
+
   it('migrates valid camper hub fields and rejects unknown IDs', () => {
     const save = migrateSaveData({ wildCamperUnlocked: true, camperVisited: true, lastPlayArea: 'camper', selectedDestination: 'forest', photographedAnimals: ['duck', 'not-real'] });
     expect(save.camperVisited).toBe(true);
@@ -50,6 +55,7 @@ describe('save migration', () => {
       expect(save.lastPlayArea).toBe('park');
       expect(save.forestLocation).toBe('Forest Arrival');
       expect(save.reportedInvasiveSpecies).toEqual([]);
+      expect(save.collectedPhotoVariants).toEqual([]);
     }
 
     it.each([
@@ -75,12 +81,13 @@ describe('save migration', () => {
 
     it('ignores wrong-typed array fields instead of throwing', () => {
       const save = migrateSaveData({
-        discoveredAnimals: 'duck', photographedAnimals: 42, discoveredLocations: { not: 'an array' }, reportedInvasiveSpecies: true,
+        discoveredAnimals: 'duck', photographedAnimals: 42, discoveredLocations: { not: 'an array' }, reportedInvasiveSpecies: true, collectedPhotoVariants: 5,
       });
       expect(save.discoveredAnimals).toEqual([]);
       expect(save.photographedAnimals).toEqual([]);
       expect(save.discoveredLocations).toEqual(['Park Entrance']);
       expect(save.reportedInvasiveSpecies).toEqual([]);
+      expect(save.collectedPhotoVariants).toEqual([]);
     });
 
     it('filters out non-string and unknown entries mixed into otherwise-valid arrays', () => {

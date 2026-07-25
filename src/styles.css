@@ -111,6 +111,16 @@ h2 { color: #235c3a; }
 .quiz-choice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 0.6rem; margin-top: 1rem; }
 .quiz-choice { display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; border: 2px solid rgba(47,125,75,0.15); border-radius: 16px; padding: 0.7rem 0.9rem; background: #f8fff3; color: #19402b; box-shadow: none; }
 .invasive-note { padding: 0.6rem 0.8rem; border-radius: 14px; background: #fff9dc; border: 1px solid rgba(180,140,20,0.25); }
+.reveal-overlay { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 1rem; background: rgba(12,35,22,.58); }
+.reveal-card { width: min(480px,100%); border-radius: 30px; padding: 2rem; background: #fffdf3; box-shadow: 0 28px 70px rgba(20,60,32,.35); text-align: center; }
+.reveal-photo { display: block; width: 100%; max-width: 320px; aspect-ratio: 1/1; object-fit: cover; border-radius: 24px; margin: 1rem auto; box-shadow: 0 12px 30px rgba(20,60,32,.25); }
+.animal-thumb { width: 2.75rem; height: 2.75rem; border-radius: 50%; object-fit: cover; display: block; flex-shrink: 0; }
+.animal-thumb.small { width: 1.8rem; height: 1.8rem; }
+.animal-thumb.tiny { width: 1.3rem; height: 1.3rem; vertical-align: middle; margin-right: 0.15rem; }
+.photo-progress { display: flex; align-items: center; gap: 0.6rem; }
+.photo-progress-dots { display: flex; gap: 0.25rem; }
+.photo-progress-dots span { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #d9e6d2; }
+.photo-progress-dots span.collected { background: #267043; }
 button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
 
 

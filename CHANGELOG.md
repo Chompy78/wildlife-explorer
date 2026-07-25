@@ -5,6 +5,26 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(gameplay): implemented the multi-photo collection mechanic** — 10 animals (Duck,
+  Frog, Butterfly, Rabbit, Lizard, Park Bird, Rare Owl, Forest Wren, Forest Wallaby, Forest Beetle) now
+  each have 5 real collectible photo variants instead of a single portrait. Photographing picks a random
+  *uncollected* variant only — `pickRandomUncollectedVariant()` makes duplicates structurally impossible,
+  not just unlikely — and once all 5 are collected, the Camera Panel/Forest photo buttons disable with a
+  "collection complete" label instead of offering a no-op retake. A new `PhotoReveal.tsx` modal (reusing
+  the `useModalFocus` pattern already built for `HabitatQuiz`/`CompletionCelebration`) shows the newly
+  collected photo at a real size (~320px) with a "New photo!" moment and progress count — the modal
+  choice was deliberate: with duplicates impossible, every trigger is guaranteed to be genuinely new
+  content, which removes the usual "modals get old fast" objection. The Journal now shows a thumbnail of
+  a collected variant plus "X of Y photos collected" with progress dots instead of a static emoji/icon,
+  and the Camera Panel/Forest screen/Photo Wall all show small thumbnails too. New
+  `collectedPhotoVariants: string[]` save field bumped `CURRENT_SAVE_SCHEMA_VERSION` to 7 (migration
+  updated). Lost Puppy was deliberately excluded despite having 5 generated variants — it's completed via
+  a separate quest flow that never calls the photograph function the mechanic hooks into; wiring it in is
+  logged as a follow-up on `docs/TASK_BOARD.md` rather than shipped half-working. Verified with 7 new
+  tests (no-duplicate guarantee, cap-at-total, migration filtering) plus a full real-browser walkthrough:
+  camera thumbnails, the reveal modal on first photo, repeated retakes advancing 2/5 → 5/5, the button
+  disabling at completion, and the Journal showing 5 filled progress dots.
+
 - **2026-07-25 · chore(assets): switched animal art from one portrait per animal to 5 numbered photo
   variants each** — the user clarified the previously-discarded variation-set alternates weren't meant to
   be discarded: they're meant to be randomly selectable "photos" the player can collect across repeat

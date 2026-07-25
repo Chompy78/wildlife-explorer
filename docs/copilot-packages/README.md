@@ -45,7 +45,8 @@ package says exactly which ones, kept well under the 20-file ceiling.
 
 - `01-biome-backgrounds.md` — Park and Forest screen hero visuals, matching the Camper screen's existing
   pattern. Done (2026-07-25).
-- `02-animal-portraits.md` — real portrait art for all 11 animals, replacing emoji in the Wildlife
-  Journal, Camera Panel, Photo Wall, and Forest photo buttons.
+- `02-animal-portraits.md` — kept as history, not a live spec. Its Track A art generation succeeded, but
+  the mechanic evolved past its Track B code spec (single portrait per animal) into a 5-photo-variant
+  collection mechanic — see `DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`. Done (2026-07-25).
 - `03-park-map.md` — a single illustrated Park Map image with clickable location pins, replacing the
   plain grid of button-cards.

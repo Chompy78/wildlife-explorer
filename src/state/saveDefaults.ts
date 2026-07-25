@@ -22,6 +22,7 @@ export const defaultSaveData: SaveData = {
   lastPlayArea: 'park',
   forestLocation: 'Forest Arrival',
   reportedInvasiveSpecies: [],
+  collectedPhotoVariants: [],
 };
 
 export function createDefaultSave(): SaveData {
@@ -30,5 +31,6 @@ export function createDefaultSave(): SaveData {
     discoveredAnimals: [], photographedAnimals: [], discoveredLocations: ['Park Entrance'],
     questProgress: { lostPuppy: { ...defaultLostPuppyQuestProgress } },
     reportedInvasiveSpecies: [],
+    collectedPhotoVariants: [],
   };
 }

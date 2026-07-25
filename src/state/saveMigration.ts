@@ -1,4 +1,5 @@
 import { defaultLostPuppyQuestProgress } from './saveDefaults';
+import { ALL_PHOTO_VARIANT_KEYS } from '../data/animalPhotoVariants';
 import { CURRENT_SAVE_SCHEMA_VERSION, type PlayArea, type SaveData } from '../types/SaveData';
 import type { AnimalId, LocationName } from '../types/Ids';
 import type { DestinationId } from '../types/Destination';
@@ -38,6 +39,7 @@ export function migrateSaveData(input: unknown): SaveData {
     lastPlayArea: requestedArea === 'forest' && wildCamperUnlocked ? 'forest' : requestedArea === 'camper' && wildCamperUnlocked ? 'camper' : 'park',
     forestLocation: parsed.forestLocation === 'Fern Trail' ? 'Fern Trail' : 'Forest Arrival',
     reportedInvasiveSpecies: filterKnown(parsed.reportedInvasiveSpecies, validAnimals),
+    collectedPhotoVariants: filterKnown(parsed.collectedPhotoVariants, ALL_PHOTO_VARIANT_KEYS),
   };
 }
 
