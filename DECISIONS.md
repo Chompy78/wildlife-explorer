@@ -80,9 +80,12 @@
   (Playwright) watching for any failed network request — zero. The deploy workflow itself runs the full
   `npm run check` (not just a build) before uploading the Pages artifact, so a broken build/test/typecheck
   can never reach the live site.
-- **Status:** Implemented. One remaining manual step outside git's reach: GitHub repo Settings → Pages →
-  Source must be set to "GitHub Actions" once (a one-time toggle in the GitHub UI, not something
-  achievable via a commit).
+- **Status:** Implemented. Required one manual step outside git's reach (GitHub repo Settings → Pages →
+  Source → "GitHub Actions", a one-time UI toggle) plus one follow-up fix: the very first workflow run
+  failed at `actions/configure-pages` with `HttpError: Not Found` on `GET /repos/{owner}/{repo}/pages` —
+  a known chicken-and-egg problem where that action reads the Pages site config via the API, which 404s
+  until something has explicitly created it. Fixed by passing `enablement: true` to
+  `actions/configure-pages@v5`, which tells it to enable Pages itself instead of just failing.
 
 ## D-2026-07-25-photo-collection-mechanic · Uncollected-only random selection, modal reveal, Lost Puppy wired in via quest completion
 - **Context:** Copilot generated 5 style variants per animal (originally treated as disposable "pick a

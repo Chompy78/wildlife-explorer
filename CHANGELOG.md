@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · fix(deploy): fixed the first GitHub Pages deploy failing at configure-pages** — the
+  workflow's first run failed with `HttpError: Not Found` fetching the Pages site config, a known
+  chicken-and-egg issue on a brand-new Pages setup. Added `enablement: true` to
+  `actions/configure-pages@v5` so it enables Pages itself instead of failing.
+
 - **2026-07-25 · feat(deploy): shipped GitHub Pages deployment** — the game now deploys automatically to
   `https://chompy78.github.io/wildlife-explorer/` on every push to `main`
   (`.github/workflows/deploy.yml`), gated behind the full `npm run check` suite so a broken build/test

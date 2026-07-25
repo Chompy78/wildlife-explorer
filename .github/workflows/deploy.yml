@@ -29,7 +29,13 @@ jobs:
       # Full check (typecheck + tests + build + encoding audit), not just a build - never deploy
       # something the check.yml CI would have rejected. This produces dist/ as its last step.
       - run: npm run check
+      # enablement: true works around a chicken-and-egg problem on a brand-new Pages setup - this action
+      # calls GET /repos/{owner}/{repo}/pages to read the site config, which 404s ("Not Found") until
+      # something has explicitly created it. This tells the action to enable Pages itself if needed
+      # instead of just failing.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
