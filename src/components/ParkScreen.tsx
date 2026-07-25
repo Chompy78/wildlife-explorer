@@ -93,7 +93,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
           <h2>{currentLocation.name}</h2><p>{currentLocation.description}</p>
           <LocationClues saveData={saveData} />
           <CameraPanel animalsHere={animalsHere} saveData={saveData} onPhotographAnimal={handlePhotographAnimal} />
-          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} />
+          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey }); }} />
           <DiscoveryPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} />
           <div className="message-box" role="status" aria-live="polite">{message}</div>
           <ProgressTracker saveData={saveData} />

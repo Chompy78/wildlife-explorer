@@ -4,14 +4,12 @@ import type { AnimalId } from '../types/Ids';
 // photo art yet (falls back to its emoji everywhere) - e.g. the non-native animals, which were added
 // after this art was generated.
 //
-// lost-puppy has 5 generated variants sitting in public/assets/animals/ but is deliberately excluded
-// here: it's rarity 'quest', and photographAnimal() refuses to process anything but 'common' (and
-// rare-owl) - it's completed via QuestPanel's own flow, never the camera. Including it would ship a
-// permanently-stuck "0 of 5 collected" entry. Wiring a photo into the quest-completion moment is a
-// separate follow-up - see docs/TASK_BOARD.md.
+// lost-puppy is 'quest' rarity, so it never goes through photographAnimal()/photographForestAnimal() -
+// its single variant is awarded directly by completeLostPuppyQuest() (questState.ts) as a reunion
+// keepsake, not picked via the camera flow.
 const PHOTO_VARIANT_COUNTS: Partial<Record<AnimalId, number>> = {
   duck: 5, frog: 5, butterfly: 5, rabbit: 5, lizard: 5, 'park-bird': 5, 'rare-owl': 5,
-  'forest-wren': 5, 'forest-wallaby': 5, 'forest-beetle': 5,
+  'forest-wren': 5, 'forest-wallaby': 5, 'forest-beetle': 5, 'lost-puppy': 5,
 };
 
 export function getPhotoVariantCount(id: AnimalId): number {

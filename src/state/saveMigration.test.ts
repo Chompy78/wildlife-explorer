@@ -27,8 +27,8 @@ describe('save migration', () => {
   });
 
   it('preserves valid collectedPhotoVariants entries and filters unknown ones', () => {
-    const save = migrateSaveData({ collectedPhotoVariants: ['duck-1', 'duck-9', 'not-real', 'lost-puppy-1', 'forest-wren-3'] });
-    expect(save.collectedPhotoVariants).toEqual(['duck-1', 'forest-wren-3']);
+    const save = migrateSaveData({ collectedPhotoVariants: ['duck-1', 'duck-9', 'not-real', 'red-eared-slider-1', 'lost-puppy-1', 'forest-wren-3'] });
+    expect(save.collectedPhotoVariants).toEqual(['duck-1', 'lost-puppy-1', 'forest-wren-3']);
   });
 
   it('migrates valid camper hub fields and rejects unknown IDs', () => {

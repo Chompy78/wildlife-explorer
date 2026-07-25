@@ -13,15 +13,24 @@ type QuestPanelProps = {
   saveData: SaveData;
   onSaveChange: (saveData: SaveData) => void;
   onMessage: (message: string) => void;
+  onPhotoReveal: (variantKey: string) => void;
 };
 
-export function QuestPanel({ saveData, onSaveChange, onMessage }: QuestPanelProps) {
+export function QuestPanel({ saveData, onSaveChange, onMessage, onPhotoReveal }: QuestPanelProps) {
   const quest = saveData.questProgress.lostPuppy;
   const location = saveData.currentLocation;
 
   function applyQuestUpdate(nextSaveData: SaveData, message: string) {
     onSaveChange(nextSaveData);
     onMessage(message);
+  }
+
+  function reunitePuppy() {
+    const previousVariants = saveData.collectedPhotoVariants;
+    const updated = completeLostPuppyQuest(saveData);
+    applyQuestUpdate(updated, 'The puppy is reunited with the owner. Lost Puppy quest complete!');
+    const newVariant = updated.collectedPhotoVariants.find((key) => !previousVariants.includes(key));
+    if (newVariant) onPhotoReveal(newVariant);
   }
 
   return (
@@ -57,7 +66,7 @@ export function QuestPanel({ saveData, onSaveChange, onMessage }: QuestPanelProp
         )}
 
         {quest.foundPuppy && !quest.completed && location === 'Park Entrance' && (
-          <button onClick={() => applyQuestUpdate(completeLostPuppyQuest(saveData), 'The puppy is reunited with the owner. Lost Puppy quest complete!')}>Reunite Puppy</button>
+          <button onClick={reunitePuppy}>Reunite Puppy</button>
         )}
 
         {quest.completed && <p className="complete-message">{'\u2705'} Completed - puppy helped and reunited.</p>}

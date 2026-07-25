@@ -15,6 +15,20 @@ describe('Tutorial Park progression', () => {
     expect(save.discoveredAnimals).toContain('lost-puppy');
   });
 
+  it('awards a reunion photo when the Lost Puppy quest completes, and never a duplicate on repeated calls', () => {
+    let save = createDefaultSave();
+    save = startLostPuppyQuest(save);
+    save = findPawprints(save);
+    save = findChewToy(save);
+    save = findLostPuppy(save);
+    save = completeLostPuppyQuest(save);
+    const puppyVariants = save.collectedPhotoVariants.filter((key) => key.startsWith('lost-puppy-'));
+    expect(puppyVariants.length).toBe(1);
+    // already completed - a second call is a no-op guarded by the quest-state checks, not a re-award
+    const again = completeLostPuppyQuest(save);
+    expect(again.collectedPhotoVariants).toEqual(save.collectedPhotoVariants);
+  });
+
   it('blocks Rare Owl photography until the owl is spotted', () => {
     let save = createDefaultSave();
     expect(photographAnimal(save, 'rare-owl').photographedAnimals).not.toContain('rare-owl');

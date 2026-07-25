@@ -6,12 +6,12 @@
 
 ## Index
 
-- **D-2026-07-25-photo-collection-mechanic** — Animals with generated art (10 of them) now have 5
-  collectible photo variants each instead of one static portrait. Random selection only ever draws from
-  *uncollected* variants (duplicates are impossible by construction, not by chance), the reveal is a
-  modal (reused pattern, and every trigger is now guaranteed meaningful since duplicates can't happen),
-  and Lost Puppy is deliberately excluded despite having 5 generated variants sitting unused — see full
-  entry for why.
+- **D-2026-07-25-photo-collection-mechanic** — Animals with generated art (11 of them) each have 5
+  collectible photo variants instead of one static portrait. Random selection only ever draws from
+  *uncollected* variants (duplicates are impossible by construction, not by chance), and the reveal is a
+  modal (reused pattern, and every trigger is now guaranteed meaningful since duplicates can't happen).
+  Lost Puppy was initially excluded (rarity `'quest'`, never touches the camera flow), then wired in
+  separately via `completeLostPuppyQuest` as a reunion keepsake — see full entry for both halves.
 - **D-2026-07-25-invasive-species-quiz-eligible-flag** — The new "where does it belong" habitat quiz
   (shown after photographing a non-native animal) draws its answer choices from an explicit
   `quizEligible: boolean` field on `DestinationPreview`, not an exclusion list. Alien Planet is `false`;
@@ -40,7 +40,7 @@
   Same as `chompy78/family-hub`, but this repo is one small step from being ready to reverse it (a real
   `npm run check` gate already exists) — see full entry for the explicit revisit trigger.
 
-## D-2026-07-25-photo-collection-mechanic · Uncollected-only random selection, modal reveal, Lost Puppy excluded
+## D-2026-07-25-photo-collection-mechanic · Uncollected-only random selection, modal reveal, Lost Puppy wired in via quest completion
 - **Context:** Copilot generated 5 style variants per animal (originally treated as disposable "pick a
   favorite" drafts, per `docs/copilot-packages/02-animal-portraits.md`). The user clarified afterward
   that all 5 should ship as separate collectible "photos": photographing an animal shows a random one,
@@ -56,15 +56,20 @@
   they fire on something routine — doesn't apply here specifically *because* Decision 1 guarantees every
   trigger is genuinely new content, never a repeat. See the chat discussion for the fuller inline-vs-modal
   tradeoff; the "no duplicates" decision is what tipped it.
-- **Decision 3 — Lost Puppy excluded from the mechanic despite having 5 generated variants:** it's
-  `rarity: 'quest'`, and `photographAnimal()` refuses anything but `'common'` (and `rare-owl`) — Lost
-  Puppy is completed via `QuestPanel`'s own flow, never the camera. Including it in
-  `PHOTO_VARIANT_COUNTS` would ship a permanently-stuck "0 of 5 collected" Journal entry with no way to
-  progress. The 5 images exist at `public/assets/animals/lost-puppy-*.jpg` but are unreferenced by any
-  code until a follow-up wires a photo into the quest-completion moment instead — logged on
-  `docs/TASK_BOARD.md`, not implemented.
-- **Status:** Implemented. 10 animals have working collection (Lost Puppy's 2 invasive-species
-  siblings, Red-eared Slider Turtle and Cane Toad, have no generated art at all and stay emoji-only).
+- **Decision 3 — Lost Puppy initially excluded, then wired in via quest completion, not the camera:**
+  it's `rarity: 'quest'`, and `photographAnimal()` refuses anything but `'common'` (and `'rare-owl'`) —
+  Lost Puppy is completed via `QuestPanel`'s own flow. Rather than force it through the camera path,
+  `completeLostPuppyQuest()` (`questState.ts`) awards a random variant directly as a reunion keepsake,
+  and `QuestPanel`'s "Reunite Puppy" button diffs `collectedPhotoVariants` the same way
+  `ParkScreen`/`ForestScreen` do, calling a new `onPhotoReveal` prop threaded up to `ParkScreen`'s
+  existing `PhotoReveal` state. Fixed a related latent bug while wiring this in:
+  `completeLostPuppyQuest()`'s guard didn't check `quest.completed`, so calling it a second time (only
+  possible in theory — the UI already hides the button after completion) would have silently awarded a
+  second random photo; added `|| quest.completed` to the guard, matching every sibling quest-step
+  function's existing pattern.
+- **Status:** Implemented. All 11 animals with generated art have working collection (the 2
+  invasive-species animals, Red-eared Slider Turtle and Cane Toad, have no generated art at all and stay
+  emoji-only).
 
 ## D-2026-07-25-invasive-species-quiz-eligible-flag · Habitat quiz answers come from a quizEligible allowlist, not exclusion logic
 - **Context:** Added a calm "where does it belong" habitat quiz (`HabitatQuiz.tsx`) shown once, the first

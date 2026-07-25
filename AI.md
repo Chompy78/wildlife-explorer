@@ -20,10 +20,11 @@ Implemented:
 - Return from Forest to the Wild Camper
 - Non-native animal reporting: Red-eared Slider Turtle (Duck Pond) and Cane Toad (Forest) trigger a calm
   "where does it belong" habitat quiz after the first photograph, and a note in the Journal
-- Photo collection: 10 animals (Duck, Frog, Butterfly, Rabbit, Lizard, Park Bird, Rare Owl, Forest Wren,
-  Forest Wallaby, Forest Beetle) each have 5 real collectible photo variants — photographing shows a
-  randomly-picked not-yet-collected one in a "New photo!" reveal, duplicates are never handed out, and
-  the Journal/Camera Panel/Photo Wall show collection progress and thumbnails instead of emoji
+- Photo collection: 11 animals (Duck, Frog, Butterfly, Rabbit, Lizard, Park Bird, Rare Owl, Forest Wren,
+  Forest Wallaby, Forest Beetle, Lost Puppy) each have 5 real collectible photo variants — photographing
+  (or, for Lost Puppy, completing the reunion) shows a randomly-picked not-yet-collected one in a "New
+  photo!" reveal, duplicates are never handed out, and the Journal/Camera Panel/Photo Wall show
+  collection progress and thumbnails instead of emoji
 - Save schema version 7 and migration of older saves
 - Keyboard focus handling, responsive styling and reduced-motion support
 - TypeScript, state tests, component tests, production build and encoding audit

@@ -25,28 +25,6 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
 
-## Wire a Lost Puppy reunion photo into the collection mechanic — TODO
-`public/assets/animals/lost-puppy-1.jpg` through `-5.jpg` exist (real generated art) but are unused —
-Lost Puppy was deliberately excluded from the photo-collection mechanic shipped 2026-07-25 because it's
-`rarity: 'quest'` and completed via `QuestPanel`'s own flow (`completeLostPuppyQuest`), never the camera
-that the mechanic hooks into. See `DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic` for the full
-reasoning. A natural fit: award a random photo variant as a keepsake at the moment the puppy is reunited.
-**Effort:** low · **Risk:** low — one new call site in `questState.ts`'s `completeLostPuppyQuest`, reusing
-the existing `pickRandomUncollectedVariant`/`PhotoReveal` infrastructure; add `lost-puppy: 5` back to
-`PHOTO_VARIANT_COUNTS` in `animalPhotoVariants.ts` as part of this.
-
-```text
-1. Add lost-puppy: 5 back to PHOTO_VARIANT_COUNTS in src/data/animalPhotoVariants.ts.
-2. In completeLostPuppyQuest (questState.ts), pick a random variant and add it to
-   collectedPhotoVariants, same pattern as photographAnimal/photographForestAnimal.
-3. Wire the PhotoReveal trigger into QuestPanel's "Reunite Puppy" flow (it currently calls onSaveChange
-   directly rather than going through ParkScreen's handlePhotographAnimal-style diffing).
-4. Run npm run check; verify in a real browser that the reveal shows on reunion, not before.
-```
-**Done when:** reuniting the Lost Puppy shows a `PhotoReveal` with one of its 5 photos, and
-`npm run check` passes.
-
-
 ## Integrate illustrated Park Map with location pins — TODO
 `docs/copilot-packages/03-park-map.md` is a ready-to-run handoff package (art brief + code spec)
 replacing `ParkScreen.tsx`'s plain grid of location button-cards with a single illustrated map image and

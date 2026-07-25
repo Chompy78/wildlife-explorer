@@ -1,3 +1,4 @@
+import { pickRandomUncollectedVariant } from '../data/animalPhotoVariants';
 import type { SaveData } from '../types/SaveData';
 import { checkTutorialCompletion } from './progressionState';
 import { addUnique } from './stateUtils';
@@ -31,11 +32,13 @@ export function findLostPuppy(saveData: SaveData): SaveData {
 
 export function completeLostPuppyQuest(saveData: SaveData): SaveData {
   const quest = saveData.questProgress.lostPuppy;
-  if (!quest.started || !quest.foundPawprints || !quest.foundToy || !quest.foundPuppy) return saveData;
+  if (!quest.started || !quest.foundPawprints || !quest.foundToy || !quest.foundPuppy || quest.completed) return saveData;
   const updated = patchLostPuppyQuest(saveData, { completed: true });
+  const variant = pickRandomUncollectedVariant('lost-puppy', saveData.collectedPhotoVariants);
   return checkTutorialCompletion({
     ...updated,
     discoveredAnimals: addUnique(updated.discoveredAnimals, 'lost-puppy'),
+    collectedPhotoVariants: variant ? addUnique(updated.collectedPhotoVariants, `lost-puppy-${variant}`) : updated.collectedPhotoVariants,
   });
 }
 

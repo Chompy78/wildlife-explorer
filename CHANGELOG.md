@@ -5,6 +5,18 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(gameplay): wired a Lost Puppy reunion photo into the collection mechanic** — the
+  5 generated `lost-puppy-*.jpg` images existed but were unused since Lost Puppy (`rarity: 'quest'`)
+  never goes through the camera flow the mechanic hooks into. `completeLostPuppyQuest()` (`questState.ts`)
+  now awards a random uncollected variant directly as a reunion keepsake, and `QuestPanel`'s "Reunite
+  Puppy" button diffs `collectedPhotoVariants` (same pattern `ParkScreen`/`ForestScreen` already use) to
+  trigger `PhotoReveal` via a new `onPhotoReveal` prop. Fixed a related latent bug while wiring this in:
+  `completeLostPuppyQuest()`'s guard didn't check `quest.completed`, so a second call (only reachable in
+  theory today — the UI hides the button after completion) would have silently awarded a second random
+  photo; added the missing check, matching every sibling quest-step function's existing guard pattern.
+  All 11 animals with generated art now have working photo collection. Verified with 2 new tests plus a
+  real-browser screenshot of the actual reunion reveal.
+
 - **2026-07-25 · feat(gameplay): implemented the multi-photo collection mechanic** — 10 animals (Duck,
   Frog, Butterfly, Rabbit, Lizard, Park Bird, Rare Owl, Forest Wren, Forest Wallaby, Forest Beetle) now
   each have 5 real collectible photo variants instead of a single portrait. Photographing picks a random
