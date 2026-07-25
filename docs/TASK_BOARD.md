@@ -28,19 +28,20 @@ Found during a 2026-07-20 project status review — not blocked by the Scope bou
 ## Integrate animal portrait art (Journal, Camera Panel, Photo Wall, Forest) — TODO
 `docs/copilot-packages/02-animal-portraits.md` is a ready-to-run handoff package (art brief + code spec)
 replacing the emoji used for all 11 animals with real portrait art in `Journal.tsx`, `CameraPanel.tsx`,
-`PhotoWallSummary.tsx` and `ForestScreen.tsx`. Waiting on the user to run Track A through Copilot 365 and
-bring back the 11 generated images.
-**Effort:** low · **Risk:** low — additive visual-only change (11 new images, one new small data-lookup
-file, a CSS addition, four small display-logic edits), no state/save-schema/gameplay logic touched.
+`PhotoWallSummary.tsx` and `ForestScreen.tsx`. Track A is done: the 11 images exist at
+`public/assets/animals/<id>.jpg` (converted PNG → JPEG and moved to the correct folder by Claude after
+Copilot generated them 1254px PNG in the wrong location — see the package's Status note). Only Track B
+(code) remains.
+**Effort:** low · **Risk:** low — additive visual-only change (one new small data-lookup file, a CSS
+addition, four small display-logic edits), no state/save-schema/gameplay logic touched.
 
 ```text
-1. Receive the 11 generated PNGs from the user; place at public/assets/animals/<id>.png per Track A.
-2. Implement Track B directly (per Package 01's experience, Copilot 365 Chat likely won't complete this
-   part reliably): create src/data/animalPortraits.ts, add the .animal-portrait CSS, and update
-   Journal.tsx, CameraPanel.tsx, PhotoWallSummary.tsx and ForestScreen.tsx per the package's B1-B6.
-3. Verify Journal still hides portraits for undiscovered animals (no spoiler regression).
-4. Verify Canon/Scope compliance on the generated art (no new animals invented, no distress/combat).
-5. Run npm run check.
+1. Implement Track B directly: create src/data/animalPortraits.ts, add the .animal-portrait CSS, and
+   update Journal.tsx, CameraPanel.tsx, PhotoWallSummary.tsx and ForestScreen.tsx per the package's
+   B1-B6 (note: file extension is .jpg, not .png).
+2. Verify Journal still hides portraits for undiscovered animals (no spoiler regression).
+3. Verify Canon/Scope compliance on the generated art (no new animals invented, no distress/combat).
+4. Run npm run check; visually verify in a real browser.
 ```
 **Done when:** the package's own "Done when" section (bottom of
 `docs/copilot-packages/02-animal-portraits.md`) is satisfied and `npm run check` passes.

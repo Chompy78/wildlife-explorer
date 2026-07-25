@@ -1,7 +1,15 @@
 # Package 02 — Animal portrait art (Wildlife Journal + Camera Panel + Photo Wall)
 
-**Status:** ready to hand to Copilot 365 for Track A only. Track B (code) is implemented by Claude
-directly, not routed through Copilot 365 Chat — see "Handing this to Copilot 365" below.
+**Status:** Track A done (2026-07-25) — Copilot generated all 11, plus extra variation-set alternates not
+called for by this package. Claude post-processed the 11 base images: converted PNG → JPEG (quality 85,
+same 1254px resolution — format was the actual size problem, not resolution; see `DECISIONS.md`) and
+moved them to the correct `public/assets/animals/<id>.jpg` path (they'd landed in
+`public/assets/tutorial-park/` alongside the unrelated Package 01 hero image). Cut 120MB of generated
+files down to ~2.9MB. The 40 unused variant files were deleted — they were only ever meant for picking a
+favorite, not for shipping. **File extension below is `.jpg`, not `.png`** — the prose still says `.png`
+in a few places since that was the original ask; treat `.jpg` as authoritative.
+Track B (code) is implemented by Claude directly, not routed through Copilot 365 Chat — see "Handing
+this to Copilot 365" below.
 **Track A:** art brief (image generation, 11 animal portraits). **Track B:** code spec (React/CSS).
 **Scope:** replace the plain emoji currently used for every animal with real portrait art, in the
 Wildlife Journal, the Camera Panel (Tutorial Park photography), the Photo Wall summary (Camper), and the
@@ -189,7 +197,7 @@ const PORTRAIT_ANIMAL_IDS: AnimalId[] = [
 ];
 
 export function getAnimalPortraitUrl(id: AnimalId): string | null {
-  return PORTRAIT_ANIMAL_IDS.includes(id) ? `/assets/animals/${id}.png` : null;
+  return PORTRAIT_ANIMAL_IDS.includes(id) ? `/assets/animals/${id}.jpg` : null;
 }
 ```
 This is deliberately a lookup, not "always build the path" — if a future animal is added without art
@@ -254,7 +262,7 @@ portrait is decorative — an empty `alt` avoids a screen reader announcing the 
 
 ## Done when
 
-- All 11 files exist at `public/assets/animals/<id>.png`, square, matching the established style.
+- All 11 files exist at `public/assets/animals/<id>.jpg`, square, matching the established style.
 - `src/data/animalPortraits.ts` exists and is used by all four display spots (Journal, Camera Panel,
   Photo Wall, Forest screen buttons).
 - Journal entries still hide the portrait for undiscovered animals (locked/blank-square behaviour
