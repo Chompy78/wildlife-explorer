@@ -18,6 +18,8 @@ Implemented:
 - Forest Wren, Forest Wallaby, Shiny Forest Beetle and Cane Toad photography
 - Wildlife Journal integration
 - Return from Forest to the Wild Camper
+- Illustrated Park Map: `ParkScreen.tsx`'s location grid replaced with a single map image and 6
+  percentage-positioned, keyboard-accessible pins (`src/data/parkMapCoordinates.ts`)
 - Non-native animal reporting: Red-eared Slider Turtle (Duck Pond) and Cane Toad (Forest) trigger a calm
   "where does it belong" habitat quiz after the first photograph, and a note in the Journal
 - Photo collection: 11 animals (Duck, Frog, Butterfly, Rabbit, Lizard, Park Bird, Rare Owl, Forest Wren,

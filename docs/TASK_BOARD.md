@@ -25,32 +25,6 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
 
-## Integrate illustrated Park Map with location pins — TODO
-`docs/copilot-packages/03-park-map.md` is a ready-to-run handoff package (art brief + code spec)
-replacing `ParkScreen.tsx`'s plain grid of location button-cards with a single illustrated map image and
-clickable pins. Waiting on the user to run Track A through Copilot 365 and bring back the map image.
-**Effort:** medium · **Risk:** medium — touches the core Park screen's primary navigation UI (still the
-same underlying `goToLocation`/`visitLocation` logic, no state changes) and needs care to keep pins
-keyboard-accessible and correctly positioned against whatever the generated art actually looks like.
-
-```text
-1. Receive the generated park-map.png from the user; place at public/assets/tutorial-park/park-map.png.
-2. Implement Track B directly (per Packages 01/02's experience): create src/data/parkMapCoordinates.ts,
-   add the .park-map/.map-pin CSS, and replace ParkScreen.tsx's .location-grid block per the package's
-   B1-B3.
-3. Open the actual generated map image and tune the placeholder pin coordinates to match where each
-   location actually appears in the art.
-4. Verify all 6 locations still navigate correctly, including the existing hidden-Whisper-Grove message,
-   and that pins are keyboard-focusable.
-5. Verify Canon/Scope compliance on the generated art (Strange Old Tree/Whisper Grove read as natural,
-   not magical).
-6. Run npm run check; visually verify in a real browser (screenshot) at both desktop and a narrow mobile
-   width, not just the test suite.
-```
-**Done when:** the package's own "Done when" section (bottom of
-`docs/copilot-packages/03-park-map.md`) is satisfied and `npm run check` passes.
-
-
 ## Add a second non-native animal per biome — TODO
 The invasive-species habitat quiz shipped 2026-07-25 with one non-native animal per playable biome
 (Red-eared Slider Turtle at Duck Pond, Cane Toad at Forest Trail/Fern Trail). The user said "at least one

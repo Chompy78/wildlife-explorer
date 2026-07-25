@@ -5,6 +5,15 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(park): illustrated Park Map with clickable location pins** — replaced
+  `ParkScreen.tsx`'s plain grid of location button-cards with the generated `park-map.png` (1536x1024)
+  and 6 percentage-positioned pins (`src/data/parkMapCoordinates.ts`), tuned by eye against the real art.
+  Same underlying `goToLocation`/`visitLocation` navigation, no state changes. Fixed a real click bug
+  found during verification: `transform` directly on the clickable pin button broke real mouse-coordinate
+  clicks in browser testing (see `DECISIONS.md`'s `D-2026-07-25-park-map-pins`) — moved the transform to
+  a non-interactive wrapper div instead. Verified in a real browser: all 6 pins navigate correctly, the
+  hidden Whisper Grove message still shows pre-discovery, pins are keyboard-focusable, works at mobile
+  width, zero failed network requests.
 - **2026-07-25 · chore(assets): generated and banked Lake biome animal art** — all 30 images from
   `docs/copilot-packages/04-lake-biome-animals.md` (6 animals × 5 photo variants) converted PNG→JPEG
   (72.7MB→9.0MB, same treatment as the Park/Forest batch) and renamed to `<animal-id>-<variant>.jpg` in a

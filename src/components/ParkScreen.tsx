@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { assetUrl } from '../assetUrl';
 import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
+import { parkMapCoordinates } from '../data/parkMapCoordinates';
 import { getAnimalById, getAnimalsForLocation, getLocationByName, getRoleName, getVisibleParkLocations, photographAnimal, visitLocation } from '../state/gameState';
 import type { Animal } from '../types/Animal';
 import type { AnimalId, LocationName } from '../types/Ids';
@@ -84,11 +85,25 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
         <div className="panel map-panel">
           <h2>Park Map</h2>
           <p className="muted">Finish Tutorial Park by helping the puppy, photographing Rare Owl, and discovering Whisper Grove.</p>
-          <div className="location-grid">{visibleLocations.map((location) => (
-            <button key={location.id} className={location.name === saveData.currentLocation ? 'location-card active' : `location-card ${location.status}`} onClick={() => goToLocation(location.name)}>
-              <span className="location-icon">{location.status === 'hidden' ? '\uD83D\uDD12' : location.icon}</span><strong>{location.name}</strong><span>{location.description}</span><em>{location.status === 'hidden' ? 'Hidden for now' : 'Available now'}</em>
-            </button>
-          ))}</div>
+          <div className="park-map">
+            <img src={assetUrl('assets/tutorial-park/park-map.png')} alt="Illustrated map of Tutorial Park" />
+            {visibleLocations.map((location) => {
+              const coords = parkMapCoordinates[location.name];
+              const isActive = location.name === saveData.currentLocation;
+              return (
+                <div key={location.id} className="map-pin-wrap" style={{ top: coords.top, left: coords.left }}>
+                  <button
+                    className={`map-pin ${isActive ? 'active' : location.status}`}
+                    onClick={() => goToLocation(location.name)}
+                    aria-label={`${location.name}${location.status === 'hidden' ? ', hidden' : isActive ? ', current location' : ''}`}
+                  >
+                    <span className="pin-icon" aria-hidden="true">{location.status === 'hidden' ? '\uD83D\uDD12' : location.icon}</span>
+                    <span className="pin-label">{location.name}</span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <aside className="panel side-panel">
           <h2>{currentLocation.name}</h2><p>{currentLocation.description}</p>
