@@ -70,12 +70,24 @@ the one-line subject description for that animal:**
 That's the **base shot** (1 of 5) per animal. Generate 4 more per animal using the same subject line plus
 one of these variation modifiers each, so every animal ends up with 5 distinct photos to collect:
 
-| Variant | Modifier to append |
+| Variant | Modifier to append (5 above-water animals: heron, beaver, loon, dragonfly, painted-turtle) |
 |---|---|
 | 2 | soft morning light, calm resting pose |
 | 3 | warm golden-hour light, alert active pose |
 | 4 | soft overcast light, closer crop with more habitat detail visible |
 | 5 | dappled shade lighting, three-quarter angle view |
+
+**`rainbow-trout` uses a different set of modifiers — do not use the table above for it.** It's the only
+fully underwater subject, and time-of-day lighting barely reads once something's filtered through water —
+the first attempt at this came out with all 5 variants looking nearly identical for exactly that reason.
+Vary water clarity/colour, camera angle, motion, and framing distance instead:
+
+| Variant | Modifier to append (`rainbow-trout` only) |
+|---|---|
+| 2 | in clear turquoise water with soft sunbeams filtering down from above, hovering calmly facing the camera |
+| 3 | in slightly murkier green-tinted water with fine drifting particles, swimming actively with a gentle motion blur on the tail |
+| 4 | extreme close-up on the head and iridescent scales, shallow water near the surface with bright ripple patterns visible above |
+| 5 | viewed from below looking up toward the sunlit surface, a trail of small bubbles rising beside it |
 
 Save each result as `<animal-id>-<variant-number>.png` (e.g. `heron-1.png` through `heron-5.png`) — exact
 filenames aren't critical, Claude renames/converts everything on the way in regardless, same as every
@@ -97,10 +109,10 @@ Make the art beaver — soft overcast light, closer crop with more habitat detai
 Make the art beaver — dappled shade lighting, three-quarter angle view
 
 Make the art rainbow trout
-Make the art rainbow trout — soft morning light, calm resting pose
-Make the art rainbow trout — warm golden-hour light, alert active pose
-Make the art rainbow trout — soft overcast light, closer crop with more habitat detail visible
-Make the art rainbow trout — dappled shade lighting, three-quarter angle view
+Make the art rainbow trout — in clear turquoise water with soft sunbeams filtering down from above, hovering calmly facing the camera
+Make the art rainbow trout — in slightly murkier green-tinted water with fine drifting particles, swimming actively with a gentle motion blur on the tail
+Make the art rainbow trout — extreme close-up on the head and iridescent scales, shallow water near the surface with bright ripple patterns visible above
+Make the art rainbow trout — viewed from below looking up toward the sunlit surface, a trail of small bubbles rising beside it
 
 Make the art loon
 Make the art loon — soft morning light, calm resting pose

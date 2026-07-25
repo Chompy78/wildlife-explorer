@@ -5,6 +5,15 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · docs(copilot-handoff): fixed Package 04's Rainbow Trout variants looking near-identical**
+  — the user reported the 5 generated trout photos barely differed. Root cause: the 4 variant modifiers
+  used across the whole Lake package vary time-of-day *lighting* (morning/golden-hour/overcast/dappled),
+  which barely registers once a subject is filtered through water — trout was the only fully-underwater
+  animal in the batch. Gave it a separate modifier set that varies water clarity/colour, camera angle,
+  motion, and framing distance instead (clear vs murky water, close-up on scales, viewed from below with
+  bubbles, etc.) — axes that actually read as different underwater. The other 5 Lake animals are
+  above-water subjects in normal open-air light, so their original modifiers are unaffected.
+
 - **2026-07-25 · docs(copilot-handoff): reformatted Package 04 to match the original Package 02
   structure** — the user had an earlier copy of `02-animal-portraits.md` (from before it evolved into
   the 5-photo-variant mechanic) and wanted Package 04 laid out the same way: numbered `## 0. Context` /
