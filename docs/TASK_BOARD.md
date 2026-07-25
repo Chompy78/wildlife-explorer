@@ -73,6 +73,43 @@ The invasive-species habitat quiz shipped 2026-07-25 with one non-native animal 
 `npm run check` passes.
 
 
+## Photo "quality" progression — sharper photos as skill improves — TODO, needs design discussion first
+User idea (2026-07-25): photos should get better over time, e.g. a blur or poor-crop effect on early/
+"poor quality" photos that improves with practice. Layers onto the photo-collection mechanic shipped
+2026-07-25 (`DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`) — not yet designed, needs a
+decision on what "quality" tracks before implementation starts.
+**Effort:** medium · **Risk:** medium — real ambiguity in what "quality" should track, and it changes the
+feel of an already-shipped, already-tested mechanic.
+
+```text
+1. Get an explicit decision from the user on what quality should track — present tiered options, do not
+   auto-decide:
+   A. Per-species, ordered by variant number (variant 1 = blurriest/first attempt ... variant 5 =
+      sharpest) - reuses the existing 5-variant slots directly, but requires switching variant selection
+      from the current random-among-uncollected to sequential, which changes the "random photo" feel
+      already shipped and tested.
+   B. A persistent per-species photo count, separate from which variant is randomly picked - quality
+      scales with practice on that species; keeps the existing random-variant selection untouched.
+      Recommended: avoids regressing the tested random-selection mechanic, and reads more true-to-life
+      ("practice with this species") than a single global number.
+   C. A single global photography-skill counter across all species - simplest to reason about, but
+      narratively odd (photographing ducks shouldn't make heron photos sharper).
+2. No new art needed for any option: simulate poor quality with CSS (e.g. filter: blur(Npx) and/or
+   transform/object-position to simulate poor cropping), scaling down as quality improves. Verify against
+   a real generated photo that the effect reads as intentional, not broken image loading.
+3. Canon check (AI.md "no harsh failure"): the effect must stay encouraging - never label a photo "bad"
+   or "poor quality" in visible copy. Frame it positively (e.g. "getting closer!" / "steadier shots
+   ahead") rather than critically. Flag this as the main risk point if not handled carefully.
+4. Implement the chosen option; update save schema only if it needs new persisted state (bump
+   CURRENT_SAVE_SCHEMA_VERSION, update saveDefaults.ts/saveMigration.ts in lockstep, per this session's
+   established pattern).
+5. Run npm run check; verify visually in a real browser across a few photo captures to confirm the
+   progression reads clearly and stays encouraging in tone.
+```
+**Done when:** the user has confirmed which design option (or an alternative) to build, it's implemented,
+and `npm run check` passes.
+
+
 ## Decide whether to introduce a PR-gated workflow — TODO
 Now that CI (`npm run check` via GitHub Actions) is wired up, `DECISIONS.md`'s `D-2026-07-21-branch-model`
 "CI gets added" revisit trigger has fired (see `D-2026-07-21-ci-added`) — decide whether to keep

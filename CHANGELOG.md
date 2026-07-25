@@ -5,6 +5,9 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · docs(tasks): logged a task-board entry for photo "quality" progression** — user idea to
+  have photos sharpen with practice (blur/crop effect on early attempts); logged with three design
+  options and a recommendation, not yet implemented — see `docs/TASK_BOARD.md`.
 - **2026-07-25 · fix(deploy): fixed the first GitHub Pages deploy failing at configure-pages** — the
   workflow's first run failed with `HttpError: Not Found` fetching the Pages site config, a known
   chicken-and-egg issue on a brand-new Pages setup. Added `enablement: true` to
