@@ -20,6 +20,11 @@ Implemented:
 - Return from Forest to the Wild Camper
 - Illustrated Park Map: `ParkScreen.tsx`'s location grid replaced with a single map image and 6
   percentage-positioned, keyboard-accessible pins (`src/data/parkMapCoordinates.ts`)
+- Single-screen landscape layout: Park/Forest/Camper (`.play-screen`) fill the viewport with no page
+  scroll at common landscape sizes (phone/tablet/laptop). The hero banner moved behind an "About" button;
+  Camera/Quest/Discover/Progress/Journey Planner moved behind action-bar buttons that open them as modals
+  (`src/components/PanelModal.tsx`), reusing the existing Journal modal pattern. Portrait/narrow phones
+  fall back to a taller, scrollable stack.
 - Non-native animal reporting: Red-eared Slider Turtle (Duck Pond) and Cane Toad (Forest) trigger a calm
   "where does it belong" habitat quiz after the first photograph, and a note in the Journal
 - Photo collection: 11 animals (Duck, Frog, Butterfly, Rabbit, Lizard, Park Bird, Rare Owl, Forest Wren,

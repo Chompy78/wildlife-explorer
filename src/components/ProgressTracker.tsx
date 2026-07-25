@@ -10,7 +10,6 @@ export function ProgressTracker({ saveData }: ProgressTrackerProps) {
 
   return (
     <section className="progress-card">
-      <h2>Tutorial Progress</h2>
       <ul>
         {items.map((item) => (
           <li key={item.label} className={item.done ? 'done' : item.locked ? 'locked' : ''}>

@@ -13,7 +13,6 @@ type CameraPanelProps = {
 export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: CameraPanelProps) {
   return (
     <div className="camera-card">
-      <h2>Camera</h2>
       {animalsHere.length === 0 ? (
         <p>No common animals are ready to photograph here yet.</p>
       ) : (

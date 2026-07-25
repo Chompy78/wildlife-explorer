@@ -36,7 +36,7 @@ export function QuestPanel({ saveData, onSaveChange, onMessage, onPhotoReveal }:
   return (
     <section className="quest-card">
       <p className="eyebrow">Quest</p>
-      <h2>{lostPuppyQuest.name}</h2>
+      <h3>{lostPuppyQuest.name}</h3>
       <p>{lostPuppyQuest.description}</p>
       <p className="quest-hint"><strong>Hint:</strong> {getLostPuppyQuestHint(saveData)}</p>
 

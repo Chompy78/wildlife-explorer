@@ -6,6 +6,13 @@
 
 ## Index
 
+- **D-2026-07-25-single-screen-landscape-layout** — User feedback: the Park/Forest/Camper screens were
+  "too hard to use" and required scrolling. Restructured to a single-screen landscape-optimized layout on
+  all three: the hero banner moved behind an "About" button, and Camera/Quest/Discover/Progress/Journey
+  Planner moved behind action-bar buttons that open them as modals (new `PanelModal.tsx`, reusing the
+  Journal modal pattern already proven this session). No orientation lock — layout-only, portrait still
+  works via a scrollable fallback. Chosen via `AskUserQuestion` from tiered options per `AGENTS.md`
+  convention. See full entry for the exact CSS approach and verification.
 - **D-2026-07-25-park-map-pins** — Implemented the illustrated Park Map (`docs/copilot-packages/
   03-park-map.md`'s Track B): 6 clickable pins positioned by percentage over a single map image, replacing
   the plain location-card grid. Found and fixed a real click-hit-testing bug along the way: a
@@ -56,6 +63,58 @@
 - **D-2026-07-21-branch-model** — Chose commit-straight-to-`main`, no feature branches/PRs, for now.
   Same as `chompy78/family-hub`, but this repo is one small step from being ready to reverse it (a real
   `npm run check` gate already exists) — see full entry for the explicit revisit trigger.
+
+## D-2026-07-25-single-screen-landscape-layout · Hero and panels moved behind buttons, no orientation lock
+- **Context:** the Park/Forest/Camper screens each stacked a full hero banner, a wide map/interaction
+  area, and a long always-visible side panel (Camera, Quest, Discovery, Progress on Park; a destination
+  grid and Expedition Readiness on Camper). The user reported the layout was "too hard to use" and asked
+  for a single screen with no scrolling, landscape as the normal mode, the splash screen gone once
+  playing, and the "bottom stuff" opened by a button.
+- **Options presented (via `AskUserQuestion`, tiered per `AGENTS.md`):**
+  1. *Panel reveal* — modal buttons (chosen) vs. a bottom slide-up drawer vs. a side slide-in drawer vs.
+     an in-place accordion. Modal buttons won for reusing the exact pattern Journal already used
+     successfully this session — lowest risk, no new UI primitive, no save-schema change.
+  2. *Hero banner* — removed from normal play behind an "About" button (chosen) vs. collapsed to a thin
+     strip vs. shown once per save ever (would have needed a save-schema change; rejected for that reason
+     alone, not because the idea was bad).
+  3. *Orientation* — layout-only, no lock (chosen) vs. a gentle rotate-prompt overlay. Rejected an actual
+     orientation lock: the Screen Orientation API is unreliable across browsers (notably iOS Safari) and
+     locking a web page's orientation is generally poor practice.
+- **Decision:** all three "chosen" options above, applied consistently to Park/Forest/Camper.
+  - New `src/components/PanelModal.tsx` — a generic modal wrapper (title/eyebrow/children) built from the
+    same `.journal-overlay`/`.journal-panel` CSS and `useModalFocus` hook Journal already used; every
+    panel this change moved behind a button reuses it instead of inventing a new modal pattern per panel.
+  - CameraPanel/QuestPanel/ProgressTracker/DiscoveryPanel had their own internal `<h2>` removed (or
+    downgraded to `<h3>` for QuestPanel, since the quest name is real content, not just a label) since
+    `PanelModal`'s own title now serves that role - avoids duplicate headings once wrapped.
+  - New `.play-screen` layout: `height: 100dvh; display:flex; flex-direction:column; overflow:hidden`,
+    with the map/interaction area as `flex:1; min-height:0` so it fills exactly whatever room remains
+    after the (now much smaller) header and action bar. Falls back to `height:auto` (page-scrollable) only
+    below 700px width, i.e. a narrow portrait phone - landscape at any common phone/tablet/laptop size
+    needs no scroll at all.
+  - A further `@media (max-height: 460px)` tier (a phone held in landscape, ~390px tall) shrinks the
+    header, location strip, message box and action-bar buttons further - without this, the very short
+    viewport case compressed the Park Map so much the 6 pin labels visually overlapped.
+- **Why not a drawer/accordion:** both were considered stronger fits for "feels native," but this session
+  already has one working, tested modal (Journal) plus two more added the same day (PhotoReveal,
+  HabitatQuiz) - reusing that pattern for five more panels is a mechanical, low-risk change; a bottom/side
+  drawer would have been new interaction code with its own focus-trap and animation edge cases to get
+  right, for a UX benefit that's real but secondary to just fixing the actual complaint (forced scrolling).
+- **A real dead-space issue found and fixed:** Camper and Forest have far less content than Park (a
+  4-station grid; a 2-location grid), so once the hero/panels were removed the remaining flex:1 area was
+  mostly empty at typical landscape sizes. Fixed by centering that content within its flex column and
+  enlarging the cards, rather than leaving it pinned to the top with a large empty void below - this was
+  caught by actually screenshotting at laptop width, not assumed from the CSS alone.
+- **Status:** Implemented. `npm run check` passes (component tests for `CamperScreen` and `App`'s Forest-
+  travel/Continue-restoration flow updated to open the new Journey Planner modal / check the new
+  `.location-strip` markup instead of the removed always-visible destination grid and forest-location
+  heading). Verified in a real headless-Chromium browser: `document.documentElement.scrollHeight ===
+  clientHeight` (zero scroll) confirmed at phone-landscape (844x390), tablet-landscape (1180x820), and
+  laptop (1400x900) for all three screens; portrait mobile (390x844) confirmed to still work via the
+  scrollable fallback; every panel modal opens/closes with focus correctly restored to its trigger button
+  (via the existing `useModalFocus` restore-on-close behavior, no extra wiring needed); photographing an
+  animal through the new Camera modal correctly stacks the PhotoReveal modal on top; zero failed network
+  requests throughout.
 
 ## D-2026-07-25-park-map-pins · Illustrated Park Map with location pins, and a transform click-hit-testing bug
 - **Context:** `docs/copilot-packages/03-park-map.md` was ready to implement once the user generated the

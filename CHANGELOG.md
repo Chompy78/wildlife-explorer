@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(ui): single-screen landscape layout for Park/Forest/Camper** — no page scroll at
+  common phone/tablet/laptop landscape sizes. Hero banner moved behind an "About" button; Camera/Quest/
+  Discover/Progress/Journey Planner moved behind action-bar buttons that open them in a new generic
+  `PanelModal.tsx`, reusing the Journal modal pattern. No orientation lock (layout-only); portrait phones
+  fall back to a scrollable stack. See `DECISIONS.md`'s `D-2026-07-25-single-screen-landscape-layout`.
 - **2026-07-25 · feat(park): illustrated Park Map with clickable location pins** — replaced
   `ParkScreen.tsx`'s plain grid of location button-cards with the generated `park-map.png` (1536x1024)
   and 6 percentage-positioned pins (`src/data/parkMapCoordinates.ts`), tuned by eye against the real art.

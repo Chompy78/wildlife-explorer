@@ -28,9 +28,6 @@ export function DiscoveryPanel({ saveData, onSaveChange, onMessage }: DiscoveryP
 
   return (
     <section className="discovery-card">
-      <p className="eyebrow">Special Discoveries</p>
-      <h2>Tutorial Park Secrets</h2>
-
       {atOldTree && !saveData.rareOwlSpotted ? (
         <button onClick={handleSpotOwl}>Look Carefully for the Rare Owl</button>
       ) : null}

@@ -19,6 +19,7 @@ describe('App travel and Continue restoration', () => {
     await user.click(screen.getByRole('button', { name: 'Continue' }));
     expect(screen.getByRole('heading', { name: 'Wild Camper' })).toBeInTheDocument();
 
+    await user.click(screen.getByRole('button', { name: /journey planner/i }));
     await user.click(screen.getByRole('button', { name: /^Forest/ }));
     await user.click(screen.getByRole('button', { name: 'Travel to Forest' }));
     expect(screen.getByRole('heading', { name: 'Forest Arrival', level: 1 })).toBeInTheDocument();
@@ -30,7 +31,7 @@ describe('App travel and Continue restoration', () => {
     render(<App />);
     await user.click(screen.getByRole('button', { name: 'Continue' }));
     expect(screen.getByRole('heading', { name: 'Forest Arrival', level: 1 })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Fern Trail' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Fern Trail/ })).toHaveClass('active');
   });
 
   it('still restores the Camper play area on Continue when Forest was never visited', async () => {

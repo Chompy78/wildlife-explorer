@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { assetUrl } from '../assetUrl';
 import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
 import { parkMapCoordinates } from '../data/parkMapCoordinates';
-import { getAnimalById, getAnimalsForLocation, getLocationByName, getRoleName, getVisibleParkLocations, photographAnimal, visitLocation } from '../state/gameState';
+import { getAnimalById, getAnimalsForLocation, getLocationByName, getVisibleParkLocations, photographAnimal, visitLocation } from '../state/gameState';
 import type { Animal } from '../types/Animal';
 import type { AnimalId, LocationName } from '../types/Ids';
 import type { SaveData } from '../types/SaveData';
@@ -12,33 +12,31 @@ import { DiscoveryPanel } from './DiscoveryPanel';
 import { HabitatQuiz } from './HabitatQuiz';
 import { Journal } from './Journal';
 import { LocationClues } from './LocationClues';
+import { PanelModal } from './PanelModal';
 import { PhotoReveal } from './PhotoReveal';
 import { ProgressTracker } from './ProgressTracker';
 import { QuestPanel } from './QuestPanel';
 
 type ParkScreenProps = { saveData: SaveData; onSaveChange: (saveData: SaveData) => void; onOpenCamper: () => void; onGoHome: () => void };
+type PanelKey = 'camera' | 'quest' | 'discover' | 'progress' | 'about';
 
 export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: ParkScreenProps) {
   const [message, setMessage] = useState('Welcome to Tutorial Park. Try visiting Duck Pond, Open Meadow, Forest Trail, or the Strange Old Tree.');
   const [journalOpen, setJournalOpen] = useState(false);
+  const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
   const [celebrationOpen, setCelebrationOpen] = useState(false);
   const [quizAnimal, setQuizAnimal] = useState<Animal | null>(null);
   const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string } | null>(null);
   const previousUnlocked = useRef(saveData.wildCamperUnlocked);
-  const journalButtonRef = useRef<HTMLButtonElement>(null);
   const visibleLocations = useMemo(() => getVisibleParkLocations(saveData), [saveData]);
   const currentLocation = getLocationByName(saveData.currentLocation) ?? visibleLocations[0];
   const animalsHere = useMemo(() => getAnimalsForLocation(currentLocation.name, saveData), [currentLocation.name, saveData]);
+  const showDiscover = saveData.currentLocation === 'Strange Old Tree' || saveData.wildCamperUnlocked;
 
   useEffect(() => {
     if (!previousUnlocked.current && saveData.wildCamperUnlocked) setCelebrationOpen(true);
     previousUnlocked.current = saveData.wildCamperUnlocked;
   }, [saveData.wildCamperUnlocked]);
-
-  function closeJournal() {
-    setJournalOpen(false);
-    requestAnimationFrame(() => journalButtonRef.current?.focus());
-  }
 
   function goToLocation(locationName: LocationName) {
     const location = getLocationByName(locationName);
@@ -65,26 +63,17 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
   }
 
   return (
-    <main className="screen park-screen">
+    <main className="screen play-screen park-screen">
       <header className="top-bar">
-        <div><p className="eyebrow">Tutorial Park</p><h1>Wildlife Explorer</h1><p className="muted">Role: {getRoleName(saveData.selectedRole)}</p></div>
+        <div><p className="eyebrow">Tutorial Park</p><h1>Wildlife Explorer</h1></div>
         <div className="button-row">
-          <button ref={journalButtonRef} className="secondary" onClick={() => setJournalOpen(true)}>Open Journal</button>
-          {saveData.wildCamperUnlocked ? <button className="camper-button" onClick={onOpenCamper}>{'\uD83D\uDE90'} Enter Wild Camper</button> : null}<button className="secondary" onClick={onGoHome}>Home</button>
+          {saveData.wildCamperUnlocked ? <button className="camper-button" onClick={onOpenCamper}>{'🚐'} Enter Wild Camper</button> : null}
+          <button className="secondary" onClick={onGoHome}>Home</button>
         </div>
       </header>
-      <section className="biome-visual panel">
-        <img src={assetUrl('assets/tutorial-park/park-direction.png')} alt="Illustrated wildlife explorer and dog photographing a duck family at a woodland pond in Tutorial Park"/>
-        <div className="biome-visual-copy">
-          <p className="eyebrow">Wildlife photography</p>
-          <h2>Explore the park</h2>
-          <p>Visit each location and photograph wildlife calmly.</p>
-        </div>
-      </section>
-      <section className="park-grid">
-        <div className="panel map-panel">
-          <h2>Park Map</h2>
-          <p className="muted">Finish Tutorial Park by helping the puppy, photographing Rare Owl, and discovering Whisper Grove.</p>
+      <section className="play-area">
+        <div className="map-column">
+          <div className="location-strip"><strong>{currentLocation.name}</strong>{currentLocation.description}</div>
           <div className="park-map">
             <img src={assetUrl('assets/tutorial-park/park-map.png')} alt="Illustrated map of Tutorial Park" />
             {visibleLocations.map((location) => {
@@ -97,25 +86,56 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
                     onClick={() => goToLocation(location.name)}
                     aria-label={`${location.name}${location.status === 'hidden' ? ', hidden' : isActive ? ', current location' : ''}`}
                   >
-                    <span className="pin-icon" aria-hidden="true">{location.status === 'hidden' ? '\uD83D\uDD12' : location.icon}</span>
+                    <span className="pin-icon" aria-hidden="true">{location.status === 'hidden' ? '🔒' : location.icon}</span>
                     <span className="pin-label">{location.name}</span>
                   </button>
                 </div>
               );
             })}
           </div>
-        </div>
-        <aside className="panel side-panel">
-          <h2>{currentLocation.name}</h2><p>{currentLocation.description}</p>
-          <LocationClues saveData={saveData} />
-          <CameraPanel animalsHere={animalsHere} saveData={saveData} onPhotographAnimal={handlePhotographAnimal} />
-          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey }); }} />
-          <DiscoveryPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} />
           <div className="message-box" role="status" aria-live="polite">{message}</div>
-          <ProgressTracker saveData={saveData} />
-        </aside>
+        </div>
+        <nav className="action-bar" aria-label="Park tools">
+          <button className="action-button" onClick={() => setActivePanel('camera')}>
+            {'📷'} Camera{animalsHere.length > 0 ? <span className="badge">{animalsHere.length}</span> : null}
+          </button>
+          <button className="action-button" onClick={() => setActivePanel('quest')}>{'🐾'} Quest &amp; Clues</button>
+          {showDiscover ? <button className="action-button" onClick={() => setActivePanel('discover')}>{'🔭'} Discover</button> : null}
+          <button className="action-button" onClick={() => setActivePanel('progress')}>{'✅'} Progress</button>
+          <button className="action-button" onClick={() => setJournalOpen(true)}>{'📖'} Journal</button>
+          <button className="action-button secondary" onClick={() => setActivePanel('about')}>{'ℹ️'} About</button>
+        </nav>
       </section>
-      {journalOpen ? <Journal saveData={saveData} onClose={closeJournal} /> : null}
+
+      {activePanel === 'camera' ? (
+        <PanelModal title="Camera" onClose={() => setActivePanel(null)}>
+          <CameraPanel animalsHere={animalsHere} saveData={saveData} onPhotographAnimal={handlePhotographAnimal} />
+        </PanelModal>
+      ) : null}
+      {activePanel === 'quest' ? (
+        <PanelModal title="Quest & Clues" onClose={() => setActivePanel(null)}>
+          <LocationClues saveData={saveData} />
+          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey }); }} />
+        </PanelModal>
+      ) : null}
+      {activePanel === 'discover' ? (
+        <PanelModal title="Special Discoveries" onClose={() => setActivePanel(null)}>
+          <DiscoveryPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} />
+        </PanelModal>
+      ) : null}
+      {activePanel === 'progress' ? (
+        <PanelModal title="Tutorial Progress" onClose={() => setActivePanel(null)}>
+          <ProgressTracker saveData={saveData} />
+        </PanelModal>
+      ) : null}
+      {activePanel === 'about' ? (
+        <PanelModal title="Explore the park" eyebrow="Wildlife photography" onClose={() => setActivePanel(null)}>
+          <img className="about-hero-image" src={assetUrl('assets/tutorial-park/park-direction.png')} alt="Illustrated wildlife explorer and dog photographing a duck family at a woodland pond in Tutorial Park" />
+          <p>Visit each location and photograph wildlife calmly. Finish Tutorial Park by helping the puppy, photographing Rare Owl, and discovering Whisper Grove.</p>
+        </PanelModal>
+      ) : null}
+
+      {journalOpen ? <Journal saveData={saveData} onClose={() => setJournalOpen(false)} /> : null}
       {celebrationOpen ? <CompletionCelebration onClose={() => setCelebrationOpen(false)} /> : null}
       {photoReveal ? (
         <PhotoReveal
