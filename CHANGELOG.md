@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · chore(assets): generated and banked Lake biome animal art** — all 30 images from
+  `docs/copilot-packages/04-lake-biome-animals.md` (6 animals × 5 photo variants) converted PNG→JPEG
+  (72.7MB→9.0MB, same treatment as the Park/Forest batch) and renamed to `<animal-id>-<variant>.jpg` in a
+  new `public/assets/lake/` folder — banked, not wired into the game yet (Lake has no locations/data model
+  until a future milestone), kept out of `public/assets/animals/` so nothing is accidentally live early.
 - **2026-07-25 · docs(tasks): logged a task-board entry for photo "quality" progression** — user idea to
   have photos sharpen with practice (blur/crop effect on early attempts); logged with three design
   options and a recommendation, not yet implemented — see `docs/TASK_BOARD.md`.

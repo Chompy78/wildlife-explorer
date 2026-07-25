@@ -135,11 +135,15 @@ Not started until a later milestone explicitly requires it: full Forest biome ex
 rare Forest animals, companions, inventory, crafting, shops, economy, another playable destination
 (Mountains/Lake/Safari/Rainforest/Alien Planet going live).
 
-- **Lake biome art is pre-generated and waiting** — `docs/copilot-packages/04-lake-biome-animals.md`
-  covers 6 animals (Great Blue Heron, Beaver, Rainbow Trout, Loon, Dragonfly, Painted Turtle) × 5 photo
-  variants, proposed across 3 sections (Shoreline / Open Water / Reeds & Shallows). No Lake locations/
-  data model exist yet — this is art prep only, ready to convert/wire in whenever a milestone builds Lake
-  out for real, same pattern as Tutorial Park/Forest's photo-collection mechanic.
+- **Lake biome art is generated and banked, waiting to be wired in** — `docs/copilot-packages/04-lake-
+  biome-animals.md` covers 6 animals (Great Blue Heron, Beaver, Rainbow Trout, Loon, Dragonfly, Painted
+  Turtle) × 5 photo variants, proposed across 3 sections (Shoreline / Open Water / Reeds & Shallows). All
+  30 images generated 2026-07-25, converted PNG→JPEG (72.7MB→9.0MB, same treatment as Park/Forest) and
+  renamed to `<animal-id>-<variant>.jpg`, sitting at `public/assets/lake/` — a dedicated folder, kept
+  separate from `public/assets/animals/` (the folder `animalPhotoVariants.ts` actually reads from) so
+  nothing is accidentally wired in early. No Lake locations/data model exist yet — this is art prep only,
+  ready to convert into real `AnimalId`/`Animal` entries and move into `public/assets/animals/` whenever a
+  milestone builds Lake out for real, same pattern as Tutorial Park/Forest's photo-collection mechanic.
 
 Also ideas from README.md's Roadmap section — commitments to a direction, not to a timeline:
 
