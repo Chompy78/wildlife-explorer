@@ -24,6 +24,28 @@ describe('PhotoReveal', () => {
     expect(screen.queryByText(/Did you know/i)).not.toBeInTheDocument();
   });
 
+  it('blurs and scales the photo when practice count is low, and shows a quality label', () => {
+    render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-1.jpg" collectedCount={1} totalCount={5} photographCount={1} onClose={vi.fn()} />);
+    const img = screen.getByRole('img', { name: /Photo of Duck/i });
+    expect(img.style.filter).toBe('blur(3px)');
+    expect(img.style.transform).toBe('scale(1.12)');
+    expect(screen.getByText('First shot - keep practicing!')).toBeInTheDocument();
+  });
+
+  it('shows the photo fully crisp with no quality label when photographCount is not provided', () => {
+    render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-1.jpg" collectedCount={1} totalCount={5} onClose={vi.fn()} />);
+    const img = screen.getByRole('img', { name: /Photo of Duck/i });
+    expect(img.style.filter).toBe('');
+    expect(screen.queryByText(/keep practicing|steadier|nice and clear|crisp and sharp/i)).not.toBeInTheDocument();
+  });
+
+  it('shows a "Great shot!" badge only when greatShot is true', () => {
+    const { rerender } = render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-1.jpg" collectedCount={1} totalCount={5} greatShot onClose={vi.fn()} />);
+    expect(screen.getByText(/Great shot!/i)).toBeInTheDocument();
+    rerender(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-1.jpg" collectedCount={1} totalCount={5} onClose={vi.fn()} />);
+    expect(screen.queryByText(/Great shot!/i)).not.toBeInTheDocument();
+  });
+
   it('announces collection completion distinctly', () => {
     render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-5.jpg" collectedCount={5} totalCount={5} onClose={vi.fn()} />);
     expect(screen.getByText(/collection complete!/i)).toBeInTheDocument();

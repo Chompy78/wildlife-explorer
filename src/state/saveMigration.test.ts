@@ -31,6 +31,11 @@ describe('save migration', () => {
     expect(save.collectedPhotoVariants).toEqual(['duck-1', 'lost-puppy-1', 'forest-wren-3']);
   });
 
+  it('preserves valid photographCounts entries and drops unknown IDs, non-numbers and non-positive counts', () => {
+    const save = migrateSaveData({ photographCounts: { duck: 3, 'not-real': 5, frog: 'lots', rabbit: 2.9, lizard: 0, 'park-bird': -1 } });
+    expect(save.photographCounts).toEqual({ duck: 3, rabbit: 2 });
+  });
+
   it('migrates valid camper hub fields and rejects unknown IDs', () => {
     const save = migrateSaveData({ wildCamperUnlocked: true, camperVisited: true, lastPlayArea: 'camper', selectedDestination: 'forest', photographedAnimals: ['duck', 'not-real'] });
     expect(save.camperVisited).toBe(true);
@@ -56,6 +61,7 @@ describe('save migration', () => {
       expect(save.forestLocation).toBe('Forest Arrival');
       expect(save.reportedInvasiveSpecies).toEqual([]);
       expect(save.collectedPhotoVariants).toEqual([]);
+      expect(save.photographCounts).toEqual({});
     }
 
     it.each([
@@ -79,15 +85,16 @@ describe('save migration', () => {
       expect(save.questProgress.lostPuppy.started).toBe(false);
     });
 
-    it('ignores wrong-typed array fields instead of throwing', () => {
+    it('ignores wrong-typed array/record fields instead of throwing', () => {
       const save = migrateSaveData({
-        discoveredAnimals: 'duck', photographedAnimals: 42, discoveredLocations: { not: 'an array' }, reportedInvasiveSpecies: true, collectedPhotoVariants: 5,
+        discoveredAnimals: 'duck', photographedAnimals: 42, discoveredLocations: { not: 'an array' }, reportedInvasiveSpecies: true, collectedPhotoVariants: 5, photographCounts: 'lots',
       });
       expect(save.discoveredAnimals).toEqual([]);
       expect(save.photographedAnimals).toEqual([]);
       expect(save.discoveredLocations).toEqual(['Park Entrance']);
       expect(save.reportedInvasiveSpecies).toEqual([]);
       expect(save.collectedPhotoVariants).toEqual([]);
+      expect(save.photographCounts).toEqual({});
     });
 
     it('filters out non-string and unknown entries mixed into otherwise-valid arrays', () => {

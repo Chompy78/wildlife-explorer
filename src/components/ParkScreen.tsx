@@ -27,7 +27,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
   const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
   const [celebrationOpen, setCelebrationOpen] = useState(false);
   const [quizAnimal, setQuizAnimal] = useState<Animal | null>(null);
-  const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string } | null>(null);
+  const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string; greatShot: boolean } | null>(null);
   const previousUnlocked = useRef(saveData.wildCamperUnlocked);
   const visibleLocations = useMemo(() => getVisibleParkLocations(saveData), [saveData]);
   const currentLocation = getLocationByName(saveData.currentLocation) ?? visibleLocations[0];
@@ -51,16 +51,16 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
     setMessage(`You arrived at ${location.name}. ${location.gameplayNote}`);
   }
 
-  function handlePhotographAnimal(animalId: AnimalId) {
+  function handlePhotographAnimal(animalId: AnimalId, greatShot: boolean) {
     const animal = getAnimalById(animalId);
     if (!animal) return;
     const isNewReport = Boolean(animal.nonNative) && !saveData.reportedInvasiveSpecies.includes(animalId);
     const previousVariants = saveData.collectedPhotoVariants;
     const updated = photographAnimal(saveData, animal.id);
     onSaveChange(updated);
-    setMessage(`Great photo! ${animal.name} added to your Wildlife Journal.`);
+    setMessage(greatShot ? `Great shot! ${animal.name} added to your Wildlife Journal.` : `Great photo! ${animal.name} added to your Wildlife Journal.`);
     const newVariant = updated.collectedPhotoVariants.find((key) => !previousVariants.includes(key));
-    if (newVariant) setPhotoReveal({ animal, variantKey: newVariant });
+    if (newVariant) setPhotoReveal({ animal, variantKey: newVariant, greatShot });
     if (isNewReport) setQuizAnimal(animal);
   }
 
@@ -117,7 +117,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
       ) : null}
       {activePanel === 'quest' ? (
         <PanelModal title="Lost Puppy Quest" onClose={() => setActivePanel(null)}>
-          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey }); }} />
+          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey, greatShot: false }); }} />
         </PanelModal>
       ) : null}
       {activePanel === 'clue' ? (
@@ -151,6 +151,8 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
           collectedCount={countCollectedVariants(photoReveal.animal.id, saveData.collectedPhotoVariants)}
           totalCount={getPhotoVariantCount(photoReveal.animal.id)}
           fact={getFactForVariantKey(photoReveal.animal.id, photoReveal.variantKey)}
+          photographCount={photoReveal.animal.id === 'lost-puppy' ? undefined : saveData.photographCounts[photoReveal.animal.id]}
+          greatShot={photoReveal.greatShot}
           onClose={() => setPhotoReveal(null)}
         />
       ) : null}

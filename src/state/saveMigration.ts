@@ -40,6 +40,7 @@ export function migrateSaveData(input: unknown): SaveData {
     forestLocation: parsed.forestLocation === 'Fern Trail' ? 'Fern Trail' : 'Forest Arrival',
     reportedInvasiveSpecies: filterKnown(parsed.reportedInvasiveSpecies, validAnimals),
     collectedPhotoVariants: filterKnown(parsed.collectedPhotoVariants, ALL_PHOTO_VARIANT_KEYS),
+    photographCounts: migratePhotographCounts(parsed.photographCounts, validAnimals),
   };
 }
 
@@ -47,4 +48,13 @@ function isRecord(value: unknown): value is Record<string, unknown> { return typ
 function withParkEntrance(locations: LocationName[]): LocationName[] { return locations.length ? locations : ['Park Entrance']; }
 function filterKnown<T extends string>(value: unknown, allowed: readonly T[]): T[] {
   return Array.isArray(value) ? value.filter((item): item is T => typeof item === 'string' && allowed.includes(item as T)) : [];
+}
+function migratePhotographCounts(value: unknown, allowed: readonly AnimalId[]): Partial<Record<AnimalId, number>> {
+  if (!isRecord(value)) return {};
+  const result: Partial<Record<AnimalId, number>> = {};
+  for (const id of allowed) {
+    const count = value[id];
+    if (typeof count === 'number' && Number.isFinite(count) && count > 0) result[id] = Math.floor(count);
+  }
+  return result;
 }

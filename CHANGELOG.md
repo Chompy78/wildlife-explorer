@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(camera): photo-quality progression and a pose-capture "Great shot!" pulse** — photos
+  of a species now visibly sharpen with practice (new `photographCounts` save field, schema v7→v8, CSS
+  blur/scale only — no new art), shown on the photo-reveal image specifically. The Camera panel's shutter
+  buttons pulse with a soft golden glow on a timer; shooting anytime still always works, shooting during
+  the pulse marks that photo a cosmetic "Great shot!" bonus (not persisted). The Lost Puppy reunion photo
+  is exempt from the blur effect. See `DECISIONS.md`'s `D-2026-07-25-photo-quality-and-pose-capture`.
 - **2026-07-25 · feat(journal): animal facts tied to photo variants, shown on reveal and in the Journal**
   — each of the 11 animals with photo art now has 5 kid-friendly facts, one per photo variant. Getting
   variant N reveals fact N as a "Did you know?" card in the photo reveal, and the Journal shows "X of 5

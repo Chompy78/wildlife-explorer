@@ -4,7 +4,7 @@ import type { Animal } from '../types/Animal';
 import type { AnimalId, LocationName } from '../types/Ids';
 import type { SaveData } from '../types/SaveData';
 import { checkTutorialCompletion } from './progressionState';
-import { addUnique } from './stateUtils';
+import { addUnique, bumpCount } from './stateUtils';
 
 export function getAnimalById(animalId: AnimalId): Animal | undefined {
   return animals.find((animal) => animal.id === animalId);
@@ -36,6 +36,7 @@ export function photographAnimal(saveData: SaveData, animalId: AnimalId): SaveDa
     photographedAnimals: addUnique(saveData.photographedAnimals, animalId),
     reportedInvasiveSpecies: animal.nonNative ? addUnique(saveData.reportedInvasiveSpecies, animalId) : saveData.reportedInvasiveSpecies,
     collectedPhotoVariants: variant ? addUnique(saveData.collectedPhotoVariants, `${animalId}-${variant}`) : saveData.collectedPhotoVariants,
+    photographCounts: bumpCount(saveData.photographCounts, animalId),
   });
 }
 

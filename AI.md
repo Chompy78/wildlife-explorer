@@ -38,7 +38,12 @@ Implemented:
   getting variant N reveals fact N in the photo reveal ("Did you know?") and permanently in the Journal
   ("X of 5 facts learned"). No new save state — a fact is learned iff its variant is already in
   `collectedPhotoVariants` (`src/data/animalFacts.ts`)
-- Save schema version 7 and migration of older saves
+- Photo-quality progression and pose-capture: photos of a species visibly sharpen (CSS blur/scale, no new
+  art) as `saveData.photographCounts` rises for that species, independent of which variant is picked
+  (`src/data/photoQuality.ts`). While the Camera panel is open, a soft golden pulse cycles on the shutter
+  buttons — shooting anytime always works, shooting during the pulse marks that photo a "Great shot!"
+  bonus (cosmetic only, not persisted). The Lost Puppy reunion photo is exempt (always shown crisp).
+- Save schema version 8 and migration of older saves
 - Keyboard focus handling, responsive styling and reduced-motion support
 - TypeScript, state tests, component tests, production build and encoding audit
 - Deployed to GitHub Pages at `https://chompy78.github.io/wildlife-explorer/` (auto-deploys on push to

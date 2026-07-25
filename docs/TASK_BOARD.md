@@ -47,69 +47,14 @@ The invasive-species habitat quiz shipped 2026-07-25 with one non-native animal 
 `npm run check` passes.
 
 
-## Photo "quality" progression — sharper photos as skill improves — TODO, design confirmed
-User idea (2026-07-25): photos should get better over time. Design confirmed 2026-07-25 in the "gameplay
-excitement" brainstorm: **option B** (per-species practice counter, independent of which variant is
-randomly picked) plus a new **pose-capture layer** — while framing an animal, it cycles through poses with
-a soft visual pulse on a "great pose" moment; shooting anytime still works (no fail state), shooting on
-the pulse gives a "Great shot!" bonus. Both layer onto the existing photo-collection mechanic
-(`DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`) without changing the current random-variant
-selection.
-**Effort:** medium · **Risk:** medium — touches save schema (new per-species practice counters) and
-changes the feel of an already-shipped, already-tested photograph interaction.
-
-```text
-1. Add a persistent per-species photograph count (new save field, e.g. photographCounts: Partial<Record
-   <AnimalId, number>>, bumped every time that species is photographed regardless of which variant is
-   picked). Bump CURRENT_SAVE_SCHEMA_VERSION, update saveDefaults.ts/saveMigration.ts in lockstep.
-2. Simulate quality with CSS only (filter: blur(Npx) and/or transform/object-position for poor cropping),
-   scaling down as the per-species count rises - no new art needed. Verify against a real generated photo
-   that the effect reads as intentional.
-3. Add the pose-capture cue: while CameraPanel/the photo-mode view is open on an animal, cycle a soft
-   visual pulse (e.g. a ring around the shutter/viewfinder) on an interval; capture always succeeds,
-   capturing during the pulse marks that specific photo as a "Great shot!" (cosmetic badge/label only).
-4. Canon check (AI.md "no harsh failure"): stay encouraging - never label a photo "bad"/"poor quality" in
-   visible copy; frame progress positively ("getting steadier!"). Never label a non-pulse shot as a miss.
-5. Run npm run check; verify visually in a real browser across several photo captures per species to
-   confirm the progression reads clearly, the pulse cue is legible but not stressful, and stays encouraging.
-```
-**Done when:** photos visibly sharpen with practice per species, the pose-capture pulse works and never
-blocks a photo, and `npm run check` passes.
-
-
-## Animal facts on photograph, shown in Journal, unlocked by photographing — TODO
-User idea (2026-07-25), design confirmed same day: each of the 11 animals-with-photo-art gets exactly 5
-facts, tied 1:1 to its 5 photo variants — getting photo variant N reveals fact N. No new save field needed
-(a fact is "learned" iff its matching key is already in `collectedPhotoVariants`), so this is presentation
-+ data only.
-**Effort:** medium · **Risk:** low — no save-schema change, additive data + display only.
-
-```text
-1. New src/data/animalFacts.ts: a Partial<Record<AnimalId, string[]>> with exactly 5 kid-friendly,
-   accurate, Canon-safe facts per animal (duck, frog, butterfly, rabbit, lizard, park-bird, rare-owl,
-   forest-wren, forest-wallaby, forest-beetle, lost-puppy). Helpers: getFactForVariant(id, variantNumber),
-   getFactForVariantKey(id, variantKey) (derives variant number from the "<id>-<variant>" key format
-   already used by collectedPhotoVariants), getLearnedFacts(id, collected) for the Journal.
-2. PhotoReveal.tsx: accept an optional fact prop, show it below the photo in the reveal modal.
-3. ParkScreen.tsx/ForestScreen.tsx/QuestPanel.tsx (Lost Puppy reunion): when a new variant is revealed,
-   look up its fact via getFactForVariantKey and pass it to PhotoReveal.
-4. Journal.tsx: show learned facts per animal (e.g. "3 of 5 facts learned" + the list of learned facts),
-   next to the existing photo-progress display.
-5. Run npm run check; verify in a real browser that a fact appears on photograph and the Journal's fact
-   list updates and matches what's been revealed.
-```
-**Done when:** every photograph of an animal-with-facts shows its matching fact, the Journal shows learned
-facts and an accurate progress count, and `npm run check` passes.
-
-
 ## Biome-completion quiz and achievement — TODO
 User idea (2026-07-25): finishing a biome (e.g. Tutorial Park's existing completion condition that
 already triggers `CompletionCelebration`) should also offer a short, encouraging trivia quiz drawn from
 facts the player has already learned, awarding an achievement on completion (participation-based, not
 score-gated, per Canon's "no harsh failure").
-**Effort:** medium · **Risk:** medium — new `achievements` save field (schema change), and needs the
-animal-facts feature above shipped first (quiz content depends on it).
-**Depends on:** "Animal facts on photograph" above.
+**Effort:** medium · **Risk:** medium — new `achievements` save field (schema change).
+**Depends on:** Animal facts (shipped 2026-07-25, `DECISIONS.md`'s `D-2026-07-25-gameplay-excitement-
+brainstorm`) — quiz content is drawn from `src/data/animalFacts.ts`, already in place.
 
 ```text
 1. Add achievements: string[] to save data (new field, bump schema version, update saveDefaults.ts/

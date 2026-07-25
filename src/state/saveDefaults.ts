@@ -23,6 +23,7 @@ export const defaultSaveData: SaveData = {
   forestLocation: 'Forest Arrival',
   reportedInvasiveSpecies: [],
   collectedPhotoVariants: [],
+  photographCounts: {},
 };
 
 export function createDefaultSave(): SaveData {
@@ -32,5 +33,6 @@ export function createDefaultSave(): SaveData {
     questProgress: { lostPuppy: { ...defaultLostPuppyQuestProgress } },
     reportedInvasiveSpecies: [],
     collectedPhotoVariants: [],
+    photographCounts: {},
   };
 }

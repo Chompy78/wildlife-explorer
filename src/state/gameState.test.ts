@@ -73,4 +73,11 @@ describe('Tutorial Park progression', () => {
     const save = photographAnimal(createDefaultSave(), 'red-eared-slider');
     expect(save.collectedPhotoVariants).toEqual([]);
   });
+
+  it('keeps counting photographCounts per species even after its photo collection is complete', () => {
+    let save = createDefaultSave();
+    for (let i = 0; i < 10; i++) save = photographAnimal(save, 'duck');
+    expect(save.photographCounts.duck).toBe(10);
+    expect(save.photographCounts.frog).toBeUndefined();
+  });
 });
