@@ -5,6 +5,21 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(deploy): shipped GitHub Pages deployment** — the game now deploys automatically to
+  `https://chompy78.github.io/wildlife-explorer/` on every push to `main`
+  (`.github/workflows/deploy.yml`), gated behind the full `npm run check` suite so a broken build/test
+  can never reach the live site. Set `vite.config.ts`'s `base: '/wildlife-explorer/'` for the Pages
+  project-site subpath, which broke every hardcoded `src="/assets/..."` image reference (root-relative
+  paths that worked in dev but would 404 once deployed) — fixed with a new `assetUrl()` helper
+  (`src/assetUrl.ts`, wraps `import.meta.env.BASE_URL`) used everywhere instead of raw string literals,
+  across `ParkScreen.tsx`, `ForestScreen.tsx`, `CamperScreen.tsx`, and `animalPhotoVariants.ts`'s two
+  URL-building functions. Verified for real, not just configured: built the production bundle, served
+  `dist/` under the actual subpath, confirmed every image asset (hero images, an animal photo, the
+  favicon) returns 200 and the *old* un-prefixed path now 404s, then did a full real-browser walkthrough
+  with zero failed network requests. Note for local dev: `base` also changes the dev server's own URL —
+  `npm run dev` now serves at `/wildlife-explorer/`, not the root (documented in `AI.md`). One manual step
+  remains outside git's reach: enabling "Source: GitHub Actions" in the repo's Pages settings once.
+
 - **2026-07-25 · docs(copilot-handoff): fixed Package 04's Rainbow Trout variants looking near-identical**
   — the user reported the 5 generated trout photos barely differed. Root cause: the 4 variant modifiers
   used across the whole Lake package vary time-of-day *lighting* (morning/golden-hour/overcast/dappled),

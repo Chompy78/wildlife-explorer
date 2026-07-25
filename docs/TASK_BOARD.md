@@ -118,12 +118,14 @@ Also ideas from README.md's Roadmap section — commitments to a direction, not 
 
 Not urgent, not scheduled, but worth keeping on record so they aren't lost.
 
-- **Deployment/hosting configuration** — no hosting target (Pages, Vercel, etc.) is defined yet; matters
-  once this needs to reach an actual child player rather than just `npm run dev`.
 - **Privacy/data-handling statement** — all state is currently local-storage only (good, low risk), but
   given the target audience (ages 8-14, families) a short written statement that no data leaves the
-  device would be worth having before this is ever made public, and especially before any cloud-save
-  feature is considered.
+  device would be worth having, especially before any cloud-save feature is considered.
+  **Note (2026-07-25):** this item's original trigger — "before this is ever made public" — has now fired
+  (GitHub Pages deployment shipped, see `DECISIONS.md`'s `D-2026-07-25-github-pages-deployment`). Not
+  auto-promoted to SOON/actioned without being asked, since a live game page today is exactly the low-risk
+  scenario the trigger anticipated (no data collected, family/friends-only audience), but worth a
+  deliberate call rather than staying buried here indefinitely.
 - **PWA manifest and install icons** — the full Progressive Web App roadmap item, beyond just the
   favicon housekeeping task above.
 - **Localization / i18n** — not mentioned anywhere; only relevant if the game grows beyond English.

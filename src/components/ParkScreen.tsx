@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { assetUrl } from '../assetUrl';
 import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
 import { getAnimalById, getAnimalsForLocation, getLocationByName, getRoleName, getVisibleParkLocations, photographAnimal, visitLocation } from '../state/gameState';
 import type { Animal } from '../types/Animal';
@@ -72,7 +73,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
         </div>
       </header>
       <section className="biome-visual panel">
-        <img src="/assets/tutorial-park/park-direction.png" alt="Illustrated wildlife explorer and dog photographing a duck family at a woodland pond in Tutorial Park"/>
+        <img src={assetUrl('assets/tutorial-park/park-direction.png')} alt="Illustrated wildlife explorer and dog photographing a duck family at a woodland pond in Tutorial Park"/>
         <div className="biome-visual-copy">
           <p className="eyebrow">Wildlife photography</p>
           <h2>Explore the park</h2>

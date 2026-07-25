@@ -1,3 +1,4 @@
+import { assetUrl } from '../assetUrl';
 import type { AnimalId } from '../types/Ids';
 
 // Animals with collectible photo variants, and how many each has. Absent/0 means the animal has no
@@ -17,11 +18,11 @@ export function getPhotoVariantCount(id: AnimalId): number {
 }
 
 export function getPhotoVariantUrl(id: AnimalId, variant: number): string {
-  return `/assets/animals/${id}-${variant}.jpg`;
+  return assetUrl(`assets/animals/${id}-${variant}.jpg`);
 }
 
 export function getPhotoVariantUrlFromKey(key: string): string {
-  return `/assets/animals/${key}.jpg`;
+  return assetUrl(`assets/animals/${key}.jpg`);
 }
 
 export function countCollectedVariants(id: AnimalId, collected: string[]): number {

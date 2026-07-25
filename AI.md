@@ -28,6 +28,8 @@ Implemented:
 - Save schema version 7 and migration of older saves
 - Keyboard focus handling, responsive styling and reduced-motion support
 - TypeScript, state tests, component tests, production build and encoding audit
+- Deployed to GitHub Pages at `https://chompy78.github.io/wildlife-explorer/` (auto-deploys on push to
+  `main` via `.github/workflows/deploy.yml`, gated behind the full `npm run check` suite)
 
 ## Canon
 
@@ -50,3 +52,9 @@ npm run dev
 ```
 
 `npm run check` must pass TypeScript checks, tests, the production build and encoding validation.
+
+`vite.config.ts` sets `base: '/wildlife-explorer/'` for GitHub Pages — this also changes the local dev
+server's URL: `npm run dev` serves at `http://localhost:<port>/wildlife-explorer/`, not the bare root.
+Vite prints the exact URL to open; use that one, not a guessed `localhost:<port>/`. Any new hardcoded
+`src="/assets/..."` path must go through `assetUrl()` (`src/assetUrl.ts`) instead of a raw string
+literal, or it will silently 404 once deployed (works fine in dev, breaks under the Pages subpath).
