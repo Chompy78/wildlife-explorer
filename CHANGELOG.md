@@ -5,6 +5,15 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · fix(ui): floating icon action bar, map fills the screen, separate clue button** —
+  follow-up to the single-screen layout: the sidebar was still awkward and ate too much width. The action
+  bar is now a compact column of icon-only round buttons floating over the map/content area instead of a
+  fixed-width sidebar, so the map/grid uses the full play area on Park, Forest and Camper. A location's
+  nearby clue now gets its own 🔍 button, separate from the Quest button (which shows only quest steps).
+  Fixed a real overlap bug found while implementing this: the floating icons were briefly anchored to the
+  whole play area and covered the location-strip text when it wrapped to two lines — fixed by nesting the
+  action bar inside the specific map/content element on each screen instead. See `DECISIONS.md`'s amended
+  `D-2026-07-25-single-screen-landscape-layout`.
 - **2026-07-25 · feat(ui): single-screen landscape layout for Park/Forest/Camper** — no page scroll at
   common phone/tablet/laptop landscape sizes. Hero banner moved behind an "About" button; Camera/Quest/
   Discover/Progress/Journey Planner moved behind action-bar buttons that open them in a new generic

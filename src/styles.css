@@ -70,17 +70,21 @@ h2 { color: #235c3a; }
 .play-screen .top-bar { margin: 0; flex-shrink: 0; max-width: none; align-items: center; }
 .play-screen .top-bar h1 { font-size: clamp(1.25rem, 2.6vw, 1.9rem); }
 .play-screen .top-bar p.muted { display: none; }
-.play-area { flex: 1; min-height: 0; display: flex; gap: 0.75rem; max-width: 1400px; width: 100%; margin: 0 auto; }
-.map-column { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.play-area { flex: 1; min-height: 0; display: flex; max-width: 1400px; width: 100%; margin: 0 auto; }
+.map-column { flex: 1; min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 0.5rem; }
 .location-strip { flex-shrink: 0; border-radius: 16px; padding: 0.55rem 1rem; background: rgba(255, 255, 255, 0.78); font-size: 0.9rem; }
 .location-strip strong { margin-right: 0.4rem; color: #235c3a; }
 .map-column .park-map { flex: 1; min-height: 0; aspect-ratio: auto; margin-bottom: 0; }
 .map-column .message-box { flex-shrink: 0; margin-top: 0; max-height: 4.2rem; overflow-y: auto; }
-.action-bar { flex-shrink: 0; width: 12.5rem; display: flex; flex-direction: column; gap: 0.5rem; overflow-y: auto; }
-.action-button { display: flex; align-items: center; gap: 0.5rem; justify-content: flex-start; text-align: left; position: relative; padding-right: 2rem; }
-.action-button .badge { position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%); border-radius: 999px; padding: 0.1rem 0.5rem; background: #f1b83b; color: #4a3200; font-size: 0.72rem; font-weight: 900; }
+
+/* Action buttons float over the map as small round icon buttons instead of a full sidebar, so the map
+   itself gets the full play area. Icon-only - each button's accessible name comes from aria-label. */
+.action-bar { position: absolute; top: 0.6rem; right: 0.6rem; z-index: 5; display: flex; flex-direction: column; gap: 0.5rem; }
+.action-button { position: relative; width: 3rem; height: 3rem; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; background: rgba(38, 112, 67, 0.92); box-shadow: 0 6px 16px rgba(20, 60, 32, 0.4); }
+.action-button.secondary { background: rgba(223, 240, 212, 0.92); }
+.action-button .badge { position: absolute; top: -0.25rem; right: -0.25rem; border-radius: 999px; padding: 0.05rem 0.4rem; background: #f1b83b; color: #4a3200; font-size: 0.68rem; font-weight: 900; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
 .about-hero-image { display: block; width: 100%; max-height: 42vh; object-fit: cover; border-radius: 20px; margin-bottom: 1rem; }
-.forest-screen .map-column { justify-content: center; }
+.forest-stage { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
 .forest-location-grid { display: grid; grid-template-columns: repeat(2, minmax(200px, 340px)); justify-content: center; gap: 1.2rem; }
 .forest-location-grid .location-card { min-height: 9rem; justify-content: center; padding: 1.5rem; }
 .forest-location-grid .location-icon { font-size: 2.8rem; }
@@ -88,12 +92,9 @@ h2 { color: #235c3a; }
 
 @media (max-width: 700px) {
   .play-screen { height: auto; min-height: 100dvh; overflow: visible; }
-  .play-area { flex-direction: column; }
   .map-column .park-map { flex: none; aspect-ratio: 3 / 2; }
   .map-column .message-box { max-height: none; overflow-y: visible; }
-  .action-bar { width: auto; flex-direction: row; flex-wrap: wrap; overflow-y: visible; }
-  .action-button { flex: 1 1 auto; justify-content: center; padding-right: 1.1rem; }
-  .action-button .badge { position: static; transform: none; margin-left: 0.4rem; }
+  .action-button { width: 2.6rem; height: 2.6rem; font-size: 1.15rem; }
 }
 
 /* A short viewport (a phone held in landscape) has width to spare but very little height - the header
@@ -107,8 +108,7 @@ h2 { color: #235c3a; }
   .play-screen .top-bar button { padding: 0.4rem 0.7rem; font-size: 0.8rem; }
   .location-strip { padding: 0.3rem 0.7rem; font-size: 0.78rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .map-column .message-box { padding: 0.5rem 0.7rem; font-size: 0.82rem; max-height: 2.6rem; }
-  .action-bar { width: 9.5rem; gap: 0.35rem; }
-  .action-button { padding: 0.5rem 0.7rem; padding-right: 1.6rem; font-size: 0.82rem; }
+  .action-button { width: 2.35rem; height: 2.35rem; font-size: 1.05rem; }
 }
 .park-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 420px); gap: 1rem; margin: 0 auto; max-width: 1240px; }
 .panel { padding: 1.5rem; }
@@ -182,7 +182,7 @@ button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
 
 
 .camper-button { background: #a55c16; }
-.camper-interior-wrap { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; border-radius: 24px; padding: 1rem; background: linear-gradient(160deg,rgba(255,255,255,.95),rgba(255,242,211,.95)); }
+.camper-interior-wrap { position: relative; flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; border-radius: 24px; padding: 1rem; background: linear-gradient(160deg,rgba(255,255,255,.95),rgba(255,242,211,.95)); }
 .station-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; width: min(640px, 100%); margin: 0 auto; }
 .station-grid .station-card { min-height: 8rem; justify-content: center; padding: 1.5rem; }
 .station-grid .station-card span { font-size: 2.8rem; }

@@ -11,14 +11,14 @@ import { CompletionCelebration } from './CompletionCelebration';
 import { DiscoveryPanel } from './DiscoveryPanel';
 import { HabitatQuiz } from './HabitatQuiz';
 import { Journal } from './Journal';
-import { LocationClues } from './LocationClues';
+import { getLocationClue, LocationClues } from './LocationClues';
 import { PanelModal } from './PanelModal';
 import { PhotoReveal } from './PhotoReveal';
 import { ProgressTracker } from './ProgressTracker';
 import { QuestPanel } from './QuestPanel';
 
 type ParkScreenProps = { saveData: SaveData; onSaveChange: (saveData: SaveData) => void; onOpenCamper: () => void; onGoHome: () => void };
-type PanelKey = 'camera' | 'quest' | 'discover' | 'progress' | 'about';
+type PanelKey = 'camera' | 'quest' | 'clue' | 'discover' | 'progress' | 'about';
 
 export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: ParkScreenProps) {
   const [message, setMessage] = useState('Welcome to Tutorial Park. Try visiting Duck Pond, Open Meadow, Forest Trail, or the Strange Old Tree.');
@@ -32,6 +32,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
   const currentLocation = getLocationByName(saveData.currentLocation) ?? visibleLocations[0];
   const animalsHere = useMemo(() => getAnimalsForLocation(currentLocation.name, saveData), [currentLocation.name, saveData]);
   const showDiscover = saveData.currentLocation === 'Strange Old Tree' || saveData.wildCamperUnlocked;
+  const clue = getLocationClue(saveData);
 
   useEffect(() => {
     if (!previousUnlocked.current && saveData.wildCamperUnlocked) setCelebrationOpen(true);
@@ -92,19 +93,20 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
                 </div>
               );
             })}
+            <nav className="action-bar" aria-label="Park tools">
+              <button className="action-button" onClick={() => setActivePanel('camera')} aria-label="Camera">
+                <span aria-hidden="true">📷</span>{animalsHere.length > 0 ? <span className="badge">{animalsHere.length}</span> : null}
+              </button>
+              <button className="action-button" onClick={() => setActivePanel('quest')} aria-label="Quest"><span aria-hidden="true">🐾</span></button>
+              {clue ? <button className="action-button" onClick={() => setActivePanel('clue')} aria-label="Nearby clue"><span aria-hidden="true">🔍</span></button> : null}
+              {showDiscover ? <button className="action-button" onClick={() => setActivePanel('discover')} aria-label="Discover"><span aria-hidden="true">🔭</span></button> : null}
+              <button className="action-button" onClick={() => setActivePanel('progress')} aria-label="Progress"><span aria-hidden="true">✅</span></button>
+              <button className="action-button" onClick={() => setJournalOpen(true)} aria-label="Journal"><span aria-hidden="true">📖</span></button>
+              <button className="action-button secondary" onClick={() => setActivePanel('about')} aria-label="About"><span aria-hidden="true">ℹ️</span></button>
+            </nav>
           </div>
           <div className="message-box" role="status" aria-live="polite">{message}</div>
         </div>
-        <nav className="action-bar" aria-label="Park tools">
-          <button className="action-button" onClick={() => setActivePanel('camera')}>
-            {'📷'} Camera{animalsHere.length > 0 ? <span className="badge">{animalsHere.length}</span> : null}
-          </button>
-          <button className="action-button" onClick={() => setActivePanel('quest')}>{'🐾'} Quest &amp; Clues</button>
-          {showDiscover ? <button className="action-button" onClick={() => setActivePanel('discover')}>{'🔭'} Discover</button> : null}
-          <button className="action-button" onClick={() => setActivePanel('progress')}>{'✅'} Progress</button>
-          <button className="action-button" onClick={() => setJournalOpen(true)}>{'📖'} Journal</button>
-          <button className="action-button secondary" onClick={() => setActivePanel('about')}>{'ℹ️'} About</button>
-        </nav>
       </section>
 
       {activePanel === 'camera' ? (
@@ -113,9 +115,13 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
         </PanelModal>
       ) : null}
       {activePanel === 'quest' ? (
-        <PanelModal title="Quest & Clues" onClose={() => setActivePanel(null)}>
-          <LocationClues saveData={saveData} />
+        <PanelModal title="Lost Puppy Quest" onClose={() => setActivePanel(null)}>
           <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey }); }} />
+        </PanelModal>
+      ) : null}
+      {activePanel === 'clue' ? (
+        <PanelModal title="Nearby Clue" onClose={() => setActivePanel(null)}>
+          <LocationClues saveData={saveData} />
         </PanelModal>
       ) : null}
       {activePanel === 'discover' ? (

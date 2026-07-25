@@ -12,7 +12,9 @@
   Planner moved behind action-bar buttons that open them as modals (new `PanelModal.tsx`, reusing the
   Journal modal pattern already proven this session). No orientation lock — layout-only, portrait still
   works via a scrollable fallback. Chosen via `AskUserQuestion` from tiered options per `AGENTS.md`
-  convention. See full entry for the exact CSS approach and verification.
+  convention. **Amended same day:** further feedback that the sidebar itself was still awkward and ate too
+  much space — the action bar is now a compact floating column of icon-only buttons overlaid on the map
+  (not a sidebar), and a location's clue got its own 🔍 button separate from Quest. See full entry.
 - **D-2026-07-25-park-map-pins** — Implemented the illustrated Park Map (`docs/copilot-packages/
   03-park-map.md`'s Track B): 6 clickable pins positioned by percentage over a single map image, replacing
   the plain location-card grid. Found and fixed a real click-hit-testing bug along the way: a
@@ -115,6 +117,27 @@
   (via the existing `useModalFocus` restore-on-close behavior, no extra wiring needed); photographing an
   animal through the new Camera modal correctly stacks the PhotoReveal modal on top; zero failed network
   requests throughout.
+- **Amendment (2026-07-25, same day):** user feedback after using it - the `.action-bar` sidebar (12.5rem
+  wide, full-height text-labeled buttons) was itself still "awkward" and took too much screen space; asked
+  for the map to take the full screen, and for a location's clue to get its own separate button (a
+  magnifying glass) instead of being folded into the Quest panel.
+  - `.action-bar` changed from a fixed-width sidebar (a flex sibling of the map, stealing its width) to a
+    compact floating column of icon-only round buttons (`position: absolute`, no visible text - accessible
+    name via `aria-label`) overlaid on top of the map/content area itself. The map/grid now uses the full
+    play-area width on every screen.
+  - `LocationClues`'s clue-lookup logic (`getClue`) exported as `getLocationClue` so `ParkScreen` can check
+    for a clue's presence and conditionally show a new 🔍 "Nearby clue" button, separate from 🐾 "Quest"
+    (which now shows only the Lost Puppy quest steps, not clues).
+  - **A real bug found while implementing this:** the action bar was first anchored to `.play-area` (the
+    outer container spanning the location-strip *and* the map), so on narrower widths where the
+    location-strip text wrapped to two lines, the floating icons overlapped the second line. Fixed by
+    nesting `.action-bar` as a child of the specific map/content element instead (`.park-map` on Park,
+    a new `.forest-stage` wrapper on Forest, `.camper-interior-wrap` on Camper) - each already fills the
+    remaining flex space and is the correct positioning root, so the icons only ever overlay the
+    map/content itself, never the location strip or message box above/below it.
+  - Verified again after the fix: zero scroll at phone-landscape/tablet/laptop on all three screens, the
+    location-strip text no longer clipped under the icons at narrow widths, the clue button opens only its
+    own content (no longer merged with the quest steps), and the quest modal no longer includes the clue.
 
 ## D-2026-07-25-park-map-pins · Illustrated Park Map with location pins, and a transform click-hit-testing bug
 - **Context:** `docs/copilot-packages/03-park-map.md` was ready to implement once the user generated the

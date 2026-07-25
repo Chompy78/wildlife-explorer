@@ -1,7 +1,7 @@
 import type { SaveData } from '../types/SaveData';
 
 export function LocationClues({ saveData }: { saveData: SaveData }) {
-  const clue = getClue(saveData);
+  const clue = getLocationClue(saveData);
   if (!clue) return null;
   return (
     <section className="clue-card" aria-label="Nearby clue">
@@ -11,7 +11,7 @@ export function LocationClues({ saveData }: { saveData: SaveData }) {
   );
 }
 
-function getClue(saveData: SaveData): string | null {
+export function getLocationClue(saveData: SaveData): string | null {
   const quest = saveData.questProgress.lostPuppy;
   if (saveData.currentLocation === 'Open Meadow' && quest.started && !quest.foundPawprints) {
     return 'You notice small marks pressed into the soft grass.';

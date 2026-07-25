@@ -38,12 +38,12 @@ export function CamperScreen({ saveData, onSaveChange, onReturnToPark, onTravelT
           <div className="camper-interior-wrap">
             <div className="station-grid">{(Object.keys(stationDetails) as CamperStationId[]).map((id) => { const item = stationDetails[id]; return <button key={id} className={station === id ? 'station-card active' : 'station-card'} onClick={() => selectStation(id)} aria-pressed={station === id}><span aria-hidden="true">{item.icon}</span><strong>{item.name}</strong>{station === id ? <small>Selected</small> : null}</button>; })}</div>
             {station === 'photo-wall' ? <PhotoWallSummary saveData={saveData} /> : null}
+            <nav className="action-bar" aria-label="Camper tools">
+              <button className="action-button" onClick={() => setActivePanel('journey')} aria-label="Journey Planner"><span aria-hidden="true">🗺️</span>{selected ? <span className="badge">1</span> : null}</button>
+              <button className="action-button secondary" onClick={() => setActivePanel('about')} aria-label="About"><span aria-hidden="true">ℹ️</span></button>
+            </nav>
           </div>
         </div>
-        <nav className="action-bar" aria-label="Camper tools">
-          <button className="action-button" onClick={() => setActivePanel('journey')}>{'🗺️'} Journey Planner{selected ? <span className="badge">1</span> : null}</button>
-          <button className="action-button secondary" onClick={() => setActivePanel('about')}>{'ℹ️'} About</button>
-        </nav>
       </section>
 
       {activePanel === 'journey' ? (
