@@ -1,8 +1,9 @@
+import type { AchievementId } from './Achievement';
 import type { DestinationId } from './Destination';
 import type { LostPuppyQuestProgress } from './Quest';
 import type { AnimalId, LocationName } from './Ids';
 
-export const CURRENT_SAVE_SCHEMA_VERSION = 8 as const;
+export const CURRENT_SAVE_SCHEMA_VERSION = 9 as const;
 export type GameScreen = 'start' | 'role-select' | 'park' | 'camper' | 'forest';
 export type PlayArea = 'park' | 'camper' | 'forest';
 
@@ -29,4 +30,6 @@ export type SaveData = {
   // drives the photo-quality progression in data/photoQuality.ts. Independent of collectedPhotoVariants,
   // so it keeps rising even once every variant for a species is collected.
   photographCounts: Partial<Record<AnimalId, number>>;
+  // Unlocked achievements, e.g. "tutorial-park-ranger". See data/achievements.ts.
+  achievements: AchievementId[];
 };

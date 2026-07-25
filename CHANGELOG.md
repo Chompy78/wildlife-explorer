@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(quiz): biome-completion Ranger Quiz and achievement** — finishing Tutorial Park now
+  chains a short, encouraging 5-question trivia quiz (new `BiomeQuiz.tsx`, reusing `HabitatQuiz`'s modal
+  pattern) after the existing "You unlocked the Wild Camper!" celebration, drawn from facts the player has
+  learned with a fun-fact fallback so it's never short of content. Completing it — regardless of score —
+  unlocks the new "Tutorial Park Ranger" achievement (new `achievements` save field, schema v8→v9), shown
+  in a new Journal "Achievements" section. See `DECISIONS.md`'s `D-2026-07-25-biome-quiz-and-achievement`.
+  This closes out the 2026-07-25 gameplay-excitement brainstorm's confirmed build order.
 - **2026-07-25 · feat(camera): photo-quality progression and a pose-capture "Great shot!" pulse** — photos
   of a species now visibly sharpen with practice (new `photographCounts` save field, schema v7→v8, CSS
   blur/scale only — no new art), shown on the photo-reveal image specifically. The Camera panel's shutter

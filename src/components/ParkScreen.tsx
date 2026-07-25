@@ -3,10 +3,12 @@ import { assetUrl } from '../assetUrl';
 import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
 import { getFactForVariantKey } from '../data/animalFacts';
 import { parkMapCoordinates } from '../data/parkMapCoordinates';
+import { unlockAchievement } from '../state/achievementState';
 import { getAnimalById, getAnimalsForLocation, getLocationByName, getVisibleParkLocations, photographAnimal, visitLocation } from '../state/gameState';
 import type { Animal } from '../types/Animal';
 import type { AnimalId, LocationName } from '../types/Ids';
 import type { SaveData } from '../types/SaveData';
+import { BiomeQuiz } from './BiomeQuiz';
 import { CameraPanel } from './CameraPanel';
 import { CompletionCelebration } from './CompletionCelebration';
 import { DiscoveryPanel } from './DiscoveryPanel';
@@ -26,6 +28,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
   const [journalOpen, setJournalOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
   const [celebrationOpen, setCelebrationOpen] = useState(false);
+  const [biomeQuizOpen, setBiomeQuizOpen] = useState(false);
   const [quizAnimal, setQuizAnimal] = useState<Animal | null>(null);
   const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string; greatShot: boolean } | null>(null);
   const previousUnlocked = useRef(saveData.wildCamperUnlocked);
@@ -143,7 +146,21 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
       ) : null}
 
       {journalOpen ? <Journal saveData={saveData} onClose={() => setJournalOpen(false)} /> : null}
-      {celebrationOpen ? <CompletionCelebration onClose={() => setCelebrationOpen(false)} /> : null}
+      {celebrationOpen ? (
+        <CompletionCelebration
+          onClose={() => {
+            setCelebrationOpen(false);
+            if (!saveData.achievements.includes('tutorial-park-ranger')) setBiomeQuizOpen(true);
+          }}
+        />
+      ) : null}
+      {biomeQuizOpen ? (
+        <BiomeQuiz
+          saveData={saveData}
+          onComplete={() => onSaveChange(unlockAchievement(saveData, 'tutorial-park-ranger'))}
+          onClose={() => setBiomeQuizOpen(false)}
+        />
+      ) : null}
       {photoReveal ? (
         <PhotoReveal
           animal={photoReveal.animal}

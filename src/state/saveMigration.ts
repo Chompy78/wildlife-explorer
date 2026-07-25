@@ -1,4 +1,5 @@
 import { defaultLostPuppyQuestProgress } from './saveDefaults';
+import { validAchievementIds } from '../data/achievements';
 import { ALL_PHOTO_VARIANT_KEYS } from '../data/animalPhotoVariants';
 import { CURRENT_SAVE_SCHEMA_VERSION, type PlayArea, type SaveData } from '../types/SaveData';
 import type { AnimalId, LocationName } from '../types/Ids';
@@ -41,6 +42,7 @@ export function migrateSaveData(input: unknown): SaveData {
     reportedInvasiveSpecies: filterKnown(parsed.reportedInvasiveSpecies, validAnimals),
     collectedPhotoVariants: filterKnown(parsed.collectedPhotoVariants, ALL_PHOTO_VARIANT_KEYS),
     photographCounts: migratePhotographCounts(parsed.photographCounts, validAnimals),
+    achievements: filterKnown(parsed.achievements, validAchievementIds),
   };
 }
 

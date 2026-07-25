@@ -24,6 +24,7 @@ export const defaultSaveData: SaveData = {
   reportedInvasiveSpecies: [],
   collectedPhotoVariants: [],
   photographCounts: {},
+  achievements: [],
 };
 
 export function createDefaultSave(): SaveData {
@@ -34,5 +35,6 @@ export function createDefaultSave(): SaveData {
     reportedInvasiveSpecies: [],
     collectedPhotoVariants: [],
     photographCounts: {},
+    achievements: [],
   };
 }

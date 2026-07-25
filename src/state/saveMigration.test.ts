@@ -36,6 +36,11 @@ describe('save migration', () => {
     expect(save.photographCounts).toEqual({ duck: 3, rabbit: 2 });
   });
 
+  it('preserves valid achievements entries and filters unknown ones', () => {
+    const save = migrateSaveData({ achievements: ['tutorial-park-ranger', 'not-real'] });
+    expect(save.achievements).toEqual(['tutorial-park-ranger']);
+  });
+
   it('migrates valid camper hub fields and rejects unknown IDs', () => {
     const save = migrateSaveData({ wildCamperUnlocked: true, camperVisited: true, lastPlayArea: 'camper', selectedDestination: 'forest', photographedAnimals: ['duck', 'not-real'] });
     expect(save.camperVisited).toBe(true);
@@ -62,6 +67,7 @@ describe('save migration', () => {
       expect(save.reportedInvasiveSpecies).toEqual([]);
       expect(save.collectedPhotoVariants).toEqual([]);
       expect(save.photographCounts).toEqual({});
+      expect(save.achievements).toEqual([]);
     }
 
     it.each([
@@ -87,7 +93,7 @@ describe('save migration', () => {
 
     it('ignores wrong-typed array/record fields instead of throwing', () => {
       const save = migrateSaveData({
-        discoveredAnimals: 'duck', photographedAnimals: 42, discoveredLocations: { not: 'an array' }, reportedInvasiveSpecies: true, collectedPhotoVariants: 5, photographCounts: 'lots',
+        discoveredAnimals: 'duck', photographedAnimals: 42, discoveredLocations: { not: 'an array' }, reportedInvasiveSpecies: true, collectedPhotoVariants: 5, photographCounts: 'lots', achievements: 5,
       });
       expect(save.discoveredAnimals).toEqual([]);
       expect(save.photographedAnimals).toEqual([]);
@@ -95,6 +101,7 @@ describe('save migration', () => {
       expect(save.reportedInvasiveSpecies).toEqual([]);
       expect(save.collectedPhotoVariants).toEqual([]);
       expect(save.photographCounts).toEqual({});
+      expect(save.achievements).toEqual([]);
     });
 
     it('filters out non-string and unknown entries mixed into otherwise-valid arrays', () => {

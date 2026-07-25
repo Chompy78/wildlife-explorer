@@ -1,4 +1,5 @@
 import { useCallback, useRef } from 'react';
+import { achievements } from '../data/achievements';
 import { animals } from '../data/animals';
 import { getFactCount, getLearnedFacts } from '../data/animalFacts';
 import { countCollectedVariants, getFirstCollectedVariant, getPhotoVariantCount, getPhotoVariantUrl } from '../data/animalPhotoVariants';
@@ -15,6 +16,7 @@ export function Journal({ saveData, onClose }: JournalProps) {
     <div className="journal-header"><div><p className="eyebrow">Wildlife Journal</p><h2 id="journal-title">Collection Book</h2><p id="journal-description" className="muted">Photos, discoveries, and animals helped during the adventure.</p></div><button ref={closeRef} className="secondary" onClick={onClose}>Close</button></div>
     <section className="journal-section"><h3>Animals and Helping</h3><div className="journal-list">{animals.map((animal) => <JournalEntry key={animal.id} animal={animal} saveData={saveData}/>)}</div></section>
     <section className="journal-section"><h3>Places and Rewards</h3><SpecialEntry icon={saveData.whisperGroveDiscovered ? '\uD83C\uDF3A' : '\uD83D\uDD12'} title="Whisper Grove" discovered={saveData.whisperGroveDiscovered} text={saveData.whisperGroveDiscovered ? 'Discovered - a peaceful hidden natural area.' : 'Hidden. Help animals and explore the Strange Old Tree area.'}/><SpecialEntry icon={saveData.wildCamperUnlocked ? '\uD83D\uDE90' : '\uD83D\uDD12'} title="Wild Camper" discovered={saveData.wildCamperUnlocked} text={saveData.wildCamperUnlocked ? 'Unlocked - Tutorial Park complete!' : 'Locked. Complete Lost Puppy, photograph Rare Owl, and discover Whisper Grove.'}/></section>
+    <section className="journal-section"><h3>Achievements</h3>{Object.values(achievements).map((achievement) => { const unlocked = saveData.achievements.includes(achievement.id); return <SpecialEntry key={achievement.id} icon={unlocked ? achievement.icon : '\uD83D\uDD12'} title={achievement.name} discovered={unlocked} text={unlocked ? achievement.description : 'Not earned yet.'}/>; })}</section>
   </section></div>;
 }
 function SpecialEntry({ icon, title, discovered, text }: { icon:string; title:string; discovered:boolean; text:string }) { return <article className={discovered ? 'journal-entry' : 'journal-entry undiscovered'}><div className="animal-emoji" aria-hidden="true">{icon}</div><div><h3>{title}</h3><p>{text}</p></div></article>; }

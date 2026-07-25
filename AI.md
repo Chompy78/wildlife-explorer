@@ -43,7 +43,12 @@ Implemented:
   (`src/data/photoQuality.ts`). While the Camera panel is open, a soft golden pulse cycles on the shutter
   buttons — shooting anytime always works, shooting during the pulse marks that photo a "Great shot!"
   bonus (cosmetic only, not persisted). The Lost Puppy reunion photo is exempt (always shown crisp).
-- Save schema version 8 and migration of older saves
+- Biome-completion quiz and achievement: finishing Tutorial Park (the existing `CompletionCelebration`
+  trigger) is followed by a short, encouraging 5-question trivia quiz (`src/components/BiomeQuiz.tsx`,
+  reusing the `HabitatQuiz` modal pattern) drawn from facts the player has already learned, falling back to
+  each animal's static fun fact so it's never short of content. Completing it — regardless of score —
+  unlocks the "Tutorial Park Ranger" achievement, shown in the Journal (`src/data/achievements.ts`)
+- Save schema version 9 and migration of older saves
 - Keyboard focus handling, responsive styling and reduced-motion support
 - TypeScript, state tests, component tests, production build and encoding audit
 - Deployed to GitHub Pages at `https://chompy78.github.io/wildlife-explorer/` (auto-deploys on push to

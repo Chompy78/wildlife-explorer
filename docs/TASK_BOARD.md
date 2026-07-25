@@ -47,33 +47,6 @@ The invasive-species habitat quiz shipped 2026-07-25 with one non-native animal 
 `npm run check` passes.
 
 
-## Biome-completion quiz and achievement — TODO
-User idea (2026-07-25): finishing a biome (e.g. Tutorial Park's existing completion condition that
-already triggers `CompletionCelebration`) should also offer a short, encouraging trivia quiz drawn from
-facts the player has already learned, awarding an achievement on completion (participation-based, not
-score-gated, per Canon's "no harsh failure").
-**Effort:** medium · **Risk:** medium — new `achievements` save field (schema change).
-**Depends on:** Animal facts (shipped 2026-07-25, `DECISIONS.md`'s `D-2026-07-25-gameplay-excitement-
-brainstorm`) — quiz content is drawn from `src/data/animalFacts.ts`, already in place.
-
-```text
-1. Add achievements: string[] to save data (new field, bump schema version, update saveDefaults.ts/
-   saveMigration.ts).
-2. New src/data/achievements.ts: a small list of achievement ids/labels/icons, starting with one for
-   Tutorial Park completion.
-3. Reuse HabitatQuiz.tsx's modal/quiz-card pattern for a new BiomeQuiz component: 3-5 questions drawn from
-   already-learned facts for that biome's animals, encouraging wrong-answer handling (same pattern as
-   HabitatQuiz), awarded achievement on completion regardless of score.
-4. Trigger alongside the existing CompletionCelebration condition (Tutorial Park finishing).
-5. Show unlocked achievements somewhere in the Journal (extends the existing "Places and Rewards" /
-   SpecialEntry pattern).
-6. Run npm run check; verify the quiz triggers correctly, awards the achievement once, and displays in
-   the Journal.
-```
-**Done when:** finishing Tutorial Park offers the quiz, completing it awards a visible achievement, and
-`npm run check` passes.
-
-
 ## Decide whether to introduce a PR-gated workflow — TODO
 Now that CI (`npm run check` via GitHub Actions) is wired up, `DECISIONS.md`'s `D-2026-07-21-branch-model`
 "CI gets added" revisit trigger has fired (see `D-2026-07-21-ci-added`) — decide whether to keep
