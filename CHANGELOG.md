@@ -5,6 +5,14 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · docs(copilot-handoff): reformatted Package 04 to match the original Package 02
+  structure** — the user had an earlier copy of `02-animal-portraits.md` (from before it evolved into
+  the 5-photo-variant mechanic) and wanted Package 04 laid out the same way: numbered `## 0. Context` /
+  `## Track A` / `## Track B` sections and an `| Animal id | Filename | Subject line |` table. Restructured
+  Package 04 to match while keeping the actual content correct — the table now covers the base shot per
+  animal, with a second small table for the 4 variant modifiers, since Lake's art still needs 5 photos
+  per animal (not 1) to match the shipped mechanic's shape.
+
 - **2026-07-25 · docs(copilot-handoff): revised Package 03's Park Map prompt with explicit per-zone
   landmarks** — the original prompt described rough positions ("left side," "top-center") without
   concrete visual anchors, making pin placement hard to eyeball against the generated art. Rewrote with
