@@ -5,6 +5,16 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(content): added 8 new real-earth preview biomes to the Camper's route map** —
+  Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga and Volcanic Highlands join the existing
+  Forest/Mountains/Lake/Safari/Rainforest as `status: 'preview'` `DestinationPreview` entries (14 total,
+  none playable — same non-functional teaser pattern already established, not a Scope-boundary change).
+  All 8 are `quizEligible: true` so they're available as habitat-quiz answers alongside the originals.
+  Extended `DestinationId` and `saveMigration.ts`'s destination allowlist to match. Fixed a test that
+  hardcoded the previous count of 6 preview cards (now 14) and extended its per-destination coverage to
+  include the 8 new ids. Verified with a real-browser screenshot of the full 14-card route map. A future
+  bonus Dinosaur biome (discussed but not yet added) will get `quizEligible: false`, same as Alien Planet.
+
 - **2026-07-25 · feat(gameplay): added non-native animal reporting with a "where does it belong" habitat
   quiz** — introduces `Animal.nonNative` (a `correctHabitatId` + `impactNote`) on two new animals: the
   Red-eared Slider Turtle (Duck Pond, correct answer Lake) and the Cane Toad (Forest Trail/Fern Trail,

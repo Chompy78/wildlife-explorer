@@ -94,28 +94,6 @@ The invasive-species habitat quiz shipped 2026-07-25 with one non-native animal 
 `npm run check` passes.
 
 
-## Add 8 new real-earth preview biomes — TODO
-User requested 8 more natural-earth biomes as future Camper route-map previews (non-playable, same
-pattern as the existing Forest/Mountains/Lake/Safari/Rainforest). Suggested in the 2026-07-25 session:
-Desert, Arctic/Tundra, Coral Reef, Wetlands/Swamp, Coastal/Tide Pools, Grassland/Prairie, Taiga/Boreal
-Forest, Volcanic Highlands. A user-confirmed bonus Dinosaur biome is also planned separately — both must
-be excluded from the habitat quiz (see `DECISIONS.md`'s `D-2026-07-25-invasive-species-quiz-eligible-flag`
-— real-earth biomes get `quizEligible: true`, Dinosaur gets `false`, same as Alien Planet).
-**Effort:** medium · **Risk:** low — purely additive `DestinationPreview` data entries (`status: 'preview'`,
-non-playable), same category of change as the existing 6; no gameplay/save-schema changes. Confirm the
-exact 8 (and names/taglines) with the user before adding, and confirm whether Cave overlaps with the
-already-documented Crystal Cave secret area in `VISUAL_DIRECTION.md` rather than duplicating it.
-
-```text
-1. Confirm the final 8 (or a revised list) and their name/icon/tagline/preview copy with the user.
-2. Add each to destinationPreviews in src/data/destinations.ts with status: 'preview', quizEligible: true.
-3. Add each new id to the DestinationId union in src/types/Destination.ts.
-4. Run npm run check.
-```
-**Done when:** 8 new preview destinations appear on the Camper's route map, none are playable, and
-`npm run check` passes.
-
-
 ## Decide whether to introduce a PR-gated workflow — TODO
 Now that CI (`npm run check` via GitHub Actions) is wired up, `DECISIONS.md`'s `D-2026-07-21-branch-model`
 "CI gets added" revisit trigger has fired (see `D-2026-07-21-ci-added`) — decide whether to keep

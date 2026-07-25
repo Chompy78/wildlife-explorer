@@ -5,7 +5,7 @@ import type { DestinationId } from '../types/Destination';
 
 const validLocations: LocationName[] = ['Park Entrance', 'Duck Pond', 'Open Meadow', 'Forest Trail', 'Strange Old Tree', 'Whisper Grove'];
 const validAnimals: AnimalId[] = ['duck', 'frog', 'butterfly', 'rabbit', 'lizard', 'park-bird', 'rare-owl', 'lost-puppy', 'forest-wren', 'forest-wallaby', 'forest-beetle', 'red-eared-slider', 'cane-toad'];
-const validDestinations: DestinationId[] = ['forest', 'mountains', 'lake', 'safari', 'rainforest', 'alien-planet'];
+const validDestinations: DestinationId[] = ['forest', 'mountains', 'lake', 'safari', 'rainforest', 'alien-planet', 'desert', 'arctic', 'coral-reef', 'wetlands', 'coastal', 'grassland', 'taiga', 'volcanic-highlands'];
 
 export function migrateSaveData(input: unknown): SaveData {
   const parsed = isRecord(input) ? input : {};

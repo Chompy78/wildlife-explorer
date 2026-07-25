@@ -1,4 +1,18 @@
-export type DestinationId = 'forest' | 'mountains' | 'lake' | 'safari' | 'rainforest' | 'alien-planet';
+export type DestinationId =
+  | 'forest'
+  | 'mountains'
+  | 'lake'
+  | 'safari'
+  | 'rainforest'
+  | 'alien-planet'
+  | 'desert'
+  | 'arctic'
+  | 'coral-reef'
+  | 'wetlands'
+  | 'coastal'
+  | 'grassland'
+  | 'taiga'
+  | 'volcanic-highlands';
 
 export type DestinationPreview = {
   id: DestinationId;
