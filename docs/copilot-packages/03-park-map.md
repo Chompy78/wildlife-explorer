@@ -41,20 +41,42 @@ is hidden. Explore the old tree after helping the puppy.") when a hidden pin is 
 
 ## Track A — Art brief (one map illustration)
 
-**Prompt:**
-> A wide, bird's-eye/three-quarter aerial view map illustration of a children's wildlife exploration
-> park, in the same bright, colourful, storybook-realistic style as the established Wildlife Explorer art
-> (attach `wild-camper-direction.png` and `docs/VISUAL_DIRECTION.md`): warm digital painting, fine
-> painterly texture, calm natural lighting. Layout, left to right and front to back: a wooden Park
-> Entrance sign and path at the bottom-center foreground; a calm Duck Pond with lily pads on the left
-> side; a sunny Open Meadow with wildflowers on the right side; a winding dirt path leads from the
-> entrance up through the center to a Forest Trail area with trees and fallen logs; further back at the
-> top-center stands a distinctive gnarled Strange Old Tree; partially visible just beside the old tree,
-> tucked behind bushes and overgrown vegetation, is a glimpse of Whisper Grove — softly obscured to
-> suggest it isn't accessible yet, not hidden entirely. A single connecting dirt path links all the
-> areas. Rich discoverable detail (rocks, flowers, small trail markers) but still readable as a map at a
-> glance. No text labels, no icons, no UI elements, no people or animals in distress, no combat imagery —
-> those are added in code afterward.
+**Prompt (revised 2026-07-25 — more explicit landmarks per zone than the original, so pin placement is
+easier to eyeball against the actual generated art):**
+> A wide, bird's-eye/three-quarter aerial view illustrated map of a children's wildlife exploration park,
+> painted in the same bright, colourful, storybook-realistic style as the established Wildlife Explorer
+> reference art (attach `wild-camper-direction.png` and `docs/VISUAL_DIRECTION.md`) — warm digital
+> painting, fine painterly texture, calm natural lighting, rich but readable detail. The park reads as
+> **six distinct, clearly separated zones** connected by one continuous winding dirt path, each visually
+> bounded by natural features (trees, hedges, a stream) so every area is easy to tell apart at a glance:
+>
+> 1. **Park Entrance** (bottom-center foreground): a wooden welcome sign where the path begins, framed by
+>    low garden flowers.
+> 2. **Duck Pond** (left-middle): a round calm pond with lily pads and reeds.
+> 3. **Open Meadow** (right-middle): a sunny grassy clearing with wildflowers.
+> 4. **Forest Trail** (upper-center): denser trees and fallen logs, dappled shade, where the path
+>    narrows.
+> 5. **Strange Old Tree** (top, just left of center): one unmistakably large, gnarled ancient tree
+>    standing alone as the park's clear landmark — natural, not glowing or magical.
+> 6. **Whisper Grove** (top, just right of the old tree): a small secluded clearing glimpsed through a
+>    gap in dense bushes, softly shadowed to suggest it isn't reachable yet.
+>
+> One single dirt path connects all six areas in that order. Bird's-eye three-quarter perspective
+> (looking down and slightly forward, like a treasure-map illustration) so every zone is visible without
+> overlapping. No text, no labels, no icons, no UI elements, no people or animals in distress, no combat
+> imagery — those are added separately in code.
+
+**Generate 2-3 alternates, not just one** — a 6-zone map is a much harder single-shot composition than a
+single animal portrait, and first attempts often come out cluttered or with zones blending together:
+
+```
+Make the art park map
+Make the art park map — higher aerial angle, more separation between zones
+Make the art park map — warmer golden-hour light, slightly closer view
+```
+
+Send back whichever reads clearest (or all of them and let Claude help pick) — pin placement in Track B
+depends on the zones actually being visually distinguishable.
 
 - **Aspect ratio:** landscape, close to **4:3** (e.g. 1600×1200) — the code below assumes this ratio so
   location pins land in the right spots. If Copilot's output comes out a different ratio, that's fine,

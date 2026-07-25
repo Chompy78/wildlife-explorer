@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · docs(copilot-handoff): revised Package 03's Park Map prompt with explicit per-zone
+  landmarks** — the original prompt described rough positions ("left side," "top-center") without
+  concrete visual anchors, making pin placement hard to eyeball against the generated art. Rewrote with
+  one clear landmark per zone (welcome sign, round pond, gnarled ancient tree, etc.) and added a
+  "generate 2-3 alternates" recommendation, since a 6-zone map composition is meaningfully harder to get
+  right in one shot than a single animal portrait was.
+
 - **2026-07-25 · docs(copilot-handoff): added Package 04 — Lake biome animal art prep** —
   `docs/copilot-packages/04-lake-biome-animals.md` specs 6 animals (Great Blue Heron, Beaver, Rainbow
   Trout, Loon, Dragonfly, Painted Turtle) across 3 proposed sections (Shoreline, Open Water, Reeds &
