@@ -5,6 +5,20 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · chore(assets): cut the animal portrait art from 120MB to 2.9MB, moved to the correct
+  folder** — Copilot's Track A output for Package 02 landed as 51 files (11 base + 40 unused
+  variation-set alternates, all 1254px PNG, ~2.3MB each) in `public/assets/tutorial-park/` instead of
+  the spec'd `public/assets/animals/`. Real compression testing (`duck.png`, no image content viewed —
+  pure Pillow file-size measurement) showed format, not resolution, was the actual bloat: JPEG at the
+  same 1254px cut file size ~8x (2549KB → 310KB) with no visible quality loss, versus resizing down which
+  would have locked in a size that might not fit a still-undecided "bigger photo reveal" UI direction.
+  Kept full 1254px resolution (matches the existing hero art's scale, leaves room for any future
+  larger-than-icon use), converted the 11 base files to JPEG quality 85, moved them to
+  `public/assets/animals/<id>.jpg`, and deleted the 40 unused variants (never referenced by any code).
+  `docs/copilot-packages/02-animal-portraits.md` and `docs/TASK_BOARD.md` updated to reflect `.jpg` and
+  the corrected path. Track B (wiring the images into the Journal/Camera Panel/Photo Wall/Forest screens)
+  is still not implemented.
+
 - **2026-07-25 · feat(content): added 8 new real-earth preview biomes to the Camper's route map** —
   Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga and Volcanic Highlands join the existing
   Forest/Mountains/Lake/Safari/Rainforest as `status: 'preview'` `DestinationPreview` entries (14 total,
