@@ -92,6 +92,36 @@ export const animals: Animal[] = [
   { id: 'forest-wren', name: 'Forest Wren', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Morning', funFact: 'Small forest birds use calls to keep in touch while moving through leafy habitat.', behaviours: ['perching', 'foraging', 'calling'], emoji: '🐦', availableInMilestone: true },
   { id: 'forest-wallaby', name: 'Forest Wallaby', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Morning and late afternoon', funFact: 'Wallabies rest in shelter and move quietly through forest edges to feed.', behaviours: ['grazing', 'listening', 'moving quietly'], emoji: '🦘', availableInMilestone: true },
   { id: 'forest-beetle', name: 'Shiny Forest Beetle', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Day', funFact: 'Beetles help forest ecosystems by recycling plant material and supporting food webs.', behaviours: ['crawling', 'sheltering', 'feeding'], emoji: '🪲', availableInMilestone: true },
+  {
+    id: 'red-eared-slider',
+    name: 'Red-eared Slider Turtle',
+    rarity: 'common',
+    habitat: 'Duck Pond',
+    activeTime: 'Day',
+    funFact: 'Red-eared sliders are one of the most widely introduced turtles in the world, often from released pet turtles.',
+    behaviours: ['basking', 'swimming', 'resting on logs'],
+    emoji: '🐢',
+    availableInMilestone: true,
+    nonNative: {
+      correctHabitatId: 'lake',
+      impactNote: "Red-eared Sliders aren't native to this pond. People sometimes release pet turtles into the wild, and they can compete with native turtles for food and basking spots.",
+    },
+  },
+  {
+    id: 'cane-toad',
+    name: 'Cane Toad',
+    rarity: 'common',
+    habitat: 'Forest Trail',
+    activeTime: 'Evening',
+    funFact: 'Cane Toads were introduced to some places to help control pests, but they can be harmful to animals that try to eat them.',
+    behaviours: ['hopping', 'resting', 'calling'],
+    emoji: '🐸',
+    availableInMilestone: true,
+    nonNative: {
+      correctHabitatId: 'rainforest',
+      impactNote: 'People introduced Cane Toads to some places to help control pests, but that caused problems for animals who already lived there.',
+    },
+  },
 ];
 
 export const commonMilestoneAnimals = animals.filter(

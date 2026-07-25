@@ -9,7 +9,9 @@ export type AnimalId =
   | 'lost-puppy'
   | 'forest-wren'
   | 'forest-wallaby'
-  | 'forest-beetle';
+  | 'forest-beetle'
+  | 'red-eared-slider'
+  | 'cane-toad';
 
 export type LocationName =
   | 'Park Entrance'

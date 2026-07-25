@@ -4,7 +4,7 @@ import type { AnimalId, LocationName } from '../types/Ids';
 import type { DestinationId } from '../types/Destination';
 
 const validLocations: LocationName[] = ['Park Entrance', 'Duck Pond', 'Open Meadow', 'Forest Trail', 'Strange Old Tree', 'Whisper Grove'];
-const validAnimals: AnimalId[] = ['duck', 'frog', 'butterfly', 'rabbit', 'lizard', 'park-bird', 'rare-owl', 'lost-puppy', 'forest-wren', 'forest-wallaby', 'forest-beetle'];
+const validAnimals: AnimalId[] = ['duck', 'frog', 'butterfly', 'rabbit', 'lizard', 'park-bird', 'rare-owl', 'lost-puppy', 'forest-wren', 'forest-wallaby', 'forest-beetle', 'red-eared-slider', 'cane-toad'];
 const validDestinations: DestinationId[] = ['forest', 'mountains', 'lake', 'safari', 'rainforest', 'alien-planet'];
 
 export function migrateSaveData(input: unknown): SaveData {
@@ -37,6 +37,7 @@ export function migrateSaveData(input: unknown): SaveData {
     selectedDestination,
     lastPlayArea: requestedArea === 'forest' && wildCamperUnlocked ? 'forest' : requestedArea === 'camper' && wildCamperUnlocked ? 'camper' : 'park',
     forestLocation: parsed.forestLocation === 'Fern Trail' ? 'Fern Trail' : 'Forest Arrival',
+    reportedInvasiveSpecies: filterKnown(parsed.reportedInvasiveSpecies, validAnimals),
   };
 }
 

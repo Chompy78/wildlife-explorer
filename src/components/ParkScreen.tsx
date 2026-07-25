@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { getAnimalById, getAnimalsForLocation, getLocationByName, getRoleName, getVisibleParkLocations, photographAnimal, visitLocation } from '../state/gameState';
+import type { Animal } from '../types/Animal';
 import type { AnimalId, LocationName } from '../types/Ids';
 import type { SaveData } from '../types/SaveData';
 import { CameraPanel } from './CameraPanel';
 import { CompletionCelebration } from './CompletionCelebration';
 import { DiscoveryPanel } from './DiscoveryPanel';
+import { HabitatQuiz } from './HabitatQuiz';
 import { Journal } from './Journal';
 import { LocationClues } from './LocationClues';
 import { ProgressTracker } from './ProgressTracker';
@@ -16,6 +18,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
   const [message, setMessage] = useState('Welcome to Tutorial Park. Try visiting Duck Pond, Open Meadow, Forest Trail, or the Strange Old Tree.');
   const [journalOpen, setJournalOpen] = useState(false);
   const [celebrationOpen, setCelebrationOpen] = useState(false);
+  const [quizAnimal, setQuizAnimal] = useState<Animal | null>(null);
   const previousUnlocked = useRef(saveData.wildCamperUnlocked);
   const journalButtonRef = useRef<HTMLButtonElement>(null);
   const visibleLocations = useMemo(() => getVisibleParkLocations(saveData), [saveData]);
@@ -46,8 +49,10 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
   function handlePhotographAnimal(animalId: AnimalId) {
     const animal = getAnimalById(animalId);
     if (!animal) return;
+    const isNewReport = Boolean(animal.nonNative) && !saveData.reportedInvasiveSpecies.includes(animalId);
     onSaveChange(photographAnimal(saveData, animal.id));
     setMessage(`Great photo! ${animal.name} added to your Wildlife Journal.`);
+    if (isNewReport) setQuizAnimal(animal);
   }
 
   return (
@@ -89,6 +94,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
       </section>
       {journalOpen ? <Journal saveData={saveData} onClose={closeJournal} /> : null}
       {celebrationOpen ? <CompletionCelebration onClose={() => setCelebrationOpen(false)} /> : null}
+      {quizAnimal ? <HabitatQuiz animal={quizAnimal} onClose={() => setQuizAnimal(null)} /> : null}
     </main>
   );
 }

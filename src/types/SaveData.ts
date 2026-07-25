@@ -2,7 +2,7 @@ import type { DestinationId } from './Destination';
 import type { LostPuppyQuestProgress } from './Quest';
 import type { AnimalId, LocationName } from './Ids';
 
-export const CURRENT_SAVE_SCHEMA_VERSION = 5 as const;
+export const CURRENT_SAVE_SCHEMA_VERSION = 6 as const;
 export type GameScreen = 'start' | 'role-select' | 'park' | 'camper' | 'forest';
 export type PlayArea = 'park' | 'camper' | 'forest';
 
@@ -22,4 +22,5 @@ export type SaveData = {
   selectedDestination: DestinationId | null;
   lastPlayArea: PlayArea;
   forestLocation: 'Forest Arrival' | 'Fern Trail';
+  reportedInvasiveSpecies: AnimalId[];
 };

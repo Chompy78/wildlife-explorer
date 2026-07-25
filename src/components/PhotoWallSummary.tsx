@@ -10,6 +10,7 @@ export function PhotoWallSummary({ saveData }: { saveData: SaveData }) {
       <ul>
         <li>{commonCount} of {commonMilestoneAnimals.length} common animals photographed</li>
         <li>Rare Owl: {saveData.photographedAnimals.includes('rare-owl') ? 'photographed' : 'not photographed'}</li>
+        <li>Non-native sightings reported: {saveData.reportedInvasiveSpecies.length} of {animals.filter((animal) => animal.nonNative).length}</li>
         <li>Lost Puppy: {saveData.questProgress.lostPuppy.completed ? 'helped and reunited' : 'not completed'}</li>
         <li>Whisper Grove: {saveData.whisperGroveDiscovered ? 'discovered' : 'hidden'}</li>
       </ul>

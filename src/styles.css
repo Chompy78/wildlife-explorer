@@ -106,6 +106,11 @@ h2 { color: #235c3a; }
 .celebration-overlay { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 1rem; background: rgba(12,35,22,.58); }
 .celebration-card { width: min(520px,100%); border-radius: 30px; padding: 2rem; background: #fffdf3; box-shadow: 0 28px 70px rgba(20,60,32,.35); text-align: center; }
 .celebration-icon { font-size: 5rem; }
+.quiz-overlay { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 1rem; background: rgba(12,35,22,.58); }
+.quiz-card { width: min(560px,100%); border-radius: 30px; padding: 2rem; background: #fffdf3; box-shadow: 0 28px 70px rgba(20,60,32,.35); }
+.quiz-choice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 0.6rem; margin-top: 1rem; }
+.quiz-choice { display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; border: 2px solid rgba(47,125,75,0.15); border-radius: 16px; padding: 0.7rem 0.9rem; background: #f8fff3; color: #19402b; box-shadow: none; }
+.invasive-note { padding: 0.6rem 0.8rem; border-radius: 14px; background: #fff9dc; border: 1px solid rgba(180,140,20,0.25); }
 button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
 
 

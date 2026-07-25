@@ -32,4 +32,17 @@ describe('Tutorial Park progression', () => {
     save = discoverWhisperGrove(save);
     expect(save.wildCamperUnlocked).toBe(true);
   });
+
+  it('logs a non-native animal as reported the first time it is photographed, and does not duplicate on a retake', () => {
+    let save = createDefaultSave();
+    save = photographAnimal(save, 'red-eared-slider');
+    expect(save.reportedInvasiveSpecies).toEqual(['red-eared-slider']);
+    save = photographAnimal(save, 'red-eared-slider');
+    expect(save.reportedInvasiveSpecies).toEqual(['red-eared-slider']);
+  });
+
+  it('does not report a native animal as invasive', () => {
+    const save = photographAnimal(createDefaultSave(), 'duck');
+    expect(save.reportedInvasiveSpecies).toEqual([]);
+  });
 });

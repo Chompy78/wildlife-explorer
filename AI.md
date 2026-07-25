@@ -15,10 +15,12 @@ Implemented:
 - Wild Camper introduction, stations, route previews, Photo Wall and Expedition Readiness
 - Forest travel from the Wild Camper
 - Forest Arrival and one short Fern Trail
-- Forest Wren, Forest Wallaby and Shiny Forest Beetle photography
+- Forest Wren, Forest Wallaby, Shiny Forest Beetle and Cane Toad photography
 - Wildlife Journal integration
 - Return from Forest to the Wild Camper
-- Save schema version 5 and migration of older saves
+- Non-native animal reporting: Red-eared Slider Turtle (Duck Pond) and Cane Toad (Forest) trigger a calm
+  "where does it belong" habitat quiz after the first photograph, and a note in the Journal
+- Save schema version 6 and migration of older saves
 - Keyboard focus handling, responsive styling and reduced-motion support
 - TypeScript, state tests, component tests, production build and encoding audit
 

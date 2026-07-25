@@ -72,6 +72,50 @@ keyboard-accessible and correctly positioned against whatever the generated art 
 `docs/copilot-packages/03-park-map.md`) is satisfied and `npm run check` passes.
 
 
+## Add a second non-native animal per biome — TODO
+The invasive-species habitat quiz shipped 2026-07-25 with one non-native animal per playable biome
+(Red-eared Slider Turtle at Duck Pond, Cane Toad at Forest Trail/Fern Trail). The user said "at least one
+... maybe even two" — a second one per biome was deferred to prove the mechanic first.
+**Effort:** low · **Risk:** low — same established pattern (`Animal.nonNative`, `HabitatQuiz.tsx`,
+`reportedInvasiveSpecies`), no new architecture, just more data entries.
+
+```text
+1. Pick two more real, kid-friendly, non-predator-framed invasive species (avoid describing hunting/
+   harm-to-other-animals directly, per the precedent set by the Slider Turtle/Cane Toad picks — stick to
+   competition-for-resources or toxicity-if-eaten framing) — one for Tutorial Park, one for Forest.
+   Grey Squirrel (Open Meadow, correct answer: Forest) was already suggested for Park as an easy pick.
+2. Add each as a new AnimalId + Animal entry (with nonNative.correctHabitatId/impactNote) following the
+   exact pattern of red-eared-slider/cane-toad in src/data/animals.ts.
+3. Add the Forest one to forestAnimalIds in forestState.ts if applicable.
+4. Add both ids to validAnimals in saveMigration.ts.
+5. Run npm run check; verify the quiz and Journal note for both in a real browser.
+```
+**Done when:** two more animals are photographable, trigger the habitat quiz correctly, and
+`npm run check` passes.
+
+
+## Add 8 new real-earth preview biomes — TODO
+User requested 8 more natural-earth biomes as future Camper route-map previews (non-playable, same
+pattern as the existing Forest/Mountains/Lake/Safari/Rainforest). Suggested in the 2026-07-25 session:
+Desert, Arctic/Tundra, Coral Reef, Wetlands/Swamp, Coastal/Tide Pools, Grassland/Prairie, Taiga/Boreal
+Forest, Volcanic Highlands. A user-confirmed bonus Dinosaur biome is also planned separately — both must
+be excluded from the habitat quiz (see `DECISIONS.md`'s `D-2026-07-25-invasive-species-quiz-eligible-flag`
+— real-earth biomes get `quizEligible: true`, Dinosaur gets `false`, same as Alien Planet).
+**Effort:** medium · **Risk:** low — purely additive `DestinationPreview` data entries (`status: 'preview'`,
+non-playable), same category of change as the existing 6; no gameplay/save-schema changes. Confirm the
+exact 8 (and names/taglines) with the user before adding, and confirm whether Cave overlaps with the
+already-documented Crystal Cave secret area in `VISUAL_DIRECTION.md` rather than duplicating it.
+
+```text
+1. Confirm the final 8 (or a revised list) and their name/icon/tagline/preview copy with the user.
+2. Add each to destinationPreviews in src/data/destinations.ts with status: 'preview', quizEligible: true.
+3. Add each new id to the DestinationId union in src/types/Destination.ts.
+4. Run npm run check.
+```
+**Done when:** 8 new preview destinations appear on the Camper's route map, none are playable, and
+`npm run check` passes.
+
+
 ## Decide whether to introduce a PR-gated workflow — TODO
 Now that CI (`npm run check` via GitHub Actions) is wired up, `DECISIONS.md`'s `D-2026-07-21-branch-model`
 "CI gets added" revisit trigger has fired (see `D-2026-07-21-ci-added`) — decide whether to keep

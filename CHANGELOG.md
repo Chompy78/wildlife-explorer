@@ -5,6 +5,26 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(gameplay): added non-native animal reporting with a "where does it belong" habitat
+  quiz** — introduces `Animal.nonNative` (a `correctHabitatId` + `impactNote`) on two new animals: the
+  Red-eared Slider Turtle (Duck Pond, correct answer Lake) and the Cane Toad (Forest Trail/Fern Trail,
+  correct answer Rainforest). Photographing either for the first time opens `HabitatQuiz.tsx`, a small
+  accessible modal (reusing `useModalFocus`, same pattern as `CompletionCelebration`/`Journal`) asking
+  the player where the animal actually belongs, with answer choices pulled from the existing
+  `destinationPreviews` data. Both outcomes are equally encouraging and reveal the same fact — no fail
+  state, matching the Canon's "no harsh failure" rule. The Journal gets a calm amber "Logged for the park
+  rangers" note (`.invasive-note`) instead of alarm styling, and the Photo Wall summary gets a
+  "Non-native sightings reported: N of M" stat. New `Animal.nonNative`-driven `reportedInvasiveSpecies`
+  save field required bumping `CURRENT_SAVE_SCHEMA_VERSION` to 6 (migration updated, old saves default to
+  `[]`). Verified with 8 new/updated tests plus a real-browser walkthrough (both the correct- and
+  incorrect-answer branches, the Journal note, and the Photo Wall stat) — screenshots confirmed the copy
+  read cleanly, catching and fixing one redundant-phrasing bug in the Cane Toad's correct-answer text
+  before it shipped. Alien Planet is excluded from the quiz's answer choices via a new required
+  `quizEligible` field on `DestinationPreview` (see `DECISIONS.md`'s
+  `D-2026-07-25-invasive-species-quiz-eligible-flag`) rather than one-off exclusion logic, so a future
+  Dinosaur biome stays excluded by default too. A second non-native animal per biome and 8 new preview
+  biomes were discussed and deferred — see `docs/TASK_BOARD.md`.
+
 - **2026-07-25 · docs(copilot-handoff): made "Claude implements Track B" the standing policy** — per
   explicit user direction, Copilot 365 is used for Track A (art) only, going forward; Track B is no
   longer offered to Copilot 365 Chat as an option even as a fallback. Updated

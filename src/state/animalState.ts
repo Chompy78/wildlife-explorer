@@ -31,6 +31,7 @@ export function photographAnimal(saveData: SaveData, animalId: AnimalId): SaveDa
     ...saveData,
     discoveredAnimals: addUnique(saveData.discoveredAnimals, animalId),
     photographedAnimals: addUnique(saveData.photographedAnimals, animalId),
+    reportedInvasiveSpecies: animal.nonNative ? addUnique(saveData.reportedInvasiveSpecies, animalId) : saveData.reportedInvasiveSpecies,
   });
 }
 
