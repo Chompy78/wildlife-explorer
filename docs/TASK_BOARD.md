@@ -25,26 +25,31 @@ All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
 
-## Integrate animal portrait art (Journal, Camera Panel, Photo Wall, Forest) — TODO
-`docs/copilot-packages/02-animal-portraits.md` is a ready-to-run handoff package (art brief + code spec)
-replacing the emoji used for all 11 animals with real portrait art in `Journal.tsx`, `CameraPanel.tsx`,
-`PhotoWallSummary.tsx` and `ForestScreen.tsx`. Track A is done: the 11 images exist at
-`public/assets/animals/<id>.jpg` (converted PNG → JPEG and moved to the correct folder by Claude after
-Copilot generated them 1254px PNG in the wrong location — see the package's Status note). Only Track B
-(code) remains.
-**Effort:** low · **Risk:** low — additive visual-only change (one new small data-lookup file, a CSS
-addition, four small display-logic edits), no state/save-schema/gameplay logic touched.
+## Implement the multi-photo-variant collection mechanic — PROPOSED, awaiting confirmation
+Supersedes the original "Integrate animal portrait art" task. `docs/copilot-packages/02-animal-portraits.md`
+was written for one portrait per animal; the user clarified afterward that all 5 generated variants per
+animal should ship as separate collectible "photos" — photographing an animal shows a randomly-picked one
+of its 5, and the player collects all 5 over repeat sightings. Assets are ready: every animal has exactly
+5 numbered files at `public/assets/animals/<id>-1.jpg` through `<id>-5.jpg`. Code not yet written — see
+Claude's proposed design in the chat session before implementing.
+**Effort:** medium · **Risk:** medium — new `collectedPhotoVariants` save field (another schema version
+bump, following the `reportedInvasiveSpecies` precedent), new random-selection logic in
+`animalState.ts`/`forestState.ts`, and a Journal redesign to show per-animal collection progress instead
+of a single static portrait.
 
 ```text
-1. Implement Track B directly: create src/data/animalPortraits.ts, add the .animal-portrait CSS, and
-   update Journal.tsx, CameraPanel.tsx, PhotoWallSummary.tsx and ForestScreen.tsx per the package's
-   B1-B6 (note: file extension is .jpg, not .png).
-2. Verify Journal still hides portraits for undiscovered animals (no spoiler regression).
-3. Verify Canon/Scope compliance on the generated art (no new animals invented, no distress/combat).
-4. Run npm run check; visually verify in a real browser.
+1. Confirm the proposed design with the user (random-vs-not-yet-collected selection rule, where the
+   "you got a new photo" moment is shown, how the Journal displays collection progress) before writing
+   code.
+2. Add collectedPhotoVariants: string[] to SaveData (entries like "duck-3"), bump
+   CURRENT_SAVE_SCHEMA_VERSION, update saveDefaults.ts and saveMigration.ts.
+3. Add variant-selection logic to photographAnimal (animalState.ts) and photographForestAnimal
+   (forestState.ts), reusing the addUnique pattern already used for other array fields.
+4. Redesign the relevant Journal/Camera Panel/Photo Wall display to show collection progress per animal
+   (e.g. "3 of 5 photos collected") rather than one static portrait.
+5. Verify Canon/Scope compliance, run npm run check, verify visually in a real browser.
 ```
-**Done when:** the package's own "Done when" section (bottom of
-`docs/copilot-packages/02-animal-portraits.md`) is satisfied and `npm run check` passes.
+**Done when:** the user has confirmed the design, it's implemented, and `npm run check` passes.
 
 
 ## Integrate illustrated Park Map with location pins — TODO

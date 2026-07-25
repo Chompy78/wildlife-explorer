@@ -5,6 +5,18 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · chore(assets): switched animal art from one portrait per animal to 5 numbered photo
+  variants each** — the user clarified the previously-discarded variation-set alternates weren't meant to
+  be discarded: they're meant to be randomly selectable "photos" the player can collect across repeat
+  sightings. Restored the 39 variant files deleted in the previous cleanup from git history (`git show
+  <commit>:<path>`, not a working-tree revert), combined with 5 newly-uploaded files that completed the
+  missing variants for butterfly/rabbit/lost-puppy (every animal now has exactly 5: 1 base + 4 style
+  alternates). Converted all 55 to JPEG quality 85 at full 1254px and renamed to
+  `public/assets/animals/<id>-<1-5>.jpg` (128.8MB → 15.5MB). The old single-file-per-animal naming
+  (`<id>.jpg`) is retired — nothing referenced it yet since Track B was never implemented. Game logic for
+  the actual "random photo, collect all 5" mechanic is proposed but not yet implemented — see
+  `docs/TASK_BOARD.md`.
+
 - **2026-07-25 · chore(assets): cut the animal portrait art from 120MB to 2.9MB, moved to the correct
   folder** — Copilot's Track A output for Package 02 landed as 51 files (11 base + 40 unused
   variation-set alternates, all 1254px PNG, ~2.3MB each) in `public/assets/tutorial-park/` instead of

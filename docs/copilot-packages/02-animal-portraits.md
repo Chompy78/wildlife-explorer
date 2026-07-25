@@ -1,16 +1,24 @@
 # Package 02 — Animal portrait art (Wildlife Journal + Camera Panel + Photo Wall)
 
-**Status:** Track A done (2026-07-25) — Copilot generated all 11, plus extra variation-set alternates not
-called for by this package. Claude post-processed the 11 base images: converted PNG → JPEG (quality 85,
-same 1254px resolution — format was the actual size problem, not resolution; see `DECISIONS.md`) and
-moved them to the correct `public/assets/animals/<id>.jpg` path (they'd landed in
-`public/assets/tutorial-park/` alongside the unrelated Package 01 hero image). Cut 120MB of generated
-files down to ~2.9MB. The 40 unused variant files were deleted — they were only ever meant for picking a
-favorite, not for shipping. **File extension below is `.jpg`, not `.png`** — the prose still says `.png`
-in a few places since that was the original ask; treat `.jpg` as authoritative.
-Track B (code) is implemented by Claude directly, not routed through Copilot 365 Chat — see "Handing
-this to Copilot 365" below.
-**Track A:** art brief (image generation, 11 animal portraits). **Track B:** code spec (React/CSS).
+**Status:** Track A done, but the plan below is superseded (2026-07-25) — see the note at the bottom of
+this section before implementing anything.
+
+Original Track A history: Copilot generated all 11 base portraits plus variation-set alternates not
+called for by this package's original spec. Claude post-processed everything: converted PNG → JPEG
+(quality 85, same 1254px resolution — format was the actual size problem, not resolution; see
+`DECISIONS.md`) and moved to the correct `public/assets/animals/` path (files had landed in
+`public/assets/tutorial-park/` alongside the unrelated Package 01 hero image).
+
+**Superseded design note:** this package was written for *one* portrait per animal
+(`public/assets/animals/<id>.jpg`), with the variation-set alternates treated as disposable "pick a
+favorite" drafts. The user clarified afterward that all variants are meant to ship — the game should
+randomly show one of several "photos" each time an animal is photographed, and the player collects all
+of them over repeat sightings. Every animal now has exactly 5 numbered files:
+`public/assets/animals/<id>-1.jpg` through `<id>-5.jpg`. **The Track B code spec below (single portrait
+per animal, no collection state) is out of date and should not be implemented as written.** See
+`docs/TASK_BOARD.md`'s "Implement the multi-photo-variant collection mechanic" task for the current plan.
+
+**Track A:** art brief (image generation, 11 animal portraits). **Track B:** code spec (React/CSS) — superseded.
 **Scope:** replace the plain emoji currently used for every animal with real portrait art, in the
 Wildlife Journal, the Camera Panel (Tutorial Park photography), the Photo Wall summary (Camper), and the
 Forest screen's photo buttons. No gameplay, save-schema, or state logic changes — purely how existing
