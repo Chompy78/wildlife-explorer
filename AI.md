@@ -16,7 +16,10 @@ Implemented:
 - Forest travel from the Wild Camper
 - Forest Arrival and one short Fern Trail
 - Forest Wren, Forest Wallaby, Shiny Forest Beetle and Cane Toad photography
-- Wildlife Journal integration
+- Wildlife Journal integration, navigable by biome (Tutorial Park / Forest / Places & Rewards) with a
+  per-animal photo album showing the actual collected photos in a grid (locked slots for uncollected
+  variants), reached via a "View Photos" button on each discovered animal (`src/components/
+  PhotoAlbum.tsx`)
 - Return from Forest to the Wild Camper
 - Illustrated Park Map: `ParkScreen.tsx`'s location grid replaced with a single map image and 6
   percentage-positioned, keyboard-accessible pins (`src/data/parkMapCoordinates.ts`)

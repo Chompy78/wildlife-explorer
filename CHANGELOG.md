@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-25 · feat(journal): biome navigation and a real per-animal photo album** — the Journal now
+  opens on a biome-select screen (Tutorial Park / Forest / Places & Rewards, each with a discovered
+  count) instead of one long flat list. Every discovered animal with photo art gets a new "View Photos"
+  button opening a grid of its 5 photo slots — the real collected photos, and a lock icon for each
+  variant not yet collected. No save-schema change. See `DECISIONS.md`'s
+  `D-2026-07-25-journal-biome-navigation-and-photo-album`.
 - **2026-07-25 · feat(quiz): biome-completion Ranger Quiz and achievement** — finishing Tutorial Park now
   chains a short, encouraging 5-question trivia quiz (new `BiomeQuiz.tsx`, reusing `HabitatQuiz`'s modal
   pattern) after the existing "You unlocked the Wild Camper!" celebration, drawn from facts the player has
