@@ -1,5 +1,5 @@
 ---
-description: Do the work for a task-board task picked by /pick-task — edit, verify, commit, push straight to main
+description: Do the work for a task-board task picked by /pick-code-task — edit, verify, commit, push straight to main
 argument-hint: <task title or short description>
 ---
 

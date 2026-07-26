@@ -36,7 +36,7 @@ Pick a model tier and say so:
 ## Step 4 — hand off
 
 Tell the user which task and why, and the suggested tier. Ask via `AskUserQuestion` whether to start now
-with `/run-task`, hold off, or pick differently. Retry once on a tool error before assuming anything.
+with `/run-code-task`, hold off, or pick differently. Retry once on a tool error before assuming anything.
 
 ---
 

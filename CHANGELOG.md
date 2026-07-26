@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-26 · chore(claude-commands): rename `.claude/commands/` files with a `-code-` marker** — all
+  seven command files renamed (`add-code-task.md`, `close-code-session.md`, `log-code-lesson.md`,
+  `make-code-cold-plan-review.md`, `pick-code-task.md`, `run-code-task.md`, `sweep-code-tasks.md`) to
+  disambiguate this git/PR-driven engineering family from a separate "-chat-" Skills family, matching
+  `chompy78/PACT`/`chompy78/homelife`'s precedent. See `DECISIONS.md`'s `D-2026-07-26-code-command-marker`.
 - **2026-07-25 · feat(journal): biome navigation and a real per-animal photo album** — the Journal now
   opens on a biome-select screen (Tutorial Park / Forest / Places & Rewards, each with a discovered
   count) instead of one long flat list. Every discovered animal with photo art gets a new "View Photos"

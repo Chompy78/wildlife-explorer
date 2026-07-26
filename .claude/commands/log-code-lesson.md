@@ -9,7 +9,7 @@ allowed-tools: Read, Grep, Glob, Agent, Bash(git clone *), Edit
 You read a session, session file, or transcript and draft candidate entries for the separate, private
 `chompy78/ai-lessons-learned` repo (shared across the user's projects, including `chompy78/PACT`, where
 this convention originated, and `chompy78/family-hub`). This is a **report-only** pass for the drafting
-step — never write to `inbox/`, commit, or push without approval, same convention as `/close-session`'s
+step — never write to `inbox/`, commit, or push without approval, same convention as `/close-code-session`'s
 item 8.
 
 ## Step 1 — figure out the source
