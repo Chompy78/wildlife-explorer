@@ -21,8 +21,9 @@ touching game state or save schema, read `saveMigration.ts`/`saveDefaults.ts` (o
 migration logic actually lives — confirm the path, don't assume) to understand the existing migration
 pattern** — this codebase already has a real versioned-save-schema convention (currently at version 5),
 follow it rather than improvising a new one. Add a line to `CHANGELOG.md` and remove the task's entry
-from `docs/TASK_BOARD.md` in the **same commit**. Add a `DECISIONS.md` note if the change involved a
-non-obvious *why*.
+from `docs/TASK_BOARD.md` in the **same commit**. If the change involved a non-obvious *why*, write a
+decision record to `decisions/2026/D-<YYYY-MM-DD>-<slug>.md` and add its one-line index entry to
+`DECISIONS.md`.
 
 If the task turns out bigger or more ambiguous than expected, stop and flag it — leave the task-board
 entry alone.

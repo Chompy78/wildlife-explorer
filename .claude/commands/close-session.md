@@ -15,8 +15,10 @@ that letter**. No worktree/branch/PR steps — this repo commits straight to `ma
 
 **1. `CHANGELOG.md`** — add the one-line entry (or entries), newest on top. Always required.
 
-**2. `DECISIONS.md`** — only if a change involved a non-obvious *why*. Write both the Index bullet and
-the full entry, `D-<YYYY-MM-DD>-<slug>` ID. If not warranted, say why.
+**2. `DECISIONS.md`** — only if a change involved a non-obvious *why*. Write the full
+`Context → Options → Decision → Why → Status` record to `decisions/2026/D-<YYYY-MM-DD>-<slug>.md`, then
+add a one-line index entry (Status/Summary/Record) to `DECISIONS.md` itself — never write full decision
+detail directly into `DECISIONS.md`. If not warranted, say why.
 
 **3. `docs/sessions/<name>.md`** — **match this repo's existing verbose, narrative style** (see
 `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` for the pattern), not a terse PACT-style

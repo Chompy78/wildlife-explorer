@@ -64,7 +64,10 @@ summarized here:
 
 ## Log as you go
 - **`CHANGELOG.md`** — *what* changed, one line, newest on top.
-- **`DECISIONS.md`** — *why*, on any architectural/process choice.
+- **`DECISIONS.md`** — *why*, on any architectural/process choice. As of 2026-07-28, `DECISIONS.md` is a
+  thin index — write the full record to `decisions/2026/D-<YYYY-MM-DD>-<slug>.md` first, then add a
+  one-line index entry (Status/Summary/Record) to `DECISIONS.md` itself. Never write full decision detail
+  directly into `DECISIONS.md`.
 - **`docs/sessions/<name>.md`** — the discussion, when it's worth keeping. This repo's existing session
   logs use a verbose, narrative style (see `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md`
   for the pattern) — match that style, don't switch to PACT's terser format mid-repo.

@@ -60,7 +60,9 @@ failure.
   economy, another live destination) without explicit instruction that a milestone now calls for it.
 - **Bucket = priority.** 🔴 NOW = current milestone work · 🟡 NEXT = deferred by Scope boundary (only
   add here if explicitly promoted by a milestone decision, don't default new tasks here).
-- **New decision.** If the task warrants a `DECISIONS.md` entry, use `D-<YYYY-MM-DD>-<slug>`.
+- **New decision.** If the task warrants a decision record, write it to `decisions/2026/D-<YYYY-MM-DD>-
+  <slug>.md` and add a matching one-line index entry to `DECISIONS.md` — never write full decision detail
+  directly into `DECISIONS.md` (it's index-only as of 2026-07-28).
 
 Show the task block and ask for approval before doing anything else. Wait for confirmation.
 
