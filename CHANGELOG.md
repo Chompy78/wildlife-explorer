@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-28 · docs: add 'technical access != scope' rule** — Added a "Technical Access ≠ Scope" section
+  to `AGENTS.md`, retrofitted from a new standard-level rule in AI_templates (`AGENTS_TEMPLATE.md`/
+  `AI_RULES.md` Rule 10), after direct testing on Home AI Server confirmed a session with broad,
+  non-enforced access would cross into a different project's files if asked. See `DECISIONS.md`
+  D-2026-07-28-technical-access-not-scope.
 - **2026-07-25 · feat(journal): biome navigation and a real per-animal photo album** — the Journal now
   opens on a biome-select screen (Tutorial Park / Forest / Places & Rewards, each with a discovered
   count) instead of one long flat list. Every discovered animal with photo art gets a new "View Photos"

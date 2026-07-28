@@ -4,6 +4,16 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-28-technical-access-not-scope · Add a "technical access ≠ scope" rule to AGENTS.md
+
+**Status:** Accepted
+
+**Summary:** Added a "Technical Access ≠ Scope" section to AGENTS.md, after direct testing on Home AI
+  Server confirmed a session with broad, non-enforced access would cross into a different project's files
+  if asked.
+
+**Record:** decisions/2026/D-2026-07-28-technical-access-not-scope.md
+
 ## D-2026-07-25-journal-biome-navigation-and-photo-album · Biome-select navigation and a real photo grid
 
 **Status:** Implemented
