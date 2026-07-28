@@ -21,5 +21,7 @@
 # 🔴 NOW — Milestone 5 review priorities
 
 All five 2026-07-20 review priorities are graduated to `CHANGELOG.md` as of 2026-07-21's sweep.
+"Photo Mode: animals wander in and out of frame" graduated to `CHANGELOG.md` same-day (2026-07-28) — see
+`DECISIONS.md`'s `D-2026-07-28-photo-mode-wandering-animals`.
 
 ---

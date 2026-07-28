@@ -5,6 +5,17 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-28 · feat(camera): Photo Mode — animals wander in and out of frame** — `CameraPanel`'s static
+  "always available" button list now gates on presence: each animal cycles in/out of frame on its own
+  randomized timer (staggered so a group doesn't sync up), and the shutter is only enabled while an
+  animal is actually in frame. Off-frame is never a failure — the button is disabled with encouraging
+  copy ("X wandered off - wait for it to come back"), same visual language as an already-complete
+  collection, per Canon's "no harsh failure". Composes unchanged with the existing pose-capture pulse
+  (the "Great shot!" bonus still only matters while in frame). `prefers-reduced-motion` skips the gate
+  entirely, falling back to pre-Photo-Mode always-available behavior. No save-schema change. Verified in
+  a real browser under normal motion, emulated reduced motion, and a small viewport. Promotes the
+  "Advanced photography features" 2026-07-25 roadmap item out of `docs/TASK_BOARD_NEXT.md`; the day/
+  night layer stays deferred. See `DECISIONS.md`'s `D-2026-07-28-photo-mode-wandering-animals`.
 - **2026-07-28 · fix(ui): action-bar buttons no longer clip off-screen on small maps** — the floating
   icon action bar (Camera/Quest/Clue/Discover/Progress/Journal/About) is an absolutely-positioned column
   inside the `.park-map`/`.forest-stage` box, which clips overflow. On narrow phones (and with both Clue

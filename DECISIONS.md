@@ -4,6 +4,19 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-28-photo-mode-wandering-animals · Camera shutter gates on animal presence instead of always being available
+
+**Status:** Active
+
+**Summary:** Promoted the "Advanced photography features" 2026-07-25 roadmap item's first slice:
+  `CameraPanel` now cycles each animal in/out of frame on an independent randomized timer (staggered),
+  and the shutter is only enabled while the animal is actually in frame. Off-frame is never a failure —
+  disabled with encouraging copy, same visual language as an already-complete collection, per Canon's
+  "no harsh failure". Composes unchanged with the existing pose-capture pulse. `prefers-reduced-motion`
+  skips the gate entirely. No save-schema change. See full entry.
+
+**Record:** decisions/2026/D-2026-07-28-photo-mode-wandering-animals.md
+
 ## D-2026-07-28-action-bar-clipping-fix · Action-bar buttons clipped on small maps, fixed with a bounded scroll
 
 **Status:** Active

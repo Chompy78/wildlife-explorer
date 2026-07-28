@@ -38,11 +38,10 @@ Also ideas from README.md's Roadmap section — commitments to a direction, not 
 
 - **Advanced photography features** — 2026-07-25 brainstorm gave this concrete shape: replace
   `CameraPanel`'s static button list with a live, animated scene per location where the animal wanders
-  in and out of view (rather than always being available to photograph on demand), with a "photo mode"
-  timing beat layered on top of the pose-capture mechanic above. By far the biggest of the 2026-07-25
-  ideas — deliberately deferred until the smaller wins (facts, quiz, pose-capture) ship first, since it
-  needs its own design pass: what renders the "scene" (new per-location art vs. animating existing photo
-  art over a simple backdrop), and how animal appearance timing interacts with the pose-capture pulse.
+  in and out of view. The smaller wins it was waiting on (facts, quiz, pose-capture) have all shipped,
+  and the first slice (animal wandering in/out of frame, composed with the existing pose-capture pulse)
+  is now promoted to `docs/TASK_BOARD_NOW.md`'s "Photo Mode: animals wander in and out of frame" task —
+  see there for the concrete implementation plan. The bigger day/night layer below stays deferred.
 - **Day and night wildlife behaviour** — 2026-07-25 brainstorm: time-of-day/weather selection **inside**
   the (not-yet-built) photo mode above, cosmetic only — it changes the mood/backdrop while framing a shot,
   but which photo variant you get stays random-from-uncollected as it already is (deliberately not tied to
