@@ -4,6 +4,19 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-28-action-bar-clipping-fix · Action-bar buttons clipped on small maps, fixed with a bounded scroll
+
+**Status:** Active
+
+**Summary:** The floating icon action bar (up to 7 buttons on Park) is an absolutely-positioned column
+  inside an `overflow: hidden` map box. On narrow phones, and whenever both Clue and Discover show at
+  once, the column could be taller than the box, silently clipping the bottom button(s) with no way to
+  reach them. Fixed by anchoring `.action-bar` with both `top` and `bottom` plus `overflow-y: auto`
+  (scrolls internally instead of clipping) rather than reflowing it into a wrapping horizontal row —
+  lower-risk, no visual change on screens where it already fit. See full entry.
+
+**Record:** decisions/2026/D-2026-07-28-action-bar-clipping-fix.md
+
 ## D-2026-07-28-wildlife-explorer-task-board-split · Split docs/TASK_BOARD.md into NOW/SOON/NEXT/SOMEDAY
 
 **Status:** Accepted

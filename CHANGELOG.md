@@ -5,6 +5,14 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-28 · fix(ui): action-bar buttons no longer clip off-screen on small maps** — the floating
+  icon action bar (Camera/Quest/Clue/Discover/Progress/Journal/About) is an absolutely-positioned column
+  inside the `.park-map`/`.forest-stage` box, which clips overflow. On narrow phones (and with both Clue
+  and Discover showing) the column could be taller than the map box, silently hiding the bottom button(s)
+  with no way to reach them — confirmed in a real browser at 320×480 (About was clipped). Fixed by
+  anchoring `.action-bar` between `top` and `bottom` and adding `overflow-y: auto`, so it scrolls
+  internally instead of clipping; verified all 7 buttons stay reachable down to 320×480, and desktop is
+  visually unchanged. See `DECISIONS.md`'s `D-2026-07-28-action-bar-clipping-fix`.
 - **2026-07-28 · docs: split docs/TASK_BOARD.md into NOW/SOON/NEXT/SOMEDAY** — Split by this project's own
   four existing bands into `TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md`, matching `DECISIONS.md`'s
   already-split shape (this half had been missed, caught during a cross-project verification sweep).
