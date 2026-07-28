@@ -25,8 +25,8 @@ Look in `docs/plans/` for overlap; if revising, add `Supersedes: docs/plans/<old
 
 ## Step 3 — do the actual planning
 
-Research what the plan touches; check `AI.md` (Canon, Scope boundary), `AGENTS.md`, `docs/TASK_BOARD.md`,
-`DECISIONS.md` for constraints. Work out goal, approach (concrete files/functions), alternatives
+Research what the plan touches; check `AI.md` (Canon, Scope boundary), `AGENTS.md`,
+`docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md`, `DECISIONS.md` for constraints. Work out goal, approach (concrete files/functions), alternatives
 considered, out of scope, risks, files touched.
 
 Assume the reviewer has no repo access — quote constraints inline. Never inline secrets/`.env` values.

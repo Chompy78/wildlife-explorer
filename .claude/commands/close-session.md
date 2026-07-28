@@ -26,7 +26,7 @@ note. Write one if the plan changed mid-session, a root cause differed from what
 session covered real discussion worth preserving. **If a note for this session already exists, re-read
 it against everything that's happened since — don't just confirm it exists.**
 
-**4. Task-board graduation** — remove finished `docs/TASK_BOARD.md` entries, confirm the matching
+**4. Task-board graduation** — remove finished entries from the relevant `docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md` file, confirm the matching
 `CHANGELOG.md` line exists.
 
 ## Part 2 — Verify (report only)

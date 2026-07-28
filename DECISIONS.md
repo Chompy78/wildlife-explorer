@@ -4,6 +4,16 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-28-wildlife-explorer-task-board-split · Split docs/TASK_BOARD.md into NOW/SOON/NEXT/SOMEDAY
+
+**Status:** Accepted
+
+**Summary:** Split docs/TASK_BOARD.md into TASK_BOARD_NOW.md/_SOON.md/_NEXT.md/_SOMEDAY.md by its
+  existing four bands — this had been missed when DECISIONS.md was split, caught during a cross-project
+  verification sweep. Updated all `.claude/commands/*.md` references to match.
+
+**Record:** decisions/2026/D-2026-07-28-wildlife-explorer-task-board-split.md
+
 ## D-2026-07-28-technical-access-not-scope · Add a "technical access ≠ scope" rule to AGENTS.md
 
 **Status:** Accepted

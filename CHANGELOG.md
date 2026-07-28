@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-28 · docs: split docs/TASK_BOARD.md into NOW/SOON/NEXT/SOMEDAY** — Split by this project's own
+  four existing bands into `TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md`, matching `DECISIONS.md`'s
+  already-split shape (this half had been missed, caught during a cross-project verification sweep).
+  Updated all `.claude/commands/*.md` references to the new band-file names. See `DECISIONS.md`
+  D-2026-07-28-wildlife-explorer-task-board-split.
 - **2026-07-28 · docs: add 'technical access != scope' rule** — Added a "Technical Access ≠ Scope" section
   to `AGENTS.md`, retrofitted from a new standard-level rule in AI_templates (`AGENTS_TEMPLATE.md`/
   `AI_RULES.md` Rule 10), after direct testing on Home AI Server confirmed a session with broad,

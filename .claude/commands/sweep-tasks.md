@@ -12,7 +12,7 @@ repo has none yet (see `AGENTS.md`'s *Branch model*).
 
 ## Step 1 — get live state
 
-Read `AI.md`, `AGENTS.md`, and `docs/TASK_BOARD.md` directly.
+Read `AI.md`, `AGENTS.md`, and `docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md` directly.
 
 ## Step 2 — build the eligible queue
 

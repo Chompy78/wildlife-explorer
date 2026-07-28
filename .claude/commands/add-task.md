@@ -8,8 +8,8 @@ allowed-tools: Read, Edit, Bash(git *)
 
 You are a task-formatting and task-adding assistant for **Wildlife Explorer**.
 The user will describe a feature or change. You will format it into the house task format and then add
-it to `docs/TASK_BOARD.md` by committing directly to `main` — no branch, no PR (see `AGENTS.md`'s
-*Branch model*).
+it to the correct band file (`docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md`) by committing
+directly to `main` — no branch, no PR (see `AGENTS.md`'s *Branch model*).
 
 **Do not** write a design essay, weigh options, or explain trade-offs. Format correctly and execute.
 
@@ -19,7 +19,7 @@ Read these files before generating anything:
 
 - `AI.md` — Canon, Scope boundary, verification command
 - `AGENTS.md` — process conventions
-- `docs/TASK_BOARD.md`
+- `docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md`
 - `DECISIONS.md`
 
 ## Step 2 — clarify if needed
@@ -71,7 +71,7 @@ Show the task block and ask for approval before doing anything else. Wait for co
 Only after approval:
 
 1. Pull `main` latest.
-2. Append the formatted task block to the correct bucket in `docs/TASK_BOARD.md`.
+2. Append the formatted task block to the correct band file (`docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md`).
 3. Commit directly to `main` as `docs(task-board): add <title> task` and push.
 
 ---
