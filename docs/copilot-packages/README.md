@@ -31,9 +31,9 @@ package says exactly which ones, kept well under the 20-file ceiling.
   long-term/aspirational, not current scope). `public/assets/wild-camper/wild-camper-direction.png`
   (1536×1024 PNG) is the one concrete image anchor that exists today. Attach **both** in Copilot 365
   alongside any Track A art brief so new assets match — don't rely on either alone.
-- **Task-board format**: each package ends with a "Done when" block written in this repo's
-  `docs/TASK_BOARD.md` task format (see `AGENTS.md`), so finished work graduates into `CHANGELOG.md` the
-  same way any other task does.
+- **Task-board format**: each package ends with a "Done when" block written in this repo's task-board
+  format (see `AGENTS.md`), so finished work graduates into `CHANGELOG.md` the same way any other task
+  does.
 - **Copilot 365 only does Track A (art).** Package 01 found that Copilot 365 Chat couldn't reliably
   complete even a small, fully-specified multi-file code change — Claude implemented it directly instead.
   As of 2026-07-25 that's the standing approach, not a case-by-case fallback: packages still write a full

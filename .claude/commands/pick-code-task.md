@@ -6,12 +6,12 @@ allowed-tools: Read, Grep, Glob, AskUserQuestion, Skill
 
 # Wildlife Explorer — pick the next task-board task
 
-You help pick the next task from `docs/TASK_BOARD.md`. Solo project, no concurrent-session collision
-risk today — no branch-existence pre-flight check needed.
+You help pick the next task from `docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md`. Solo project,
+no concurrent-session collision risk today — no branch-existence pre-flight check needed.
 
 ## Step 1 — read live state
 
-Read `AI.md`, `AGENTS.md`, and `docs/TASK_BOARD.md` directly.
+Read `AI.md`, `AGENTS.md`, and `docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md` directly.
 
 ## Step 2 — pick a task
 
