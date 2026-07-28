@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getPhotoVariantCount, getPhotoVariantUrl, isCollectionComplete } from '../data/animalPhotoVariants';
 import type { AnimalId } from '../types/Ids';
 import { hasPhotographedAnimal } from '../state/gameState';
-import type { Animal } from '../types/Animal';
+import type { Animal, PhotoDifficulty } from '../types/Animal';
 import type { SaveData } from '../types/SaveData';
 
 type CameraPanelProps = {
@@ -11,8 +11,14 @@ type CameraPanelProps = {
   onPhotographAnimal: (animalId: AnimalId, greatShot: boolean) => void;
 };
 
-const PULSE_ON_MS = 900;
-const PULSE_OFF_MS = 1500;
+// Each species' Great Shot glow is tuned by its photoDifficulty: easy animals get a long, forgiving
+// glow and a short dark gap; hard animals get a short glow that's genuinely tricky to catch. A safe
+// minimum glow window is kept even on "hard" so it never tips into feeling unfair for younger players.
+const PULSE_DURATIONS: Record<PhotoDifficulty, { onMs: number; offMs: number }> = {
+  easy: { onMs: 1400, offMs: 1100 },
+  medium: { onMs: 900, offMs: 1500 },
+  hard: { onMs: 550, offMs: 1900 },
+};
 
 // Photo Mode: each animal wanders in and out of frame on its own randomized loop instead of always
 // being available on demand. Shooting only ever succeeds while an animal is in frame - there is still
@@ -33,41 +39,52 @@ function prefersReducedMotion(): boolean {
 }
 
 export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: CameraPanelProps) {
-  // A calm, non-punishing timing cue: the shutter glows on a loop, and shooting during the glow marks
-  // that photo a "Great shot!" bonus. Shooting at any other time still always works - there is no miss.
-  const [posePulse, setPosePulse] = useState(false);
-
-  useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-    function loop(active: boolean) {
-      setPosePulse(active);
-      timeoutId = setTimeout(() => loop(!active), active ? PULSE_ON_MS : PULSE_OFF_MS);
-    }
-    loop(false);
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   const animalIdsHere = animalsHere.map((animal) => animal.id).join(',');
   const [inFrame, setInFrame] = useState<Partial<Record<AnimalId, boolean>>>({});
+  // A calm, non-punishing timing cue per animal: its shutter glows on its own loop (paced by that
+  // species' photoDifficulty) whenever it's in frame, and shooting during the glow marks that photo a
+  // "Great shot!" bonus. Shooting at any other time while in frame still always works - there is no miss.
+  const [posePulse, setPosePulse] = useState<Partial<Record<AnimalId, boolean>>>({});
 
   useEffect(() => {
-    if (prefersReducedMotion()) {
-      // Reduced-motion fallback: skip the wandering gate entirely, every animal stays available like
-      // before Photo Mode existed - the timing cue is a movement effect this preference opts out of.
-      setInFrame(Object.fromEntries(animalsHere.map((animal) => [animal.id, true])));
-      return;
-    }
+    const reducedMotion = prefersReducedMotion();
     const timeouts: ReturnType<typeof setTimeout>[] = [];
+
     animalsHere.forEach((animal) => {
-      function loop(visible: boolean) {
+      const { onMs, offMs } = PULSE_DURATIONS[animal.photoDifficulty];
+      let pulseTimeoutId: ReturnType<typeof setTimeout> | undefined;
+
+      function pulseLoop(active: boolean) {
+        setPosePulse((prev) => ({ ...prev, [animal.id]: active }));
+        pulseTimeoutId = setTimeout(() => pulseLoop(!active), active ? onMs : offMs);
+        timeouts.push(pulseTimeoutId);
+      }
+
+      if (reducedMotion) {
+        // Reduced-motion fallback: skip the wandering gate entirely, every animal stays available like
+        // before Photo Mode existed. The Great Shot glow keeps cycling (per-species timing still
+        // applies) - it's a highlight, not a wandering/movement effect this preference opts out of.
+        setInFrame((prev) => ({ ...prev, [animal.id]: true }));
+        pulseLoop(false);
+        return;
+      }
+
+      function presenceLoop(visible: boolean) {
         setInFrame((prev) => ({ ...prev, [animal.id]: visible }));
+        if (visible) {
+          pulseLoop(false); // glow only cycles while the animal is actually in frame
+        } else if (pulseTimeoutId !== undefined) {
+          clearTimeout(pulseTimeoutId);
+          pulseTimeoutId = undefined;
+          setPosePulse((prev) => ({ ...prev, [animal.id]: false }));
+        }
         const duration = visible
           ? randomBetween(IN_FRAME_MIN_MS, IN_FRAME_MAX_MS)
           : randomBetween(OFF_FRAME_MIN_MS, OFF_FRAME_MAX_MS);
-        timeouts.push(setTimeout(() => loop(!visible), duration));
+        timeouts.push(setTimeout(() => presenceLoop(!visible), duration));
       }
       // Stagger each animal's first appearance so a group doesn't all pop in/out together.
-      timeouts.push(setTimeout(() => loop(true), randomBetween(0, OFF_FRAME_MAX_MS)));
+      timeouts.push(setTimeout(() => presenceLoop(true), randomBetween(0, OFF_FRAME_MAX_MS)));
     });
     return () => timeouts.forEach(clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -86,16 +103,17 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
               const hasPhotos = getPhotoVariantCount(animal.id) > 0;
               const complete = isCollectionComplete(animal.id, saveData.collectedPhotoVariants);
               const visible = complete || Boolean(inFrame[animal.id]);
+              const pulsing = Boolean(posePulse[animal.id]);
               const className = [
                 'photo-target',
                 visible ? 'in-frame' : 'off-frame',
-                posePulse && !complete && visible ? 'pulse' : '',
+                pulsing && !complete && visible ? 'pulse' : '',
               ].filter(Boolean).join(' ');
               return (
                 <button
                   key={animal.id}
                   className={className}
-                  onClick={() => onPhotographAnimal(animal.id, posePulse)}
+                  onClick={() => onPhotographAnimal(animal.id, pulsing)}
                   disabled={complete || !visible}
                 >
                   {hasPhotos ? (

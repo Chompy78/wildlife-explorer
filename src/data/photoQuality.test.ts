@@ -24,4 +24,23 @@ describe('photoQuality', () => {
       expect(label.toLowerCase()).not.toMatch(/bad|poor|fail|miss/);
     }
   });
+
+  it('a Great Shot nudges the floor tier one step sharper, clamped at the top', () => {
+    expect(getPhotoQualityStyle(2, true)).toEqual({ filter: 'blur(0.6px)', transform: 'scale(1.02)' }); // floor tier 1 -> 2
+    expect(getPhotoQualityStyle(4, true)).toEqual({ filter: 'none', transform: 'none' }); // already top tier, stays there
+  });
+
+  it('missing the glow nudges the floor tier one step blurrier, clamped at the bottom - never a failure state', () => {
+    expect(getPhotoQualityStyle(4, false)).toEqual({ filter: 'blur(0.6px)', transform: 'scale(1.02)' }); // floor tier 3 -> 2
+    expect(getPhotoQualityStyle(0, false)).toEqual({ filter: 'blur(3px)', transform: 'scale(1.12)' }); // already bottom tier, stays there
+  });
+
+  it('a missed glow never produces a discouraging label, even at the bottom tier', () => {
+    const label = getPhotoQualityLabel(0, false);
+    expect(label.toLowerCase()).not.toMatch(/bad|poor|fail|miss/);
+  });
+
+  it('omitting greatShot keeps the plain practice-count floor (no timing data for this shot)', () => {
+    expect(getPhotoQualityStyle(2)).toEqual({ filter: 'blur(1.6px)', transform: 'scale(1.06)' });
+  });
 });

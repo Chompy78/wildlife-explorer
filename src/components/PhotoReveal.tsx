@@ -20,8 +20,8 @@ export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact
   const close = useCallback(onClose, [onClose]);
   useModalFocus(dialogRef, close, closeRef);
   const complete = collectedCount >= totalCount;
-  const qualityStyle = photographCount !== undefined ? getPhotoQualityStyle(photographCount) : undefined;
-  const qualityLabel = photographCount !== undefined ? getPhotoQualityLabel(photographCount) : null;
+  const qualityStyle = photographCount !== undefined ? getPhotoQualityStyle(photographCount, greatShot) : undefined;
+  const qualityLabel = photographCount !== undefined ? getPhotoQualityLabel(photographCount, greatShot) : null;
 
   return (
     <div className="reveal-overlay" role="presentation">

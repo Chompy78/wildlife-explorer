@@ -5,6 +5,19 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-28 · feat(camera): photo blur reacts to this shot's timing, glow difficulty varies per
+  animal** — `getPhotoQualityStyle`/`getPhotoQualityLabel` (`src/data/photoQuality.ts`) now take an
+  optional `greatShot` flag alongside the existing practice-count floor: landing the Great Shot glow
+  nudges the displayed tier one step sharper, missing it nudges one step blurrier, clamped at both ends
+  so a single miss never undoes practice progress and a beginner's lucky hit is never instantly
+  "crisp and sharp" — timing matters, without a harsh-failure state. Each animal now has a
+  `photoDifficulty: 'easy' | 'medium' | 'hard'` (`src/types/Animal.ts`, assigned per-species in
+  `src/data/animals.ts`) driving its own Great Shot glow on/off pacing in `CameraPanel.tsx` (e.g. Duck is
+  forgiving, Butterfly/Rare Owl are quick and tricky), replacing the old single shared 900ms/1500ms
+  timer — composes with Photo Mode's existing per-animal in-frame gate, glow only cycles while an animal
+  is actually in frame. No save-schema change. Verified in a real browser: an easy animal's glow visibly
+  stays on longer than a hard one's, and a Great Shot vs. a missed-glow photo produce different blur on
+  the reveal screen. See `DECISIONS.md`'s `D-2026-07-28-timed-blur-and-photo-difficulty`.
 - **2026-07-28 · feat(camera): Photo Mode — animals wander in and out of frame** — `CameraPanel`'s static
   "always available" button list now gates on presence: each animal cycles in/out of frame on its own
   randomized timer (staggered so a group doesn't sync up), and the shutter is only enabled while an

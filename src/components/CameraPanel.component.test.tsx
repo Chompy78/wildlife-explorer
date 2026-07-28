@@ -8,6 +8,13 @@ import type { Animal } from '../types/Animal';
 const duck: Animal = {
   id: 'duck', name: 'Duck', rarity: 'common', habitat: 'Duck Pond', activeTime: 'Day',
   funFact: 'Ducks have waterproof feathers.', behaviours: ['swimming'], emoji: '🦆', availableInMilestone: true,
+  photoDifficulty: 'medium', // 900ms on / 1500ms off - matches this file's existing timing assertions
+};
+
+const butterfly: Animal = {
+  id: 'butterfly', name: 'Butterfly', rarity: 'common', habitat: 'Open Meadow', activeTime: 'Sunny day',
+  funFact: 'Butterflies taste with their feet.', behaviours: ['flying'], emoji: '🦋', availableInMilestone: true,
+  photoDifficulty: 'hard', // 550ms on / 1900ms off
 };
 
 function mockReducedMotion(matches: boolean) {
@@ -81,5 +88,19 @@ describe('CameraPanel', () => {
     mockReducedMotion(true);
     render(<CameraPanel animalsHere={[duck]} saveData={createDefaultSave()} onPhotographAnimal={vi.fn()} />);
     expect(screen.getByRole('button', { name: /Photograph Duck/i })).not.toBeDisabled();
+  });
+
+  it('paces the Great Shot glow per animal by photoDifficulty - a hard animal pulses on a shorter cycle than an easy/medium one', () => {
+    mockReducedMotion(true); // isolate glow timing from the wandering gate
+    render(<CameraPanel animalsHere={[duck, butterfly]} saveData={createDefaultSave()} onPhotographAnimal={vi.fn()} />);
+
+    // Both start dim. Advance past the butterfly's short 1900ms dark gap but not the duck's 1500ms one
+    // having already elapsed differently - instead check each independently at its own boundary.
+    act(() => { vi.advanceTimersByTime(1600); }); // past duck's 1500ms off-window, not butterfly's 1900ms
+    expect(screen.getByRole('button', { name: /Photograph Duck/i })).toHaveClass('pulse');
+    expect(screen.getByRole('button', { name: /Photograph Butterfly/i })).not.toHaveClass('pulse');
+
+    act(() => { vi.advanceTimersByTime(400); }); // now past butterfly's 1900ms too
+    expect(screen.getByRole('button', { name: /Photograph Butterfly/i })).toHaveClass('pulse');
   });
 });

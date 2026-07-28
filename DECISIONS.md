@@ -4,6 +4,20 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-28-timed-blur-and-photo-difficulty · Photo blur reacts to this shot's timing, glow difficulty varies per animal
+
+**Status:** Active
+
+**Summary:** Redesigned `photoQuality.ts` so the existing practice-count blur tiers act as a floor, and
+  this specific shot's timing (did it land during the Great Shot glow?) nudges the displayed tier one
+  step sharper or blurrier, clamped at both ends - keeps the encouraging practice progression while
+  making timing genuinely matter, without a harsh-failure state. Each animal also gained a
+  `photoDifficulty` (`easy`/`medium`/`hard`) driving its own glow on/off pacing in `CameraPanel.tsx`,
+  replacing the old single shared timer. Composes with Photo Mode's existing per-animal in-frame gate.
+  No save-schema change. See full entry.
+
+**Record:** decisions/2026/D-2026-07-28-timed-blur-and-photo-difficulty.md
+
 ## D-2026-07-28-photo-mode-wandering-animals · Camera shutter gates on animal presence instead of always being available
 
 **Status:** Active

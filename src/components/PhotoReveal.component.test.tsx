@@ -7,6 +7,7 @@ import type { Animal } from '../types/Animal';
 const duck: Animal = {
   id: 'duck', name: 'Duck', rarity: 'common', habitat: 'Duck Pond', activeTime: 'Day',
   funFact: 'Ducks have waterproof feathers.', behaviours: ['swimming'], emoji: '🦆', availableInMilestone: true,
+  photoDifficulty: 'easy',
 };
 
 describe('PhotoReveal', () => {
