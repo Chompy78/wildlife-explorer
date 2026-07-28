@@ -52,6 +52,15 @@ describe('PhotoReveal', () => {
     expect(screen.getByText(/collection complete!/i)).toBeInTheDocument();
   });
 
+  it('shows a bonus fact alongside the normal fact when one is provided, and nothing extra when it is not', () => {
+    const { rerender } = render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-2.jpg" collectedCount={2} totalCount={5} fact="Ducks have waterproof feathers." bonusFact="A bonus fact about ducks." onClose={vi.fn()} />);
+    expect(screen.getByText('Ducks have waterproof feathers.')).toBeInTheDocument();
+    expect(screen.getByText('A bonus fact about ducks.')).toBeInTheDocument();
+    expect(screen.getByText(/Bonus fact!/i)).toBeInTheDocument();
+    rerender(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-2.jpg" collectedCount={2} totalCount={5} fact="Ducks have waterproof feathers." bonusFact={null} onClose={vi.fn()} />);
+    expect(screen.queryByText(/Bonus fact!/i)).not.toBeInTheDocument();
+  });
+
   it('closes when Continue Exploring is pressed, and receives initial focus', async () => {
     const user = userEvent.setup();
     const close = vi.fn();

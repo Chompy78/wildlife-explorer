@@ -17,6 +17,12 @@ const butterfly: Animal = {
   photoDifficulty: 'hard', // 550ms on / 1900ms off
 };
 
+const rareOwl: Animal = {
+  id: 'rare-owl', name: 'Rare Owl', rarity: 'rare', habitat: 'Strange Old Tree', activeTime: 'Evening',
+  funFact: 'Owls fly silently.', behaviours: ['watching'], emoji: '🦉', availableInMilestone: true,
+  photoDifficulty: 'hard', // 550ms on / 1900ms off normally, eased to medium (900/1500) for Animal Researcher
+};
+
 function mockReducedMotion(matches: boolean) {
   vi.spyOn(window, 'matchMedia').mockImplementation((query: string) => ({
     matches,
@@ -102,5 +108,25 @@ describe('CameraPanel', () => {
 
     act(() => { vi.advanceTimersByTime(400); }); // now past butterfly's 1900ms too
     expect(screen.getByRole('button', { name: /Photograph Butterfly/i })).toHaveClass('pulse');
+  });
+
+  it("Animal Researcher eases a rare animal's difficulty one tier (hard -> medium), unaffected for other roles", () => {
+    mockReducedMotion(true); // isolate glow timing from the wandering gate
+    const researcherSave = { ...createDefaultSave(), selectedRole: 'animal-researcher' };
+    render(<CameraPanel animalsHere={[rareOwl]} saveData={researcherSave} onPhotographAnimal={vi.fn()} />);
+
+    // Medium is 900ms on / 1500ms off - hard would still be dim at 1600ms (needs 1900ms).
+    act(() => { vi.advanceTimersByTime(1600); });
+    expect(screen.getByRole('button', { name: /Rare Owl/i })).toHaveClass('pulse');
+  });
+
+  it('a non-Animal-Researcher role leaves a rare animal at its normal (harder) difficulty', () => {
+    mockReducedMotion(true);
+    const otherSave = { ...createDefaultSave(), selectedRole: 'zoologist' };
+    render(<CameraPanel animalsHere={[rareOwl]} saveData={otherSave} onPhotographAnimal={vi.fn()} />);
+
+    // Still hard (1900ms off) - 1600ms isn't enough to reach the glow yet.
+    act(() => { vi.advanceTimersByTime(1600); });
+    expect(screen.getByRole('button', { name: /Rare Owl/i })).not.toHaveClass('pulse');
   });
 });

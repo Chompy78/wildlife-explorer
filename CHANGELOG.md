@@ -5,6 +5,21 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-28 · feat(roles): first real bonus per explorer role** — the 6 explorer roles chosen at game
+  start now do something: **Zoologist** gets a bonus fact (the animal's existing `funFact`) on the very
+  first photo of a species; **Wildlife Photographer** gets a bonus 6th photo slot per animal, shown as an
+  honest "coming soon" tile in the Photo Album until real art exists (see `docs/copilot-packages/
+  05-bonus-photo-variants.md`); **Conservation Ranger** discovers double facts (10 total) for common
+  animals; **Explorer** sees a still-locked location's real icon instead of a padlock on the Park Map;
+  **Animal Researcher** gets an easier photo difficulty *and* double facts (10 total), both scoped to
+  rare animals only (Rare Owl today); **Custom Character** stays a deliberate no-bonus placeholder for
+  later. New `src/data/roleBonuses.ts` centralizes all role-eligibility checks. `animalFacts.ts` gained a
+  50-fact bonus pool (5 per eligible animal) and `getLearnedFacts`/`getTotalFactCount` grew an
+  `includeBonus` parameter. Found and fixed a real gap while wiring this up: `ForestScreen.tsx` had its
+  own separate, un-refactored inline camera implementation that never received Photo Mode or per-animal
+  difficulty in the first place — replaced with the shared `CameraPanel` component, so Forest now gets
+  wandering animals, timed blur, and all 6 role bonuses for free, matching Park. No save-schema change.
+  Verified all 5 active bonuses in a real browser. See `DECISIONS.md`'s `D-2026-07-28-explorer-role-bonuses`.
 - **2026-07-28 · feat(camera): photo blur reacts to this shot's timing, glow difficulty varies per
   animal** — `getPhotoQualityStyle`/`getPhotoQualityLabel` (`src/data/photoQuality.ts`) now take an
   optional `greatShot` flag alongside the existing practice-count floor: landing the Great Shot glow

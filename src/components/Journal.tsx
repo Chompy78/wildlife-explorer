@@ -1,9 +1,10 @@
 import { useCallback, useRef, useState } from 'react';
 import { achievements } from '../data/achievements';
 import { animals } from '../data/animals';
-import { getFactCount, getLearnedFacts } from '../data/animalFacts';
+import { getTotalFactCount, getLearnedFacts } from '../data/animalFacts';
 import { countCollectedVariants, getFirstCollectedVariant, getPhotoVariantCount, getPhotoVariantUrl } from '../data/animalPhotoVariants';
 import { useModalFocus } from '../hooks/useModalFocus';
+import { getsBonusPhotoSlot, unlocksBonusFacts } from '../data/roleBonuses';
 import { hasHelpedLostPuppy, hasPhotographedAnimal } from '../state/gameState';
 import { forestAnimalIds } from '../state/forestState';
 import type { Animal } from '../types/Animal';
@@ -54,7 +55,7 @@ export function Journal({ saveData, onClose }: JournalProps) {
       </>
     )}
   </section>
-  {albumAnimal ? <PhotoAlbum animal={albumAnimal} collected={saveData.collectedPhotoVariants} onClose={() => setAlbumAnimal(null)}/> : null}
+  {albumAnimal ? <PhotoAlbum animal={albumAnimal} collected={saveData.collectedPhotoVariants} showBonusSlot={getsBonusPhotoSlot(saveData.selectedRole)} onClose={() => setAlbumAnimal(null)}/> : null}
   </div>;
 }
 function SpecialEntry({ icon, title, discovered, text }: { icon:string; title:string; discovered:boolean; text:string }) { return <article className={discovered ? 'journal-entry' : 'journal-entry undiscovered'}><div className="animal-emoji" aria-hidden="true">{icon}</div><div><h3>{title}</h3><p>{text}</p></div></article>; }
@@ -64,9 +65,10 @@ function PhotoProgress({ animal, saveData }: { animal:Animal; saveData:SaveData 
   return <p className="photo-progress"><span>{collected} of {total} photos collected</span><span className="photo-progress-dots" aria-hidden="true">{Array.from({length:total},(_,i)=>(<span key={i} className={i<collected?'collected':''}/>))}</span></p>;
 }
 function FactsProgress({ animal, saveData }: { animal:Animal; saveData:SaveData }) {
-  const total=getFactCount(animal.id);
+  const bonusEligible = unlocksBonusFacts(saveData.selectedRole, animal);
+  const total=getTotalFactCount(animal.id, bonusEligible);
   if (total===0) return null;
-  const learned=getLearnedFacts(animal.id,saveData.collectedPhotoVariants);
+  const learned=getLearnedFacts(animal.id,saveData.collectedPhotoVariants,bonusEligible);
   return <div className="facts-progress"><p className="facts-progress-count">💡 {learned.length} of {total} facts learned</p>{learned.length>0 ? <ul className="facts-list">{learned.map((fact,i)=><li key={i}>{fact}</li>)}</ul> : null}</div>;
 }
 function JournalEntry({ animal, saveData, onOpenAlbum }: { animal:Animal; saveData:SaveData; onOpenAlbum:(animal:Animal)=>void }) {

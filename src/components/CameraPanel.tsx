@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getPhotoVariantCount, getPhotoVariantUrl, isCollectionComplete } from '../data/animalPhotoVariants';
+import { effectivePhotoDifficulty } from '../data/roleBonuses';
 import type { AnimalId } from '../types/Ids';
 import { hasPhotographedAnimal } from '../state/gameState';
 import type { Animal, PhotoDifficulty } from '../types/Animal';
@@ -51,7 +52,7 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
     const timeouts: ReturnType<typeof setTimeout>[] = [];
 
     animalsHere.forEach((animal) => {
-      const { onMs, offMs } = PULSE_DURATIONS[animal.photoDifficulty];
+      const { onMs, offMs } = PULSE_DURATIONS[effectivePhotoDifficulty(saveData.selectedRole, animal)];
       let pulseTimeoutId: ReturnType<typeof setTimeout> | undefined;
 
       function pulseLoop(active: boolean) {

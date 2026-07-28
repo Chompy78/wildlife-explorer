@@ -52,3 +52,6 @@ package says exactly which ones, kept well under the 20-file ceiling.
   plain grid of button-cards.
 - `04-lake-biome-animals.md` — pre-milestone art prep for the (currently preview-only) Lake destination:
   6 animals × 5 photo variants each, no code changes until Lake is actually built.
+- `05-bonus-photo-variants.md` — art prep for the Wildlife Photographer explorer role's bonus 6th photo
+  per animal (10 animals × 1 photo). The role's "coming soon" preview slot already shipped; this package
+  generates the art a follow-up task needs to wire in the real photo.

@@ -60,4 +60,42 @@ describe('Journal', () => {
     await user.click(screen.getByRole('button', { name: /Tutorial Park/i }));
     expect(screen.queryByRole('button', { name: /View Photos/i })).not.toBeInTheDocument();
   });
+
+  it("Conservation Ranger sees double facts (of 10) for a common animal, unlike the default (of 5)", async () => {
+    const user = userEvent.setup();
+    const save = { ...createDefaultSave(), selectedRole: 'conservation-ranger', photographedAnimals: ['duck'] as AnimalId[], collectedPhotoVariants: ['duck-1'] };
+    render(<Journal saveData={save} onClose={vi.fn()} />);
+    await user.click(screen.getByRole('button', { name: /Tutorial Park/i }));
+    expect(screen.getByText(/2 of 10 facts learned/i)).toBeInTheDocument();
+  });
+
+  it('no role sees the plain 5-fact count for the same common animal', async () => {
+    const user = userEvent.setup();
+    const save = { ...createDefaultSave(), photographedAnimals: ['duck'] as AnimalId[], collectedPhotoVariants: ['duck-1'] };
+    render(<Journal saveData={save} onClose={vi.fn()} />);
+    await user.click(screen.getByRole('button', { name: /Tutorial Park/i }));
+    expect(screen.getByText(/1 of 5 facts learned/i)).toBeInTheDocument();
+  });
+
+  it('Wildlife Photographer sees a bonus "coming soon" photo slot in the album, other roles do not', async () => {
+    const user = userEvent.setup();
+    const save = { ...createDefaultSave(), selectedRole: 'wildlife-photographer', photographedAnimals: ['duck'] as AnimalId[], collectedPhotoVariants: ['duck-2', 'duck-4'] };
+    render(<Journal saveData={save} onClose={vi.fn()} />);
+    await user.click(screen.getByRole('button', { name: /Tutorial Park/i }));
+    await user.click(screen.getByRole('button', { name: /View Photos/i }));
+    const album = within(screen.getByRole('dialog', { name: /Duck/i }));
+    expect(album.getByText(/Bonus photo/i)).toBeInTheDocument();
+    // Still shows the real progress count, unaffected by the bonus slot.
+    expect(album.getByText('2 of 5 photos collected')).toBeInTheDocument();
+  });
+
+  it('no bonus photo slot for a different role', async () => {
+    const user = userEvent.setup();
+    const save = { ...createDefaultSave(), photographedAnimals: ['duck'] as AnimalId[], collectedPhotoVariants: ['duck-2'] };
+    render(<Journal saveData={save} onClose={vi.fn()} />);
+    await user.click(screen.getByRole('button', { name: /Tutorial Park/i }));
+    await user.click(screen.getByRole('button', { name: /View Photos/i }));
+    const album = within(screen.getByRole('dialog', { name: /Duck/i }));
+    expect(album.queryByText(/Bonus photo/i)).not.toBeInTheDocument();
+  });
 });

@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { assetUrl } from '../assetUrl';
 import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
-import { getFactForVariantKey } from '../data/animalFacts';
+import { getBonusFactForVariantKey, getFactForVariantKey } from '../data/animalFacts';
 import { parkMapCoordinates } from '../data/parkMapCoordinates';
+import { getsBonusFirstPhotoFact, seesLockedLocationPreview, unlocksBonusFacts } from '../data/roleBonuses';
 import { unlockAchievement } from '../state/achievementState';
 import { getAnimalById, getAnimalsForLocation, getLocationByName, getVisibleParkLocations, photographAnimal, visitLocation } from '../state/gameState';
 import type { Animal } from '../types/Animal';
@@ -30,7 +31,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
   const [celebrationOpen, setCelebrationOpen] = useState(false);
   const [biomeQuizOpen, setBiomeQuizOpen] = useState(false);
   const [quizAnimal, setQuizAnimal] = useState<Animal | null>(null);
-  const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string; greatShot: boolean } | null>(null);
+  const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string; greatShot: boolean; bonusFact: string | null } | null>(null);
   const previousUnlocked = useRef(saveData.wildCamperUnlocked);
   const visibleLocations = useMemo(() => getVisibleParkLocations(saveData), [saveData]);
   const currentLocation = getLocationByName(saveData.currentLocation) ?? visibleLocations[0];
@@ -63,7 +64,15 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
     onSaveChange(updated);
     setMessage(greatShot ? `Great shot! ${animal.name} added to your Wildlife Journal.` : `Great photo! ${animal.name} added to your Wildlife Journal.`);
     const newVariant = updated.collectedPhotoVariants.find((key) => !previousVariants.includes(key));
-    if (newVariant) setPhotoReveal({ animal, variantKey: newVariant, greatShot });
+    if (newVariant) {
+      let bonusFact: string | null = null;
+      if (unlocksBonusFacts(saveData.selectedRole, animal)) {
+        bonusFact = getBonusFactForVariantKey(animal.id, newVariant);
+      } else if (getsBonusFirstPhotoFact(saveData.selectedRole) && countCollectedVariants(animal.id, previousVariants) === 0) {
+        bonusFact = animal.funFact;
+      }
+      setPhotoReveal({ animal, variantKey: newVariant, greatShot, bonusFact });
+    }
     if (isNewReport) setQuizAnimal(animal);
   }
 
@@ -91,7 +100,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
                     onClick={() => goToLocation(location.name)}
                     aria-label={`${location.name}${location.status === 'hidden' ? ', hidden' : isActive ? ', current location' : ''}`}
                   >
-                    <span className="pin-icon" aria-hidden="true">{location.status === 'hidden' ? '🔒' : location.icon}</span>
+                    <span className="pin-icon" aria-hidden="true">{location.status === 'hidden' && !seesLockedLocationPreview(saveData.selectedRole) ? '🔒' : location.icon}</span>
                     <span className="pin-label">{location.name}</span>
                   </button>
                 </div>
@@ -120,7 +129,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
       ) : null}
       {activePanel === 'quest' ? (
         <PanelModal title="Lost Puppy Quest" onClose={() => setActivePanel(null)}>
-          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey, greatShot: false }); }} />
+          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey, greatShot: false, bonusFact: null }); }} />
         </PanelModal>
       ) : null}
       {activePanel === 'clue' ? (
@@ -168,6 +177,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
           collectedCount={countCollectedVariants(photoReveal.animal.id, saveData.collectedPhotoVariants)}
           totalCount={getPhotoVariantCount(photoReveal.animal.id)}
           fact={getFactForVariantKey(photoReveal.animal.id, photoReveal.variantKey)}
+          bonusFact={photoReveal.bonusFact}
           photographCount={photoReveal.animal.id === 'lost-puppy' ? undefined : saveData.photographCounts[photoReveal.animal.id]}
           greatShot={photoReveal.greatShot}
           onClose={() => setPhotoReveal(null)}

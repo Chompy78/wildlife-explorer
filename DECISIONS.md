@@ -4,6 +4,21 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-28-explorer-role-bonuses · First real bonus per explorer role
+
+**Status:** Active
+
+**Summary:** Wired a first real, small, roughly-equal bonus into each of the 6 explorer roles, each
+  tied to an existing mechanic: Zoologist (bonus fact on first photo), Wildlife Photographer (bonus 6th
+  photo slot, shipped as an honest "coming soon" preview pending art), Conservation Ranger (double facts
+  for common animals), Explorer (early icon preview for locked locations), Animal Researcher (easier
+  photo difficulty + double facts, both for rare animals only), Custom Character (deliberately no
+  bonus yet). Found and fixed a real gap along the way: `ForestScreen.tsx` had its own un-refactored
+  inline camera implementation that never received Photo Mode or per-animal difficulty - replaced with
+  the shared `CameraPanel` component. No save-schema change. See full entry.
+
+**Record:** decisions/2026/D-2026-07-28-explorer-role-bonuses.md
+
 ## D-2026-07-28-timed-blur-and-photo-difficulty · Photo blur reacts to this shot's timing, glow difficulty varies per animal
 
 **Status:** Active
