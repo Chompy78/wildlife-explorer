@@ -31,7 +31,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
   const [celebrationOpen, setCelebrationOpen] = useState(false);
   const [biomeQuizOpen, setBiomeQuizOpen] = useState(false);
   const [quizAnimal, setQuizAnimal] = useState<Animal | null>(null);
-  const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string; greatShot: boolean; bonusFact: string | null } | null>(null);
+  const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string; greatShot: boolean; bonusFact: string | null; isNewFact: boolean } | null>(null);
   const previousUnlocked = useRef(saveData.wildCamperUnlocked);
   const visibleLocations = useMemo(() => getVisibleParkLocations(saveData), [saveData]);
   const currentLocation = getLocationByName(saveData.currentLocation) ?? visibleLocations[0];
@@ -71,7 +71,8 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
       } else if (getsBonusFirstPhotoFact(saveData.selectedRole) && countCollectedVariants(animal.id, previousVariants) === 0) {
         bonusFact = animal.funFact;
       }
-      setPhotoReveal({ animal, variantKey: newVariant, greatShot, bonusFact });
+      const isNewFact = countCollectedVariants(animal.id, previousVariants) === 0;
+      setPhotoReveal({ animal, variantKey: newVariant, greatShot, bonusFact, isNewFact });
     }
     if (isNewReport) setQuizAnimal(animal);
   }
@@ -129,7 +130,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
       ) : null}
       {activePanel === 'quest' ? (
         <PanelModal title="Lost Puppy Quest" onClose={() => setActivePanel(null)}>
-          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey, greatShot: false, bonusFact: null }); }} />
+          <QuestPanel saveData={saveData} onSaveChange={onSaveChange} onMessage={setMessage} onPhotoReveal={(variantKey) => { const lostPuppy = getAnimalById('lost-puppy'); if (lostPuppy) setPhotoReveal({ animal: lostPuppy, variantKey, greatShot: false, bonusFact: null, isNewFact: false }); }} />
         </PanelModal>
       ) : null}
       {activePanel === 'clue' ? (
@@ -149,7 +150,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
       ) : null}
       {activePanel === 'about' ? (
         <PanelModal title="Explore the park" eyebrow="Wildlife photography" onClose={() => setActivePanel(null)}>
-          <img className="about-hero-image" src={assetUrl('assets/tutorial-park/park-direction.png')} alt="Illustrated wildlife explorer and dog photographing a duck family at a woodland pond in Tutorial Park" />
+          <img className="about-hero-image" src={assetUrl('assets/tutorial-park/park-direction.png')} alt="Illustrated wildlife explorer and dog photographing a duck family at a woodland pond in spring." />
           <p>Visit each location and photograph wildlife calmly. Finish Tutorial Park by helping the puppy, photographing Rare Owl, and discovering Whisper Grove.</p>
         </PanelModal>
       ) : null}
@@ -180,6 +181,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
           bonusFact={photoReveal.bonusFact}
           showPhotoQuality={photoReveal.animal.id !== 'lost-puppy'}
           greatShot={photoReveal.greatShot}
+          isNewFact={photoReveal.isNewFact}
           onClose={() => setPhotoReveal(null)}
         />
       ) : null}
