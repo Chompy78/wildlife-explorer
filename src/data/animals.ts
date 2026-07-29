@@ -12,6 +12,9 @@ export const animals: Animal[] = [
     emoji: '🦆',
     availableInMilestone: true,
     photoDifficulty: 'easy',
+    photographyTip: {
+      hint: 'Try shooting when the Duck is facing toward the camera.',
+    },
   },
   {
     id: 'frog',
@@ -24,6 +27,9 @@ export const animals: Animal[] = [
     emoji: '🐸',
     availableInMilestone: true,
     photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'The best shots are when the Frog is on a lily pad or rock.',
+    },
   },
   {
     id: 'butterfly',
@@ -36,6 +42,9 @@ export const animals: Animal[] = [
     emoji: '🦋',
     availableInMilestone: true,
     photoDifficulty: 'hard',
+    photographyTip: {
+      hint: 'Catch the Butterfly when it lands on a flower to rest.',
+    },
   },
   {
     id: 'rabbit',
@@ -48,6 +57,9 @@ export const animals: Animal[] = [
     emoji: '🐇',
     availableInMilestone: true,
     photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'Photograph the Rabbit while it is nibbling on grass.',
+    },
   },
   {
     id: 'lizard',
@@ -60,6 +72,9 @@ export const animals: Animal[] = [
     emoji: '🦎',
     availableInMilestone: true,
     photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'The Lizard is easiest to photograph when basking in a sunny spot.',
+    },
   },
   {
     id: 'park-bird',
@@ -72,6 +87,9 @@ export const animals: Animal[] = [
     emoji: '🐦',
     availableInMilestone: true,
     photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'Wait for the Park Bird to perch on a branch before shooting.',
+    },
   },
   {
     id: 'rare-owl',
@@ -84,6 +102,9 @@ export const animals: Animal[] = [
     emoji: '🦉',
     availableInMilestone: true,
     photoDifficulty: 'hard',
+    photographyTip: {
+      hint: 'The Rare Owl is sharpest when gazing forward with its piercing eyes.',
+    },
   },
   {
     id: 'lost-puppy',
@@ -96,10 +117,55 @@ export const animals: Animal[] = [
     emoji: '🐶',
     availableInMilestone: false,
     photoDifficulty: 'easy',
+    photographyTip: {
+      hint: 'Capture the Lost Puppy when it sits and looks your way.',
+    },
   },
-  { id: 'forest-wren', name: 'Forest Wren', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Morning', funFact: 'Small forest birds use calls to keep in touch while moving through leafy habitat.', behaviours: ['perching', 'foraging', 'calling'], emoji: '🐦', availableInMilestone: true, photoDifficulty: 'medium' },
-  { id: 'forest-wallaby', name: 'Forest Wallaby', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Morning and late afternoon', funFact: 'Wallabies rest in shelter and move quietly through forest edges to feed.', behaviours: ['grazing', 'listening', 'moving quietly'], emoji: '🦘', availableInMilestone: true, photoDifficulty: 'medium' },
-  { id: 'forest-beetle', name: 'Shiny Forest Beetle', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Day', funFact: 'Beetles help forest ecosystems by recycling plant material and supporting food webs.', behaviours: ['crawling', 'sheltering', 'feeding'], emoji: '🪲', availableInMilestone: true, photoDifficulty: 'easy' },
+  {
+    id: 'forest-wren',
+    name: 'Forest Wren',
+    rarity: 'common',
+    habitat: 'Forest Trail',
+    activeTime: 'Morning',
+    funFact: 'Small forest birds use calls to keep in touch while moving through leafy habitats.',
+    behaviours: ['singing', 'hopping', 'darting through branches'],
+    emoji: '🐦',
+    availableInMilestone: true,
+    photoDifficulty: 'hard',
+    photographyTip: {
+      hint: 'The Forest Wren poses best when it pauses on a low branch to sing.',
+    },
+  },
+  {
+    id: 'forest-wallaby',
+    name: 'Forest Wallaby',
+    rarity: 'common',
+    habitat: 'Forest Trail',
+    activeTime: 'Morning and late afternoon',
+    funFact: 'Wallabies rest in shelter and move quietly through the forest.',
+    behaviours: ['hopping', 'resting in shade', 'nibbling leaves'],
+    emoji: '🦘',
+    availableInMilestone: true,
+    photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'Shoot the Forest Wallaby when it stops to rest or munch on plants.',
+    },
+  },
+  {
+    id: 'forest-beetle',
+    name: 'Shiny Forest Beetle',
+    rarity: 'common',
+    habitat: 'Forest Trail',
+    activeTime: 'Day',
+    funFact: 'Beetles help forest ecosystems by recycling plant material and supporting wildlife.',
+    behaviours: ['crawling on bark', 'hiding under logs', 'climbing plants'],
+    emoji: '🪲',
+    availableInMilestone: true,
+    photoDifficulty: 'hard',
+    photographyTip: {
+      hint: 'The Shiny Forest Beetle gleams brightest when it crawls on light-colored bark.',
+    },
+  },
   {
     id: 'red-eared-slider',
     name: 'Red-eared Slider Turtle',
@@ -114,6 +180,9 @@ export const animals: Animal[] = [
     nonNative: {
       correctHabitatId: 'lake',
       impactNote: "Red-eared Sliders aren't native to this pond. People sometimes release pet turtles into the wild, and they can compete with native turtles for food and basking spots.",
+    },
+    photographyTip: {
+      hint: 'Photograph the Slider when it is basking on a sunny log.',
     },
   },
   {
@@ -130,6 +199,9 @@ export const animals: Animal[] = [
     nonNative: {
       correctHabitatId: 'rainforest',
       impactNote: 'People introduced Cane Toads to some places to help control pests, but that caused problems for animals who already lived there.',
+    },
+    photographyTip: {
+      hint: 'The Cane Toad is easiest to photograph when it stops to rest.',
     },
   },
 ];
