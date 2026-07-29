@@ -16,6 +16,12 @@ export type NonNativeInfo = {
   impactNote: string;
 };
 
+// Photography tips for guiding players on *how* to capture better photos of this animal.
+// Displayed as a hint below the Great Shot tracker in the Camera panel.
+export type PhotographyTip = {
+  hint: string; // e.g., "Try shooting when the Wren is facing forward"
+};
+
 export type Animal = {
   id: AnimalId;
   name: string;
@@ -28,4 +34,5 @@ export type Animal = {
   availableInMilestone: boolean;
   photoDifficulty: PhotoDifficulty;
   nonNative?: NonNativeInfo;
+  photographyTip?: PhotographyTip;
 };
