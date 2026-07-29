@@ -12,10 +12,11 @@ type Props = {
   bonusFact?: string | null;
   showPhotoQuality?: boolean;
   greatShot?: boolean;
+  isNewFact?: boolean;
   onClose: () => void;
 };
 
-export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact, bonusFact, showPhotoQuality, greatShot, onClose }: Props) {
+export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact, bonusFact, showPhotoQuality, greatShot, isNewFact, onClose }: Props) {
   const dialogRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const close = useCallback(onClose, [onClose]);
@@ -40,7 +41,11 @@ export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact
             : `${collectedCount} of ${totalCount} photos collected.`}
         </p>
         {fact ? (
-          <p className="reveal-fact"><span className="eyebrow">Did you know?</span>{fact}</p>
+          <div className={`reveal-fact ${isNewFact ? 'reveal-new-fact' : ''}`}>
+            <span className="eyebrow">Did you know?</span>
+            <p>{fact}</p>
+            {isNewFact && <span className="new-fact-badge">✨ This is new!</span>}
+          </div>
         ) : null}
         {bonusFact ? (
           <p className="reveal-fact reveal-bonus-fact"><span className="eyebrow">🎓 Bonus fact!</span>{bonusFact}</p>
