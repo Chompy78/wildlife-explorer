@@ -4,6 +4,25 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-29-focus-the-shot · Replaced wandering + on/off pulse with a continuous "focus the shot" sweep
+
+**Status:** Active
+
+**Summary:** User feedback after playing the wandering-animal + timed-blur system: "the photo system is
+  terrible. we need to rethink it" - not a specific mechanical complaint, the whole interaction didn't
+  feel satisfying. Diagnosed as a feedback-loop problem (mostly passive waiting, reward only shown later
+  in a different screen) rather than any single broken mechanic. Presented four different redesign
+  directions; user picked "give active control instead of passive waiting." Removed the in-frame
+  wandering gate entirely - every animal is always visible and always shootable again - and replaced the
+  binary on/off glow with a continuously moving marker sweeping a track, crossing a highlighted sweet
+  spot twice per cycle; tapping the shutter always works, but lands a Great Shot only when the marker is
+  in the sweet spot at that instant. Sweep speed and sweet-spot width still vary by `photoDifficulty`.
+  `prefers-reduced-motion` falls back to the previous calm on/off glow (no moving element). Composes
+  unchanged with the timed-blur system (`greatShot` boolean, same signature). No save-schema change. See
+  full entry.
+
+**Record:** decisions/2026/D-2026-07-29-focus-the-shot.md
+
 ## D-2026-07-29-park-map-portrait · Park Map switched from landscape to portrait, user-supplied art
 
 **Status:** Active
@@ -35,7 +54,9 @@
 
 ## D-2026-07-28-timed-blur-and-photo-difficulty · Photo blur reacts to this shot's timing, glow difficulty varies per animal
 
-**Status:** Active
+**Status:** Active. **Amended 2026-07-29:** the on/off glow-pulse mechanism this drove was replaced by a
+  continuous "focus the shot" sweep (`D-2026-07-29-focus-the-shot`) - the core decision (blur reacts to
+  timing, difficulty varies per animal) is unchanged, only the interaction producing the timing signal.
 
 **Summary:** Redesigned `photoQuality.ts` so the existing practice-count blur tiers act as a floor, and
   this specific shot's timing (did it land during the Great Shot glow?) nudges the displayed tier one
@@ -49,7 +70,9 @@
 
 ## D-2026-07-28-photo-mode-wandering-animals · Camera shutter gates on animal presence instead of always being available
 
-**Status:** Active
+**Status:** Superseded (2026-07-29) — see `D-2026-07-29-focus-the-shot`. Playtesting after this and the
+  timed-blur/difficulty work landed found the whole photo interaction "doesn't feel satisfying" - the
+  wandering gate (this decision) added waiting without adding anything active to do. Kept as history.
 
 **Summary:** Promoted the "Advanced photography features" 2026-07-25 roadmap item's first slice:
   `CameraPanel` now cycles each animal in/out of frame on an independent randomized timer (staggered),

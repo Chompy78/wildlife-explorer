@@ -121,11 +121,12 @@ h2 { color: #235c3a; }
 .progress-card li.locked { color: #7b806f; }
 .complete-message { margin: 0; border-radius: 14px; padding: 0.75rem; background: #dff0d4; font-weight: 900; }
 .photo-target { display: flex; align-items: center; justify-content: flex-start; gap: 0.75rem; border-radius: 18px; transition: box-shadow 0.4s ease; }
-.photo-target span { font-size: 1.6rem; }
+.photo-target .animal-visual { font-size: 1.6rem; }
 .photo-target.pulse:not(:disabled) { box-shadow: 0 0 0 4px rgba(241, 184, 59, 0.65); }
-.photo-target.off-frame .animal-visual { filter: grayscale(0.6); }
-.photo-target.in-frame .animal-visual { animation: photo-target-drift 3.2s ease-in-out infinite; }
-@keyframes photo-target-drift { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+.photo-target-body { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; flex: 1; text-align: left; }
+.focus-track { position: relative; width: 100%; height: 0.5rem; border-radius: 999px; background: rgba(38, 112, 67, 0.15); }
+.focus-sweet-spot { position: absolute; top: 0; bottom: 0; border-radius: 999px; background: rgba(241, 184, 59, 0.55); }
+.focus-marker { position: absolute; top: 50%; width: 0.85rem; height: 0.85rem; border-radius: 50%; background: #267043; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(20, 60, 32, 0.4); transform: translate(-50%, -50%); transition: left 0.05s linear; }
 .camera-hint { margin: 0 0 0.6rem; font-size: 0.85rem; }
 .message-box { margin-top: 1rem; border-radius: 18px; padding: 1rem; background: #e9f7ff; font-weight: 700; }
 .progress-card ul { margin: 0; padding: 0; list-style: none; }

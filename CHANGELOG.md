@@ -5,6 +5,17 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-29 · feat(camera): "focus the shot" replaces wandering + on/off pulse** — reworked the photo
+  interaction after feedback that it "doesn't feel satisfying." Removed the in-frame wandering gate
+  entirely — every animal is always visible and always shootable again, no more waiting for one to
+  wander back. Replaced the binary on/off Great Shot glow with a continuously moving marker sweeping a
+  small track under each animal's name, crossing a highlighted sweet spot twice per cycle; tapping the
+  shutter always works, but lands a Great Shot only when the marker is inside the sweet spot at that
+  instant. Sweep speed and sweet-spot width still vary by `photoDifficulty` (and by the Animal
+  Researcher role bonus). `prefers-reduced-motion` falls back to the previous calm on/off glow, no
+  moving element. Composes unchanged with the existing timed-blur system (same `greatShot` boolean).
+  No save-schema change. See `DECISIONS.md`'s `D-2026-07-29-focus-the-shot` (supersedes
+  `D-2026-07-28-photo-mode-wandering-animals`).
 - **2026-07-29 · feat(park): portrait Park Map, user-supplied art** — replaced the landscape 3:2 Park Map
   (`park-map.png`, 3.28MB) with a new portrait 2:3 map the user generated and supplied
   (`park-map.jpg`, 1024×1536, converted to JPEG at quality 85, ~590KB — an 82% size reduction). All 6
