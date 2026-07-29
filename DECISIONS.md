@@ -4,6 +4,26 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-29-dynamic-focus-band · Binary blur, growing sweet-spot band (species + global practice)
+
+**Status:** Active
+
+**Summary:** User feedback on "focus the shot": "it should always return a blurry one until it's within
+  the good shot band. that good shot band shou[ld] start narrow and expand the more shots on that
+  animal, and also slowly expand for total photos taken and class may impact." Replaced the practice-
+  count-floor/timing-nudge blur hybrid with a strict binary (blurry unless inside the sweet spot at tap
+  time, crisp otherwise), and moved all the "getting better over time" feel into the sweet-spot band's
+  width instead: it starts at 35% of its difficulty tier's ceiling width on a fresh species, grows
+  linearly to the full ceiling over 5 photos of that species (matches a full photo collection - the
+  natural reachable mastery point, since the shutter disables past it), and gets a further small,
+  slower bonus (up to +15% of ceiling) as a save's total photograph count across every species grows
+  toward 60. Class/role effects still apply exactly as before (Animal Researcher's eased difficulty
+  picks a wider ceiling tier before this growth formula scales it). Full record:
+  `decisions/2026/D-2026-07-29-dynamic-focus-band.md`.
+
+**See also:** extends `D-2026-07-29-focus-the-shot`; further simplifies (removes the practice-count
+  floor and timing-nudge tiers from) `D-2026-07-28-timed-blur-and-photo-difficulty`.
+
 ## D-2026-07-29-focus-the-shot · Replaced wandering + on/off pulse with a continuous "focus the shot" sweep
 
 **Status:** Active

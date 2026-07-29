@@ -10,19 +10,19 @@ type Props = {
   totalCount: number;
   fact?: string | null;
   bonusFact?: string | null;
-  photographCount?: number;
+  showPhotoQuality?: boolean;
   greatShot?: boolean;
   onClose: () => void;
 };
 
-export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact, bonusFact, photographCount, greatShot, onClose }: Props) {
+export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact, bonusFact, showPhotoQuality, greatShot, onClose }: Props) {
   const dialogRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const close = useCallback(onClose, [onClose]);
   useModalFocus(dialogRef, close, closeRef);
   const complete = collectedCount >= totalCount;
-  const qualityStyle = photographCount !== undefined ? getPhotoQualityStyle(photographCount, greatShot) : undefined;
-  const qualityLabel = photographCount !== undefined ? getPhotoQualityLabel(photographCount, greatShot) : null;
+  const qualityStyle = showPhotoQuality ? getPhotoQualityStyle(greatShot) : undefined;
+  const qualityLabel = showPhotoQuality ? getPhotoQualityLabel(greatShot) : null;
 
   return (
     <div className="reveal-overlay" role="presentation">

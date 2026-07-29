@@ -178,7 +178,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
           totalCount={getPhotoVariantCount(photoReveal.animal.id)}
           fact={getFactForVariantKey(photoReveal.animal.id, photoReveal.variantKey)}
           bonusFact={photoReveal.bonusFact}
-          photographCount={photoReveal.animal.id === 'lost-puppy' ? undefined : saveData.photographCounts[photoReveal.animal.id]}
+          showPhotoQuality={photoReveal.animal.id !== 'lost-puppy'}
           greatShot={photoReveal.greatShot}
           onClose={() => setPhotoReveal(null)}
         />

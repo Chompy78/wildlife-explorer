@@ -93,7 +93,7 @@ export function ForestScreen({ saveData, onSaveChange, onReturnToCamper, onGoHom
           totalCount={getPhotoVariantCount(photoReveal.animal.id)}
           fact={getFactForVariantKey(photoReveal.animal.id, photoReveal.variantKey)}
           bonusFact={photoReveal.bonusFact}
-          photographCount={saveData.photographCounts[photoReveal.animal.id]}
+          showPhotoQuality
           greatShot={photoReveal.greatShot}
           onClose={() => setPhotoReveal(null)}
         />

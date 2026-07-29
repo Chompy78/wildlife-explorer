@@ -5,6 +5,23 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-29 · feat(camera): binary blur + growing sweet-spot band** — simplified the Great Shot blur
+  from a practice-count-floor/timing-nudge hybrid to a strict binary: blurry unless the shutter is
+  pressed inside the sweet spot, crisp if it is. In exchange, the sweet-spot band itself now grows -
+  starting narrow on a brand-new species, widening toward its difficulty tier's full ceiling over 5
+  photos of that species (a full collection - the natural, reachable mastery point), plus a smaller,
+  slower bonus that widens every species' band a little as a save's total photo count grows toward 60,
+  so an experienced photographer gets a small edge even on an animal they've never shot before. Class/
+  role effects still apply (Animal Researcher's eased difficulty picks a wider ceiling tier before this
+  growth scales it). `PhotoReveal`'s `photographCount` prop replaced by a plain `showPhotoQuality`
+  boolean, since photograph count no longer feeds the blur math directly. Found and fixed two bugs
+  while building this: the sweep's 50ms tick was too coarse for the narrowest possible bands (~27ms
+  true crossing time), risking the window being skipped entirely on unlucky tick alignment - tightened
+  to 20ms (and `.focus-marker`'s CSS transition to match); and the species-mastery threshold was
+  initially set to 8 photos, which is structurally unreachable since every animal caps at 5 collectible
+  variants and the shutter disables once a collection completes - fixed to 5. See `DECISIONS.md`'s
+  `D-2026-07-29-dynamic-focus-band` (extends `D-2026-07-29-focus-the-shot`, further simplifies
+  `D-2026-07-28-timed-blur-and-photo-difficulty`'s blur model).
 - **2026-07-29 · feat(camera): "focus the shot" replaces wandering + on/off pulse** — reworked the photo
   interaction after feedback that it "doesn't feel satisfying." Removed the in-frame wandering gate
   entirely — every animal is always visible and always shootable again, no more waiting for one to
