@@ -173,6 +173,14 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
                         <span className="focus-marker" style={{ left: `${position * 100}%` }} />
                       </span>
                     ) : null}
+                    {!complete && animal.photographyTip ? (
+                      <span className="photography-tip">💡 {animal.photographyTip.hint}</span>
+                    ) : null}
+                    {!complete ? (
+                      <span className="great-shots-progress">
+                        Great Shots: {speciesCount} / {SPECIES_MASTERY_SHOTS}
+                      </span>
+                    ) : null}
                   </span>
                 </button>
               );
