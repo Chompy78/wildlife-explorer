@@ -5,14 +5,14 @@ argument-hint: [batch size, e.g. 4]
 
 # Wildlife Explorer — sweep the task board's quick, safe work
 
-Unattended version of `/pick-task` → `/run-task`, looped over eligible tasks. No PR/CI apparatus — this
-repo has none yet (see `AGENTS.md`'s *Branch model*).
+Unattended version of `/pick-code-task` → `/run-code-task`, looped over eligible tasks. No PR/CI
+apparatus — this repo has none yet (see `AGENTS.md`'s *Branch model*).
 
-**Requires `/add-task`'s Effort/Risk tags.** `Risk: high` is never eligible.
+**Requires `/add-code-task`'s Effort/Risk tags.** `Risk: high` is never eligible.
 
 ## Step 1 — get live state
 
-Read `AI.md`, `AGENTS.md`, and `docs/TASK_BOARD.md` directly.
+Read `AI.md`, `AGENTS.md`, and `docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md` directly.
 
 ## Step 2 — build the eligible queue
 
@@ -30,17 +30,17 @@ Consecutive-failure counter starting at 0. A "failure": bigger-than-expected sco
 failing and not quickly fixable, or a Canon/Scope-boundary violation found during manual verification.
 **If the counter reaches 2, stop the sweep immediately.**
 
-For each task: do the work (`/run-task` Step 2), verify (`npm run check` **plus** manual Canon/
+For each task: do the work (`/run-code-task` Step 2), verify (`npm run check` **plus** manual Canon/
 Scope-boundary check for anything gameplay-touching — this is not optional even for `Risk: low` tasks
-if the task touches game state), commit and push (`/run-task` Step 4: `git pull --rebase` before push,
-exact files only). Mark done, reset counter, continue.
+if the task touches game state), commit and push (`/run-code-task` Step 4: `git pull --rebase` before
+push, exact files only). Mark done, reset counter, continue.
 
 If a task turns out bigger than expected, drop it (leave the task-board entry alone), count toward the
 circuit breaker, move on.
 
 ## Step 4 — new tasks discovered mid-sweep
 
-Format new work in `/add-task`'s house format (including Effort/Risk, self-classified), commit directly
+Format new work in `/add-code-task`'s house format (including Effort/Risk, self-classified), commit directly
 to `main` — skip the clarifying-questions/approval-wait steps, this skill runs unattended by design. If
 it clears the Risk bar, fold into this run's queue.
 

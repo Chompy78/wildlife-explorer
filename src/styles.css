@@ -51,7 +51,7 @@ h2 { color: #235c3a; }
 .location-card.preview { background: #fff9dc; }
 .location-card.hidden { background: #edf0ec; opacity: 0.92; }
 .location-icon { font-size: 2.2rem; }
-.park-map { position: relative; aspect-ratio: 3 / 2; border-radius: 28px; overflow: hidden; background: #193d28; margin-bottom: 1rem; }
+.park-map { position: relative; aspect-ratio: 2 / 3; border-radius: 28px; overflow: hidden; background: #193d28; margin-bottom: 1rem; }
 .park-map img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .map-pin-wrap { position: absolute; transform: translate(-50%, -50%); }
 .map-pin { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; border: 0; background: none; padding: 0; cursor: pointer; }
@@ -74,12 +74,12 @@ h2 { color: #235c3a; }
 .map-column { flex: 1; min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 0.5rem; }
 .location-strip { flex-shrink: 0; border-radius: 16px; padding: 0.55rem 1rem; background: rgba(255, 255, 255, 0.78); font-size: 0.9rem; }
 .location-strip strong { margin-right: 0.4rem; color: #235c3a; }
-.map-column .park-map { flex: 1; min-height: 0; aspect-ratio: auto; margin-bottom: 0; }
+.map-column .park-map { flex: 1; min-height: 0; max-width: 100%; align-self: center; margin-bottom: 0; }
 .map-column .message-box { flex-shrink: 0; margin-top: 0; max-height: 4.2rem; overflow-y: auto; }
 
 /* Action buttons float over the map as small round icon buttons instead of a full sidebar, so the map
    itself gets the full play area. Icon-only - each button's accessible name comes from aria-label. */
-.action-bar { position: absolute; top: 0.6rem; right: 0.6rem; z-index: 5; display: flex; flex-direction: column; gap: 0.5rem; }
+.action-bar { position: absolute; top: 0.6rem; right: 0.6rem; bottom: 0.6rem; z-index: 5; display: flex; flex-direction: column; gap: 0.5rem; overflow-y: auto; }
 .action-button { position: relative; width: 3rem; height: 3rem; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; background: rgba(38, 112, 67, 0.92); box-shadow: 0 6px 16px rgba(20, 60, 32, 0.4); }
 .action-button.secondary { background: rgba(223, 240, 212, 0.92); }
 .action-button .badge { position: absolute; top: -0.25rem; right: -0.25rem; border-radius: 999px; padding: 0.05rem 0.4rem; background: #f1b83b; color: #4a3200; font-size: 0.68rem; font-weight: 900; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
@@ -92,7 +92,7 @@ h2 { color: #235c3a; }
 
 @media (max-width: 700px) {
   .play-screen { height: auto; min-height: 100dvh; overflow: visible; }
-  .map-column .park-map { flex: none; aspect-ratio: 3 / 2; }
+  .map-column .park-map { flex: none; aspect-ratio: 2 / 3; }
   .map-column .message-box { max-height: none; overflow-y: visible; }
   .action-button { width: 2.6rem; height: 2.6rem; font-size: 1.15rem; }
 }
@@ -121,8 +121,12 @@ h2 { color: #235c3a; }
 .progress-card li.locked { color: #7b806f; }
 .complete-message { margin: 0; border-radius: 14px; padding: 0.75rem; background: #dff0d4; font-weight: 900; }
 .photo-target { display: flex; align-items: center; justify-content: flex-start; gap: 0.75rem; border-radius: 18px; transition: box-shadow 0.4s ease; }
-.photo-target span { font-size: 1.6rem; }
+.photo-target .animal-visual { font-size: 1.6rem; }
 .photo-target.pulse:not(:disabled) { box-shadow: 0 0 0 4px rgba(241, 184, 59, 0.65); }
+.photo-target-body { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; flex: 1; text-align: left; }
+.focus-track { position: relative; width: 100%; height: 0.5rem; border-radius: 999px; background: rgba(38, 112, 67, 0.15); }
+.focus-sweet-spot { position: absolute; top: 0; bottom: 0; border-radius: 999px; background: rgba(241, 184, 59, 0.55); }
+.focus-marker { position: absolute; top: 50%; width: 0.85rem; height: 0.85rem; border-radius: 50%; background: #267043; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(20, 60, 32, 0.4); transform: translate(-50%, -50%); transition: left 0.02s linear; }
 .camera-hint { margin: 0 0 0.6rem; font-size: 0.85rem; }
 .message-box { margin-top: 1rem; border-radius: 18px; padding: 1rem; background: #e9f7ff; font-weight: 700; }
 .progress-card ul { margin: 0; padding: 0; list-style: none; }
@@ -144,6 +148,8 @@ h2 { color: #235c3a; }
 .album-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.85rem; margin-top: 1rem; }
 .album-slot { aspect-ratio: 1/1; border-radius: 18px; overflow: hidden; display: grid; place-items: center; background: #edf0ec; }
 .album-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.album-slot.bonus-slot { display: flex; flex-direction: column; gap: 0.3rem; padding: 0.5rem; background: #fff8df; border: 2px dashed #d49b25; }
+.album-slot.bonus-slot small { font-size: 0.68rem; font-weight: 800; color: #8a6a1f; text-align: center; }
 .album-slot.locked { font-size: 1.8rem; color: #8ba58f; }
 
 @media (max-width: 850px) {

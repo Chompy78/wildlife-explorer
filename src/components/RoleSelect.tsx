@@ -10,7 +10,7 @@ export function RoleSelect({ onSelectRole }: RoleSelectProps) {
       <section className="panel wide-panel">
         <p className="eyebrow">Choose Your Explorer</p>
         <h1>Pick a role</h1>
-        <p className="muted">Bonuses are placeholder text for now. No role is the best choice.</p>
+        <p className="muted">Each role gives a small bonus (Custom Character is saved for later). No role is the best choice - pick whichever explorer sounds most fun.</p>
         <div className="role-grid">
           {roles.map((role) => (
             <button key={role.id} className="role-card" onClick={() => onSelectRole(role.id)}>

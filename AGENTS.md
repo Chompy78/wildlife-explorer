@@ -9,7 +9,7 @@
 ## Start here, in order
 1. `AI.md` — project state, Canon, Scope boundary, verification command. **This is still the real
    entry point** — nothing here changes that.
-2. `docs/TASK_BOARD.md` — current open work (new; previously tracked informally in
+2. `docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md` — current open work, by band (new; previously tracked informally in
    `CURRENT_CODE_REVIEW.md`'s "Next detailed review priorities").
 3. This file — process conventions for logging, task format, and communication style.
 
@@ -30,7 +30,7 @@ forward-merge (or otherwise land) that branch into `main` before finishing the s
 other commit. Don't introduce a PR gate just because a branch happened to exist. See `DECISIONS.md`'s
 `D-2026-07-20-branch-model-confirmed`.
 
-## Task format (for `docs/TASK_BOARD.md`)
+## Task format (for `docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md`)
 ```
 ## <Short title> — TODO
 <one-line of what + where>.
@@ -62,13 +62,24 @@ summarized here:
   Recommended unless the action is destructive, a judgment call only the user can make, or missing
   information.
 
+## Technical Access ≠ Scope
+Any AI session without real technical permission-scoping (i.e. most sessions — Claude Code with enforced
+deny-rules is the exception) should not read or edit files belonging to a different project than this one,
+unless explicitly asked. Checking another project's rules or adding something there on request is fine;
+doing it unprompted isn't. Confirmed via direct testing (28 July 2026, Home AI Server) that a session with
+broad, non-enforced access will cross into another project's files if asked, seeing no rule against it —
+see AI_templates' `D-2026-07-28-technical-access-not-scope`.
+
 ## Log as you go
 - **`CHANGELOG.md`** — *what* changed, one line, newest on top.
-- **`DECISIONS.md`** — *why*, on any architectural/process choice.
+- **`DECISIONS.md`** — *why*, on any architectural/process choice. As of 2026-07-28, `DECISIONS.md` is a
+  thin index — write the full record to `decisions/2026/D-<YYYY-MM-DD>-<slug>.md` first, then add a
+  one-line index entry (Status/Summary/Record) to `DECISIONS.md` itself. Never write full decision detail
+  directly into `DECISIONS.md`.
 - **`docs/sessions/<name>.md`** — the discussion, when it's worth keeping. This repo's existing session
   logs use a verbose, narrative style (see `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md`
   for the pattern) — match that style, don't switch to PACT's terser format mid-repo.
-- **Graduate:** when a `docs/TASK_BOARD.md` task is DONE, move it into `CHANGELOG.md` in the same change.
+- **Graduate:** when a task on `docs/TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md` is DONE, move it into `CHANGELOG.md` in the same change.
 
 ## Multiple sessions — not yet a real scenario
 Solo project today. Revisit if a second contributor starts working here concurrently — see PACT's
@@ -79,5 +90,5 @@ Solo project today. Revisit if a second contributor starts working here concurre
 2. Verify Canon/Scope-boundary compliance for anything touching gameplay — `npm run check` won't catch a
    Canon violation (e.g. adding combat, or letting an animal be "collected").
 3. Update `CHANGELOG.md` (always) · `DECISIONS.md` (if non-obvious *why*) · a `docs/sessions/` note (if
-   the session had real discussion or a pivot). Graduate the task off `docs/TASK_BOARD.md` if done.
+   the session had real discussion or a pivot). Graduate the task off its band file if done.
 4. Commit as `type(scope): summary`, push directly to `main`.

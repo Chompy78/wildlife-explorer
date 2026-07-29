@@ -5,6 +5,109 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-29 · feat(camera): binary blur + growing sweet-spot band** — simplified the Great Shot blur
+  from a practice-count-floor/timing-nudge hybrid to a strict binary: blurry unless the shutter is
+  pressed inside the sweet spot, crisp if it is. In exchange, the sweet-spot band itself now grows -
+  starting narrow on a brand-new species, widening toward its difficulty tier's full ceiling over 5
+  photos of that species (a full collection - the natural, reachable mastery point), plus a smaller,
+  slower bonus that widens every species' band a little as a save's total photo count grows toward 60,
+  so an experienced photographer gets a small edge even on an animal they've never shot before. Class/
+  role effects still apply (Animal Researcher's eased difficulty picks a wider ceiling tier before this
+  growth scales it). `PhotoReveal`'s `photographCount` prop replaced by a plain `showPhotoQuality`
+  boolean, since photograph count no longer feeds the blur math directly. Found and fixed two bugs
+  while building this: the sweep's 50ms tick was too coarse for the narrowest possible bands (~27ms
+  true crossing time), risking the window being skipped entirely on unlucky tick alignment - tightened
+  to 20ms (and `.focus-marker`'s CSS transition to match); and the species-mastery threshold was
+  initially set to 8 photos, which is structurally unreachable since every animal caps at 5 collectible
+  variants and the shutter disables once a collection completes - fixed to 5. See `DECISIONS.md`'s
+  `D-2026-07-29-dynamic-focus-band` (extends `D-2026-07-29-focus-the-shot`, further simplifies
+  `D-2026-07-28-timed-blur-and-photo-difficulty`'s blur model).
+- **2026-07-29 · feat(camera): "focus the shot" replaces wandering + on/off pulse** — reworked the photo
+  interaction after feedback that it "doesn't feel satisfying." Removed the in-frame wandering gate
+  entirely — every animal is always visible and always shootable again, no more waiting for one to
+  wander back. Replaced the binary on/off Great Shot glow with a continuously moving marker sweeping a
+  small track under each animal's name, crossing a highlighted sweet spot twice per cycle; tapping the
+  shutter always works, but lands a Great Shot only when the marker is inside the sweet spot at that
+  instant. Sweep speed and sweet-spot width still vary by `photoDifficulty` (and by the Animal
+  Researcher role bonus). `prefers-reduced-motion` falls back to the previous calm on/off glow, no
+  moving element. Composes unchanged with the existing timed-blur system (same `greatShot` boolean).
+  No save-schema change. See `DECISIONS.md`'s `D-2026-07-29-focus-the-shot` (supersedes
+  `D-2026-07-28-photo-mode-wandering-animals`).
+- **2026-07-29 · feat(park): portrait Park Map, user-supplied art** — replaced the landscape 3:2 Park Map
+  (`park-map.png`, 3.28MB) with a new portrait 2:3 map the user generated and supplied
+  (`park-map.jpg`, 1024×1536, converted to JPEG at quality 85, ~590KB — an 82% size reduction). All 6
+  location pins re-tuned by eye against the new art; Whisper Grove nudged left to clear the floating
+  action bar it was colliding with in the top-right corner. Fixed a real bug found while wiring this in:
+  `object-fit: contain` alone let the map's box stretch wide on desktop (via `aspect-ratio: auto`),
+  letterboxing the portrait image inside a wider box — since pins are positioned as a percentage of the
+  *box*, not the visible image, this silently misaligned every pin except the ones sitting at exactly
+  50% left. Fixed by keeping `.park-map` at the image's native 2:3 ratio everywhere (centered via
+  `align-self: center` on desktop, full-width on the narrow-phone fallback) instead of letting it stretch
+  and letterbox. Verified in a real browser at desktop and two phone-portrait sizes, plus that pin clicks
+  still navigate and the hidden-Whisper-Grove message still shows correctly. See `DECISIONS.md`'s
+  `D-2026-07-29-park-map-portrait`.
+- **2026-07-28 · feat(roles): first real bonus per explorer role** — the 6 explorer roles chosen at game
+  start now do something: **Zoologist** gets a bonus fact (the animal's existing `funFact`) on the very
+  first photo of a species; **Wildlife Photographer** gets a bonus 6th photo slot per animal, shown as an
+  honest "coming soon" tile in the Photo Album until real art exists (see `docs/copilot-packages/
+  05-bonus-photo-variants.md`); **Conservation Ranger** discovers double facts (10 total) for common
+  animals; **Explorer** sees a still-locked location's real icon instead of a padlock on the Park Map;
+  **Animal Researcher** gets an easier photo difficulty *and* double facts (10 total), both scoped to
+  rare animals only (Rare Owl today); **Custom Character** stays a deliberate no-bonus placeholder for
+  later. New `src/data/roleBonuses.ts` centralizes all role-eligibility checks. `animalFacts.ts` gained a
+  50-fact bonus pool (5 per eligible animal) and `getLearnedFacts`/`getTotalFactCount` grew an
+  `includeBonus` parameter. Found and fixed a real gap while wiring this up: `ForestScreen.tsx` had its
+  own separate, un-refactored inline camera implementation that never received Photo Mode or per-animal
+  difficulty in the first place — replaced with the shared `CameraPanel` component, so Forest now gets
+  wandering animals, timed blur, and all 6 role bonuses for free, matching Park. No save-schema change.
+  Verified all 5 active bonuses in a real browser. See `DECISIONS.md`'s `D-2026-07-28-explorer-role-bonuses`.
+- **2026-07-28 · feat(camera): photo blur reacts to this shot's timing, glow difficulty varies per
+  animal** — `getPhotoQualityStyle`/`getPhotoQualityLabel` (`src/data/photoQuality.ts`) now take an
+  optional `greatShot` flag alongside the existing practice-count floor: landing the Great Shot glow
+  nudges the displayed tier one step sharper, missing it nudges one step blurrier, clamped at both ends
+  so a single miss never undoes practice progress and a beginner's lucky hit is never instantly
+  "crisp and sharp" — timing matters, without a harsh-failure state. Each animal now has a
+  `photoDifficulty: 'easy' | 'medium' | 'hard'` (`src/types/Animal.ts`, assigned per-species in
+  `src/data/animals.ts`) driving its own Great Shot glow on/off pacing in `CameraPanel.tsx` (e.g. Duck is
+  forgiving, Butterfly/Rare Owl are quick and tricky), replacing the old single shared 900ms/1500ms
+  timer — composes with Photo Mode's existing per-animal in-frame gate, glow only cycles while an animal
+  is actually in frame. No save-schema change. Verified in a real browser: an easy animal's glow visibly
+  stays on longer than a hard one's, and a Great Shot vs. a missed-glow photo produce different blur on
+  the reveal screen. See `DECISIONS.md`'s `D-2026-07-28-timed-blur-and-photo-difficulty`.
+- **2026-07-28 · feat(camera): Photo Mode — animals wander in and out of frame** — `CameraPanel`'s static
+  "always available" button list now gates on presence: each animal cycles in/out of frame on its own
+  randomized timer (staggered so a group doesn't sync up), and the shutter is only enabled while an
+  animal is actually in frame. Off-frame is never a failure — the button is disabled with encouraging
+  copy ("X wandered off - wait for it to come back"), same visual language as an already-complete
+  collection, per Canon's "no harsh failure". Composes unchanged with the existing pose-capture pulse
+  (the "Great shot!" bonus still only matters while in frame). `prefers-reduced-motion` skips the gate
+  entirely, falling back to pre-Photo-Mode always-available behavior. No save-schema change. Verified in
+  a real browser under normal motion, emulated reduced motion, and a small viewport. Promotes the
+  "Advanced photography features" 2026-07-25 roadmap item out of `docs/TASK_BOARD_NEXT.md`; the day/
+  night layer stays deferred. See `DECISIONS.md`'s `D-2026-07-28-photo-mode-wandering-animals`.
+- **2026-07-28 · fix(ui): action-bar buttons no longer clip off-screen on small maps** — the floating
+  icon action bar (Camera/Quest/Clue/Discover/Progress/Journal/About) is an absolutely-positioned column
+  inside the `.park-map`/`.forest-stage` box, which clips overflow. On narrow phones (and with both Clue
+  and Discover showing) the column could be taller than the map box, silently hiding the bottom button(s)
+  with no way to reach them — confirmed in a real browser at 320×480 (About was clipped). Fixed by
+  anchoring `.action-bar` between `top` and `bottom` and adding `overflow-y: auto`, so it scrolls
+  internally instead of clipping; verified all 7 buttons stay reachable down to 320×480, and desktop is
+  visually unchanged. See `DECISIONS.md`'s `D-2026-07-28-action-bar-clipping-fix`.
+- **2026-07-28 · docs: split docs/TASK_BOARD.md into NOW/SOON/NEXT/SOMEDAY** — Split by this project's own
+  four existing bands into `TASK_BOARD_NOW.md`/`_SOON.md`/`_NEXT.md`/`_SOMEDAY.md`, matching `DECISIONS.md`'s
+  already-split shape (this half had been missed, caught during a cross-project verification sweep).
+  Updated all `.claude/commands/*.md` references to the new band-file names. See `DECISIONS.md`
+  D-2026-07-28-wildlife-explorer-task-board-split.
+- **2026-07-28 · docs: add 'technical access != scope' rule** — Added a "Technical Access ≠ Scope" section
+  to `AGENTS.md`, retrofitted from a new standard-level rule in AI_templates (`AGENTS_TEMPLATE.md`/
+  `AI_RULES.md` Rule 10), after direct testing on Home AI Server confirmed a session with broad,
+  non-enforced access would cross into a different project's files if asked. See `DECISIONS.md`
+  D-2026-07-28-technical-access-not-scope.
+- **2026-07-26 · chore(claude-commands): rename `.claude/commands/` files with a `-code-` marker** — all
+  seven command files renamed (`add-code-task.md`, `close-code-session.md`, `log-code-lesson.md`,
+  `make-code-cold-plan-review.md`, `pick-code-task.md`, `run-code-task.md`, `sweep-code-tasks.md`) to
+  disambiguate this git/PR-driven engineering family from a separate "-chat-" Skills family, matching
+  `chompy78/PACT`/`chompy78/homelife`'s precedent. See `DECISIONS.md`'s `D-2026-07-26-code-command-marker`.
 - **2026-07-25 · feat(journal): biome navigation and a real per-animal photo album** — the Journal now
   opens on a biome-select screen (Tutorial Park / Forest / Places & Rewards, each with a discovered
   count) instead of one long flat list. Every discovered animal with photo art gets a new "View Photos"

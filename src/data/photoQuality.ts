@@ -1,29 +1,21 @@
 import type { CSSProperties } from 'react';
 
-// Photos of a species visibly sharpen as the player photographs it more (saveData.photographCounts),
-// independent of which random variant was picked. Always encouraging in tone (AI.md's "no harsh
-// failure") - never call an early photo "bad" or "poor quality" in visible copy.
-const TIERS = [
-  { minCount: 0, blurPx: 3, scale: 1.12, label: 'First shot - keep practicing!' },
-  { minCount: 2, blurPx: 1.6, scale: 1.06, label: 'Getting steadier!' },
-  { minCount: 3, blurPx: 0.6, scale: 1.02, label: 'Nice and clear!' },
-  { minCount: 4, blurPx: 0, scale: 1, label: 'Crisp and sharp!' },
-] as const;
+// A photo is either a Great Shot (the tap landed inside the Camera panel's focus sweet spot) or not -
+// there is no middle ground and no failure state, just encouraging "keep practicing" framing for a miss,
+// per AI.md's Canon of "no harsh failure". How EASY the sweet spot is to hit (its width) is a separate,
+// practice-driven concern that lives in CameraPanel.tsx's getSweetSpotWidth - this module only renders
+// the visual consequence of the greatShot boolean it's given.
+const BLURRY = { blurPx: 3, scale: 1.12, label: 'Keep practicing - aim for the glowing zone!' };
+const CRISP = { blurPx: 0, scale: 1, label: 'Crisp and sharp!' };
 
-function getTier(count: number): (typeof TIERS)[number] {
-  let tier: (typeof TIERS)[number] = TIERS[0];
-  for (const candidate of TIERS) if (count >= candidate.minCount) tier = candidate;
-  return tier;
-}
-
-export function getPhotoQualityStyle(count: number): CSSProperties {
-  const tier = getTier(count);
+export function getPhotoQualityStyle(greatShot?: boolean): CSSProperties {
+  const tier = greatShot ? CRISP : BLURRY;
   return {
     filter: tier.blurPx > 0 ? `blur(${tier.blurPx}px)` : 'none',
     transform: tier.scale > 1 ? `scale(${tier.scale})` : 'none',
   };
 }
 
-export function getPhotoQualityLabel(count: number): string {
-  return getTier(count).label;
+export function getPhotoQualityLabel(greatShot?: boolean): string {
+  return (greatShot ? CRISP : BLURRY).label;
 }

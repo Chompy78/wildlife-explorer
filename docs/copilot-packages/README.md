@@ -31,9 +31,9 @@ package says exactly which ones, kept well under the 20-file ceiling.
   long-term/aspirational, not current scope). `public/assets/wild-camper/wild-camper-direction.png`
   (1536×1024 PNG) is the one concrete image anchor that exists today. Attach **both** in Copilot 365
   alongside any Track A art brief so new assets match — don't rely on either alone.
-- **Task-board format**: each package ends with a "Done when" block written in this repo's
-  `docs/TASK_BOARD.md` task format (see `AGENTS.md`), so finished work graduates into `CHANGELOG.md` the
-  same way any other task does.
+- **Task-board format**: each package ends with a "Done when" block written in this repo's task-board
+  format (see `AGENTS.md`), so finished work graduates into `CHANGELOG.md` the same way any other task
+  does.
 - **Copilot 365 only does Track A (art).** Package 01 found that Copilot 365 Chat couldn't reliably
   complete even a small, fully-specified multi-file code change — Claude implemented it directly instead.
   As of 2026-07-25 that's the standing approach, not a case-by-case fallback: packages still write a full
@@ -48,7 +48,11 @@ package says exactly which ones, kept well under the 20-file ceiling.
 - `02-animal-portraits.md` — kept as history, not a live spec. Its Track A art generation succeeded, but
   the mechanic evolved past its Track B code spec (single portrait per animal) into a 5-photo-variant
   collection mechanic — see `DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`. Done (2026-07-25).
-- `03-park-map.md` — a single illustrated Park Map image with clickable location pins, replacing the
-  plain grid of button-cards.
+- `03-park-map.md` — superseded (2026-07-29): its landscape map image was replaced by a portrait one for
+  better phone display — see `DECISIONS.md`'s `D-2026-07-29-park-map-portrait`. The clickable-pins-over-
+  an-image approach it introduced is unchanged, kept as history for the original prompt/reasoning.
 - `04-lake-biome-animals.md` — pre-milestone art prep for the (currently preview-only) Lake destination:
   6 animals × 5 photo variants each, no code changes until Lake is actually built.
+- `05-bonus-photo-variants.md` — art prep for the Wildlife Photographer explorer role's bonus 6th photo
+  per animal (10 animals × 1 photo). The role's "coming soon" preview slot already shipped; this package
+  generates the art a follow-up task needs to wire in the real photo.

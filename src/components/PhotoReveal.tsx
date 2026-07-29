@@ -9,19 +9,20 @@ type Props = {
   collectedCount: number;
   totalCount: number;
   fact?: string | null;
-  photographCount?: number;
+  bonusFact?: string | null;
+  showPhotoQuality?: boolean;
   greatShot?: boolean;
   onClose: () => void;
 };
 
-export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact, photographCount, greatShot, onClose }: Props) {
+export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact, bonusFact, showPhotoQuality, greatShot, onClose }: Props) {
   const dialogRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const close = useCallback(onClose, [onClose]);
   useModalFocus(dialogRef, close, closeRef);
   const complete = collectedCount >= totalCount;
-  const qualityStyle = photographCount !== undefined ? getPhotoQualityStyle(photographCount) : undefined;
-  const qualityLabel = photographCount !== undefined ? getPhotoQualityLabel(photographCount) : null;
+  const qualityStyle = showPhotoQuality ? getPhotoQualityStyle(greatShot) : undefined;
+  const qualityLabel = showPhotoQuality ? getPhotoQualityLabel(greatShot) : null;
 
   return (
     <div className="reveal-overlay" role="presentation">
@@ -40,6 +41,9 @@ export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact
         </p>
         {fact ? (
           <p className="reveal-fact"><span className="eyebrow">Did you know?</span>{fact}</p>
+        ) : null}
+        {bonusFact ? (
+          <p className="reveal-fact reveal-bonus-fact"><span className="eyebrow">🎓 Bonus fact!</span>{bonusFact}</p>
         ) : null}
         <button ref={closeRef} onClick={onClose}>Continue Exploring</button>
       </section>

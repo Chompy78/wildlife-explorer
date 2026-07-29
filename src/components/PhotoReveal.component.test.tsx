@@ -7,6 +7,7 @@ import type { Animal } from '../types/Animal';
 const duck: Animal = {
   id: 'duck', name: 'Duck', rarity: 'common', habitat: 'Duck Pond', activeTime: 'Day',
   funFact: 'Ducks have waterproof feathers.', behaviours: ['swimming'], emoji: '🦆', availableInMilestone: true,
+  photoDifficulty: 'easy',
 };
 
 describe('PhotoReveal', () => {
@@ -24,19 +25,26 @@ describe('PhotoReveal', () => {
     expect(screen.queryByText(/Did you know/i)).not.toBeInTheDocument();
   });
 
-  it('blurs and scales the photo when practice count is low, and shows a quality label', () => {
-    render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-1.jpg" collectedCount={1} totalCount={5} photographCount={1} onClose={vi.fn()} />);
+  it('blurs and scales the photo when it was not a Great Shot, and shows the encouraging label', () => {
+    render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-1.jpg" collectedCount={1} totalCount={5} showPhotoQuality greatShot={false} onClose={vi.fn()} />);
     const img = screen.getByRole('img', { name: /Photo of Duck/i });
     expect(img.style.filter).toBe('blur(3px)');
     expect(img.style.transform).toBe('scale(1.12)');
-    expect(screen.getByText('First shot - keep practicing!')).toBeInTheDocument();
+    expect(screen.getByText('Keep practicing - aim for the glowing zone!')).toBeInTheDocument();
   });
 
-  it('shows the photo fully crisp with no quality label when photographCount is not provided', () => {
+  it('shows the photo fully crisp with a "Crisp and sharp!" label when it was a Great Shot', () => {
+    render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-1.jpg" collectedCount={1} totalCount={5} showPhotoQuality greatShot onClose={vi.fn()} />);
+    const img = screen.getByRole('img', { name: /Photo of Duck/i });
+    expect(img.style.filter).toBe('none');
+    expect(screen.getByText('Crisp and sharp!')).toBeInTheDocument();
+  });
+
+  it('shows no quality style or label at all when showPhotoQuality is not set (e.g. the Lost Puppy reunion keepsake)', () => {
     render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-1.jpg" collectedCount={1} totalCount={5} onClose={vi.fn()} />);
     const img = screen.getByRole('img', { name: /Photo of Duck/i });
     expect(img.style.filter).toBe('');
-    expect(screen.queryByText(/keep practicing|steadier|nice and clear|crisp and sharp/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/keep practicing|crisp and sharp/i)).not.toBeInTheDocument();
   });
 
   it('shows a "Great shot!" badge only when greatShot is true', () => {
@@ -49,6 +57,15 @@ describe('PhotoReveal', () => {
   it('announces collection completion distinctly', () => {
     render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-5.jpg" collectedCount={5} totalCount={5} onClose={vi.fn()} />);
     expect(screen.getByText(/collection complete!/i)).toBeInTheDocument();
+  });
+
+  it('shows a bonus fact alongside the normal fact when one is provided, and nothing extra when it is not', () => {
+    const { rerender } = render(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-2.jpg" collectedCount={2} totalCount={5} fact="Ducks have waterproof feathers." bonusFact="A bonus fact about ducks." onClose={vi.fn()} />);
+    expect(screen.getByText('Ducks have waterproof feathers.')).toBeInTheDocument();
+    expect(screen.getByText('A bonus fact about ducks.')).toBeInTheDocument();
+    expect(screen.getByText(/Bonus fact!/i)).toBeInTheDocument();
+    rerender(<PhotoReveal animal={duck} photoUrl="/assets/animals/duck-2.jpg" collectedCount={2} totalCount={5} fact="Ducks have waterproof feathers." bonusFact={null} onClose={vi.fn()} />);
+    expect(screen.queryByText(/Bonus fact!/i)).not.toBeInTheDocument();
   });
 
   it('closes when Continue Exploring is pressed, and receives initial focus', async () => {

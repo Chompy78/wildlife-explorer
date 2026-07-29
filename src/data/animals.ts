@@ -11,6 +11,7 @@ export const animals: Animal[] = [
     behaviours: ['swimming', 'feeding', 'preening'],
     emoji: '🦆',
     availableInMilestone: true,
+    photoDifficulty: 'easy',
   },
   {
     id: 'frog',
@@ -22,6 +23,7 @@ export const animals: Animal[] = [
     behaviours: ['jumping', 'resting', 'croaking'],
     emoji: '🐸',
     availableInMilestone: true,
+    photoDifficulty: 'medium',
   },
   {
     id: 'butterfly',
@@ -33,6 +35,7 @@ export const animals: Animal[] = [
     behaviours: ['flying', 'resting', 'feeding on flowers'],
     emoji: '🦋',
     availableInMilestone: true,
+    photoDifficulty: 'hard',
   },
   {
     id: 'rabbit',
@@ -44,6 +47,7 @@ export const animals: Animal[] = [
     behaviours: ['grazing', 'hopping', 'hiding'],
     emoji: '🐇',
     availableInMilestone: true,
+    photoDifficulty: 'medium',
   },
   {
     id: 'lizard',
@@ -55,6 +59,7 @@ export const animals: Animal[] = [
     behaviours: ['basking', 'running', 'hiding'],
     emoji: '🦎',
     availableInMilestone: true,
+    photoDifficulty: 'medium',
   },
   {
     id: 'park-bird',
@@ -66,6 +71,7 @@ export const animals: Animal[] = [
     behaviours: ['singing', 'perching', 'collecting nesting material'],
     emoji: '🐦',
     availableInMilestone: true,
+    photoDifficulty: 'medium',
   },
   {
     id: 'rare-owl',
@@ -77,6 +83,7 @@ export const animals: Animal[] = [
     behaviours: ['watching', 'perching', 'silent flight'],
     emoji: '🦉',
     availableInMilestone: true,
+    photoDifficulty: 'hard',
   },
   {
     id: 'lost-puppy',
@@ -88,10 +95,11 @@ export const animals: Animal[] = [
     behaviours: ['sniffing', 'walking', 'sitting calmly'],
     emoji: '🐶',
     availableInMilestone: false,
+    photoDifficulty: 'easy',
   },
-  { id: 'forest-wren', name: 'Forest Wren', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Morning', funFact: 'Small forest birds use calls to keep in touch while moving through leafy habitat.', behaviours: ['perching', 'foraging', 'calling'], emoji: '🐦', availableInMilestone: true },
-  { id: 'forest-wallaby', name: 'Forest Wallaby', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Morning and late afternoon', funFact: 'Wallabies rest in shelter and move quietly through forest edges to feed.', behaviours: ['grazing', 'listening', 'moving quietly'], emoji: '🦘', availableInMilestone: true },
-  { id: 'forest-beetle', name: 'Shiny Forest Beetle', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Day', funFact: 'Beetles help forest ecosystems by recycling plant material and supporting food webs.', behaviours: ['crawling', 'sheltering', 'feeding'], emoji: '🪲', availableInMilestone: true },
+  { id: 'forest-wren', name: 'Forest Wren', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Morning', funFact: 'Small forest birds use calls to keep in touch while moving through leafy habitat.', behaviours: ['perching', 'foraging', 'calling'], emoji: '🐦', availableInMilestone: true, photoDifficulty: 'medium' },
+  { id: 'forest-wallaby', name: 'Forest Wallaby', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Morning and late afternoon', funFact: 'Wallabies rest in shelter and move quietly through forest edges to feed.', behaviours: ['grazing', 'listening', 'moving quietly'], emoji: '🦘', availableInMilestone: true, photoDifficulty: 'medium' },
+  { id: 'forest-beetle', name: 'Shiny Forest Beetle', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Day', funFact: 'Beetles help forest ecosystems by recycling plant material and supporting food webs.', behaviours: ['crawling', 'sheltering', 'feeding'], emoji: '🪲', availableInMilestone: true, photoDifficulty: 'easy' },
   {
     id: 'red-eared-slider',
     name: 'Red-eared Slider Turtle',
@@ -102,6 +110,7 @@ export const animals: Animal[] = [
     behaviours: ['basking', 'swimming', 'resting on logs'],
     emoji: '🐢',
     availableInMilestone: true,
+    photoDifficulty: 'easy',
     nonNative: {
       correctHabitatId: 'lake',
       impactNote: "Red-eared Sliders aren't native to this pond. People sometimes release pet turtles into the wild, and they can compete with native turtles for food and basking spots.",
@@ -117,6 +126,7 @@ export const animals: Animal[] = [
     behaviours: ['hopping', 'resting', 'calling'],
     emoji: '🐸',
     availableInMilestone: true,
+    photoDifficulty: 'easy',
     nonNative: {
       correctHabitatId: 'rainforest',
       impactNote: 'People introduced Cane Toads to some places to help control pests, but that caused problems for animals who already lived there.',

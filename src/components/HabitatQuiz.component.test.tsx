@@ -7,7 +7,7 @@ import type { Animal } from '../types/Animal';
 const caneToad: Animal = {
   id: 'cane-toad', name: 'Cane Toad', rarity: 'common', habitat: 'Forest Trail', activeTime: 'Evening',
   funFact: 'Cane Toads were introduced to some places to help control pests.', behaviours: ['hopping'], emoji: '🐸',
-  availableInMilestone: true,
+  availableInMilestone: true, photoDifficulty: 'easy',
   nonNative: { correctHabitatId: 'rainforest', impactNote: 'They can be harmful to animals that try to eat them.' },
 };
 

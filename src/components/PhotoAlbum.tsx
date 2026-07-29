@@ -3,9 +3,9 @@ import { getPhotoVariantCount, getPhotoVariantUrl } from '../data/animalPhotoVar
 import { useModalFocus } from '../hooks/useModalFocus';
 import type { Animal } from '../types/Animal';
 
-type PhotoAlbumProps = { animal: Animal; collected: string[]; onClose: () => void };
+type PhotoAlbumProps = { animal: Animal; collected: string[]; showBonusSlot?: boolean; onClose: () => void };
 
-export function PhotoAlbum({ animal, collected, onClose }: PhotoAlbumProps) {
+export function PhotoAlbum({ animal, collected, showBonusSlot, onClose }: PhotoAlbumProps) {
   const dialogRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const close = useCallback(onClose, [onClose]);
@@ -34,6 +34,12 @@ export function PhotoAlbum({ animal, collected, onClose }: PhotoAlbumProps) {
               </div>
             );
           })}
+          {showBonusSlot && animal.id !== 'lost-puppy' ? (
+            <div className="album-slot locked bonus-slot">
+              <span aria-hidden="true">🔒</span>
+              <small>Bonus photo — coming soon</small>
+            </div>
+          ) : null}
         </div>
       </section>
     </div>

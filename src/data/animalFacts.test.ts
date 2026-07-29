@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { getFactCount, getFactForVariant, getFactForVariantKey, getLearnedFacts } from './animalFacts';
+import {
+  getBonusFactForVariant,
+  getBonusFactForVariantKey,
+  getFactCount,
+  getFactForVariant,
+  getFactForVariantKey,
+  getLearnedFacts,
+  getTotalFactCount,
+  hasBonusFacts,
+} from './animalFacts';
 
 describe('animalFacts', () => {
   it('returns exactly 5 facts for an animal with photo art', () => {
@@ -31,5 +40,32 @@ describe('animalFacts', () => {
 
   it('returns no facts learned when nothing is collected', () => {
     expect(getLearnedFacts('duck', [])).toEqual([]);
+  });
+
+  it('has bonus facts for animals with photo art, but not for lost-puppy (a one-off keepsake, no facts pool at all beyond the normal 5)', () => {
+    expect(hasBonusFacts('duck')).toBe(true);
+    expect(hasBonusFacts('rare-owl')).toBe(true);
+    expect(hasBonusFacts('lost-puppy')).toBe(false);
+  });
+
+  it('returns the matching bonus fact for a given variant, distinct from the normal fact', () => {
+    const bonus = getBonusFactForVariant('duck', 2);
+    expect(bonus).not.toBeNull();
+    expect(bonus).not.toBe(getFactForVariant('duck', 2));
+  });
+
+  it('derives the same bonus fact from a "<id>-<variant>" key', () => {
+    expect(getBonusFactForVariantKey('duck', 'duck-2')).toBe(getBonusFactForVariant('duck', 2));
+  });
+
+  it('total fact count is 5 normally, doubles to 10 with includeBonus for an animal that has a bonus set', () => {
+    expect(getTotalFactCount('duck')).toBe(5);
+    expect(getTotalFactCount('duck', true)).toBe(10);
+    expect(getTotalFactCount('lost-puppy', true)).toBe(5); // no bonus set authored for this one
+  });
+
+  it('getLearnedFacts pairs each collected variant with its bonus fact when includeBonus is true', () => {
+    const learned = getLearnedFacts('duck', ['duck-1'], true);
+    expect(learned).toEqual([getFactForVariant('duck', 1), getBonusFactForVariant('duck', 1)]);
   });
 });

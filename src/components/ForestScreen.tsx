@@ -1,19 +1,104 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { assetUrl } from '../assetUrl';
 import { animals } from '../data/animals';
-import { getFactForVariantKey } from '../data/animalFacts';
-import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrl, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
+import { getBonusFactForVariantKey, getFactForVariantKey } from '../data/animalFacts';
+import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
+import { getsBonusFirstPhotoFact, unlocksBonusFacts } from '../data/roleBonuses';
 import { forestAnimalIds, moveInForest, photographForestAnimal } from '../state/forestState';
 import type { Animal } from '../types/Animal';
 import type { AnimalId } from '../types/Ids';
 import type { SaveData } from '../types/SaveData';
+import { CameraPanel } from './CameraPanel';
 import { HabitatQuiz } from './HabitatQuiz';
 import { Journal } from './Journal';
 import { PanelModal } from './PanelModal';
 import { PhotoReveal } from './PhotoReveal';
-type Props={saveData:SaveData;onSaveChange:(s:SaveData)=>void;onReturnToCamper:()=>void;onGoHome:()=>void};
-type PanelKey='camera'|'about';
-const PULSE_ON_MS=900; const PULSE_OFF_MS=1500;
-export function ForestScreen({saveData,onSaveChange,onReturnToCamper,onGoHome}:Props){const [journalOpen,setJournalOpen]=useState(false);const [activePanel,setActivePanel]=useState<PanelKey|null>(null);const [message,setMessage]=useState('You have arrived quietly at the forest edge.');const [quizAnimal,setQuizAnimal]=useState<Animal|null>(null);const [photoReveal,setPhotoReveal]=useState<{animal:Animal;variantKey:string;greatShot:boolean}|null>(null);const [posePulse,setPosePulse]=useState(false);const here: AnimalId[]=saveData.forestLocation==='Fern Trail'?forestAnimalIds:['forest-wren'];
-  useEffect(()=>{let timeoutId:ReturnType<typeof setTimeout>;function loop(active:boolean){setPosePulse(active);timeoutId=setTimeout(()=>loop(!active),active?PULSE_ON_MS:PULSE_OFF_MS)}loop(false);return()=>clearTimeout(timeoutId)},[]);
-  function photo(id:AnimalId,greatShot:boolean){const animal=animals.find(a=>a.id===id);const isNewReport=Boolean(animal?.nonNative)&&!saveData.reportedInvasiveSpecies.includes(id);const previousVariants=saveData.collectedPhotoVariants;const updated=photographForestAnimal(saveData,id);onSaveChange(updated);setMessage(greatShot?`Great shot! ${animal?.name} was added to your Wildlife Journal.`:`Great photo! ${animal?.name} was added to your Wildlife Journal.`);const newVariant=updated.collectedPhotoVariants.find(key=>!previousVariants.includes(key));if(newVariant&&animal)setPhotoReveal({animal,variantKey:newVariant,greatShot});if(isNewReport&&animal)setQuizAnimal(animal)}return <main className="screen play-screen forest-screen"><header className="top-bar"><div><p className="eyebrow">Milestone 5</p><h1>Forest Arrival</h1></div><div className="button-row"><button onClick={onReturnToCamper}>Return to Wild Camper</button><button className="secondary" onClick={onGoHome}>Home</button></div></header><section className="play-area"><div className="map-column"><div className="location-strip"><strong>{saveData.forestLocation}</strong>Observe from a respectful distance and take photos without disturbing wildlife.</div><div className="forest-stage"><div className="forest-location-grid"><button className={saveData.forestLocation==='Forest Arrival'?'location-card active':'location-card'} onClick={()=>onSaveChange(moveInForest(saveData,'Forest Arrival'))}><span className="location-icon">🌲</span><strong>Forest Arrival</strong><span>A quiet clearing beside the camper track.</span></button><button className={saveData.forestLocation==='Fern Trail'?'location-card active':'location-card'} onClick={()=>onSaveChange(moveInForest(saveData,'Fern Trail'))}><span className="location-icon">🌿</span><strong>Fern Trail</strong><span>One short trail under shady leaves.</span></button></div><nav className="action-bar" aria-label="Forest tools"><button className="action-button" onClick={()=>setActivePanel('camera')} aria-label="Camera"><span aria-hidden="true">📷</span>{here.length>0?<span className="badge">{here.length}</span>:null}</button><button className="action-button" onClick={()=>setJournalOpen(true)} aria-label="Journal"><span aria-hidden="true">📖</span></button><button className="action-button secondary" onClick={()=>setActivePanel('about')} aria-label="About"><span aria-hidden="true">ℹ️</span></button></nav></div><div className="message-box" role="status" aria-live="polite">{message}</div></div></section>{activePanel==='camera'?<PanelModal title="Camera" onClose={()=>setActivePanel(null)}><p className="camera-hint muted">Watch for the calm glow for a Great Shot bonus - any time still works!</p><div className="photo-target-list">{here.map(id=>{const a=animals.find(x=>x.id===id)!;const done=saveData.photographedAnimals.includes(id);const hasPhotos=getPhotoVariantCount(id)>0;return <button key={id} className={posePulse&&!done?'photo-target pulse':'photo-target'} onClick={()=>photo(id,posePulse)} disabled={done}>{hasPhotos?<img className="animal-thumb small" src={getPhotoVariantUrl(id,1)} alt=""/>:<span>{a.emoji}</span>}{done?`${a.name} photographed`:`Photograph ${a.name}`}</button>})}</div></PanelModal>:null}{activePanel==='about'?<PanelModal title="A quiet arrival" eyebrow="Forest" onClose={()=>setActivePanel(null)}><img className="about-hero-image" src={assetUrl('assets/forest/forest-direction.png')} alt="Illustrated wildlife explorer and dog with a Forest Wren and Forest Wallaby in a quiet temperate forest clearing"/><p>Follow the Fern Trail and photograph what you find.</p></PanelModal>:null}{journalOpen?<Journal saveData={saveData} onClose={()=>setJournalOpen(false)}/>:null}{photoReveal?<PhotoReveal animal={photoReveal.animal} photoUrl={getPhotoVariantUrlFromKey(photoReveal.variantKey)} collectedCount={countCollectedVariants(photoReveal.animal.id,saveData.collectedPhotoVariants)} totalCount={getPhotoVariantCount(photoReveal.animal.id)} fact={getFactForVariantKey(photoReveal.animal.id,photoReveal.variantKey)} photographCount={saveData.photographCounts[photoReveal.animal.id]} greatShot={photoReveal.greatShot} onClose={()=>setPhotoReveal(null)}/>:null}{quizAnimal?<HabitatQuiz animal={quizAnimal} onClose={()=>setQuizAnimal(null)}/>:null}</main>}
+
+type Props = { saveData: SaveData; onSaveChange: (s: SaveData) => void; onReturnToCamper: () => void; onGoHome: () => void };
+type PanelKey = 'camera' | 'about';
+
+export function ForestScreen({ saveData, onSaveChange, onReturnToCamper, onGoHome }: Props) {
+  const [journalOpen, setJournalOpen] = useState(false);
+  const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
+  const [message, setMessage] = useState('You have arrived quietly at the forest edge.');
+  const [quizAnimal, setQuizAnimal] = useState<Animal | null>(null);
+  const [photoReveal, setPhotoReveal] = useState<{ animal: Animal; variantKey: string; greatShot: boolean; bonusFact: string | null } | null>(null);
+  const here: AnimalId[] = saveData.forestLocation === 'Fern Trail' ? forestAnimalIds : ['forest-wren'];
+  const animalsHere: Animal[] = here.map((id) => animals.find((a) => a.id === id)!);
+
+  function handlePhotographAnimal(id: AnimalId, greatShot: boolean) {
+    const animal = animals.find((a) => a.id === id);
+    if (!animal) return;
+    const isNewReport = Boolean(animal.nonNative) && !saveData.reportedInvasiveSpecies.includes(id);
+    const previousVariants = saveData.collectedPhotoVariants;
+    const updated = photographForestAnimal(saveData, id);
+    onSaveChange(updated);
+    setMessage(greatShot ? `Great shot! ${animal.name} was added to your Wildlife Journal.` : `Great photo! ${animal.name} was added to your Wildlife Journal.`);
+    const newVariant = updated.collectedPhotoVariants.find((key) => !previousVariants.includes(key));
+    if (newVariant) {
+      let bonusFact: string | null = null;
+      if (unlocksBonusFacts(saveData.selectedRole, animal)) {
+        bonusFact = getBonusFactForVariantKey(animal.id, newVariant);
+      } else if (getsBonusFirstPhotoFact(saveData.selectedRole) && countCollectedVariants(animal.id, previousVariants) === 0) {
+        bonusFact = animal.funFact;
+      }
+      setPhotoReveal({ animal, variantKey: newVariant, greatShot, bonusFact });
+    }
+    if (isNewReport) setQuizAnimal(animal);
+  }
+
+  return (
+    <main className="screen play-screen forest-screen">
+      <header className="top-bar">
+        <div><p className="eyebrow">Milestone 5</p><h1>Forest Arrival</h1></div>
+        <div className="button-row">
+          <button onClick={onReturnToCamper}>Return to Wild Camper</button>
+          <button className="secondary" onClick={onGoHome}>Home</button>
+        </div>
+      </header>
+      <section className="play-area">
+        <div className="map-column">
+          <div className="location-strip"><strong>{saveData.forestLocation}</strong>Observe from a respectful distance and take photos without disturbing wildlife.</div>
+          <div className="forest-stage">
+            <div className="forest-location-grid">
+              <button className={saveData.forestLocation === 'Forest Arrival' ? 'location-card active' : 'location-card'} onClick={() => onSaveChange(moveInForest(saveData, 'Forest Arrival'))}><span className="location-icon">🌲</span><strong>Forest Arrival</strong><span>A quiet clearing beside the camper track.</span></button>
+              <button className={saveData.forestLocation === 'Fern Trail' ? 'location-card active' : 'location-card'} onClick={() => onSaveChange(moveInForest(saveData, 'Fern Trail'))}><span className="location-icon">🌿</span><strong>Fern Trail</strong><span>One short trail under shady leaves.</span></button>
+            </div>
+            <nav className="action-bar" aria-label="Forest tools">
+              <button className="action-button" onClick={() => setActivePanel('camera')} aria-label="Camera"><span aria-hidden="true">📷</span>{here.length > 0 ? <span className="badge">{here.length}</span> : null}</button>
+              <button className="action-button" onClick={() => setJournalOpen(true)} aria-label="Journal"><span aria-hidden="true">📖</span></button>
+              <button className="action-button secondary" onClick={() => setActivePanel('about')} aria-label="About"><span aria-hidden="true">ℹ️</span></button>
+            </nav>
+          </div>
+          <div className="message-box" role="status" aria-live="polite">{message}</div>
+        </div>
+      </section>
+      {activePanel === 'camera' ? (
+        <PanelModal title="Camera" onClose={() => setActivePanel(null)}>
+          <CameraPanel animalsHere={animalsHere} saveData={saveData} onPhotographAnimal={handlePhotographAnimal} />
+        </PanelModal>
+      ) : null}
+      {activePanel === 'about' ? (
+        <PanelModal title="A quiet arrival" eyebrow="Forest" onClose={() => setActivePanel(null)}>
+          <img className="about-hero-image" src={assetUrl('assets/forest/forest-direction.png')} alt="Illustrated wildlife explorer and dog with a Forest Wren and Forest Wallaby in a quiet temperate forest clearing" />
+          <p>Follow the Fern Trail and photograph what you find.</p>
+        </PanelModal>
+      ) : null}
+      {journalOpen ? <Journal saveData={saveData} onClose={() => setJournalOpen(false)} /> : null}
+      {photoReveal ? (
+        <PhotoReveal
+          animal={photoReveal.animal}
+          photoUrl={getPhotoVariantUrlFromKey(photoReveal.variantKey)}
+          collectedCount={countCollectedVariants(photoReveal.animal.id, saveData.collectedPhotoVariants)}
+          totalCount={getPhotoVariantCount(photoReveal.animal.id)}
+          fact={getFactForVariantKey(photoReveal.animal.id, photoReveal.variantKey)}
+          bonusFact={photoReveal.bonusFact}
+          showPhotoQuality
+          greatShot={photoReveal.greatShot}
+          onClose={() => setPhotoReveal(null)}
+        />
+      ) : null}
+      {quizAnimal ? <HabitatQuiz animal={quizAnimal} onClose={() => setQuizAnimal(null)} /> : null}
+    </main>
+  );
+}
