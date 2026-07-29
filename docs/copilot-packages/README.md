@@ -48,8 +48,9 @@ package says exactly which ones, kept well under the 20-file ceiling.
 - `02-animal-portraits.md` — kept as history, not a live spec. Its Track A art generation succeeded, but
   the mechanic evolved past its Track B code spec (single portrait per animal) into a 5-photo-variant
   collection mechanic — see `DECISIONS.md`'s `D-2026-07-25-photo-collection-mechanic`. Done (2026-07-25).
-- `03-park-map.md` — a single illustrated Park Map image with clickable location pins, replacing the
-  plain grid of button-cards.
+- `03-park-map.md` — superseded (2026-07-29): its landscape map image was replaced by a portrait one for
+  better phone display — see `DECISIONS.md`'s `D-2026-07-29-park-map-portrait`. The clickable-pins-over-
+  an-image approach it introduced is unchanged, kept as history for the original prompt/reasoning.
 - `04-lake-biome-animals.md` — pre-milestone art prep for the (currently preview-only) Lake destination:
   6 animals × 5 photo variants each, no code changes until Lake is actually built.
 - `05-bonus-photo-variants.md` — art prep for the Wildlife Photographer explorer role's bonus 6th photo

@@ -51,7 +51,7 @@ h2 { color: #235c3a; }
 .location-card.preview { background: #fff9dc; }
 .location-card.hidden { background: #edf0ec; opacity: 0.92; }
 .location-icon { font-size: 2.2rem; }
-.park-map { position: relative; aspect-ratio: 3 / 2; border-radius: 28px; overflow: hidden; background: #193d28; margin-bottom: 1rem; }
+.park-map { position: relative; aspect-ratio: 2 / 3; border-radius: 28px; overflow: hidden; background: #193d28; margin-bottom: 1rem; }
 .park-map img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .map-pin-wrap { position: absolute; transform: translate(-50%, -50%); }
 .map-pin { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; border: 0; background: none; padding: 0; cursor: pointer; }
@@ -74,7 +74,7 @@ h2 { color: #235c3a; }
 .map-column { flex: 1; min-width: 0; width: 100%; display: flex; flex-direction: column; gap: 0.5rem; }
 .location-strip { flex-shrink: 0; border-radius: 16px; padding: 0.55rem 1rem; background: rgba(255, 255, 255, 0.78); font-size: 0.9rem; }
 .location-strip strong { margin-right: 0.4rem; color: #235c3a; }
-.map-column .park-map { flex: 1; min-height: 0; aspect-ratio: auto; margin-bottom: 0; }
+.map-column .park-map { flex: 1; min-height: 0; max-width: 100%; align-self: center; margin-bottom: 0; }
 .map-column .message-box { flex-shrink: 0; margin-top: 0; max-height: 4.2rem; overflow-y: auto; }
 
 /* Action buttons float over the map as small round icon buttons instead of a full sidebar, so the map
@@ -92,7 +92,7 @@ h2 { color: #235c3a; }
 
 @media (max-width: 700px) {
   .play-screen { height: auto; min-height: 100dvh; overflow: visible; }
-  .map-column .park-map { flex: none; aspect-ratio: 3 / 2; }
+  .map-column .park-map { flex: none; aspect-ratio: 2 / 3; }
   .map-column .message-box { max-height: none; overflow-y: visible; }
   .action-button { width: 2.6rem; height: 2.6rem; font-size: 1.15rem; }
 }

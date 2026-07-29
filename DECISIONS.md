@@ -4,6 +4,20 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-29-park-map-portrait · Park Map switched from landscape to portrait, user-supplied art
+
+**Status:** Active
+
+**Summary:** Replaced the landscape 3:2 Park Map with a portrait 2:3 map (user-generated, handed to
+  Claude to integrate) for better phone display. All 6 pins re-tuned against the new art. Found and
+  fixed a real pin-misalignment bug along the way: letting the map's box stretch wide on desktop while
+  `object-fit: contain` letterboxed the portrait image inside it broke percentage-based pin positioning
+  (pins are relative to the box, not the visible image). Fixed by keeping the box at the image's native
+  ratio everywhere instead of stretching it. Converted to JPEG (quality 85, ~590KB, an 82% reduction from
+  the original 3.28MB PNG). See full entry.
+
+**Record:** decisions/2026/D-2026-07-29-park-map-portrait.md
+
 ## D-2026-07-28-explorer-role-bonuses · First real bonus per explorer role
 
 **Status:** Active

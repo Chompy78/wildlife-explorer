@@ -89,7 +89,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
         <div className="map-column">
           <div className="location-strip"><strong>{currentLocation.name}</strong>{currentLocation.description}</div>
           <div className="park-map">
-            <img src={assetUrl('assets/tutorial-park/park-map.png')} alt="Illustrated map of Tutorial Park" />
+            <img src={assetUrl('assets/tutorial-park/park-map.jpg')} alt="Illustrated map of Tutorial Park" />
             {visibleLocations.map((location) => {
               const coords = parkMapCoordinates[location.name];
               const isActive = location.name === saveData.currentLocation;

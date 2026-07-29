@@ -1,7 +1,13 @@
 # Package 03 — Illustrated Park Map
 
-**Status:** ready to hand to Copilot 365 for Track A only. Track B (code) is implemented by Claude
-directly, not routed through Copilot 365 Chat — see "Handing this to Copilot 365" below.
+**Status:** superseded (2026-07-29) — kept as history, not a live spec. The landscape 3:2/4:3 map this
+package describes was replaced by a portrait 2:3 map to read better on phones; see `DECISIONS.md`'s
+`D-2026-07-29-park-map-portrait` for the new prompt, pin layout, and why. The Track B code approach below
+(clickable pins over an illustrated image, same navigation logic) is still accurate in spirit — only the
+image's orientation and the exact pin coordinates changed.
+
+**Original status:** ready to hand to Copilot 365 for Track A only. Track B (code) is implemented by
+Claude directly, not routed through Copilot 365 Chat — see "Handing this to Copilot 365" below.
 **Track A:** art brief (one map illustration). **Track B:** code spec (React/CSS).
 **Scope:** replace the Park Map's plain grid of button-cards with a single illustrated map image and
 clickable location pins positioned on top of it. Same underlying navigation logic

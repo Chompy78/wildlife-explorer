@@ -5,6 +5,19 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-29 · feat(park): portrait Park Map, user-supplied art** — replaced the landscape 3:2 Park Map
+  (`park-map.png`, 3.28MB) with a new portrait 2:3 map the user generated and supplied
+  (`park-map.jpg`, 1024×1536, converted to JPEG at quality 85, ~590KB — an 82% size reduction). All 6
+  location pins re-tuned by eye against the new art; Whisper Grove nudged left to clear the floating
+  action bar it was colliding with in the top-right corner. Fixed a real bug found while wiring this in:
+  `object-fit: contain` alone let the map's box stretch wide on desktop (via `aspect-ratio: auto`),
+  letterboxing the portrait image inside a wider box — since pins are positioned as a percentage of the
+  *box*, not the visible image, this silently misaligned every pin except the ones sitting at exactly
+  50% left. Fixed by keeping `.park-map` at the image's native 2:3 ratio everywhere (centered via
+  `align-self: center` on desktop, full-width on the narrow-phone fallback) instead of letting it stretch
+  and letterbox. Verified in a real browser at desktop and two phone-portrait sizes, plus that pin clicks
+  still navigate and the hidden-Whisper-Grove message still shows correctly. See `DECISIONS.md`'s
+  `D-2026-07-29-park-map-portrait`.
 - **2026-07-28 · feat(roles): first real bonus per explorer role** — the 6 explorer roles chosen at game
   start now do something: **Zoologist** gets a bonus fact (the animal's existing `funFact`) on the very
   first photo of a species; **Wildlife Photographer** gets a bonus 6th photo slot per animal, shown as an
