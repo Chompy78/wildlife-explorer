@@ -5,6 +5,17 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-30 · fix(styles): restore 13 CSS rules truncated by a prior commit** — a concurrent session's
+  commit already on `main` (the "photography tips"/`isNewFact` work) had silently truncated 13 long CSS
+  rule values mid-token and appended a literal `[...]` marker in their place - e.g. `.role-card`'s
+  `border-radi[...]` instead of `border-radius: 22px; ...`. This broke the production build outright
+  (`lightningcss` failed to minify with "Unexpected token SquareBracketBlock") - `npm run test` and
+  `typecheck` both still passed, since neither touches CSS syntax, so the break was silent until a real
+  `npm run build`. Restored each affected rule's exact original value from the last known-good commit
+  (`891c30f`); the genuinely new rules added in that same commit (`.photography-tip`,
+  `.great-shots-progress`, the reveal-pop-in/badge-glow keyframes, `.reveal-new-fact`,
+  `.new-fact-badge`) were untouched by the truncation and are unaffected. Found while merging in that
+  commit to add this session's non-native-animal task below - `npm run check` now passes clean again.
 - **2026-07-29 · feat(camera): binary blur + growing sweet-spot band** — simplified the Great Shot blur
   from a practice-count-floor/timing-nudge hybrid to a strict binary: blurry unless the shutter is
   pressed inside the sweet spot, crisp if it is. In exchange, the sweet-spot band itself now grows -

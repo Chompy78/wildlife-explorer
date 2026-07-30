@@ -44,7 +44,7 @@ h2 { color: #235c3a; }
 .save-summary { display: grid; gap: 0.25rem; margin: 0 auto 1.5rem; border-radius: 20px; padding: 1rem; max-width: 380px; background: #f4f2dc; }
 .wide-panel { width: min(1050px, 100%); margin: 0 auto; padding: 2rem; }
 .role-grid, .location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; }
-.role-card, .location-card { display: flex; min-height: 9.5rem; flex-direction: column; align-items: flex-start; justify-content: flex-start; border: 2px solid rgba(47, 125, 75, 0.15); border-radi[...]
+.role-card, .location-card { display: flex; min-height: 9.5rem; flex-direction: column; align-items: flex-start; justify-content: flex-start; border: 2px solid rgba(47, 125, 75, 0.15); border-radius: 22px; padding: 1rem; color: #19402b; background: #f8fff3; text-align: left; box-shadow: none; }
 .role-card span, .location-card span, .location-card em { margin-top: 0.45rem; font-weight: 500; }
 .location-card em { color: #49715b; font-size: 0.82rem; font-style: normal; font-weight: 900; }
 .location-card.active { border-color: #267043; background: #dff0d4; }
@@ -55,7 +55,7 @@ h2 { color: #235c3a; }
 .park-map img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .map-pin-wrap { position: absolute; transform: translate(-50%, -50%); }
 .map-pin { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; border: 0; background: none; padding: 0; cursor: pointer; }
-.map-pin .pin-icon { width: 2.75rem; height: 2.75rem; border-radius: 50%; display: grid; place-items: center; font-size: 1.4rem; background: #fff; border: 3px solid #267043; box-shadow: 0 6px 16px[...]
+.map-pin .pin-icon { width: 2.75rem; height: 2.75rem; border-radius: 50%; display: grid; place-items: center; font-size: 1.4rem; background: #fff; border: 3px solid #267043; box-shadow: 0 6px 16px rgba(20, 60, 32, 0.35); }
 .map-pin.active .pin-icon { border-color: #f1b83b; box-shadow: 0 0 0 4px rgba(241, 184, 59, 0.35); }
 .map-pin.hidden .pin-icon { background: #edf0ec; border-color: #8ba58f; opacity: 0.85; }
 .map-pin .pin-label { padding: 0.15rem 0.55rem; border-radius: 999px; background: rgba(18, 45, 29, 0.85); color: #fff; font-size: 0.72rem; font-weight: 800; white-space: nowrap; }
@@ -80,9 +80,9 @@ h2 { color: #235c3a; }
 /* Action buttons float over the map as small round icon buttons instead of a full sidebar, so the map
    itself gets the full play area. Icon-only - each button's accessible name comes from aria-label. */
 .action-bar { position: absolute; top: 0.6rem; right: 0.6rem; bottom: 0.6rem; z-index: 5; display: flex; flex-direction: column; gap: 0.5rem; overflow-y: auto; }
-.action-button { position: relative; width: 3rem; height: 3rem; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; background: rgba(38[...]
+.action-button { position: relative; width: 3rem; height: 3rem; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; background: rgba(38, 112, 67, 0.92); box-shadow: 0 6px 16px rgba(20, 60, 32, 0.4); }
 .action-button.secondary { background: rgba(223, 240, 212, 0.92); }
-.action-button .badge { position: absolute; top: -0.25rem; right: -0.25rem; border-radius: 999px; padding: 0.05rem 0.4rem; background: #f1b83b; color: #4a3200; font-size: 0.68rem; font-weight: 900[...]
+.action-button .badge { position: absolute; top: -0.25rem; right: -0.25rem; border-radius: 999px; padding: 0.05rem 0.4rem; background: #f1b83b; color: #4a3200; font-size: 0.68rem; font-weight: 900; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
 .about-hero-image { display: block; width: 100%; max-height: 42vh; object-fit: cover; border-radius: 20px; margin-bottom: 1rem; }
 .forest-stage { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
 .forest-location-grid { display: grid; grid-template-columns: repeat(2, minmax(200px, 340px)); justify-content: center; gap: 1.2rem; }
@@ -126,7 +126,7 @@ h2 { color: #235c3a; }
 .photo-target-body { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; flex: 1; text-align: left; }
 .focus-track { position: relative; width: 100%; height: 0.5rem; border-radius: 999px; background: rgba(38, 112, 67, 0.15); }
 .focus-sweet-spot { position: absolute; top: 0; bottom: 0; border-radius: 999px; background: rgba(241, 184, 59, 0.55); }
-.focus-marker { position: absolute; top: 50%; width: 0.85rem; height: 0.85rem; border-radius: 50%; background: #267043; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(20, 60, 32, 0.4); transf[...]
+.focus-marker { position: absolute; top: 50%; width: 0.85rem; height: 0.85rem; border-radius: 50%; background: #267043; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(20, 60, 32, 0.4); transform: translate(-50%, -50%); transition: left 0.02s linear; }
 .camera-hint { margin: 0 0 0.6rem; font-size: 0.85rem; }
 .photography-tip { display: block; margin-top: 0.3rem; font-size: 0.8rem; color: #49715b; font-style: italic; }
 .great-shots-progress { display: block; margin-top: 0.3rem; font-size: 0.75rem; color: #7b806f; font-weight: 700; letter-spacing: 0.05em; }
@@ -140,7 +140,7 @@ h2 { color: #235c3a; }
 .journal-entry.undiscovered { background: #f2f4ed; }
 .animal-emoji { min-width: 3.25rem; font-size: 3rem; text-align: center; }
 .biome-select-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
-.biome-select-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; min-height: 8rem; border-radius: 22px; padding: 1.25rem; color: #19402b; background: #f8fff3; box[...]
+.biome-select-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; min-height: 8rem; border-radius: 22px; padding: 1.25rem; color: #19402b; background: #f8fff3; box-shadow: none; text-align: left; }
 .biome-select-card span { font-size: 2.4rem; }
 .biome-select-card small { color: #49715b; font-weight: 700; }
 .journal-back { margin: 1rem 0 0.5rem; }
@@ -188,7 +188,7 @@ h2 { color: #235c3a; }
 .quiz-overlay { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 1rem; background: rgba(12,35,22,.58); }
 .quiz-card { width: min(560px,100%); border-radius: 30px; padding: 2rem; background: #fffdf3; box-shadow: 0 28px 70px rgba(20,60,32,.35); }
 .quiz-choice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 0.6rem; margin-top: 1rem; }
-.quiz-choice { display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; border: 2px solid rgba(47,125,75,0.15); border-radius: 16px; padding: 0.7rem 0.9rem; background: #f8ff[...]
+.quiz-choice { display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; border: 2px solid rgba(47,125,75,0.15); border-radius: 16px; padding: 0.7rem 0.9rem; background: #f8fff3; color: #19402b; box-shadow: none; }
 .invasive-note { padding: 0.6rem 0.8rem; border-radius: 14px; background: #fff9dc; border: 1px solid rgba(180,140,20,0.25); }
 .reveal-overlay { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 1rem; background: rgba(12,35,22,.58); }
 .reveal-card { width: min(480px,100%); border-radius: 30px; padding: 2rem; background: #fffdf3; box-shadow: 0 28px 70px rgba(20,60,32,.35); text-align: center; }
@@ -218,11 +218,11 @@ button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
 
 
 .camper-button { background: #a55c16; }
-.camper-interior-wrap { position: relative; flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; border-radius: 24px; padding: 1rem; backgroun[...]
+.camper-interior-wrap { position: relative; flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; border-radius: 24px; padding: 1rem; background: linear-gradient(160deg,rgba(255,255,255,.95),rgba(255,242,211,.95)); }
 .station-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; width: min(640px, 100%); margin: 0 auto; }
 .station-grid .station-card { min-height: 8rem; justify-content: center; padding: 1.5rem; }
 .station-grid .station-card span { font-size: 2.8rem; }
-.station-card,.destination-card { display: flex; flex-direction: column; align-items: flex-start; gap: .35rem; border-radius: 18px; color: #24402d; background: #f8fff3; box-shadow: none; text-ali[...]
+.station-card,.destination-card { display: flex; flex-direction: column; align-items: flex-start; gap: .35rem; border-radius: 18px; color: #24402d; background: #f8fff3; box-shadow: none; text-align: left; }
 .station-card span,.destination-card span { font-size: 2rem; }
 .station-card.active,.destination-card.selected { outline: 4px solid #d49b25; background: #fff6d8; }
 .destination-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .7rem; }
@@ -239,11 +239,11 @@ button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
 .biome-visual-copy h2,.biome-visual-copy p{margin-top:.25rem}.biome-visual-copy .eyebrow{color:#ffe08c}
 .modal-overlay{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:1rem;background:rgba(12,35,22,.66)}
 .intro-card{width:min(540px,100%);padding:2rem;border-radius:30px;background:#fffdf3;box-shadow:0 28px 70px rgba(20,60,32,.35);text-align:center}.intro-icon{font-size:5rem}
-.readiness-card,.photo-wall-summary{margin-top:1rem;padding:1rem;border-radius:20px;background:#f3fbef}.readiness-card ul,.photo-wall-summary ul{padding-left:0;list-style:none}.readiness-card li{[...]
+.readiness-card,.photo-wall-summary{margin-top:1rem;padding:1rem;border-radius:20px;background:#f3fbef}.readiness-card ul,.photo-wall-summary ul{padding-left:0;list-style:none}.readiness-card li{display:flex;gap:.6rem;margin:.45rem 0}.travel-locked{padding:.75rem;border-radius:14px;background:#fff4cd;font-weight:800}
 .photo-chip-list{display:flex;flex-wrap:wrap;gap:.45rem}.photo-chip-list span{padding:.4rem .65rem;border-radius:999px;background:#fff;border:1px solid #cde0cc}
-.station-card small{font-weight:900;color:#805315}.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important[...]
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!import[...]
+.station-card small{font-weight:900;color:#805315}.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media(max-width:700px){.biome-visual-copy{position:static;max-width:none;border-radius:0}.biome-visual img{height:240px}.intro-card{padding:1.25rem}}
 
 /* Milestone 5 */
-.forest-screen{background:radial-gradient(circle at top left,rgba(219,238,174,.7),transparent 34rem),linear-gradient(135deg,#cde5b0,#e2f2d3 55%,#d8e8d1)}.forest-layout{display:grid;grid-template-[...]
+.forest-screen{background:radial-gradient(circle at top left,rgba(219,238,174,.7),transparent 34rem),linear-gradient(135deg,#cde5b0,#e2f2d3 55%,#d8e8d1)}.forest-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);gap:1rem;margin:0 auto;max-width:1240px}@media(max-width:850px){.forest-layout{grid-template-columns:1fr}}
