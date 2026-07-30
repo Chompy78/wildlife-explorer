@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-07-30 · docs(process): PR-gated workflow deferred, staying on commit-straight-to-`main`** —
+  `D-2026-07-21-branch-model`'s "CI gets added" revisit trigger fired once GitHub Actions was wired up,
+  putting the question on `docs/TASK_BOARD_SOON.md` for an explicit user decision. Asked; the user said
+  "don't introduce pr gated workflow for a while yet." `AGENTS.md`'s Branch model section now notes this
+  was reconsidered and reaffirmed, not merely never revisited - the original revisit trigger (a second
+  contributor, or a change too risky for a direct push) still stands for next time. Graduated from
+  `docs/TASK_BOARD_SOON.md`. See `DECISIONS.md`'s `D-2026-07-30-pr-gate-still-deferred`.
 - **2026-07-30 · fix(styles): restore 13 CSS rules truncated by a prior commit** — a concurrent session's
   commit already on `main` (the "photography tips"/`isNewFact` work) had silently truncated 13 long CSS
   rule values mid-token and appended a literal `[...]` marker in their place - e.g. `.role-card`'s

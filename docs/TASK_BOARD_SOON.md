@@ -22,22 +22,8 @@
 
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
-
-## Decide whether to introduce a PR-gated workflow — TODO
-Now that CI (`npm run check` via GitHub Actions) is wired up, `DECISIONS.md`'s `D-2026-07-21-branch-model`
-"CI gets added" revisit trigger has fired (see `D-2026-07-21-ci-added`) — decide whether to keep
-committing straight to `main` or introduce a PR-gated workflow.
-**Effort:** low · **Risk:** medium — a process/workflow decision, not a code change; the ambiguity is
-real (no single objectively-correct answer) even though nothing here touches gameplay/save-schema.
-
-```text
-1. Present tiered options to the user: (A) keep commit-straight-to-main (no PR gate) - matches current
-   solo-dev, low-friction practice; CI now catches regressions either way. (B) introduce a PR-gated
-   workflow - CI-required checks before merge, meaningful once a second contributor or higher-stakes
-   changes become more likely.
-2. Get an explicit decision from the user; do not auto-decide.
-3. Log the outcome as a DECISIONS.md entry and update AGENTS.md's Branch model section to match.
-```
-**Done when:** the user has explicitly chosen an option; `AGENTS.md` and `DECISIONS.md` reflect it.
+All tasks from this band are graduated to `CHANGELOG.md` as of 2026-07-30. "Decide whether to introduce
+a PR-gated workflow" resolved same-day — the user chose to keep committing straight to `main` for now —
+see `DECISIONS.md`'s `D-2026-07-30-pr-gate-still-deferred`.
 
 ---

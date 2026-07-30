@@ -4,6 +4,22 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-07-30-pr-gate-still-deferred · keep commit-straight-to-`main`, revisit later
+
+**Status:** Active
+
+**Summary:** `D-2026-07-21-branch-model`'s revisit trigger ("CI gets added") fired once `npm run check`
+  was wired into GitHub Actions (`D-2026-07-21-ci-added`), putting "decide whether to introduce a
+  PR-gated workflow" on `docs/TASK_BOARD_SOON.md` as a user-only call. Asked; the user said "don't
+  introduce pr gated workflow for a while yet" - keep committing straight to `main`, no PR gate, for now.
+  A deferral, not a permanent close - the original revisit trigger (second contributor, or a change that
+  feels too risky for a direct push) still stands. `AGENTS.md`'s Branch model section is unchanged in
+  substance, now noting this was reconsidered and explicitly reaffirmed on 2026-07-30. Full record:
+  `decisions/2026/D-2026-07-30-pr-gate-still-deferred.md`.
+
+**See also:** `D-2026-07-21-branch-model` (the original policy), `D-2026-07-21-ci-added` (fired the
+  revisit trigger this resolves).
+
 ## D-2026-07-29-dynamic-focus-band · Binary blur, growing sweet-spot band (species + global practice)
 
 **Status:** Active
