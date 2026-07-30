@@ -3,7 +3,7 @@ import { bumpCount } from './stateUtils';
 import { pickRandomUncollectedVariant } from '../data/animalPhotoVariants';
 import type { AnimalId } from '../types/Ids';
 import type { SaveData } from '../types/SaveData';
-export const forestAnimalIds: AnimalId[] = ['forest-wren', 'forest-wallaby', 'forest-beetle', 'cane-toad'];
+export const forestAnimalIds: AnimalId[] = ['forest-wren', 'forest-wallaby', 'forest-beetle', 'cane-toad', 'european-starling'];
 export function enterForest(save: SaveData): SaveData { return save.wildCamperUnlocked ? { ...save, selectedDestination: 'forest', lastPlayArea: 'forest' } : save; }
 export function moveInForest(save: SaveData, forestLocation: 'Forest Arrival' | 'Fern Trail'): SaveData { return { ...save, forestLocation }; }
 export function returnToCamperFromForest(save: SaveData): SaveData { return { ...save, lastPlayArea: 'camper', camperVisited: true }; }

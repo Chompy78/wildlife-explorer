@@ -16,6 +16,14 @@
   `.great-shots-progress`, the reveal-pop-in/badge-glow keyframes, `.reveal-new-fact`,
   `.new-fact-badge`) were untouched by the truncation and are unaffected. Found while merging in that
   commit to add this session's non-native-animal task below - `npm run check` now passes clean again.
+- **2026-07-30 · feat(animals): a second non-native animal per biome** — added Grey Squirrel (Tutorial
+  Park, Open Meadow, correct habitat: Forest) and European Starling (Forest biome, Fern Trail, correct
+  habitat: Grassland), following the exact `Animal.nonNative`/`HabitatQuiz`/`reportedInvasiveSpecies`
+  pattern set by the Red-eared Slider Turtle and Cane Toad. Both use competition-for-resources framing
+  (out-competing native species for food/nesting sites), no hunting/harm-to-other-animals language, per
+  the existing precedent. No photo art yet for either (same as the first two non-natives) - emoji only
+  for now. Verified in a real browser: Grey Squirrel is photographable at Open Meadow and correctly
+  triggers the habitat quiz with Forest as the right answer. Graduated from `docs/TASK_BOARD_SOON.md`.
 - **2026-07-29 · feat(camera): binary blur + growing sweet-spot band** — simplified the Great Shot blur
   from a practice-count-floor/timing-nudge hybrid to a strict binary: blurry unless the shutter is
   pressed inside the sweet spot, crisp if it is. In exchange, the sweet-spot band itself now grows -

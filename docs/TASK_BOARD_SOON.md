@@ -23,28 +23,6 @@
 Found during a 2026-07-20 project status review — not blocked by the Scope boundary, just not done yet.
 
 
-## Add a second non-native animal per biome — TODO
-The invasive-species habitat quiz shipped 2026-07-25 with one non-native animal per playable biome
-(Red-eared Slider Turtle at Duck Pond, Cane Toad at Forest Trail/Fern Trail). The user said "at least one
-... maybe even two" — a second one per biome was deferred to prove the mechanic first.
-**Effort:** low · **Risk:** low — same established pattern (`Animal.nonNative`, `HabitatQuiz.tsx`,
-`reportedInvasiveSpecies`), no new architecture, just more data entries.
-
-```text
-1. Pick two more real, kid-friendly, non-predator-framed invasive species (avoid describing hunting/
-   harm-to-other-animals directly, per the precedent set by the Slider Turtle/Cane Toad picks — stick to
-   competition-for-resources or toxicity-if-eaten framing) — one for Tutorial Park, one for Forest.
-   Grey Squirrel (Open Meadow, correct answer: Forest) was already suggested for Park as an easy pick.
-2. Add each as a new AnimalId + Animal entry (with nonNative.correctHabitatId/impactNote) following the
-   exact pattern of red-eared-slider/cane-toad in src/data/animals.ts.
-3. Add the Forest one to forestAnimalIds in forestState.ts if applicable.
-4. Add both ids to validAnimals in saveMigration.ts.
-5. Run npm run check; verify the quiz and Journal note for both in a real browser.
-```
-**Done when:** two more animals are photographable, trigger the habitat quiz correctly, and
-`npm run check` passes.
-
-
 ## Decide whether to introduce a PR-gated workflow — TODO
 Now that CI (`npm run check` via GitHub Actions) is wired up, `DECISIONS.md`'s `D-2026-07-21-branch-model`
 "CI gets added" revisit trigger has fired (see `D-2026-07-21-ci-added`) — decide whether to keep

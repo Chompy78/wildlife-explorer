@@ -204,6 +204,44 @@ export const animals: Animal[] = [
       hint: 'The Cane Toad is easiest to photograph when it stops to rest.',
     },
   },
+  {
+    id: 'grey-squirrel',
+    name: 'Grey Squirrel',
+    rarity: 'common',
+    habitat: 'Open Meadow',
+    activeTime: 'Day',
+    funFact: 'Grey Squirrels were brought to new places by people and can out-compete native squirrels for food and nesting sites.',
+    behaviours: ['foraging', 'climbing', 'burying food'],
+    emoji: '🐿️',
+    availableInMilestone: true,
+    photoDifficulty: 'easy',
+    nonNative: {
+      correctHabitatId: 'forest',
+      impactNote: "Grey Squirrels aren't native to this meadow. They compete with native squirrels for food and nesting sites, and in some places have replaced them almost entirely.",
+    },
+    photographyTip: {
+      hint: 'Try shooting when the Grey Squirrel pauses while foraging on the ground.',
+    },
+  },
+  {
+    id: 'european-starling',
+    name: 'European Starling',
+    rarity: 'common',
+    habitat: 'Forest Trail',
+    activeTime: 'Day',
+    funFact: 'European Starlings were introduced to new places by people and often compete with native birds for nesting holes in trees.',
+    behaviours: ['flocking', 'foraging', 'calling'],
+    emoji: '🐦',
+    availableInMilestone: true,
+    photoDifficulty: 'easy',
+    nonNative: {
+      correctHabitatId: 'grassland',
+      impactNote: "European Starlings aren't native to this forest. They compete with native birds for tree cavities to nest in, leaving fewer safe nesting spots to go around.",
+    },
+    photographyTip: {
+      hint: 'European Starlings often gather in small flocks - watch for one perched still.',
+    },
+  },
 ];
 
 export const commonMilestoneAnimals = animals.filter(

@@ -11,7 +11,9 @@ export type AnimalId =
   | 'forest-wallaby'
   | 'forest-beetle'
   | 'red-eared-slider'
-  | 'cane-toad';
+  | 'cane-toad'
+  | 'grey-squirrel'
+  | 'european-starling';
 
 export type LocationName =
   | 'Park Entrance'
