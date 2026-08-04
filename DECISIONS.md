@@ -73,6 +73,34 @@
 
 **Record:** decisions/2026/D-2026-07-29-park-map-portrait.md
 
+## D-2026-07-29-sweep-tasks-queue-and-push-hardening · Port 2 more of PACT's 15 sweep-tasks review fixes: backfill on drop, rebase-before-push
+
+**Status:** Accepted
+
+**Summary:** Checked all 15 fixes from PACT's `D-GH-2026-07-17-sweep-tasks-review-fixes` against
+  wildlife-explorer's simpler `sweep-tasks.md` (11 are worktree/PR/code-review-tier-specific and
+  confirmed not applicable here). Ported 2 genuine analogs: (1) Step 3 now backfills a dropped/parked task
+  from the remaining eligible queue so the actually-attempted count doesn't silently fall short of the
+  requested batch size; (2) Steps 4 and 6's direct-to-`main` commits now `git pull --rebase` first and
+  retry once on a rejected push, instead of assuming the push always succeeds. A third item (documenting
+  `/add-task`/`/sweep-tasks` as exceptions to a "single writer" task-board rule) was left alone — this repo
+  has no such rule yet, being solo-only per `AGENTS.md`'s own "Multiple sessions" section.
+
+**Record:** decisions/2026/D-2026-07-29-sweep-tasks-queue-and-push-hardening.md
+
+## D-2026-07-29-sweep-tasks-arguments-hardening · Tighten sweep-tasks.md's $ARGUMENTS batch-size parsing to match PACT's post-review fix
+
+**Status:** Accepted
+
+**Summary:** `sweep-tasks.md`'s batch-size clause ("`$ARGUMENTS` if a bare positive integer") was ported
+  from PACT's `sweep-code-tasks.md` on 2026-07-21, four days after PACT's own adversarial review
+  (D-GH-2026-07-17-sweep-tasks-review-fixes) tightened that exact wording — the port didn't carry the
+  fix forward. Reworded to explicitly exclude a digit embedded in free-form text (e.g. a version number),
+  multiple numbers, zero, and negative numbers from counting as a valid cap, matching PACT's hardened
+  version.
+
+**Record:** decisions/2026/D-2026-07-29-sweep-tasks-arguments-hardening.md
+
 ## D-2026-07-28-explorer-role-bonuses · First real bonus per explorer role
 
 **Status:** Active

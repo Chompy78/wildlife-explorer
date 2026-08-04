@@ -72,6 +72,17 @@
   and letterbox. Verified in a real browser at desktop and two phone-portrait sizes, plus that pin clicks
   still navigate and the hidden-Whisper-Grove message still shows correctly. See `DECISIONS.md`'s
   `D-2026-07-29-park-map-portrait`.
+- **2026-07-29 · fix: port 2 more sweep-tasks.md fixes from PACT's review (backfill, rebase-before-push)** —
+  Checked all 15 of PACT's `D-GH-2026-07-17-sweep-tasks-review-fixes` against this repo's simpler
+  `sweep-tasks.md`; 11 don't apply (worktrees/PRs/review-tiers this repo doesn't have), 1 was already
+  correct (no stale step-number references found). Ported the 2 that do apply: dropped/parked tasks now
+  backfill from the remaining queue instead of silently shrinking the batch; direct-to-`main` commits in
+  Steps 4 and 6 now pull --rebase first and retry once on a rejected push. See `DECISIONS.md`
+  D-2026-07-29-sweep-tasks-queue-and-push-hardening.
+- **2026-07-29 · fix: harden sweep-tasks.md's $ARGUMENTS batch-size parsing** — Ported PACT's 2026-07-17
+  post-review fix (a stray digit in free-form text, e.g. a version number, could silently become the
+  batch cap) that this repo's 2026-07-21 scaffold port had missed. Now requires a bare positive integer
+  and nothing else. See `DECISIONS.md` D-2026-07-29-sweep-tasks-arguments-hardening.
 - **2026-07-28 · feat(roles): first real bonus per explorer role** — the 6 explorer roles chosen at game
   start now do something: **Zoologist** gets a bonus fact (the animal's existing `funFact`) on the very
   first photo of a species; **Wildlife Photographer** gets a bonus 6th photo slot per animal, shown as an
