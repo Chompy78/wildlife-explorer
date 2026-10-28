@@ -63,7 +63,7 @@ Implemented:
 - No combat or harsh failure
 - Never catch, collect, harm or kill animals
 - The Lost Puppy is helped and reunited, never collected
-- Mountains, Lake, Safari, Rainforest and Alien Planet remain preview-only
+- Mountains, Safari, Rainforest and Alien Planet remain preview-only. The Lake became playable on 2026-10-28 at the user's explicit request (`D-2026-10-28-lake-biome-go-ahead`).
 
 ## Scope boundary
 

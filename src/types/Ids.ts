@@ -13,7 +13,13 @@ export type AnimalId =
   | 'red-eared-slider'
   | 'cane-toad'
   | 'grey-squirrel'
-  | 'european-starling';
+  | 'european-starling'
+  | 'great-blue-heron'
+  | 'beaver'
+  | 'rainbow-trout'
+  | 'loon'
+  | 'dragonfly'
+  | 'painted-turtle';
 
 export type LocationName =
   | 'Park Entrance'
@@ -22,3 +28,5 @@ export type LocationName =
   | 'Forest Trail'
   | 'Strange Old Tree'
   | 'Whisper Grove';
+
+export type LakeLocationName = 'Shoreline' | 'Open Water' | 'Reeds & Shallows';

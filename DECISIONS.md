@@ -4,6 +4,15 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-lake-biome-go-ahead · Lake becomes the second playable destination
+
+**Status:** Active
+
+**Summary:** The user explicitly asked for the Lake to be built, satisfying the Scope boundary's "unless a
+  later milestone explicitly requires it" for that one destination only. Three sections, six animals,
+  reached from the Wild Camper; save schema 9 -> 10. Other destinations stay preview-only. Full record:
+  `decisions/2026/D-2026-10-28-lake-biome-go-ahead.md`.
+
 ## D-2026-10-28-synthesized-audio-outside-save · synthesized sound effects, mute kept outside SaveData
 
 **Status:** Active

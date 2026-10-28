@@ -1,6 +1,7 @@
 # Package 04 — Lake biome animal art (pre-milestone art prep)
 
 **Status:** ready to hand to Copilot 365 for Track A. Pure art prep — Lake has no gameplay built yet, so
+> **Update 2026-10-28:** the Lake is now playable (`D-2026-10-28-lake-biome-go-ahead`); the art listed here was moved to `public/assets/animals/`.
 there is no Track B to implement until a future milestone builds the Lake destination for real.
 **Track A:** art brief (image generation, 6 animals × 5 photos each = 30 images). **Track B:** none yet.
 **Scope:** generates collectible photo art for 6 Lake animals ahead of time, in the same 5-photo-variant

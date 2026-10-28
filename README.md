@@ -58,7 +58,7 @@ Implemented features include:
 - Responsive and reduced-motion styling
 - Automated TypeScript, state, component, build and encoding checks
 
-Mountains, Lake, Safari, Rainforest and Alien Planet remain preview-only.
+The Lake is playable from the Wild Camper (Shoreline, Open Water, Reeds & Shallows; 6 animals). Mountains, Safari, Rainforest and Alien Planet remain preview-only.
 
 ## Playable Locations
 
@@ -181,7 +181,7 @@ Potential future development includes:
 
 - Milestone 5 hardening and browser-level testing
 - Expanded Forest content through separately approved milestones
-- Safari, Rainforest, Mountain and Lake habitats
+- Safari, Rainforest and Mountain habitats
 - Advanced photography
 - Expanded wildlife journal features
 - Cooperative discovery systems

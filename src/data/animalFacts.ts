@@ -82,6 +82,48 @@ const ANIMAL_FACTS: Partial<Record<AnimalId, string[]>> = {
     'Dogs can learn many human words and read our tone of voice.',
     'A reunited dog often shows its joy with excited jumps, licks, and a happy wiggle.',
   ],
+  'great-blue-heron': [
+    'A Great Blue Heron can stand motionless for minutes, then strike at a fish in a blink.',
+    'Herons fly with their necks folded into an S-shape, while cranes stretch theirs straight out.',
+    'Even with a wingspan of about two metres, a heron weighs only a few kilograms.',
+    'Herons often nest together in groups called colonies, high in the treetops.',
+    "A heron's long neck has a special kinked bone that lets it spring forward quickly.",
+  ],
+  'beaver': [
+    "A beaver's front teeth never stop growing, and iron in them makes them orange.",
+    'Beaver dams turn streams into ponds that give many other animals a home.',
+    "A beaver's flat tail helps it steer, balance, and slap the water as a warning.",
+    'Beavers can hold their breath underwater for around fifteen minutes.',
+    'Clear eyelids work like swimming goggles, so beavers can see while they swim.',
+  ],
+  'rainbow-trout': [
+    'The rainbow trout gets its name from the soft pink stripe along its sides.',
+    'Rainbow trout like cool, clean water with plenty of oxygen.',
+    'Trout often face upstream, holding still while food drifts to them.',
+    'Some rainbow trout, called steelhead, travel to the sea and return to freshwater to breed.',
+    "A line of tiny sensors along a trout's side feels the ripples of nearby movement.",
+  ],
+  'loon': [
+    'Most birds have hollow bones, but loons have solid ones, which helps them dive.',
+    "A loon's wailing and yodelling calls can carry across a whole lake.",
+    "A loon's legs sit far back on its body - great for swimming, awkward on land.",
+    'Loons can dive deep and stay under for minutes while chasing fish.',
+    "Loon chicks sometimes ride on a parent's back to stay warm and safe.",
+  ],
+  'dragonfly': [
+    'Dragonflies have been around for over 300 million years, long before the dinosaurs.',
+    "Most of a dragonfly's head is eye, so it can see nearly all the way around.",
+    "Each of a dragonfly's four wings moves on its own, so it can hover and fly backwards.",
+    'Young dragonflies, called nymphs, live underwater for months or even years.',
+    'Dragonflies hunt mosquitoes and other small insects while flying.',
+  ],
+  'painted-turtle': [
+    'Painted turtles bask on logs in the sun to warm up.',
+    'Red and yellow markings along the shell edge and neck give the painted turtle its name.',
+    'In winter, painted turtles rest at the bottom of ponds, barely moving.',
+    "A painted turtle's smooth, flat shell helps it slip easily through the water.",
+    'The warmth of the nest decides whether painted turtle eggs hatch as boys or girls.',
+  ],
 };
 
 // Bonus facts for Conservation Ranger (common animals) and Animal Researcher (rare animals) - doubles

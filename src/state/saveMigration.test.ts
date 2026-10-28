@@ -153,4 +153,23 @@ describe('save migration', () => {
       expect(save.lastPlayArea).toBe('park');
     });
   });
+
+  describe('Lake', () => {
+    it('defaults lakeLocation for older saves and rejects garbage', () => {
+      expect(migrateSaveData({}).lakeLocation).toBe('Shoreline');
+      expect(migrateSaveData({ lakeLocation: 'The Moon' }).lakeLocation).toBe('Shoreline');
+      expect(migrateSaveData({ lakeLocation: 'Open Water' }).lakeLocation).toBe('Open Water');
+    });
+
+    it('restores the Lake play area only once the Wild Camper is unlocked', () => {
+      expect(migrateSaveData({ lastPlayArea: 'lake', wildCamperUnlocked: true }).lastPlayArea).toBe('lake');
+      expect(migrateSaveData({ lastPlayArea: 'lake', wildCamperUnlocked: false }).lastPlayArea).toBe('park');
+    });
+
+    it('keeps valid Lake photo variants and animals', () => {
+      const save = migrateSaveData({ photographedAnimals: ['loon', 'nope'], collectedPhotoVariants: ['loon-2', 'great-blue-heron-5', 'loon-9'] });
+      expect(save.photographedAnimals).toEqual(['loon']);
+      expect(save.collectedPhotoVariants).toEqual(['loon-2', 'great-blue-heron-5']);
+    });
+  });
 });

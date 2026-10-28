@@ -25,6 +25,32 @@ describe('App travel and Continue restoration', () => {
     expect(screen.getByRole('heading', { name: 'Forest Arrival', level: 1 })).toBeInTheDocument();
   });
 
+  it('completes Lake travel, photographs a Lake animal, and restores the Lake on Continue', async () => {
+    const user = userEvent.setup();
+    seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'camper' });
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Continue' }));
+    await user.click(screen.getByRole('button', { name: /journey planner/i }));
+    await user.click(screen.getByRole('button', { name: /^Lake/ }));
+    await user.click(screen.getByRole('button', { name: 'Travel to Lake' }));
+    expect(screen.getByRole('heading', { name: 'Lake Arrival', level: 1 })).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: /Reeds & Shallows/ }));
+    await user.click(screen.getByRole('button', { name: 'Camera' }));
+    await user.click(screen.getByRole('button', { name: /Photograph Painted Turtle/i }));
+    expect(JSON.parse(localStorage.getItem(SAVE_KEY)!).photographedAnimals).toContain('painted-turtle');
+    expect(screen.getByRole('dialog', { name: /Painted Turtle/i })).toBeInTheDocument();
+  });
+
+  it('restores the Lake play area on Continue', async () => {
+    const user = userEvent.setup();
+    seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'lake', lakeLocation: 'Open Water' });
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Continue' }));
+    expect(screen.getByRole('heading', { name: 'Lake Arrival', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Open Water/ })).toHaveClass('active');
+  });
+
   it('restores the Forest play area on Continue after Forest travel', async () => {
     const user = userEvent.setup();
     seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'forest', forestLocation: 'Fern Trail' });

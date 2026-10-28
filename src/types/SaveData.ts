@@ -1,11 +1,11 @@
 import type { AchievementId } from './Achievement';
 import type { DestinationId } from './Destination';
 import type { LostPuppyQuestProgress } from './Quest';
-import type { AnimalId, LocationName } from './Ids';
+import type { AnimalId, LakeLocationName, LocationName } from './Ids';
 
-export const CURRENT_SAVE_SCHEMA_VERSION = 9 as const;
-export type GameScreen = 'start' | 'role-select' | 'park' | 'camper' | 'forest';
-export type PlayArea = 'park' | 'camper' | 'forest';
+export const CURRENT_SAVE_SCHEMA_VERSION = 10 as const;
+export type GameScreen = 'start' | 'role-select' | 'park' | 'camper' | 'forest' | 'lake';
+export type PlayArea = 'park' | 'camper' | 'forest' | 'lake';
 
 export type SaveData = {
   schemaVersion: typeof CURRENT_SAVE_SCHEMA_VERSION;
@@ -23,6 +23,7 @@ export type SaveData = {
   selectedDestination: DestinationId | null;
   lastPlayArea: PlayArea;
   forestLocation: 'Forest Arrival' | 'Fern Trail';
+  lakeLocation: LakeLocationName;
   reportedInvasiveSpecies: AnimalId[];
   // Collected photo variants, one entry per collected shot, e.g. "duck-3". See data/animalPhotoVariants.ts.
   collectedPhotoVariants: string[];

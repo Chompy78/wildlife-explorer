@@ -2,11 +2,12 @@ import { defaultLostPuppyQuestProgress } from './saveDefaults';
 import { validAchievementIds } from '../data/achievements';
 import { ALL_PHOTO_VARIANT_KEYS } from '../data/animalPhotoVariants';
 import { CURRENT_SAVE_SCHEMA_VERSION, type PlayArea, type SaveData } from '../types/SaveData';
-import type { AnimalId, LocationName } from '../types/Ids';
+import type { AnimalId, LakeLocationName, LocationName } from '../types/Ids';
 import type { DestinationId } from '../types/Destination';
 
 const validLocations: LocationName[] = ['Park Entrance', 'Duck Pond', 'Open Meadow', 'Forest Trail', 'Strange Old Tree', 'Whisper Grove'];
-const validAnimals: AnimalId[] = ['duck', 'frog', 'butterfly', 'rabbit', 'lizard', 'park-bird', 'rare-owl', 'lost-puppy', 'forest-wren', 'forest-wallaby', 'forest-beetle', 'red-eared-slider', 'cane-toad', 'grey-squirrel', 'european-starling'];
+const validAnimals: AnimalId[] = ['duck', 'frog', 'butterfly', 'rabbit', 'lizard', 'park-bird', 'rare-owl', 'lost-puppy', 'forest-wren', 'forest-wallaby', 'forest-beetle', 'red-eared-slider', 'cane-toad', 'grey-squirrel', 'european-starling', 'great-blue-heron', 'beaver', 'rainbow-trout', 'loon', 'dragonfly', 'painted-turtle'];
+const validLakeLocations: LakeLocationName[] = ['Shoreline', 'Open Water', 'Reeds & Shallows'];
 const validDestinations: DestinationId[] = ['forest', 'mountains', 'lake', 'safari', 'rainforest', 'alien-planet', 'desert', 'arctic', 'coral-reef', 'wetlands', 'coastal', 'grassland', 'taiga', 'volcanic-highlands'];
 
 export function migrateSaveData(input: unknown): SaveData {
@@ -37,8 +38,9 @@ export function migrateSaveData(input: unknown): SaveData {
     camperVisited: wildCamperUnlocked && Boolean(parsed.camperVisited),
     camperIntroductionSeen: wildCamperUnlocked && Boolean(parsed.camperIntroductionSeen),
     selectedDestination,
-    lastPlayArea: requestedArea === 'forest' && wildCamperUnlocked ? 'forest' : requestedArea === 'camper' && wildCamperUnlocked ? 'camper' : 'park',
+    lastPlayArea: requestedArea === 'forest' && wildCamperUnlocked ? 'forest' : requestedArea === 'lake' && wildCamperUnlocked ? 'lake' : requestedArea === 'camper' && wildCamperUnlocked ? 'camper' : 'park',
     forestLocation: parsed.forestLocation === 'Fern Trail' ? 'Fern Trail' : 'Forest Arrival',
+    lakeLocation: validLakeLocations.includes(parsed.lakeLocation as LakeLocationName) ? parsed.lakeLocation as LakeLocationName : 'Shoreline',
     reportedInvasiveSpecies: filterKnown(parsed.reportedInvasiveSpecies, validAnimals),
     collectedPhotoVariants: filterKnown(parsed.collectedPhotoVariants, ALL_PHOTO_VARIANT_KEYS),
     photographCounts: migratePhotographCounts(parsed.photographCounts, validAnimals),

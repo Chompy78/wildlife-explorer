@@ -11,6 +11,7 @@ import type { AnimalId } from '../types/Ids';
 const PHOTO_VARIANT_COUNTS: Partial<Record<AnimalId, number>> = {
   duck: 5, frog: 5, butterfly: 5, rabbit: 5, lizard: 5, 'park-bird': 5, 'rare-owl': 5,
   'forest-wren': 5, 'forest-wallaby': 5, 'forest-beetle': 5, 'lost-puppy': 5,
+  'great-blue-heron': 5, beaver: 5, 'rainbow-trout': 5, loon: 5, dragonfly: 5, 'painted-turtle': 5,
 };
 
 export function getPhotoVariantCount(id: AnimalId): number {

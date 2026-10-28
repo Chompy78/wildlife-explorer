@@ -1,4 +1,5 @@
 import type { Animal } from '../types/Animal';
+import { lakeAnimalIds } from './lakeLocations';
 
 export const animals: Animal[] = [
   {
@@ -242,8 +243,98 @@ export const animals: Animal[] = [
       hint: 'European Starlings often gather in small flocks - watch for one perched still.',
     },
   },
+  {
+    id: 'great-blue-heron',
+    name: 'Great Blue Heron',
+    rarity: 'common',
+    habitat: 'Shoreline',
+    activeTime: 'Dawn and dusk',
+    funFact: 'Great Blue Herons can stand perfectly still for minutes, then strike at a fish in a blink.',
+    behaviours: ['wading', 'standing watch', 'fishing'],
+    emoji: '🪶',
+    availableInMilestone: true,
+    photoDifficulty: 'medium',
+    photographyTip: {
+      hint: "Wait for the Heron to stand tall and still at the water's edge.",
+    },
+  },
+  {
+    id: 'beaver',
+    name: 'Beaver',
+    rarity: 'common',
+    habitat: 'Shoreline',
+    activeTime: 'Evening and night',
+    funFact: 'Beavers build dams that turn streams into ponds, creating homes for many other animals.',
+    behaviours: ['gnawing', 'swimming', 'resting on the bank'],
+    emoji: '🦫',
+    availableInMilestone: true,
+    photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'The Beaver is easiest to photograph when it pauses on the bank.',
+    },
+  },
+  {
+    id: 'rainbow-trout',
+    name: 'Rainbow Trout',
+    rarity: 'common',
+    habitat: 'Open Water',
+    activeTime: 'Morning and evening',
+    funFact: 'Rainbow Trout have a soft pink stripe along their sides and like cool, clear water.',
+    behaviours: ['swimming', 'feeding near the surface', 'holding in the current'],
+    emoji: '🐟',
+    availableInMilestone: true,
+    photoDifficulty: 'hard',
+    photographyTip: {
+      hint: "Look for the Trout's glint just beneath the surface, and shoot when it holds still.",
+    },
+  },
+  {
+    id: 'loon',
+    name: 'Loon',
+    rarity: 'common',
+    habitat: 'Open Water',
+    activeTime: 'Day',
+    funFact: 'Loons have solid bones, unlike most birds, which helps them dive deep for fish.',
+    behaviours: ['floating', 'diving', 'calling'],
+    emoji: '🦆',
+    availableInMilestone: true,
+    photoDifficulty: 'easy',
+    photographyTip: {
+      hint: 'The Loon is calm on open water - shoot when it floats facing you.',
+    },
+  },
+  {
+    id: 'dragonfly',
+    name: 'Dragonfly',
+    rarity: 'common',
+    habitat: 'Reeds & Shallows',
+    activeTime: 'Sunny day',
+    funFact: 'Dragonflies have four wings that move independently, so they can hover and even fly backwards.',
+    behaviours: ['hovering', 'perching on reeds', 'hunting insects'],
+    emoji: '🪰',
+    availableInMilestone: true,
+    photoDifficulty: 'hard',
+    photographyTip: {
+      hint: 'Catch the Dragonfly when it rests on a reed with its wings open.',
+    },
+  },
+  {
+    id: 'painted-turtle',
+    name: 'Painted Turtle',
+    rarity: 'common',
+    habitat: 'Reeds & Shallows',
+    activeTime: 'Day',
+    funFact: 'Painted Turtles bask on logs in the sun to warm up, and rest underwater through the winter.',
+    behaviours: ['basking', 'swimming', 'resting on logs'],
+    emoji: '🐢',
+    availableInMilestone: true,
+    photoDifficulty: 'easy',
+    photographyTip: {
+      hint: 'The Painted Turtle poses best while basking on a sunny log.',
+    },
+  },
 ];
 
 export const commonMilestoneAnimals = animals.filter(
-  (animal) => animal.rarity === 'common' && animal.availableInMilestone
+  (animal) => animal.rarity === 'common' && animal.availableInMilestone && !lakeAnimalIds.includes(animal.id)
 );

@@ -5,6 +5,15 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(lake): Lake is now playable** — Lake Arrival screen with Shoreline / Open Water /
+  Reeds & Shallows (Great Blue Heron, Beaver, Loon, Rainbow Trout, Dragonfly, Painted Turtle), reached via
+  "Travel to Lake" in the Wild Camper's Journey Planner. 30 banked photos moved into
+  `public/assets/animals/` (`heron-*` renamed `great-blue-heron-*`), 5 facts per animal, a Lake tab in the
+  Journal. Save schema 9 -> 10 (`lakeLocation`, `'lake'` play area; older saves migrate cleanly). Lake
+  animals are excluded from the tutorial's common-animal count. New tests for state, migration and the
+  travel-and-photograph flow. Not checked by eye (browser could not reach the dev server). Why:
+  `D-2026-10-28-lake-biome-go-ahead`. Graduated from `docs/TASK_BOARD_NEXT.md`.
+
 - **2026-10-28 · feat(audio): synthesized sound effects with a mute toggle** — shutter click, Great Shot
   chime and new-photo chime via the Web Audio API (`src/audio/sound.ts`), played only on a tap. A
   "Sound on/off" button in the Camera panel; the choice persists in its own `localStorage` key, so no save
