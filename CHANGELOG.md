@@ -28,6 +28,10 @@
   Planet, the camera zoom/Perfect feedback and the Mini Games menu and Memory Match were checked by eye.
   The other biome screens share the same component and were not each opened.
 
+- **2026-10-28 · feat(godot): private Windows build** — `scripts/build-godot-windows.sh` exports the Godot version as a
+  single Windows .exe (about 155 MB, 83 MB zipped; shows as a phone-shaped window). Chosen instead of hosting it
+  publicly. Not run on Windows yet (no Windows or Wine here); the same project passes `npm run check:godot`.
+
 - **2026-10-28 · feat(godot): full Godot 4 port of the game in `godot/`** — every screen and rule of the web
   game rebuilt in Godot (Start, roles, Park with the Lost Puppy quest, Forest, Wild Camper, all 13 biomes,
   camera with Perfect/streak/zoom/mood, photo reveal, Journal and album, quizzes, seven mini games, synthesized
