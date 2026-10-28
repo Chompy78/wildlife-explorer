@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · fix(ui): readable photo tips, tidier mini game grids; browser check now works** — Found by
+  looking at the running app: the photography tip and Great Shots text were dark on the dark green photo
+  buttons (now light), and the Memory Match / Spot the Animal grids stretched too wide (now capped). The
+  browser tools can see the dev server over the Tailscale address (they run on another machine), so Alien
+  Planet, the camera zoom/Perfect feedback and the Mini Games menu and Memory Match were checked by eye.
+  The other biome screens share the same component and were not each opened.
+
 - **2026-10-28 · feat(camera, minigames): optional camera zoom and three more Mini Games** — Camera panel
   Zoom dial (Wide / Close / Macro: faster sweep, smaller glowing zone, more points) with a running visit
   score; Wide stays the default and nothing about the photo collection changes. Mini Games: Pattern Parade,
