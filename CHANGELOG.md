@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · chore(deps): vite 8.3.5 + vitest 4.1.12 — `npm audit` now clean** — bumped the two exact
+  pins to clear the last 3 dev-tooling findings (vite, vitest/mocker, launch-editor). The local npm 9.2.0
+  crashes on this lockfile ("edgesOut"), so the install ran via `npx npm@11`. `npm audit`: 0
+  vulnerabilities; `npm run check` passes (130 tests).
+
 - **2026-10-28 · chore(deps): in-range dev-dependency security updates** — `npm update` of nanoid,
   postcss, source-map-js and undici cut `npm audit` from 7 findings to 3. The remaining 3 (vite,
   vitest/mocker, launch-editor) need `npm audit fix --force`, which bumps outside the declared range, so
