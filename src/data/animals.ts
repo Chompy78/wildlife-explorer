@@ -1,5 +1,6 @@
 import type { Animal } from '../types/Animal';
 import { lakeAnimalIds } from './lakeLocations';
+import { mountainAnimalIds } from './mountainLocations';
 
 export const animals: Animal[] = [
   {
@@ -333,8 +334,98 @@ export const animals: Animal[] = [
       hint: 'The Painted Turtle poses best while basking on a sunny log.',
     },
   },
+  {
+    id: 'mountain-goat',
+    name: 'Mountain Goat',
+    rarity: 'common',
+    habitat: 'Rocky Trail',
+    activeTime: 'Day',
+    funFact: 'Mountain Goats have hooves with soft, grippy pads that help them climb steep rock without slipping.',
+    behaviours: ['climbing', 'grazing', 'resting on ledges'],
+    emoji: '🐐',
+    availableInMilestone: true,
+    photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'Shoot the Mountain Goat when it pauses on a ledge.',
+    },
+  },
+  {
+    id: 'marmot',
+    name: 'Marmot',
+    rarity: 'common',
+    habitat: 'Rocky Trail',
+    activeTime: 'Morning and afternoon',
+    funFact: 'Marmots whistle loudly to warn their family when danger is near, then dive into their burrows.',
+    behaviours: ['sunbathing', 'whistling', 'foraging'],
+    emoji: '🦫',
+    availableInMilestone: true,
+    photoDifficulty: 'easy',
+    photographyTip: {
+      hint: 'The Marmot is easiest to photograph while it sunbathes on a rock.',
+    },
+  },
+  {
+    id: 'pika',
+    name: 'Pika',
+    rarity: 'common',
+    habitat: 'Alpine Meadow',
+    activeTime: 'Day',
+    funFact: 'Pikas gather piles of dried grass in summer, called haypiles, to eat through the long winter.',
+    behaviours: ['gathering plants', 'squeaking', 'darting between rocks'],
+    emoji: '🐹',
+    availableInMilestone: true,
+    photoDifficulty: 'hard',
+    photographyTip: {
+      hint: 'Be patient - the Pika pops up briefly between rocks.',
+    },
+  },
+  {
+    id: 'mountain-hare',
+    name: 'Mountain Hare',
+    rarity: 'common',
+    habitat: 'Alpine Meadow',
+    activeTime: 'Dusk and dawn',
+    funFact: 'Some mountain hares turn white in winter, which helps them hide in the snow.',
+    behaviours: ['grazing', 'freezing still', 'bounding'],
+    emoji: '🐇',
+    availableInMilestone: true,
+    photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'The Mountain Hare freezes when it senses you - shoot while it holds still.',
+    },
+  },
+  {
+    id: 'golden-eagle',
+    name: 'Golden Eagle',
+    rarity: 'common',
+    habitat: 'Lookout Ridge',
+    activeTime: 'Day',
+    funFact: 'Golden Eagles can spot small animals from far away, soaring on warm air without flapping.',
+    behaviours: ['soaring', 'perching', 'scanning the ground'],
+    emoji: '🦅',
+    availableInMilestone: true,
+    photoDifficulty: 'hard',
+    photographyTip: {
+      hint: 'Wait for the Golden Eagle to perch and look out over the valley.',
+    },
+  },
+  {
+    id: 'mountain-bluebird',
+    name: 'Mountain Bluebird',
+    rarity: 'common',
+    habitat: 'Lookout Ridge',
+    activeTime: 'Day',
+    funFact: 'Male Mountain Bluebirds are bright sky blue, which makes them easy to spot against the grass.',
+    behaviours: ['hovering', 'perching', 'catching insects'],
+    emoji: '🐦',
+    availableInMilestone: true,
+    photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'The Mountain Bluebird perches on fence posts and low branches - shoot when it is still.',
+    },
+  },
 ];
 
 export const commonMilestoneAnimals = animals.filter(
-  (animal) => animal.rarity === 'common' && animal.availableInMilestone && !lakeAnimalIds.includes(animal.id)
+  (animal) => animal.rarity === 'common' && animal.availableInMilestone && !lakeAnimalIds.includes(animal.id) && !mountainAnimalIds.includes(animal.id)
 );

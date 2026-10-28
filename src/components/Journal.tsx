@@ -8,11 +8,12 @@ import { getsBonusPhotoSlot, unlocksBonusFacts } from '../data/roleBonuses';
 import { hasHelpedLostPuppy, hasPhotographedAnimal } from '../state/gameState';
 import { forestAnimalIds } from '../state/forestState';
 import { lakeAnimalIds } from '../data/lakeLocations';
+import { mountainAnimalIds } from '../data/mountainLocations';
 import type { Animal } from '../types/Animal';
 import type { SaveData } from '../types/SaveData';
 import { PhotoAlbum } from './PhotoAlbum';
 
-type JournalView = 'biomes' | 'park' | 'forest' | 'lake' | 'rewards';
+type JournalView = 'biomes' | 'park' | 'forest' | 'lake' | 'mountains' | 'rewards';
 
 function isDiscovered(animal: Animal, saveData: SaveData): boolean {
   const photographed = hasPhotographedAnimal(saveData, animal.id);
@@ -21,7 +22,8 @@ function isDiscovered(animal: Animal, saveData: SaveData): boolean {
   return photographed || helped || owlSpotted;
 }
 
-const parkAnimals = animals.filter((animal) => !forestAnimalIds.includes(animal.id) && !lakeAnimalIds.includes(animal.id));
+const parkAnimals = animals.filter((animal) => !forestAnimalIds.includes(animal.id) && !lakeAnimalIds.includes(animal.id) && !mountainAnimalIds.includes(animal.id));
+const mountainBiomeAnimals = animals.filter((animal) => mountainAnimalIds.includes(animal.id));
 const lakeBiomeAnimals = animals.filter((animal) => lakeAnimalIds.includes(animal.id));
 const forestBiomeAnimals = animals.filter((animal) => forestAnimalIds.includes(animal.id));
 
@@ -33,6 +35,7 @@ export function Journal({ saveData, onClose }: JournalProps) {
   const [albumAnimal, setAlbumAnimal] = useState<Animal | null>(null);
 
   const parkDiscovered = parkAnimals.filter((animal) => isDiscovered(animal, saveData)).length;
+  const mountainDiscovered = mountainBiomeAnimals.filter((animal) => isDiscovered(animal, saveData)).length;
   const lakeDiscovered = lakeBiomeAnimals.filter((animal) => isDiscovered(animal, saveData)).length;
   const forestDiscovered = forestBiomeAnimals.filter((animal) => isDiscovered(animal, saveData)).length;
 
@@ -43,6 +46,7 @@ export function Journal({ saveData, onClose }: JournalProps) {
         <button className="biome-select-card" onClick={() => setView('park')}><span aria-hidden="true">🌳</span><strong>Tutorial Park</strong><small>{parkDiscovered} of {parkAnimals.length} discovered</small></button>
         <button className="biome-select-card" onClick={() => setView('forest')}><span aria-hidden="true">🌲</span><strong>Forest</strong><small>{forestDiscovered} of {forestBiomeAnimals.length} discovered</small></button>
         <button className="biome-select-card" onClick={() => setView('lake')}><span aria-hidden="true">🌊</span><strong>Lake</strong><small>{lakeDiscovered} of {lakeBiomeAnimals.length} discovered</small></button>
+        <button className="biome-select-card" onClick={() => setView('mountains')}><span aria-hidden="true">⛰️</span><strong>Mountains</strong><small>{mountainDiscovered} of {mountainBiomeAnimals.length} discovered</small></button>
         <button className="biome-select-card" onClick={() => setView('rewards')}><span aria-hidden="true">🏅</span><strong>Places &amp; Rewards</strong><small>Whisper Grove, Wild Camper, achievements</small></button>
       </div>
     ) : (
@@ -51,6 +55,7 @@ export function Journal({ saveData, onClose }: JournalProps) {
         {view === 'park' ? <section className="journal-section"><h3>Tutorial Park Animals</h3><div className="journal-list">{parkAnimals.map((animal) => <JournalEntry key={animal.id} animal={animal} saveData={saveData} onOpenAlbum={setAlbumAnimal}/>)}</div></section> : null}
         {view === 'forest' ? <section className="journal-section"><h3>Forest Animals</h3><div className="journal-list">{forestBiomeAnimals.map((animal) => <JournalEntry key={animal.id} animal={animal} saveData={saveData} onOpenAlbum={setAlbumAnimal}/>)}</div></section> : null}
         {view === 'lake' ? <section className="journal-section"><h3>Lake Animals</h3><div className="journal-list">{lakeBiomeAnimals.map((animal) => <JournalEntry key={animal.id} animal={animal} saveData={saveData} onOpenAlbum={setAlbumAnimal}/>)}</div></section> : null}
+        {view === 'mountains' ? <section className="journal-section"><h3>Mountain Animals</h3><div className="journal-list">{mountainBiomeAnimals.map((animal) => <JournalEntry key={animal.id} animal={animal} saveData={saveData} onOpenAlbum={setAlbumAnimal}/>)}</div></section> : null}
         {view === 'rewards' ? (
           <>
             <section className="journal-section"><h3>Places and Rewards</h3><SpecialEntry icon={saveData.whisperGroveDiscovered ? '🌺' : '🔒'} title="Whisper Grove" discovered={saveData.whisperGroveDiscovered} text={saveData.whisperGroveDiscovered ? 'Discovered - a peaceful hidden natural area.' : 'Hidden. Help animals and explore the Strange Old Tree area.'}/><SpecialEntry icon={saveData.wildCamperUnlocked ? '🚐' : '🔒'} title="Wild Camper" discovered={saveData.wildCamperUnlocked} text={saveData.wildCamperUnlocked ? 'Unlocked - Tutorial Park complete!' : 'Locked. Complete Lost Puppy, photograph Rare Owl, and discover Whisper Grove.'}/></section>

@@ -19,7 +19,13 @@ export type AnimalId =
   | 'rainbow-trout'
   | 'loon'
   | 'dragonfly'
-  | 'painted-turtle';
+  | 'painted-turtle'
+  | 'mountain-goat'
+  | 'marmot'
+  | 'pika'
+  | 'mountain-hare'
+  | 'golden-eagle'
+  | 'mountain-bluebird';
 
 export type LocationName =
   | 'Park Entrance'
@@ -30,3 +36,4 @@ export type LocationName =
   | 'Whisper Grove';
 
 export type LakeLocationName = 'Shoreline' | 'Open Water' | 'Reeds & Shallows';
+export type MountainLocationName = 'Rocky Trail' | 'Alpine Meadow' | 'Lookout Ridge';

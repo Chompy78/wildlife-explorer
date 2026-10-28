@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { CamperScreen } from './components/CamperScreen';
 import { ForestScreen } from './components/ForestScreen';
 import { LakeScreen } from './components/LakeScreen';
+import { MountainsScreen } from './components/MountainsScreen';
 import { ParkScreen } from './components/ParkScreen';
 import { RoleSelect } from './components/RoleSelect';
 import { StartScreen } from './components/StartScreen';
 import { enterForest, returnToCamperFromForest } from './state/forestState';
 import { enterLake, returnToCamperFromLake } from './state/lakeState';
+import { enterMountains, returnToCamperFromMountains } from './state/mountainsState';
 import { enterWildCamper, returnToTutorialPark } from './state/camperState';
 import { clearSave, createDefaultSave, loadSave, saveGame } from './state/saveGame';
 import type { GameScreen, SaveData } from './types/SaveData';
@@ -19,7 +21,7 @@ export default function App() {
   function startNewGame() { updateSave(createDefaultSave()); setScreen('role-select'); }
   function continueGame() {
     if (!saveData.selectedRole) return setScreen('role-select');
-    setScreen(saveData.wildCamperUnlocked && saveData.lastPlayArea === 'forest' ? 'forest' : saveData.wildCamperUnlocked && saveData.lastPlayArea === 'lake' ? 'lake' : saveData.wildCamperUnlocked && saveData.lastPlayArea === 'camper' ? 'camper' : 'park');
+    setScreen(saveData.wildCamperUnlocked && saveData.lastPlayArea === 'forest' ? 'forest' : saveData.wildCamperUnlocked && saveData.lastPlayArea === 'lake' ? 'lake' : saveData.wildCamperUnlocked && saveData.lastPlayArea === 'mountains' ? 'mountains' : saveData.wildCamperUnlocked && saveData.lastPlayArea === 'camper' ? 'camper' : 'park');
   }
   function selectRole(roleId: string) { updateSave({ ...saveData, selectedRole: roleId }); setScreen('park'); }
   function openCamper() { updateSave(enterWildCamper(saveData)); setScreen('camper'); }
@@ -27,12 +29,15 @@ export default function App() {
   function returnToCamper() { updateSave(returnToCamperFromForest(saveData)); setScreen('camper'); }
   function openLake() { updateSave(enterLake(saveData)); setScreen('lake'); }
   function returnToCamperFromLakeScreen() { updateSave(returnToCamperFromLake(saveData)); setScreen('camper'); }
+  function openMountains() { updateSave(enterMountains(saveData)); setScreen('mountains'); }
+  function returnToCamperFromMountainsScreen() { updateSave(returnToCamperFromMountains(saveData)); setScreen('camper'); }
   function openPark() { updateSave(returnToTutorialPark(saveData)); setScreen('park'); }
   function resetSave() { clearSave(); setSaveData(createDefaultSave()); setScreen('start'); }
   if (screen === 'role-select') return <RoleSelect onSelectRole={selectRole} />;
   if (screen === 'park') return <ParkScreen saveData={saveData} onSaveChange={updateSave} onOpenCamper={openCamper} onGoHome={() => setScreen('start')} />;
   if (screen === 'forest') return <ForestScreen saveData={saveData} onSaveChange={updateSave} onReturnToCamper={returnToCamper} onGoHome={() => setScreen('start')} />;
   if (screen === 'lake') return <LakeScreen saveData={saveData} onSaveChange={updateSave} onReturnToCamper={returnToCamperFromLakeScreen} onGoHome={() => setScreen('start')} />;
-  if (screen === 'camper') return <CamperScreen saveData={saveData} onSaveChange={updateSave} onReturnToPark={openPark} onTravelToForest={openForest} onTravelToLake={openLake} onGoHome={() => setScreen('start')} />;
+  if (screen === 'mountains') return <MountainsScreen saveData={saveData} onSaveChange={updateSave} onReturnToCamper={returnToCamperFromMountainsScreen} onGoHome={() => setScreen('start')} />;
+  if (screen === 'camper') return <CamperScreen saveData={saveData} onSaveChange={updateSave} onReturnToPark={openPark} onTravelToForest={openForest} onTravelToLake={openLake} onTravelToMountains={openMountains} onGoHome={() => setScreen('start')} />;
   return <StartScreen saveData={saveData} onNewGame={startNewGame} onContinue={continueGame} onReset={resetSave} />;
 }

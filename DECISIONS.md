@@ -4,6 +4,15 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-mountains-biome-go-ahead · Mountains becomes the third playable destination, without photo art
+
+**Status:** Active
+
+**Summary:** "Do the next biome" was taken to mean Mountains. Three sections, six animals, built with emoji
+  in place of photos because no art exists yet; Lake and Mountains now share one `BiomeScreen`. Save
+  schema 10 -> 11. A board task tracks the missing art. Full record:
+  `decisions/2026/D-2026-10-28-mountains-biome-go-ahead.md`.
+
 ## D-2026-10-28-lake-biome-go-ahead · Lake becomes the second playable destination
 
 **Status:** Active

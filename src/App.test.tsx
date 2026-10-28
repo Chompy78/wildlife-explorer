@@ -51,6 +51,32 @@ describe('App travel and Continue restoration', () => {
     expect(screen.getByRole('button', { name: /Open Water/ })).toHaveClass('active');
   });
 
+  it('completes Mountains travel and photographs an animal that has no photo art yet', async () => {
+    const user = userEvent.setup();
+    seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'camper' });
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Continue' }));
+    await user.click(screen.getByRole('button', { name: /journey planner/i }));
+    await user.click(screen.getByRole('button', { name: /^Mountains/ }));
+    await user.click(screen.getByRole('button', { name: 'Travel to Mountains' }));
+    expect(screen.getByRole('heading', { name: 'Mountain Arrival', level: 1 })).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Camera' }));
+    await user.click(screen.getByRole('button', { name: /Photograph Marmot/i }));
+    expect(JSON.parse(localStorage.getItem(SAVE_KEY)!).photographedAnimals).toContain('marmot');
+    expect(screen.queryByRole('dialog', { name: /Marmot/i })).not.toBeInTheDocument();
+    expect(screen.getByText(/Marmot was added to your Wildlife Journal\. Did you know\?/)).toBeInTheDocument();
+  });
+
+  it('restores the Mountains play area on Continue', async () => {
+    const user = userEvent.setup();
+    seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'mountains', mountainLocation: 'Alpine Meadow' });
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Continue' }));
+    expect(screen.getByRole('heading', { name: 'Mountain Arrival', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Alpine Meadow/ })).toHaveClass('active');
+  });
+
   it('restores the Forest play area on Continue after Forest travel', async () => {
     const user = userEvent.setup();
     seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'forest', forestLocation: 'Fern Trail' });

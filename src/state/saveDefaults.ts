@@ -22,6 +22,7 @@ export const defaultSaveData: SaveData = {
   lastPlayArea: 'park',
   forestLocation: 'Forest Arrival',
   lakeLocation: 'Shoreline',
+  mountainLocation: 'Rocky Trail',
   reportedInvasiveSpecies: [],
   collectedPhotoVariants: [],
   photographCounts: {},

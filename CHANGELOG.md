@@ -5,6 +5,14 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(mountains): Mountains is now playable (no photo art yet)** — Mountain Arrival screen
+  with Rocky Trail / Alpine Meadow / Lookout Ridge (Mountain Goat, Marmot, Pika, Mountain Hare, Golden
+  Eagle, Mountain Bluebird), reached via "Travel to Mountains" in the Journey Planner, with a Mountains tab
+  in the Journal. No photos exist for these animals, so they show emoji and award no collectible photos;
+  the fun fact appears in the message box instead. Save schema 10 -> 11 (`mountainLocation`, `'mountains'`
+  play area). Lake and Mountains now share `BiomeScreen` / `photographBiomeAnimal`. Not checked by eye.
+  Why: `D-2026-10-28-mountains-biome-go-ahead`.
+
 - **2026-10-28 · feat(audio): quiet ambient habitat sound + top-bar Sound toggle** — a slow, very quiet
   filtered-noise bed per habitat (park breeze, forest rustle, lapping lake, high mountain wind), synthesized
   like the effects, starting only after a tap and following the same mute switch. `Sound on/off` now sits in

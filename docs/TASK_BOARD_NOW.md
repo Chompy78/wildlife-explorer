@@ -32,4 +32,20 @@ add one when that art is generated.
 
 ---
 
+## Mountains art and photo wiring — TODO
+Generate 30 Mountains photos (6 animals x 5) and wire them in so Mountains gets the same collection, reveal and facts as Park, Forest and Lake.
+**Effort:** medium · **Risk:** low — additive: animals already exist and work without photos; only the art counts and the fact lists are added.
+
+```text
+1. Write a docs/copilot-packages/ art brief like 04-lake-biome-animals.md for: mountain-goat, marmot, pika,
+   mountain-hare, golden-eagle, mountain-bluebird (Rocky Trail / Alpine Meadow / Lookout Ridge).
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS in src/data/animalPhotoVariants.ts.
+4. Add 5 facts per animal to ANIMAL_FACTS in src/data/animalFacts.ts (NOT BONUS_FACTS).
+5. Update tests: the Mountains state test that asserts getPhotoVariantCount('marmot') === 0, and the App
+   test that expects no photo dialog for the Marmot.
+```
+
+**Done when:** all six Mountains animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
 ---

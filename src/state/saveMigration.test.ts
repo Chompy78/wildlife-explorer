@@ -172,4 +172,17 @@ describe('save migration', () => {
       expect(save.collectedPhotoVariants).toEqual(['loon-2', 'great-blue-heron-5']);
     });
   });
+
+  describe('Mountains', () => {
+    it('defaults mountainLocation for older saves and rejects garbage', () => {
+      expect(migrateSaveData({}).mountainLocation).toBe('Rocky Trail');
+      expect(migrateSaveData({ mountainLocation: 'The Moon' }).mountainLocation).toBe('Rocky Trail');
+      expect(migrateSaveData({ mountainLocation: 'Lookout Ridge' }).mountainLocation).toBe('Lookout Ridge');
+    });
+
+    it('restores the Mountains play area only once the Wild Camper is unlocked', () => {
+      expect(migrateSaveData({ lastPlayArea: 'mountains', wildCamperUnlocked: true }).lastPlayArea).toBe('mountains');
+      expect(migrateSaveData({ lastPlayArea: 'mountains', wildCamperUnlocked: false }).lastPlayArea).toBe('park');
+    });
+  });
 });
