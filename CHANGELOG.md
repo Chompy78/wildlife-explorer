@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(audio): quiet ambient habitat sound + top-bar Sound toggle** — a slow, very quiet
+  filtered-noise bed per habitat (park breeze, forest rustle, lapping lake, high mountain wind), synthesized
+  like the effects, starting only after a tap and following the same mute switch. `Sound on/off` now sits in
+  the Park, Forest and Lake top bars as well as the Camera panel, all kept in step. Graduated from
+  `docs/TASK_BOARD_SOMEDAY.md`.
+
 - **2026-10-28 · feat(lake): Lake is now playable** — Lake Arrival screen with Shoreline / Open Water /
   Reeds & Shallows (Great Blue Heron, Beaver, Loon, Rainbow Trout, Dragonfly, Painted Turtle), reached via
   "Travel to Lake" in the Wild Camper's Journey Planner. 30 banked photos moved into

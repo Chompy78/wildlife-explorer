@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useAmbient } from '../hooks/useAmbient';
 import { assetUrl } from '../assetUrl';
 import { countCollectedVariants, getPhotoVariantCount, getPhotoVariantUrlFromKey } from '../data/animalPhotoVariants';
 import { getBonusFactForVariantKey, getFactForVariantKey } from '../data/animalFacts';
@@ -16,6 +17,7 @@ import { DiscoveryPanel } from './DiscoveryPanel';
 import { HabitatQuiz } from './HabitatQuiz';
 import { Journal } from './Journal';
 import { getLocationClue, LocationClues } from './LocationClues';
+import { SoundToggle } from './SoundToggle';
 import { PanelModal } from './PanelModal';
 import { PhotoReveal } from './PhotoReveal';
 import { ProgressTracker } from './ProgressTracker';
@@ -25,6 +27,7 @@ type ParkScreenProps = { saveData: SaveData; onSaveChange: (saveData: SaveData) 
 type PanelKey = 'camera' | 'quest' | 'clue' | 'discover' | 'progress' | 'about';
 
 export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: ParkScreenProps) {
+  useAmbient('park');
   const [message, setMessage] = useState('Welcome to Tutorial Park. Try visiting Duck Pond, Open Meadow, Forest Trail, or the Strange Old Tree.');
   const [journalOpen, setJournalOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
@@ -82,6 +85,7 @@ export function ParkScreen({ saveData, onSaveChange, onOpenCamper, onGoHome }: P
       <header className="top-bar">
         <div><p className="eyebrow">Tutorial Park</p><h1>Wildlife Explorer</h1></div>
         <div className="button-row">
+          <SoundToggle />
           {saveData.wildCamperUnlocked ? <button className="camper-button" onClick={onOpenCamper}>{'🚐'} Enter Wild Camper</button> : null}
           <button className="secondary" onClick={onGoHome}>Home</button>
         </div>

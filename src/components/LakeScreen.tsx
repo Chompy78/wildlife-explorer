@@ -1,3 +1,4 @@
+import { useAmbient } from '../hooks/useAmbient';
 import { useState } from 'react';
 import { animals } from '../data/animals';
 import { getBonusFactForVariantKey, getFactForVariantKey } from '../data/animalFacts';
@@ -11,6 +12,7 @@ import type { SaveData } from '../types/SaveData';
 import { CameraPanel } from './CameraPanel';
 import { HabitatQuiz } from './HabitatQuiz';
 import { Journal } from './Journal';
+import { SoundToggle } from './SoundToggle';
 import { PanelModal } from './PanelModal';
 import { PhotoReveal } from './PhotoReveal';
 
@@ -20,6 +22,7 @@ type PanelKey = 'camera' | 'about';
 // Mirrors ForestScreen: same camera -> photo reveal -> optional habitat quiz flow, over the Lake's three
 // sections instead of the Forest's two. Calm observation only - nothing is collected from the wild.
 export function LakeScreen({ saveData, onSaveChange, onReturnToCamper, onGoHome }: Props) {
+  useAmbient('lake');
   const [journalOpen, setJournalOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
   const [message, setMessage] = useState('You have arrived quietly at the lake shore.');
@@ -55,6 +58,7 @@ export function LakeScreen({ saveData, onSaveChange, onReturnToCamper, onGoHome 
       <header className="top-bar">
         <div><p className="eyebrow">Lake</p><h1>Lake Arrival</h1></div>
         <div className="button-row">
+          <SoundToggle />
           <button onClick={onReturnToCamper}>Return to Wild Camper</button>
           <button className="secondary" onClick={onGoHome}>Home</button>
         </div>

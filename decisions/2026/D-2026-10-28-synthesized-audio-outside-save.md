@@ -16,5 +16,5 @@ Status: Active
   preference, not game progress, so it should survive a save reset and must not risk the save-migration
   path (which `npm run check` can't fully protect).
 - **Consequence:** sound defaults to on. If richer audio is wanted later, swap the tone calls for asset
-  playback behind the same three functions; ambient loops are not built.
+  playback behind the same three functions; ambient habitat beds were added later the same day, synthesized the same way and behind the same mute flag.
 - **Status:** Active.

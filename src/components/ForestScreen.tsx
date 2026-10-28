@@ -1,3 +1,4 @@
+import { useAmbient } from '../hooks/useAmbient';
 import { useState } from 'react';
 import { assetUrl } from '../assetUrl';
 import { animals } from '../data/animals';
@@ -11,6 +12,7 @@ import type { SaveData } from '../types/SaveData';
 import { CameraPanel } from './CameraPanel';
 import { HabitatQuiz } from './HabitatQuiz';
 import { Journal } from './Journal';
+import { SoundToggle } from './SoundToggle';
 import { PanelModal } from './PanelModal';
 import { PhotoReveal } from './PhotoReveal';
 
@@ -18,6 +20,7 @@ type Props = { saveData: SaveData; onSaveChange: (s: SaveData) => void; onReturn
 type PanelKey = 'camera' | 'about';
 
 export function ForestScreen({ saveData, onSaveChange, onReturnToCamper, onGoHome }: Props) {
+  useAmbient('forest');
   const [journalOpen, setJournalOpen] = useState(false);
   const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
   const [message, setMessage] = useState('You have arrived quietly at the forest edge.');
@@ -52,6 +55,7 @@ export function ForestScreen({ saveData, onSaveChange, onReturnToCamper, onGoHom
       <header className="top-bar">
         <div><p className="eyebrow">Milestone 5</p><h1>Forest Arrival</h1></div>
         <div className="button-row">
+          <SoundToggle />
           <button onClick={onReturnToCamper}>Return to Wild Camper</button>
           <button className="secondary" onClick={onGoHome}>Home</button>
         </div>

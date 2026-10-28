@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { isSoundMuted, playGreatShot, playShutter, setSoundMuted } from '../audio/sound';
+import { playGreatShot, playShutter } from '../audio/sound';
 import { getPhotoVariantCount, getPhotoVariantUrl, isCollectionComplete } from '../data/animalPhotoVariants';
 import { effectivePhotoDifficulty } from '../data/roleBonuses';
 import { getMood, isActiveAt, timeOfDayMoods, type TimeOfDay } from '../data/timeOfDay';
@@ -7,6 +7,7 @@ import type { AnimalId } from '../types/Ids';
 import { hasPhotographedAnimal } from '../state/gameState';
 import type { Animal, PhotoDifficulty } from '../types/Animal';
 import type { SaveData } from '../types/SaveData';
+import { SoundToggle } from './SoundToggle';
 
 type CameraPanelProps = {
   animalsHere: Animal[];
@@ -83,8 +84,6 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
   const [reducedMotionGlow, setReducedMotionGlow] = useState<Partial<Record<AnimalId, boolean>>>({});
   // Cosmetic mood only - never read by the photo or timing logic below.
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('day');
-  const [soundMuted, setSoundMutedState] = useState<boolean>(() => isSoundMuted());
-  function toggleSound() { const next = !soundMuted; setSoundMuted(next); setSoundMutedState(next); }
 
   useEffect(() => {
     const totalCount = getTotalPhotographCount(saveData);
@@ -143,9 +142,7 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
             <span aria-hidden="true">{mood.icon}</span> {mood.label}
           </button>
         ))}
-        <button type="button" className="secondary mood-button" aria-pressed={!soundMuted} onClick={toggleSound}>
-          <span aria-hidden="true">{soundMuted ? '🔇' : '🔊'}</span> Sound {soundMuted ? 'off' : 'on'}
-        </button>
+        <SoundToggle />
       </div>
       <p className="mood-description muted">{getMood(timeOfDay).description}</p>
       {animalsHere.length === 0 ? (
