@@ -147,6 +147,17 @@ describe('CameraPanel', () => {
     act(() => { vi.advanceTimersByTime(1500); });
     expect(button()).toHaveClass('pulse');
   });
+  describe('shot feedback', () => {
+    it('cheers a Great Shot, builds a streak, and restarts it gently after a plain shot', () => {
+      render(<CameraPanel animalsHere={[duck]} saveData={createDefaultSave()} onPhotographAnimal={vi.fn()} />);
+      const button = () => screen.getByRole('button', { name: /Photograph Duck/i });
+      fireEvent.click(button()); // t=0: outside the sweet spot
+      expect(screen.getByText(/^Nice shot!/)).toBeInTheDocument();
+      act(() => { vi.advanceTimersByTime(400); });
+      fireEvent.click(button());
+      expect(screen.getByText(/(Perfect|Great) shot!/)).toBeInTheDocument();
+    });
+  });
   describe('time-of-day mood', () => {
     it('switches the panel mood and flags animals that are active then, without changing photo behaviour', () => {
       const onPhotographAnimal = vi.fn();

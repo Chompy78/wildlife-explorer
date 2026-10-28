@@ -85,7 +85,13 @@ export type AnimalId =
   | 'lava-lizard'
   | 'nene'
   | 'marine-iguana'
-  | 'galapagos-tortoise';
+  | 'galapagos-tortoise'
+  | 'crystal-hopper'
+  | 'lumen-moth'
+  | 'sky-whale'
+  | 'cloud-jelly'
+  | 'cave-glimmer'
+  | 'echo-bat';
 
 export type LocationName =
   | 'Park Entrance'

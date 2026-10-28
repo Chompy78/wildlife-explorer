@@ -133,6 +133,15 @@ describe('App travel and Continue restoration', () => {
     expect(screen.getByRole('button', { name: new RegExp(second) })).toHaveClass('active');
   });
 
+  it('opens Mini Games from the start screen and comes back', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Mini Games' }));
+    expect(screen.getByRole('heading', { name: 'Mini Games', level: 1 })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Home' }));
+    expect(screen.getByRole('heading', { name: 'Wildlife Explorer' })).toBeInTheDocument();
+  });
+
   it('restores the Forest play area on Continue after Forest travel', async () => {
     const user = userEvent.setup();
     seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'forest', forestLocation: 'Fern Trail' });

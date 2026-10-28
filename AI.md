@@ -63,7 +63,7 @@ Implemented:
 - No combat or harsh failure
 - Never catch, collect, harm or kill animals
 - The Lost Puppy is helped and reunited, never collected
-- Only Alien Planet remains preview-only. The Lake, Mountains, Safari, Rainforest, Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga and Volcanic Highlands became playable on 2026-10-28 at the user's explicit request (`D-2026-10-28-lake-biome-go-ahead`, `...-mountains-...`, `...-safari-...`, `D-2026-10-28-rainforest-biome`, `D-2026-10-28-remaining-biomes`); they share the registry in `src/data/biomes.ts` (`D-2026-10-28-biome-registry`).
+- Every destination is now playable. The Alien Planet (imaginary animals), Lake, Mountains, Safari, Rainforest, Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga and Volcanic Highlands became playable on 2026-10-28 at the user's explicit request (`D-2026-10-28-lake-biome-go-ahead`, `...-mountains-...`, `...-safari-...`, `D-2026-10-28-rainforest-biome`, `D-2026-10-28-remaining-biomes`, `D-2026-10-28-alien-planet-minigames-photo-fun`). Mini Games (Start screen) are calm, rewardless and never touch the save; they share the registry in `src/data/biomes.ts` (`D-2026-10-28-biome-registry`).
 
 ## Scope boundary
 

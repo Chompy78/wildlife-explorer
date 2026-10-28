@@ -214,3 +214,19 @@ Generate 30 Volcanic Highlands photos (6 animals x 5) and wire them in, same as 
 
 **Done when:** all six Volcanic Highlands animals reveal a photo and a fact when photographed, and `npm run check` passes.
 
+
+---
+
+## Alien Planet art and photo wiring — TODO
+Generate 30 Alien Planet photos (6 imaginary animals x 5) and wire them in, same as the other biome art tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/17-alien-planet-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Alien Planet animals reveal a photo and a fact when photographed, and `npm run check` passes.

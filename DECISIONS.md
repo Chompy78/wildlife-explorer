@@ -4,6 +4,14 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-alien-planet-minigames-photo-fun · Alien Planet, Mini Games and livelier photos
+
+**Status:** Active
+
+**Summary:** Alien Planet playable (imaginary animals, schema 15). Four calm no-reward Mini Games on their
+  own screen. Camera taps get a flash, Perfect bullseye and Great Shot streak, display-only. Full record:
+  `decisions/2026/D-2026-10-28-alien-planet-minigames-photo-fun.md`.
+
 ## D-2026-10-28-remaining-biomes · The other eight biomes become playable at once
 
 **Status:** Active

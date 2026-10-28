@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(alien-planet, minigames, camera): Alien Planet, Mini Games and livelier photos** —
+  Alien Planet is playable (Crystal Meadow / Floating Islands / Glowing Caves, six imaginary animals, no photo
+  art yet; schema 14 -> 15). New Mini Games screen from the Start screen: Memory Match, Who Am I?, Spot the
+  Animal, Where Do I Live? (calm, no timer, no rewards, nothing saved). Camera: shutter flash, Perfect
+  bullseye, Great Shot streak and best streak (display only). Art brief 17 and a board task. Not checked by
+  eye. Why: `D-2026-10-28-alien-planet-minigames-photo-fun`.
+
 - **2026-10-28 · feat(biomes): the remaining eight biomes are playable (no photo art yet)** — Desert, Arctic,
   Coral Reef, Wetlands, Coastal, Grassland, Taiga and Volcanic Highlands, each with three sections and six
   animals (48 new animals), a "Travel to ..." button, a Journal tab, an ambient bed and a background colour.

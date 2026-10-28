@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { playGreatShot, playShutter } from '../audio/sound';
 import { getPhotoVariantCount, getPhotoVariantUrl, isCollectionComplete } from '../data/animalPhotoVariants';
+import { nextStreak, rateShot, shotMessage, type ShotRating } from '../data/shotRating';
 import { effectivePhotoDifficulty } from '../data/roleBonuses';
 import { getMood, isActiveAt, timeOfDayMoods, type TimeOfDay } from '../data/timeOfDay';
 import type { AnimalId } from '../types/Ids';
@@ -84,6 +85,9 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
   const [reducedMotionGlow, setReducedMotionGlow] = useState<Partial<Record<AnimalId, boolean>>>({});
   // Cosmetic mood only - never read by the photo or timing logic below.
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('day');
+  // Fun feedback for each tap: streak of Great Shots, a bullseye "Perfect" and a quick flash. Display only.
+  const [shot, setShot] = useState<{ rating: ShotRating; streak: number; count: number } | null>(null);
+  const [bestStreak, setBestStreak] = useState(0);
 
   useEffect(() => {
     const totalCount = getTotalPhotographCount(saveData);
@@ -128,6 +132,15 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
 
   const totalCount = getTotalPhotographCount(saveData);
 
+  function takeShot(animalId: AnimalId, greatShotNow: boolean, rating: ShotRating) {
+    const streak = nextStreak(shot?.streak ?? 0, rating);
+    setShot({ rating, streak, count: (shot?.count ?? 0) + 1 });
+    setBestStreak((best) => Math.max(best, streak));
+    playShutter();
+    if (greatShotNow) playGreatShot();
+    onPhotographAnimal(animalId, greatShotNow);
+  }
+
   return (
     <div className={`camera-card mood-${timeOfDay}`}>
       <div className="mood-picker" role="group" aria-label="Time of day">
@@ -150,6 +163,11 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
       ) : (
         <>
           <p className="camera-hint muted">Tap the shutter while the marker is in the glowing zone for a Great Shot!</p>
+          <p className="shot-feedback" role="status">
+            {shot ? shotMessage(shot.rating, shot.streak) : ''}
+            {bestStreak >= 2 ? ` (Best streak: ${bestStreak})` : ''}
+          </p>
+          {shot ? <span key={shot.count} className="shutter-flash" aria-hidden="true" /> : null}
           <div className="photo-target-list">
             {animalsHere.map((animal) => {
               const alreadyPhotographed = hasPhotographedAnimal(saveData, animal.id);
@@ -163,12 +181,13 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
               const greatShotNow = reducedMotion
                 ? Boolean(reducedMotionGlow[animal.id])
                 : isInSweetSpot(position, sweetSpotWidth);
+              const rating: ShotRating = reducedMotion ? (greatShotNow ? 'great' : 'nice') : rateShot(position, sweetSpotWidth);
               const className = ['photo-target', greatShotNow && !complete ? 'pulse' : ''].filter(Boolean).join(' ');
               return (
                 <button
                   key={animal.id}
                   className={className}
-                  onClick={() => { playShutter(); if (greatShotNow) playGreatShot(); onPhotographAnimal(animal.id, greatShotNow); }}
+                  onClick={() => takeShot(animal.id, greatShotNow, rating)}
                   disabled={complete}
                 >
                   {hasPhotos ? (

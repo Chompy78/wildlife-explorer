@@ -275,3 +275,26 @@ button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
 .grassland-screen{background:radial-gradient(circle at top left,rgba(225,235,170,.8),transparent 34rem),linear-gradient(135deg,#dfe9ac,#eef3cf 55%,#e0ebb9)}
 .taiga-screen{background:radial-gradient(circle at top left,rgba(200,222,205,.8),transparent 34rem),linear-gradient(135deg,#c4dccb,#e0eee3 55%,#cfe3d3)}
 .volcanic-highlands-screen{background:radial-gradient(circle at top left,rgba(235,200,185,.8),transparent 34rem),linear-gradient(135deg,#e8c9b8,#f5e3d8 55%,#ebd2c4)}
+.alien-planet-screen{background:radial-gradient(circle at top left,rgba(190,170,240,.8),transparent 34rem),linear-gradient(135deg,#c9bdf0,#e4dcf8 55%,#cfe3f2)}
+
+/* Mini games and shot feedback */
+.minigames-screen{background:radial-gradient(circle at top left,rgba(255,226,170,.8),transparent 34rem),linear-gradient(135deg,#fde7b8,#f8f0d6 55%,#f3dfc2)}
+.minigame-menu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.minigame-card { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 1.4rem; border-radius: 22px; }
+.minigame-icon { font-size: 2.4rem; }
+.minigame-board { background: rgba(255, 255, 255, 0.7); border-radius: 22px; padding: 1.2rem; }
+.memory-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; margin: 0.8rem 0; }
+.memory-card, .find-tile { font-size: 2.2rem; min-height: 4.5rem; border-radius: 16px; }
+.memory-card.face-up { background: #fff6d6; }
+.find-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; margin: 0.8rem 0; }
+.choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin: 0.8rem 0; }
+.choice.right { background: #c8eed2; }
+.choice.tryagain { background: #fde9c4; }
+.minigame-prompt { font-size: 1.15rem; }
+.minigame-feedback, .minigame-win { min-height: 1.5rem; font-weight: 600; }
+.shot-feedback { min-height: 1.4rem; font-weight: 700; margin: 0.4rem 0; }
+.shutter-flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; border-radius: inherit; animation: shutter-flash 0.35s ease-out; }
+.camera-card { position: relative; }
+@keyframes shutter-flash { 0% { opacity: 0.85; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .shutter-flash { animation: none; } }
+@media (max-width: 700px) { .minigame-menu { grid-template-columns: minmax(0, 1fr); } }

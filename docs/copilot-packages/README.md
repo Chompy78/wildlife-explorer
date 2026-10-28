@@ -70,3 +70,4 @@ package says exactly which ones, kept well under the 20-file ceiling.
 - `14-grassland-biome-animals.md` — Grassland animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Grassland art and photo wiring" board task.
 - `15-taiga-biome-animals.md` — Taiga animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Taiga art and photo wiring" board task.
 - `16-volcanic-highlands-biome-animals.md` — Volcanic Highlands animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Volcanic Highlands art and photo wiring" board task.
+- `17-alien-planet-biome-animals.md` — Alien Planet animal art (6 imaginary animals × 5 photos). Wiring is the "Alien Planet art and photo wiring" board task.

@@ -69,7 +69,7 @@ export function playNewPhoto(): void {
 // A very quiet, slowly swelling filtered-noise bed per habitat (breeze, rustle, lapping water, high wind).
 // It starts only after the player has tapped something (entering a screen is always a tap), and follows
 // the same mute switch as the effects above.
-export type AmbientKind = 'park' | 'forest' | 'lake' | 'mountains' | 'safari' | 'rainforest' | 'desert' | 'arctic' | 'coral-reef' | 'wetlands' | 'coastal' | 'grassland' | 'taiga' | 'volcanic-highlands';
+export type AmbientKind = 'park' | 'forest' | 'lake' | 'mountains' | 'safari' | 'rainforest' | 'desert' | 'arctic' | 'coral-reef' | 'wetlands' | 'coastal' | 'grassland' | 'taiga' | 'volcanic-highlands' | 'alien-planet';
 
 type AmbientRecipe = { filter: BiquadFilterType; freq: number; q: number; level: number; swellHz: number };
 const AMBIENT_RECIPES: Record<AmbientKind, AmbientRecipe> = {
@@ -87,6 +87,7 @@ const AMBIENT_RECIPES: Record<AmbientKind, AmbientRecipe> = {
   grassland: { filter: 'bandpass', freq: 900, q: 0.4, level: 0.03, swellHz: 0.12 },
   taiga: { filter: 'lowpass', freq: 500, q: 0.6, level: 0.04, swellHz: 0.1 },
   'volcanic-highlands': { filter: 'lowpass', freq: 250, q: 1.0, level: 0.05, swellHz: 0.35 },
+  'alien-planet': { filter: 'bandpass', freq: 1500, q: 2.5, level: 0.025, swellHz: 0.5 },
 };
 
 let wantedAmbient: AmbientKind | null = null;

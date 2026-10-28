@@ -251,6 +251,25 @@ export const biomes: BiomeDef[] = [
       { name: 'Lava Fields', icon: '⛰️', description: 'Dark, cooled lava rock with animals that thrive in harsh places.', animalIds: ['marine-iguana', 'galapagos-tortoise'] },
     ],
   },
+  {
+    id: 'alien-planet',
+    name: 'Alien Planet',
+    saveKey: 'alienPlanetLocation',
+    ambient: 'alien-planet',
+    screenClassName: 'alien-planet-screen',
+    eyebrow: 'Alien Planet',
+    screenTitle: 'Alien Planet Arrival',
+    arrivalMessage: 'You have landed quietly on a glowing, faraway world.',
+    aboutTitle: 'A far-future mystery',
+    aboutText: 'Explore the Crystal Meadow, Floating Islands, and Glowing Caves, and photograph the six imaginary animals that live here. They are made up, but the rules are the same - watch quietly, and every animal stays wild and free.',
+    journalIcon: '🪐',
+    journalTitle: 'Alien Animals',
+    locations: [
+      { name: 'Crystal Meadow', icon: '💎', description: 'A glittering meadow of glassy crystals that hum softly in the starlight.', animalIds: ['crystal-hopper', 'lumen-moth'] },
+      { name: 'Floating Islands', icon: '☁️', description: 'Islands of rock and moss that drift gently high above the clouds.', animalIds: ['sky-whale', 'cloud-jelly'] },
+      { name: 'Glowing Caves', icon: '🕳️', description: 'Deep caves lit by soft, glowing mushrooms and streams of blue light.', animalIds: ['cave-glimmer', 'echo-bat'] },
+    ],
+  },
 ];
 
 export function getBiome(id: string | null | undefined): BiomeDef | undefined {
