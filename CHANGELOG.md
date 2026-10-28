@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · chore(deps): in-range dev-dependency security updates** — `npm update` of nanoid,
+  postcss, source-map-js and undici cut `npm audit` from 7 findings to 3. The remaining 3 (vite,
+  vitest/mocker, launch-editor) need `npm audit fix --force`, which bumps outside the declared range, so
+  they are left for a deliberate upgrade. All findings are dev tooling, not shipped code. `npm run check`
+  passes (130 tests).
+
 - **2026-07-30 · docs(process): PR-gated workflow deferred, staying on commit-straight-to-`main`** —
   `D-2026-07-21-branch-model`'s "CI gets added" revisit trigger fired once GitHub Actions was wired up,
   putting the question on `docs/TASK_BOARD_SOON.md` for an explicit user decision. Asked; the user said
