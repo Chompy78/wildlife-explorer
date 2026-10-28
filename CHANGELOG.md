@@ -10,7 +10,7 @@
   location card (now padded clear) and drew on top of open panels (panels now sit above them); hovering a
   secondary button, location card or role card turned it dark green with dark text (hover now keeps the
   light colours); the camera's mood and zoom rows were too tall on a phone (now compact); Count Them Up
-  tiles were too tall on a phone. All 13 biomes use one screen, and eight of them were opened by eye
+  tiles were too tall on a phone. All 13 biomes use one screen, and twelve of them were opened by eye
   (Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga, Volcanic Highlands, Alien Planet, Lake,
   Rainforest, Safari); Mountains was not opened separately.
 
