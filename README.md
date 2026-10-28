@@ -209,3 +209,16 @@ Created with and for young wildlife enthusiasts. Inspired by nature exploration,
 ## Licence
 
 Private development repository. All project materials, designs, artwork and source code remain the property of the project owners unless otherwise specified.
+
+## Godot version
+
+`godot/` is a full Godot 4 port of the game (portrait-first, built in code). It reads the same game data as the
+web game and has its own save.
+
+- `npm run godot:data` — regenerate `godot/data/game_data.json` from the TypeScript data after changing animals,
+  biomes or facts.
+- `scripts/sync-godot-assets.sh` — copy the art into `godot/assets` (git-ignored) before running or exporting.
+- `npm run check:godot` — headless checks plus a smoke test of every screen (needs Godot 4.7 at
+  `~/.local/bin/godot4`, or set `GODOT`).
+- `scripts/build-godot-web.sh` — export a web build to `godot/build/web`. Godot web builds need HTTPS (or
+  `localhost`) to run.

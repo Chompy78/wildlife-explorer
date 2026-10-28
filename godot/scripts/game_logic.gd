@@ -417,3 +417,25 @@ static func photograph_in_biome(save: Dictionary, biome_id: String, animal_id: S
 	if b.is_empty() or not Data.biome_animal_ids(b).has(animal_id):
 		return save
 	return record_photo(save, animal_id)
+
+
+# --- role bonuses (port of src/data/roleBonuses.ts) ------------------------------------------------------------
+
+static func unlocks_bonus_facts(role, animal: Dictionary) -> bool:
+	if role == "conservation-ranger":
+		return animal["rarity"] == "common"
+	if role == "animal-researcher":
+		return animal["rarity"] == "rare"
+	return false
+
+
+static func bonus_first_photo_fact(role) -> bool:
+	return role == "zoologist"
+
+
+static func sees_locked_preview(role) -> bool:
+	return role == "explorer"
+
+
+static func bonus_photo_slot(role) -> bool:
+	return role == "wildlife-photographer"

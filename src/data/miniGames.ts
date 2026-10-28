@@ -20,8 +20,18 @@ export function gameAnimals(pool: readonly Animal[] = animals): Animal[] {
   return pool.filter((animal) => animal.rarity !== 'quest');
 }
 
+// Animals picked for a round never share an emoji (two different turtles would look identical on a card,
+// a pad or a grid), so every round can be told apart by eye.
 export function pickAnimals(count: number, rng: Rng = Math.random, pool: readonly Animal[] = animals): Animal[] {
-  return shuffle(gameAnimals(pool), rng).slice(0, count);
+  const seen = new Set<string>();
+  const picked: Animal[] = [];
+  for (const animal of shuffle(gameAnimals(pool), rng)) {
+    if (seen.has(animal.emoji)) continue;
+    seen.add(animal.emoji);
+    picked.push(animal);
+    if (picked.length === count) break;
+  }
+  return picked;
 }
 
 export type MemoryCard = { key: string; animalId: Animal['id']; emoji: string; name: string };

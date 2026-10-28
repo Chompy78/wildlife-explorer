@@ -230,3 +230,18 @@ Generate 30 Alien Planet photos (6 imaginary animals x 5) and wire them in, same
 ```
 
 **Done when:** all six Alien Planet animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
+---
+
+## Try the Godot web build in a browser and decide where to host it — TODO
+The Godot port has been checked with headless tests and rendered screenshots, but not run as a web build in a browser (it needs HTTPS) or on a touch device.
+**Effort:** medium · **Risk:** medium — hosting choice is the user's call, and the web build is about 85 MB (45 MB data + 39 MB engine).
+
+```text
+1. scripts/build-godot-web.sh, then serve godot/build/web over HTTPS (or http://localhost on the same machine).
+2. Open it on a phone and a desktop: tap through Start, Park (quest), Camper -> a biome, camera, mini games; listen for sound.
+3. Fix anything that looks or feels wrong. Then decide: host beside the web game on GitHub Pages, or keep it as a local build.
+```
+
+**Done when:** the web build has been played on a real device, the user has chosen a hosting option, and `npm run check` and `npm run check:godot` pass.
+

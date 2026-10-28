@@ -84,3 +84,11 @@ server's URL: `npm run dev` serves at `http://localhost:<port>/wildlife-explorer
 Vite prints the exact URL to open; use that one, not a guessed `localhost:<port>/`. Any new hardcoded
 `src="/assets/..."` path must go through `assetUrl()` (`src/assetUrl.ts`) instead of a raw string
 literal, or it will silently 404 once deployed (works fine in dev, breaks under the Pages subpath).
+
+## Godot port (added 2026-10-28)
+
+`godot/` holds a full Godot 4 port (`D-2026-10-28-godot-port`). The web game's TypeScript data is still the source of
+truth: run `npm run godot:data` after changing animals, biomes or facts. Rules are duplicated in GDScript
+(`godot/scripts/game_logic.gd`, `shot_rating.gd`, `mini_logic.gd`), so a rule change must be made in both places.
+Verify with `npm run check:godot` (needs the Godot binary; it is not part of `npm run check`). The Canon and Scope
+boundary apply to the Godot version unchanged.

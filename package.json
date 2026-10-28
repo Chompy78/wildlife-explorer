@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "check": "npm run typecheck && npm run test && npm run build && npm run check:encoding",
-    "check:encoding": "node scripts/check-encoding.mjs"
+    "check:encoding": "node scripts/check-encoding.mjs",
+    "godot:data": "npx -y vite-node scripts/export-godot-data.ts",
+    "check:godot": "bash scripts/test-godot.sh"
   },
   "dependencies": {
     "react": "19.2.7",

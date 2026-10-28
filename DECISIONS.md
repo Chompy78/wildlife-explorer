@@ -4,6 +4,15 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-godot-port · A Godot 4 version of the whole game, beside the web game
+
+**Status:** Active
+
+**Summary:** `godot/` holds a full port (all screens, 13 biomes, camera, mini games, sound). Data is generated
+  from the TypeScript tables, rules are GDScript twins with 419 headless checks and a 158-screen smoke test.
+  Own save. Not yet tried in a browser (needs HTTPS) or on a device. Full record:
+  `decisions/2026/D-2026-10-28-godot-port.md`.
+
 ## D-2026-10-28-camera-zoom-more-minigames · Optional camera zoom and three more Mini Games
 
 **Status:** Active

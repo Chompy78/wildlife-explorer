@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { animals } from './animals';
-import { buildCountRound, buildFindRound, buildPatternPad, buildTimeRound, clearTimeOfDay, extendPattern, buildHabitatRound, buildMemoryDeck, buildWhoAmIRound, gameAnimals, maskName, shuffle } from './miniGames';
+import { pickAnimals, buildCountRound, buildFindRound, buildPatternPad, buildTimeRound, clearTimeOfDay, extendPattern, buildHabitatRound, buildMemoryDeck, buildWhoAmIRound, gameAnimals, maskName, shuffle } from './miniGames';
 
 // A small deterministic generator so the rounds are repeatable.
 function seeded(seed: number) {
@@ -84,6 +84,15 @@ describe('mini game helpers', () => {
       const round = buildTimeRound(seeded(seed));
       expect(round.choices).toContain(round.answer);
       expect(clearTimeOfDay(round.animal)).not.toBeNull();
+    }
+  });
+
+  it('never picks two animals with the same emoji for one round', () => {
+    for (let seed = 1; seed <= 60; seed += 1) {
+      const picked = pickAnimals(6, seeded(seed));
+      expect(new Set(picked.map((a) => a.emoji)).size).toBe(picked.length);
+      const deck = buildMemoryDeck(6, seeded(seed));
+      expect(new Set(deck.map((c) => c.emoji)).size).toBe(6);
     }
   });
 });

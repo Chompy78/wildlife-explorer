@@ -28,6 +28,16 @@
   Planet, the camera zoom/Perfect feedback and the Mini Games menu and Memory Match were checked by eye.
   The other biome screens share the same component and were not each opened.
 
+- **2026-10-28 · feat(godot): full Godot 4 port of the game in `godot/`** — every screen and rule of the web
+  game rebuilt in Godot (Start, roles, Park with the Lost Puppy quest, Forest, Wild Camper, all 13 biomes,
+  camera with Perfect/streak/zoom/mood, photo reveal, Journal and album, quizzes, seven mini games, synthesized
+  sound). Portrait-first UI with a bottom dock. Game data is generated from the TypeScript tables
+  (`npm run godot:data`); `npm run check:godot` runs 419 headless checks plus a smoke test of 158 screens and
+  overlays. Also fixed in both versions: Memory Match, Pattern Parade, Spot the Animal and Count Them Up could
+  pick two animals with the same emoji (two turtles), making a round ambiguous. Verified from rendered
+  screenshots, not yet in a browser (web export needs HTTPS) or on a device. Why:
+  `D-2026-10-28-godot-port`.
+
 - **2026-10-28 · feat(camera, minigames): optional camera zoom and three more Mini Games** — Camera panel
   Zoom dial (Wide / Close / Macro: faster sweep, smaller glowing zone, more points) with a running visit
   score; Wide stays the default and nothing about the photo collection changes. Mini Games: Pattern Parade,

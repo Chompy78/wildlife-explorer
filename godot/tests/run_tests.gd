@@ -129,6 +129,11 @@ func test_shot_rating() -> void:
 
 
 func test_mini_games() -> void:
+	for i in 60:
+		var emojis := {}
+		for a in MiniLogic.pick_animals(6):
+			emojis[a["emoji"]] = true
+		check(emojis.size() == 6, "a round never repeats an emoji")
 	check(MiniLogic.memory_deck(6).size() == 12, "memory deck has 12 cards")
 	check(MiniLogic.mask_name("Ducks have waterproof feathers.", "Duck") == "??? have waterproof feathers.", "mask name")
 	check(MiniLogic.mask_name("The Heron stands still.", "Great Blue Heron") == "The ??? stands still.", "mask last word")

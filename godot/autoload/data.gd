@@ -74,14 +74,37 @@ func all_photo_keys() -> Array:
 
 
 func photo_path(key: String) -> String:
-	return "res://assets/animals/%s.jpg" % key
+	return "animals/%s.jpg" % key
 
 
 func load_photo(key: String) -> Texture2D:
-	var path := photo_path(key)
-	if ResourceLoader.exists(path):
-		return load(path) as Texture2D
-	return null
+	return load_asset(photo_path(key), 640)
+
+
+var _texture_cache := {}
+
+
+## Decodes one of the web game's images (stored raw as "<name>.dat") and caches it. Photos are shrunk to
+## `max_side` pixels to keep memory low on phones.
+func load_asset(rel_path: String, max_side := 0) -> Texture2D:
+	var cache_key := "%s@%d" % [rel_path, max_side]
+	if _texture_cache.has(cache_key):
+		return _texture_cache[cache_key]
+	var path := "res://assets/%s.dat" % rel_path
+	if not FileAccess.file_exists(path):
+		return null
+	var bytes := FileAccess.get_file_as_bytes(path)
+	var img := Image.new()
+	var err := img.load_png_from_buffer(bytes) if rel_path.ends_with(".png") else img.load_jpg_from_buffer(bytes)
+	if err != OK:
+		return null
+	if max_side > 0 and maxi(img.get_width(), img.get_height()) > max_side:
+		var k := float(max_side) / maxi(img.get_width(), img.get_height())
+		img.resize(int(img.get_width() * k), int(img.get_height() * k), Image.INTERPOLATE_BILINEAR)
+	img.generate_mipmaps()
+	var tex := ImageTexture.create_from_image(img)
+	_texture_cache[cache_key] = tex
+	return tex
 
 
 func count_collected(id: String, collected: Array) -> int:

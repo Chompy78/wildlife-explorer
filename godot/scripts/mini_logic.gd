@@ -17,8 +17,18 @@ static func shuffled(items: Array) -> Array:
 	return out
 
 
+## Animals for one round never share an emoji (two different turtles would look identical on a card).
 static func pick_animals(count: int) -> Array:
-	return shuffled(game_animals()).slice(0, count)
+	var seen := {}
+	var picked: Array = []
+	for a in shuffled(game_animals()):
+		if seen.has(a["emoji"]):
+			continue
+		seen[a["emoji"]] = true
+		picked.append(a)
+		if picked.size() == count:
+			break
+	return picked
 
 
 static func memory_deck(pairs: int) -> Array:
