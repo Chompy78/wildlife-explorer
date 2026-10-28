@@ -30,3 +30,21 @@ Wildlife Photographer's bonus 6th photo in for real once its art lands) is not y
 add one when that art is generated.
 
 ---
+
+## Day/night mood in the Camera panel — TODO
+Add a cosmetic Day / Dusk / Night mood picker to `CameraPanel.tsx` (new `src/data/timeOfDay.ts`).
+**Effort:** low · **Risk:** low — UI-only, held in component state (not saved), so no save-schema change; photo-variant selection and Great Shot timing are untouched, which keeps the "no duplicates, surprise reveal" collection design intact.
+
+```text
+1. Create src/data/timeOfDay.ts: type TimeOfDay = 'day' | 'dusk' | 'night'; a moods list (id, label, icon,
+   one-line description); and isActiveAt(animal, time) matching Animal.activeTime text, used only to show a
+   small "Most active now" note.
+2. In CameraPanel.tsx add a three-button mood picker (aria-pressed) and a mood class on .camera-card.
+   Keep state local. Do NOT change onPhotographAnimal, pickRandomUncollectedVariant or FOCUS_TUNING.
+3. Add .camera-card.mood-dusk / .mood-night styles in src/styles.css (calm tints, readable contrast).
+4. Add tests: picker switches mood; photographing still calls onPhotographAnimal identically in every mood.
+```
+
+**Done when:** the picker changes the panel mood, photo results are unaffected by mood, and `npm run check` passes.
+
+---
