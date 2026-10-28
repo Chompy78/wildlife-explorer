@@ -51,8 +51,10 @@ package says exactly which ones, kept well under the 20-file ceiling.
 - `03-park-map.md` — superseded (2026-07-29): its landscape map image was replaced by a portrait one for
   better phone display — see `DECISIONS.md`'s `D-2026-07-29-park-map-portrait`. The clickable-pins-over-
   an-image approach it introduced is unchanged, kept as history for the original prompt/reasoning.
-- `04-lake-biome-animals.md` — pre-milestone art prep for the (currently preview-only) Lake destination:
-  6 animals × 5 photo variants each, no code changes until Lake is actually built.
+- `04-lake-biome-animals.md` — Lake animal art (6 animals × 5 photos). Generated and now wired in; the Lake
+  is playable (`D-2026-10-28-lake-biome-go-ahead`). Kept as history.
 - `05-bonus-photo-variants.md` — art prep for the Wildlife Photographer explorer role's bonus 6th photo
   per animal (10 animals × 1 photo). The role's "coming soon" preview slot already shipped; this package
   generates the art a follow-up task needs to wire in the real photo.
+- `06-mountains-biome-animals.md` — Mountains animal art (6 animals × 5 photos). The Mountains are playable
+  without photos; this art is the missing piece. Wiring is the "Mountains art and photo wiring" board task.

@@ -5,6 +5,8 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · docs(art): Mountains art brief** — `docs/copilot-packages/06-mountains-biome-animals.md`: master prompt, subject lines, variation modifiers and trigger list for the 30 Mountains photos, using exact animal ids as filenames (avoids the Lake batch's `heron-*` rename). Handoff for the "Mountains art and photo wiring" board task.
+
 - **2026-10-28 · feat(mountains): Mountains is now playable (no photo art yet)** — Mountain Arrival screen
   with Rocky Trail / Alpine Meadow / Lookout Ridge (Mountain Goat, Marmot, Pika, Mountain Hare, Golden
   Eagle, Mountain Bluebird), reached via "Travel to Mountains" in the Journey Planner, with a Mountains tab
