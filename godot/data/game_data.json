@@ -1,0 +1,2839 @@
+{
+ "animals": [
+  {
+   "id": "duck",
+   "name": "Duck",
+   "rarity": "common",
+   "habitat": "Duck Pond",
+   "activeTime": "Day",
+   "funFact": "Ducks have waterproof feathers that help them stay dry while swimming.",
+   "behaviours": [
+    "swimming",
+    "feeding",
+    "preening"
+   ],
+   "emoji": "🦆",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "Try shooting when the Duck is facing toward the camera."
+   }
+  },
+  {
+   "id": "frog",
+   "name": "Frog",
+   "rarity": "common",
+   "habitat": "Duck Pond",
+   "activeTime": "Day and evening",
+   "funFact": "Frogs can breathe partly through their skin, especially when they are in wet places.",
+   "behaviours": [
+    "jumping",
+    "resting",
+    "croaking"
+   ],
+   "emoji": "🐸",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The best shots are when the Frog is on a lily pad or rock."
+   }
+  },
+  {
+   "id": "butterfly",
+   "name": "Butterfly",
+   "rarity": "common",
+   "habitat": "Open Meadow",
+   "activeTime": "Sunny day",
+   "funFact": "Butterflies taste with their feet to help find the right plants.",
+   "behaviours": [
+    "flying",
+    "resting",
+    "feeding on flowers"
+   ],
+   "emoji": "🦋",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Catch the Butterfly when it lands on a flower to rest."
+   }
+  },
+  {
+   "id": "rabbit",
+   "name": "Rabbit",
+   "rarity": "common",
+   "habitat": "Open Meadow",
+   "activeTime": "Morning and afternoon",
+   "funFact": "Rabbits have strong back legs that help them hop quickly through grass.",
+   "behaviours": [
+    "grazing",
+    "hopping",
+    "hiding"
+   ],
+   "emoji": "🐇",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Photograph the Rabbit while it is nibbling on grass."
+   }
+  },
+  {
+   "id": "lizard",
+   "name": "Lizard",
+   "rarity": "common",
+   "habitat": "Forest Trail",
+   "activeTime": "Warm day",
+   "funFact": "Many lizards warm themselves in sunny places because they need warmth to be active.",
+   "behaviours": [
+    "basking",
+    "running",
+    "hiding"
+   ],
+   "emoji": "🦎",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Lizard is easiest to photograph when basking in a sunny spot."
+   }
+  },
+  {
+   "id": "park-bird",
+   "name": "Park Bird",
+   "rarity": "common",
+   "habitat": "Forest Trail",
+   "activeTime": "Day",
+   "funFact": "Many small birds collect grass, twigs, and soft material to build nests.",
+   "behaviours": [
+    "singing",
+    "perching",
+    "collecting nesting material"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Wait for the Park Bird to perch on a branch before shooting."
+   }
+  },
+  {
+   "id": "rare-owl",
+   "name": "Rare Owl",
+   "rarity": "rare",
+   "habitat": "Strange Old Tree",
+   "activeTime": "Evening",
+   "funFact": "Owls have very quiet flight feathers that help them move silently.",
+   "behaviours": [
+    "watching",
+    "perching",
+    "silent flight"
+   ],
+   "emoji": "🦉",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "The Rare Owl is sharpest when gazing forward with its piercing eyes."
+   }
+  },
+  {
+   "id": "lost-puppy",
+   "name": "Lost Puppy",
+   "rarity": "quest",
+   "habitat": "Forest Trail",
+   "activeTime": "Day",
+   "funFact": "Dogs can use their strong sense of smell to follow trails and find familiar people.",
+   "behaviours": [
+    "sniffing",
+    "walking",
+    "sitting calmly"
+   ],
+   "emoji": "🐶",
+   "availableInMilestone": false,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "Capture the Lost Puppy when it sits and looks your way."
+   }
+  },
+  {
+   "id": "forest-wren",
+   "name": "Forest Wren",
+   "rarity": "common",
+   "habitat": "Forest Trail",
+   "activeTime": "Morning",
+   "funFact": "Small forest birds use calls to keep in touch while moving through leafy habitats.",
+   "behaviours": [
+    "singing",
+    "hopping",
+    "darting through branches"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "The Forest Wren poses best when it pauses on a low branch to sing."
+   }
+  },
+  {
+   "id": "forest-wallaby",
+   "name": "Forest Wallaby",
+   "rarity": "common",
+   "habitat": "Forest Trail",
+   "activeTime": "Morning and late afternoon",
+   "funFact": "Wallabies rest in shelter and move quietly through the forest.",
+   "behaviours": [
+    "hopping",
+    "resting in shade",
+    "nibbling leaves"
+   ],
+   "emoji": "🦘",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Shoot the Forest Wallaby when it stops to rest or munch on plants."
+   }
+  },
+  {
+   "id": "forest-beetle",
+   "name": "Shiny Forest Beetle",
+   "rarity": "common",
+   "habitat": "Forest Trail",
+   "activeTime": "Day",
+   "funFact": "Beetles help forest ecosystems by recycling plant material and supporting wildlife.",
+   "behaviours": [
+    "crawling on bark",
+    "hiding under logs",
+    "climbing plants"
+   ],
+   "emoji": "🪲",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "The Shiny Forest Beetle gleams brightest when it crawls on light-colored bark."
+   }
+  },
+  {
+   "id": "red-eared-slider",
+   "name": "Red-eared Slider Turtle",
+   "rarity": "common",
+   "habitat": "Duck Pond",
+   "activeTime": "Day",
+   "funFact": "Red-eared sliders are one of the most widely introduced turtles in the world, often from released pet turtles.",
+   "behaviours": [
+    "basking",
+    "swimming",
+    "resting on logs"
+   ],
+   "emoji": "🐢",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "nonNative": {
+    "correctHabitatId": "lake",
+    "impactNote": "Red-eared Sliders aren't native to this pond. People sometimes release pet turtles into the wild, and they can compete with native turtles for food and basking spots."
+   },
+   "photographyTip": {
+    "hint": "Photograph the Slider when it is basking on a sunny log."
+   }
+  },
+  {
+   "id": "cane-toad",
+   "name": "Cane Toad",
+   "rarity": "common",
+   "habitat": "Forest Trail",
+   "activeTime": "Evening",
+   "funFact": "Cane Toads were introduced to some places to help control pests, but they can be harmful to animals that try to eat them.",
+   "behaviours": [
+    "hopping",
+    "resting",
+    "calling"
+   ],
+   "emoji": "🐸",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "nonNative": {
+    "correctHabitatId": "rainforest",
+    "impactNote": "People introduced Cane Toads to some places to help control pests, but that caused problems for animals who already lived there."
+   },
+   "photographyTip": {
+    "hint": "The Cane Toad is easiest to photograph when it stops to rest."
+   }
+  },
+  {
+   "id": "grey-squirrel",
+   "name": "Grey Squirrel",
+   "rarity": "common",
+   "habitat": "Open Meadow",
+   "activeTime": "Day",
+   "funFact": "Grey Squirrels were brought to new places by people and can out-compete native squirrels for food and nesting sites.",
+   "behaviours": [
+    "foraging",
+    "climbing",
+    "burying food"
+   ],
+   "emoji": "🐿️",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "nonNative": {
+    "correctHabitatId": "forest",
+    "impactNote": "Grey Squirrels aren't native to this meadow. They compete with native squirrels for food and nesting sites, and in some places have replaced them almost entirely."
+   },
+   "photographyTip": {
+    "hint": "Try shooting when the Grey Squirrel pauses while foraging on the ground."
+   }
+  },
+  {
+   "id": "european-starling",
+   "name": "European Starling",
+   "rarity": "common",
+   "habitat": "Forest Trail",
+   "activeTime": "Day",
+   "funFact": "European Starlings were introduced to new places by people and often compete with native birds for nesting holes in trees.",
+   "behaviours": [
+    "flocking",
+    "foraging",
+    "calling"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "nonNative": {
+    "correctHabitatId": "grassland",
+    "impactNote": "European Starlings aren't native to this forest. They compete with native birds for tree cavities to nest in, leaving fewer safe nesting spots to go around."
+   },
+   "photographyTip": {
+    "hint": "European Starlings often gather in small flocks - watch for one perched still."
+   }
+  },
+  {
+   "id": "great-blue-heron",
+   "name": "Great Blue Heron",
+   "rarity": "common",
+   "habitat": "Shoreline",
+   "activeTime": "Dawn and dusk",
+   "funFact": "Great Blue Herons can stand perfectly still for minutes, then strike at a fish in a blink.",
+   "behaviours": [
+    "wading",
+    "standing watch",
+    "fishing"
+   ],
+   "emoji": "🪶",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Wait for the Heron to stand tall and still at the water's edge."
+   }
+  },
+  {
+   "id": "beaver",
+   "name": "Beaver",
+   "rarity": "common",
+   "habitat": "Shoreline",
+   "activeTime": "Evening and night",
+   "funFact": "Beavers build dams that turn streams into ponds, creating homes for many other animals.",
+   "behaviours": [
+    "gnawing",
+    "swimming",
+    "resting on the bank"
+   ],
+   "emoji": "🦫",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Beaver is easiest to photograph when it pauses on the bank."
+   }
+  },
+  {
+   "id": "rainbow-trout",
+   "name": "Rainbow Trout",
+   "rarity": "common",
+   "habitat": "Open Water",
+   "activeTime": "Morning and evening",
+   "funFact": "Rainbow Trout have a soft pink stripe along their sides and like cool, clear water.",
+   "behaviours": [
+    "swimming",
+    "feeding near the surface",
+    "holding in the current"
+   ],
+   "emoji": "🐟",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look for the Trout's glint just beneath the surface, and shoot when it holds still."
+   }
+  },
+  {
+   "id": "loon",
+   "name": "Loon",
+   "rarity": "common",
+   "habitat": "Open Water",
+   "activeTime": "Day",
+   "funFact": "Loons have solid bones, unlike most birds, which helps them dive deep for fish.",
+   "behaviours": [
+    "floating",
+    "diving",
+    "calling"
+   ],
+   "emoji": "🦆",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Loon is calm on open water - shoot when it floats facing you."
+   }
+  },
+  {
+   "id": "dragonfly",
+   "name": "Dragonfly",
+   "rarity": "common",
+   "habitat": "Reeds & Shallows",
+   "activeTime": "Sunny day",
+   "funFact": "Dragonflies have four wings that move independently, so they can hover and even fly backwards.",
+   "behaviours": [
+    "hovering",
+    "perching on reeds",
+    "hunting insects"
+   ],
+   "emoji": "🪰",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Catch the Dragonfly when it rests on a reed with its wings open."
+   }
+  },
+  {
+   "id": "painted-turtle",
+   "name": "Painted Turtle",
+   "rarity": "common",
+   "habitat": "Reeds & Shallows",
+   "activeTime": "Day",
+   "funFact": "Painted Turtles bask on logs in the sun to warm up, and rest underwater through the winter.",
+   "behaviours": [
+    "basking",
+    "swimming",
+    "resting on logs"
+   ],
+   "emoji": "🐢",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Painted Turtle poses best while basking on a sunny log."
+   }
+  },
+  {
+   "id": "mountain-goat",
+   "name": "Mountain Goat",
+   "rarity": "common",
+   "habitat": "Rocky Trail",
+   "activeTime": "Day",
+   "funFact": "Mountain Goats have hooves with soft, grippy pads that help them climb steep rock without slipping.",
+   "behaviours": [
+    "climbing",
+    "grazing",
+    "resting on ledges"
+   ],
+   "emoji": "🐐",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Shoot the Mountain Goat when it pauses on a ledge."
+   }
+  },
+  {
+   "id": "marmot",
+   "name": "Marmot",
+   "rarity": "common",
+   "habitat": "Rocky Trail",
+   "activeTime": "Morning and afternoon",
+   "funFact": "Marmots whistle loudly to warn their family when danger is near, then dive into their burrows.",
+   "behaviours": [
+    "sunbathing",
+    "whistling",
+    "foraging"
+   ],
+   "emoji": "🦫",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Marmot is easiest to photograph while it sunbathes on a rock."
+   }
+  },
+  {
+   "id": "pika",
+   "name": "Pika",
+   "rarity": "common",
+   "habitat": "Alpine Meadow",
+   "activeTime": "Day",
+   "funFact": "Pikas gather piles of dried grass in summer, called haypiles, to eat through the long winter.",
+   "behaviours": [
+    "gathering plants",
+    "squeaking",
+    "darting between rocks"
+   ],
+   "emoji": "🐹",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Be patient - the Pika pops up briefly between rocks."
+   }
+  },
+  {
+   "id": "mountain-hare",
+   "name": "Mountain Hare",
+   "rarity": "common",
+   "habitat": "Alpine Meadow",
+   "activeTime": "Dusk and dawn",
+   "funFact": "Some mountain hares turn white in winter, which helps them hide in the snow.",
+   "behaviours": [
+    "grazing",
+    "freezing still",
+    "bounding"
+   ],
+   "emoji": "🐇",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Mountain Hare freezes when it senses you - shoot while it holds still."
+   }
+  },
+  {
+   "id": "golden-eagle",
+   "name": "Golden Eagle",
+   "rarity": "common",
+   "habitat": "Lookout Ridge",
+   "activeTime": "Day",
+   "funFact": "Golden Eagles can spot small animals from far away, soaring on warm air without flapping.",
+   "behaviours": [
+    "soaring",
+    "perching",
+    "scanning the ground"
+   ],
+   "emoji": "🦅",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Wait for the Golden Eagle to perch and look out over the valley."
+   }
+  },
+  {
+   "id": "mountain-bluebird",
+   "name": "Mountain Bluebird",
+   "rarity": "common",
+   "habitat": "Lookout Ridge",
+   "activeTime": "Day",
+   "funFact": "Male Mountain Bluebirds are bright sky blue, which makes them easy to spot against the grass.",
+   "behaviours": [
+    "hovering",
+    "perching",
+    "catching insects"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Mountain Bluebird perches on fence posts and low branches - shoot when it is still."
+   }
+  },
+  {
+   "id": "african-elephant",
+   "name": "African Elephant",
+   "rarity": "common",
+   "habitat": "Waterhole",
+   "activeTime": "Morning and evening",
+   "funFact": "African Elephants use their trunks to drink, smell, and gently greet one another.",
+   "behaviours": [
+    "drinking",
+    "spraying water",
+    "walking in a herd"
+   ],
+   "emoji": "🐘",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Elephant is calm at the waterhole - shoot when it lifts its trunk."
+   }
+  },
+  {
+   "id": "hippo",
+   "name": "Hippo",
+   "rarity": "common",
+   "habitat": "Waterhole",
+   "activeTime": "Evening and night",
+   "funFact": "Hippos spend the day in the water to keep cool, and come out to graze on grass at dusk.",
+   "behaviours": [
+    "wallowing",
+    "yawning",
+    "grazing at dusk"
+   ],
+   "emoji": "🦛",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Hippo mostly shows its eyes and ears - wait for a wide yawn."
+   }
+  },
+  {
+   "id": "zebra",
+   "name": "Zebra",
+   "rarity": "common",
+   "habitat": "Open Plains",
+   "activeTime": "Day",
+   "funFact": "Every zebra has its own pattern of stripes, just like a fingerprint.",
+   "behaviours": [
+    "grazing",
+    "standing in a herd",
+    "trotting"
+   ],
+   "emoji": "🦓",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Shoot the Zebra when its herd is calm and it lifts its head."
+   }
+  },
+  {
+   "id": "giraffe",
+   "name": "Giraffe",
+   "rarity": "common",
+   "habitat": "Open Plains",
+   "activeTime": "Morning and afternoon",
+   "funFact": "A giraffe's tongue is dark and about forty-five centimetres long, perfect for pulling leaves off thorny branches.",
+   "behaviours": [
+    "browsing treetops",
+    "walking slowly",
+    "drinking"
+   ],
+   "emoji": "🦒",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Giraffe moves slowly - shoot when it stretches up to feed."
+   }
+  },
+  {
+   "id": "meerkat",
+   "name": "Meerkat",
+   "rarity": "common",
+   "habitat": "Acacia Grove",
+   "activeTime": "Day",
+   "funFact": "Meerkats take turns standing guard on their hind legs while the rest of the group digs and eats.",
+   "behaviours": [
+    "standing guard",
+    "digging",
+    "sunbathing"
+   ],
+   "emoji": "🐾",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "The Meerkat sentry stands up straight - catch it mid-watch."
+   }
+  },
+  {
+   "id": "lilac-breasted-roller",
+   "name": "Lilac-breasted Roller",
+   "rarity": "common",
+   "habitat": "Acacia Grove",
+   "activeTime": "Day",
+   "funFact": "Lilac-breasted Rollers get their name from the rolling, tumbling flights they do in the air.",
+   "behaviours": [
+    "perching",
+    "swooping",
+    "catching insects"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look for the Roller on a high branch, then shoot as it perches still."
+   }
+  },
+  {
+   "id": "tapir",
+   "name": "Tapir",
+   "rarity": "common",
+   "habitat": "Forest Floor",
+   "activeTime": "Evening and night",
+   "funFact": "Tapirs use their short, flexible snouts like snorkels, especially when they swim to cool off.",
+   "behaviours": [
+    "foraging",
+    "sniffing",
+    "wading"
+   ],
+   "emoji": "🐗",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Tapir moves slowly along the forest floor - shoot when it lifts its snout to sniff."
+   }
+  },
+  {
+   "id": "poison-dart-frog",
+   "name": "Poison Dart Frog",
+   "rarity": "common",
+   "habitat": "Forest Floor",
+   "activeTime": "Day",
+   "funFact": "Poison dart frogs are tiny and brightly coloured, and their bold colours warn other animals to leave them alone.",
+   "behaviours": [
+    "hopping",
+    "calling",
+    "sitting on leaves"
+   ],
+   "emoji": "🐸",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look for a flash of bright colour on a leaf, then shoot when it sits still."
+   }
+  },
+  {
+   "id": "sloth",
+   "name": "Sloth",
+   "rarity": "common",
+   "habitat": "Canopy Walk",
+   "activeTime": "Day and night",
+   "funFact": "Sloths move so slowly that algae can grow in their fur, which helps them blend in with the leaves.",
+   "behaviours": [
+    "hanging from branches",
+    "climbing slowly",
+    "resting"
+   ],
+   "emoji": "🦥",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Sloth is very slow - take your time and shoot when it turns toward you."
+   }
+  },
+  {
+   "id": "scarlet-macaw",
+   "name": "Scarlet Macaw",
+   "rarity": "common",
+   "habitat": "Canopy Walk",
+   "activeTime": "Morning",
+   "funFact": "Scarlet Macaws often fly in pairs, and the pair may stay together for many years.",
+   "behaviours": [
+    "flying in pairs",
+    "perching",
+    "calling"
+   ],
+   "emoji": "🦜",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Macaws perch together - shoot when the pair settles on a branch."
+   }
+  },
+  {
+   "id": "capybara",
+   "name": "Capybara",
+   "rarity": "common",
+   "habitat": "River Bank",
+   "activeTime": "Dawn and dusk",
+   "funFact": "Capybaras are the world's largest rodents, and they are excellent swimmers that love the water.",
+   "behaviours": [
+    "grazing",
+    "swimming",
+    "resting in groups"
+   ],
+   "emoji": "🐹",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Capybara is relaxed near the water - shoot while it grazes on the bank."
+   }
+  },
+  {
+   "id": "green-iguana",
+   "name": "Green Iguana",
+   "rarity": "common",
+   "habitat": "River Bank",
+   "activeTime": "Day",
+   "funFact": "Green Iguanas bask on branches above rivers, and can drop into the water to swim away from danger.",
+   "behaviours": [
+    "basking",
+    "climbing",
+    "swimming"
+   ],
+   "emoji": "🦎",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Iguana basks on a branch above the water - shoot when it holds its head high."
+   }
+  },
+  {
+   "id": "fennec-fox",
+   "name": "Fennec Fox",
+   "rarity": "common",
+   "habitat": "Sand Dunes",
+   "activeTime": "Night",
+   "funFact": "Fennec foxes have huge ears that give off heat, which helps them stay cool in the desert.",
+   "behaviours": [
+    "listening",
+    "digging",
+    "resting in burrows"
+   ],
+   "emoji": "🦊",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look for the big ears first, then shoot when the Fox turns toward you."
+   }
+  },
+  {
+   "id": "sidewinder",
+   "name": "Sidewinder",
+   "rarity": "common",
+   "habitat": "Sand Dunes",
+   "activeTime": "Night",
+   "funFact": "Sidewinders move sideways across loose sand, leaving a trail of J-shaped tracks.",
+   "behaviours": [
+    "sidewinding",
+    "resting under sand",
+    "watching"
+   ],
+   "emoji": "🐍",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Follow the tracks in the sand, then shoot when the Sidewinder pauses."
+   }
+  },
+  {
+   "id": "desert-tortoise",
+   "name": "Desert Tortoise",
+   "rarity": "common",
+   "habitat": "Rocky Outcrop",
+   "activeTime": "Morning",
+   "funFact": "Desert tortoises spend much of their life in cool burrows, coming out to graze after rain.",
+   "behaviours": [
+    "grazing",
+    "walking slowly",
+    "resting in burrows"
+   ],
+   "emoji": "🐢",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Tortoise is slow - take your time and shoot when its head is up."
+   }
+  },
+  {
+   "id": "chuckwalla",
+   "name": "Chuckwalla",
+   "rarity": "common",
+   "habitat": "Rocky Outcrop",
+   "activeTime": "Day",
+   "funFact": "When threatened, a chuckwalla wedges itself into a rock crack and puffs up its body so it is hard to pull out.",
+   "behaviours": [
+    "basking",
+    "climbing rocks",
+    "watching"
+   ],
+   "emoji": "🦎",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Look on sunny rocks and shoot when the Chuckwalla lifts its head."
+   }
+  },
+  {
+   "id": "roadrunner",
+   "name": "Roadrunner",
+   "rarity": "common",
+   "habitat": "Oasis Edge",
+   "activeTime": "Morning",
+   "funFact": "Roadrunners can fly, but they prefer to run, and they can sprint faster than a person can.",
+   "behaviours": [
+    "running",
+    "perching",
+    "watching"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "The Roadrunner is quick - shoot when it stops beside the palms."
+   }
+  },
+  {
+   "id": "dromedary-camel",
+   "name": "Dromedary Camel",
+   "rarity": "common",
+   "habitat": "Oasis Edge",
+   "activeTime": "Day",
+   "funFact": "A dromedary camel stores fat in its single hump, which gives it energy when food is scarce.",
+   "behaviours": [
+    "walking",
+    "drinking",
+    "resting"
+   ],
+   "emoji": "🐪",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Camel moves calmly - shoot while it rests by the water."
+   }
+  },
+  {
+   "id": "arctic-fox",
+   "name": "Arctic Fox",
+   "rarity": "common",
+   "habitat": "Snowfield",
+   "activeTime": "Day and night",
+   "funFact": "Arctic foxes change coat colour with the seasons - white in winter, brown or grey in summer.",
+   "behaviours": [
+    "trotting",
+    "sniffing",
+    "curling up"
+   ],
+   "emoji": "🦊",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Fox blends into the snow - shoot when it stops and looks around."
+   }
+  },
+  {
+   "id": "snowy-owl",
+   "name": "Snowy Owl",
+   "rarity": "common",
+   "habitat": "Snowfield",
+   "activeTime": "Day and night",
+   "funFact": "Snowy owls hunt in daylight during the Arctic summer, when the sun barely sets.",
+   "behaviours": [
+    "perching",
+    "watching",
+    "gliding"
+   ],
+   "emoji": "🦉",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Look for a white shape on the ground and shoot when the Owl turns its head."
+   }
+  },
+  {
+   "id": "polar-bear",
+   "name": "Polar Bear",
+   "rarity": "common",
+   "habitat": "Ice Edge",
+   "activeTime": "Day",
+   "funFact": "Polar bears have black skin under their white-looking fur, which helps them soak up warmth from the sun.",
+   "behaviours": [
+    "walking",
+    "resting",
+    "swimming"
+   ],
+   "emoji": "🐻",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Keep your distance - shoot when the Bear pauses on the ice."
+   }
+  },
+  {
+   "id": "walrus",
+   "name": "Walrus",
+   "rarity": "common",
+   "habitat": "Ice Edge",
+   "activeTime": "Day",
+   "funFact": "Walruses use their long tusks to haul themselves out of the water onto the ice.",
+   "behaviours": [
+    "resting in groups",
+    "hauling out",
+    "calling"
+   ],
+   "emoji": "🦭",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "Walruses rest in big groups - shoot while they doze together."
+   }
+  },
+  {
+   "id": "muskox",
+   "name": "Muskox",
+   "rarity": "common",
+   "habitat": "Frozen Shore",
+   "activeTime": "Day",
+   "funFact": "Muskoxen have a soft, warm under-wool, and a herd will stand close together to stay warm.",
+   "behaviours": [
+    "grazing",
+    "standing in herds",
+    "walking"
+   ],
+   "emoji": "🐂",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Muskox herd moves slowly - shoot as it grazes."
+   }
+  },
+  {
+   "id": "harp-seal",
+   "name": "Harp Seal",
+   "rarity": "common",
+   "habitat": "Frozen Shore",
+   "activeTime": "Day",
+   "funFact": "Harp seal pups are born with fluffy white fur that helps them stay warm on the ice.",
+   "behaviours": [
+    "resting on ice",
+    "swimming",
+    "calling"
+   ],
+   "emoji": "🦭",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Look on the ice edge and shoot when the Seal lifts its head."
+   }
+  },
+  {
+   "id": "clownfish",
+   "name": "Clownfish",
+   "rarity": "common",
+   "habitat": "Shallow Reef",
+   "activeTime": "Day",
+   "funFact": "Clownfish live among the stinging arms of sea anemones, which keeps them safe.",
+   "behaviours": [
+    "darting",
+    "hiding in anemones",
+    "swimming"
+   ],
+   "emoji": "🐠",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look for orange flashes in the anemone and shoot when the Clownfish peeks out."
+   }
+  },
+  {
+   "id": "blue-tang",
+   "name": "Blue Tang",
+   "rarity": "common",
+   "habitat": "Shallow Reef",
+   "activeTime": "Day",
+   "funFact": "Blue tangs graze on algae that grows on the reef, which helps keep the coral clean.",
+   "behaviours": [
+    "grazing",
+    "swimming in groups",
+    "darting"
+   ],
+   "emoji": "🐟",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Blue tangs swim in groups - shoot when one drifts clear of the coral."
+   }
+  },
+  {
+   "id": "green-sea-turtle",
+   "name": "Green Sea Turtle",
+   "rarity": "common",
+   "habitat": "Coral Garden",
+   "activeTime": "Day",
+   "funFact": "Green sea turtles return to the beach where they were born to lay their own eggs.",
+   "behaviours": [
+    "gliding",
+    "grazing on seagrass",
+    "resting"
+   ],
+   "emoji": "🐢",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Turtle glides slowly - shoot when it passes the coral."
+   }
+  },
+  {
+   "id": "seahorse",
+   "name": "Seahorse",
+   "rarity": "common",
+   "habitat": "Coral Garden",
+   "activeTime": "Day",
+   "funFact": "Seahorses wrap their tails around seagrass and coral so the current does not carry them away.",
+   "behaviours": [
+    "holding on",
+    "drifting",
+    "feeding"
+   ],
+   "emoji": "🐴",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look closely among the seagrass and shoot when the Seahorse turns."
+   }
+  },
+  {
+   "id": "manta-ray",
+   "name": "Manta Ray",
+   "rarity": "common",
+   "habitat": "Deep Blue",
+   "activeTime": "Day",
+   "funFact": "Manta rays glide through the water by flapping their wide wings, and filter tiny food from the water.",
+   "behaviours": [
+    "gliding",
+    "feeding",
+    "flapping wings"
+   ],
+   "emoji": "🐟",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Ray glides in wide circles - shoot as it passes in front of you."
+   }
+  },
+  {
+   "id": "whale-shark",
+   "name": "Whale Shark",
+   "rarity": "common",
+   "habitat": "Deep Blue",
+   "activeTime": "Day",
+   "funFact": "Whale sharks are the biggest fish in the sea, yet they eat tiny plankton and are gentle to people.",
+   "behaviours": [
+    "gliding slowly",
+    "filter feeding",
+    "swimming"
+   ],
+   "emoji": "🦈",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Whale Shark is huge and slow - shoot as it glides past."
+   }
+  },
+  {
+   "id": "mudskipper",
+   "name": "Mudskipper",
+   "rarity": "common",
+   "habitat": "Mangroves",
+   "activeTime": "Day",
+   "funFact": "Mudskippers are fish that can breathe through their skin and spend time out of the water.",
+   "behaviours": [
+    "hopping",
+    "climbing roots",
+    "watching"
+   ],
+   "emoji": "🐟",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Watch the roots and mud and shoot when the Mudskipper holds still."
+   }
+  },
+  {
+   "id": "roseate-spoonbill",
+   "name": "Roseate Spoonbill",
+   "rarity": "common",
+   "habitat": "Mangroves",
+   "activeTime": "Morning",
+   "funFact": "Roseate spoonbills sweep their flat beaks from side to side through the water to find food.",
+   "behaviours": [
+    "wading",
+    "sweeping",
+    "roosting"
+   ],
+   "emoji": "🦩",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Look for the pink bird and shoot when it lifts its beak from the water."
+   }
+  },
+  {
+   "id": "river-otter",
+   "name": "River Otter",
+   "rarity": "common",
+   "habitat": "Still Marsh",
+   "activeTime": "Day",
+   "funFact": "River otters have waterproof fur and can close their ears and nose when they dive.",
+   "behaviours": [
+    "swimming",
+    "playing",
+    "floating"
+   ],
+   "emoji": "🦦",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Otters move fast - shoot when one pops up near the reeds."
+   }
+  },
+  {
+   "id": "great-egret",
+   "name": "Great Egret",
+   "rarity": "common",
+   "habitat": "Still Marsh",
+   "activeTime": "Morning",
+   "funFact": "Great egrets stand almost still in the shallows and wait for food to swim by.",
+   "behaviours": [
+    "standing still",
+    "wading",
+    "stretching"
+   ],
+   "emoji": "🦢",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Egret stands very still - take your time and shoot."
+   }
+  },
+  {
+   "id": "fiddler-crab",
+   "name": "Fiddler Crab",
+   "rarity": "common",
+   "habitat": "Mudflats",
+   "activeTime": "Day",
+   "funFact": "Male fiddler crabs have one very large claw that they wave to get attention.",
+   "behaviours": [
+    "waving claws",
+    "scuttling",
+    "digging"
+   ],
+   "emoji": "🦀",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look for the big claw waving and shoot when the Crab pauses."
+   }
+  },
+  {
+   "id": "american-flamingo",
+   "name": "American Flamingo",
+   "rarity": "common",
+   "habitat": "Mudflats",
+   "activeTime": "Day",
+   "funFact": "Flamingos often stand on one leg, and their pink colour comes from the food they eat.",
+   "behaviours": [
+    "standing on one leg",
+    "wading",
+    "feeding"
+   ],
+   "emoji": "🦩",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Flamingos stand in groups - shoot as one stretches its neck."
+   }
+  },
+  {
+   "id": "sea-star",
+   "name": "Sea Star",
+   "rarity": "common",
+   "habitat": "Tide Pools",
+   "activeTime": "Day",
+   "funFact": "Sea stars can slowly regrow an arm if they lose one.",
+   "behaviours": [
+    "clinging to rocks",
+    "creeping",
+    "resting"
+   ],
+   "emoji": "⭐",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Sea Star barely moves - shoot while it clings to the rock."
+   }
+  },
+  {
+   "id": "hermit-crab",
+   "name": "Hermit Crab",
+   "rarity": "common",
+   "habitat": "Tide Pools",
+   "activeTime": "Day",
+   "funFact": "Hermit crabs live in empty shells, and move to a bigger shell when they outgrow their old one.",
+   "behaviours": [
+    "scuttling",
+    "carrying a shell",
+    "hiding"
+   ],
+   "emoji": "🦀",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Look for a moving shell and shoot when the Crab peeks out."
+   }
+  },
+  {
+   "id": "atlantic-puffin",
+   "name": "Atlantic Puffin",
+   "rarity": "common",
+   "habitat": "Sea Cliffs",
+   "activeTime": "Day",
+   "funFact": "Puffins can hold several small fish in their colourful beaks at once.",
+   "behaviours": [
+    "perching",
+    "flying",
+    "carrying fish"
+   ],
+   "emoji": "🐧",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Puffins stand along the cliff edge - shoot when one looks toward you."
+   }
+  },
+  {
+   "id": "northern-gannet",
+   "name": "Northern Gannet",
+   "rarity": "common",
+   "habitat": "Sea Cliffs",
+   "activeTime": "Day",
+   "funFact": "Gannets dive into the sea from high in the air to catch fish.",
+   "behaviours": [
+    "soaring",
+    "diving",
+    "nesting in colonies"
+   ],
+   "emoji": "🐟",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Watch the sky above the cliffs and shoot as a Gannet glides past."
+   }
+  },
+  {
+   "id": "harbor-seal",
+   "name": "Harbor Seal",
+   "rarity": "common",
+   "habitat": "Sandy Beach",
+   "activeTime": "Day",
+   "funFact": "Harbor seals rest on the beach between trips to the sea to find food.",
+   "behaviours": [
+    "resting",
+    "swimming",
+    "watching"
+   ],
+   "emoji": "🦭",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "Seals rest quietly on the sand - keep your distance and shoot."
+   }
+  },
+  {
+   "id": "sanderling",
+   "name": "Sanderling",
+   "rarity": "common",
+   "habitat": "Sandy Beach",
+   "activeTime": "Day",
+   "funFact": "Sanderlings run along the edge of the waves, chasing the water back and forth to find food.",
+   "behaviours": [
+    "running",
+    "probing the sand",
+    "flocking"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Sanderlings are quick - shoot when one pauses between waves."
+   }
+  },
+  {
+   "id": "american-bison",
+   "name": "American Bison",
+   "rarity": "common",
+   "habitat": "Tall Grass",
+   "activeTime": "Day",
+   "funFact": "American bison are the largest land animals in North America, and herds roam wide open plains.",
+   "behaviours": [
+    "grazing",
+    "walking in herds",
+    "resting"
+   ],
+   "emoji": "🦬",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "Bison move slowly - shoot as the herd grazes."
+   }
+  },
+  {
+   "id": "pronghorn",
+   "name": "Pronghorn",
+   "rarity": "common",
+   "habitat": "Tall Grass",
+   "activeTime": "Morning",
+   "funFact": "Pronghorn are among the fastest land animals in North America.",
+   "behaviours": [
+    "grazing",
+    "running",
+    "watching"
+   ],
+   "emoji": "🦌",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Pronghorn watch for movement - shoot when one stops to graze."
+   }
+  },
+  {
+   "id": "prairie-dog",
+   "name": "Prairie Dog",
+   "rarity": "common",
+   "habitat": "Prairie Burrows",
+   "activeTime": "Day",
+   "funFact": "Prairie dogs live in underground towns and call out to warn each other.",
+   "behaviours": [
+    "standing up",
+    "calling",
+    "digging"
+   ],
+   "emoji": "🐿️",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Watch the burrow openings and shoot when a Prairie Dog stands tall."
+   }
+  },
+  {
+   "id": "burrowing-owl",
+   "name": "Burrowing Owl",
+   "rarity": "common",
+   "habitat": "Prairie Burrows",
+   "activeTime": "Day and dusk",
+   "funFact": "Burrowing owls live in holes in the ground, often borrowed from prairie dogs.",
+   "behaviours": [
+    "standing at the burrow",
+    "bobbing",
+    "watching"
+   ],
+   "emoji": "🦉",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Look near the burrow and shoot when the Owl turns toward you."
+   }
+  },
+  {
+   "id": "western-meadowlark",
+   "name": "Western Meadowlark",
+   "rarity": "common",
+   "habitat": "Open Sky",
+   "activeTime": "Morning",
+   "funFact": "The Western Meadowlark sings a flute-like song from fence posts and grass stems.",
+   "behaviours": [
+    "singing",
+    "perching",
+    "foraging"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Listen for the song and shoot when the Meadowlark perches up high."
+   }
+  },
+  {
+   "id": "red-tailed-hawk",
+   "name": "Red-tailed Hawk",
+   "rarity": "common",
+   "habitat": "Open Sky",
+   "activeTime": "Day",
+   "funFact": "Red-tailed hawks soar on warm air rising from the ground without flapping much.",
+   "behaviours": [
+    "soaring",
+    "perching",
+    "watching"
+   ],
+   "emoji": "🦅",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look up and shoot as the Hawk circles overhead."
+   }
+  },
+  {
+   "id": "moose",
+   "name": "Moose",
+   "rarity": "common",
+   "habitat": "Pine Forest",
+   "activeTime": "Morning and evening",
+   "funFact": "Moose are the largest members of the deer family, and the males grow big antlers each year.",
+   "behaviours": [
+    "browsing",
+    "wading",
+    "walking"
+   ],
+   "emoji": "🦌",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Moose move calmly - shoot when the Moose lifts its head from browsing."
+   }
+  },
+  {
+   "id": "great-grey-owl",
+   "name": "Great Grey Owl",
+   "rarity": "common",
+   "habitat": "Pine Forest",
+   "activeTime": "Evening",
+   "funFact": "Great grey owls can hear a small animal moving under the snow.",
+   "behaviours": [
+    "perching",
+    "listening",
+    "watching"
+   ],
+   "emoji": "🦉",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look for a round face in the pines and shoot when the Owl turns."
+   }
+  },
+  {
+   "id": "lynx",
+   "name": "Lynx",
+   "rarity": "common",
+   "habitat": "Frozen Stream",
+   "activeTime": "Night and dawn",
+   "funFact": "Lynx have big furry paws that work like snowshoes on deep snow.",
+   "behaviours": [
+    "walking",
+    "listening",
+    "resting"
+   ],
+   "emoji": "🐱",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "The Lynx is shy - shoot when it pauses by the stream."
+   }
+  },
+  {
+   "id": "snowshoe-hare",
+   "name": "Snowshoe Hare",
+   "rarity": "common",
+   "habitat": "Frozen Stream",
+   "activeTime": "Night and dawn",
+   "funFact": "Snowshoe hares turn white in winter, which helps them hide in the snow.",
+   "behaviours": [
+    "hopping",
+    "freezing",
+    "nibbling"
+   ],
+   "emoji": "🐇",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Hare freezes to hide - shoot when it sits still."
+   }
+  },
+  {
+   "id": "porcupine",
+   "name": "Porcupine",
+   "rarity": "common",
+   "habitat": "Snowy Clearing",
+   "activeTime": "Night",
+   "funFact": "Porcupines have thousands of quills, which they use only to defend themselves.",
+   "behaviours": [
+    "climbing",
+    "nibbling bark",
+    "resting"
+   ],
+   "emoji": "🦔",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Porcupine is slow - shoot when it stops to nibble."
+   }
+  },
+  {
+   "id": "red-crossbill",
+   "name": "Red Crossbill",
+   "rarity": "common",
+   "habitat": "Snowy Clearing",
+   "activeTime": "Day",
+   "funFact": "Red crossbills have beaks that cross at the tips, perfect for opening pine cones.",
+   "behaviours": [
+    "clinging to cones",
+    "flocking",
+    "calling"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Watch the cones and shoot when a Crossbill pauses."
+   }
+  },
+  {
+   "id": "japanese-macaque",
+   "name": "Japanese Macaque",
+   "rarity": "common",
+   "habitat": "Hot Springs",
+   "activeTime": "Day",
+   "funFact": "In cold weather, Japanese macaques soak in warm hot springs to stay comfortable.",
+   "behaviours": [
+    "soaking",
+    "grooming",
+    "sitting in groups"
+   ],
+   "emoji": "🐵",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "Macaques relax in the warm water - shoot when one looks your way."
+   }
+  },
+  {
+   "id": "mandarin-duck",
+   "name": "Mandarin Duck",
+   "rarity": "common",
+   "habitat": "Hot Springs",
+   "activeTime": "Morning",
+   "funFact": "Male mandarin ducks have bright, fancy feathers, and the birds nest in tree holes.",
+   "behaviours": [
+    "swimming",
+    "preening",
+    "perching"
+   ],
+   "emoji": "🦆",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Look for the colourful duck and shoot when it rests on the water."
+   }
+  },
+  {
+   "id": "lava-lizard",
+   "name": "Lava Lizard",
+   "rarity": "common",
+   "habitat": "Steam Vents",
+   "activeTime": "Day",
+   "funFact": "Lava lizards warm up on dark volcanic rock, then dash into the shade to cool off.",
+   "behaviours": [
+    "basking",
+    "bobbing",
+    "darting"
+   ],
+   "emoji": "🦎",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Look on warm rocks and shoot when the Lizard stops to bob."
+   }
+  },
+  {
+   "id": "nene",
+   "name": "Nene",
+   "rarity": "common",
+   "habitat": "Steam Vents",
+   "activeTime": "Day",
+   "funFact": "The nene is Hawaii's state bird, a goose that lives on volcanic slopes.",
+   "behaviours": [
+    "grazing",
+    "walking",
+    "calling"
+   ],
+   "emoji": "🐦",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Nene grazes in pairs - shoot when one lifts its head."
+   }
+  },
+  {
+   "id": "marine-iguana",
+   "name": "Marine Iguana",
+   "rarity": "common",
+   "habitat": "Lava Fields",
+   "activeTime": "Day",
+   "funFact": "Marine iguanas are the only lizards that feed in the sea, and they sneeze out extra salt.",
+   "behaviours": [
+    "basking",
+    "swimming",
+    "sneezing salt"
+   ],
+   "emoji": "🦎",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "Marine Iguanas pile up on warm rock - shoot when one raises its head."
+   }
+  },
+  {
+   "id": "galapagos-tortoise",
+   "name": "Galapagos Tortoise",
+   "rarity": "common",
+   "habitat": "Lava Fields",
+   "activeTime": "Day",
+   "funFact": "Galapagos tortoises can live for over a hundred years.",
+   "behaviours": [
+    "walking slowly",
+    "grazing",
+    "resting"
+   ],
+   "emoji": "🐢",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Tortoise is slow and steady - shoot when its head is up."
+   }
+  },
+  {
+   "id": "crystal-hopper",
+   "name": "Crystal Hopper",
+   "rarity": "common",
+   "habitat": "Crystal Meadow",
+   "activeTime": "Night",
+   "funFact": "Crystal Hoppers have shimmering fur that picks up the colour of the crystals they sit beside.",
+   "behaviours": [
+    "hopping",
+    "nibbling crystal moss",
+    "resting"
+   ],
+   "emoji": "🐇",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "The Hopper blends into the crystals - shoot when it sits still and shimmers."
+   }
+  },
+  {
+   "id": "lumen-moth",
+   "name": "Lumen Moth",
+   "rarity": "common",
+   "habitat": "Crystal Meadow",
+   "activeTime": "Night",
+   "funFact": "Lumen Moths glow brighter when they flutter together, lighting up the whole meadow.",
+   "behaviours": [
+    "fluttering",
+    "glowing",
+    "gathering in groups"
+   ],
+   "emoji": "🦋",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Follow the glow and shoot when the Moth lands on a crystal."
+   }
+  },
+  {
+   "id": "sky-whale",
+   "name": "Sky Whale",
+   "rarity": "common",
+   "habitat": "Floating Islands",
+   "activeTime": "Day",
+   "funFact": "Sky Whales drift slowly between the islands and sing low, rumbling songs that carry for miles.",
+   "behaviours": [
+    "drifting",
+    "singing",
+    "gliding"
+   ],
+   "emoji": "🐋",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Sky Whale is huge and slow - shoot as it drifts past an island."
+   }
+  },
+  {
+   "id": "cloud-jelly",
+   "name": "Cloud Jelly",
+   "rarity": "common",
+   "habitat": "Floating Islands",
+   "activeTime": "Day and dusk",
+   "funFact": "Cloud Jellies float on the breeze like soft balloons, and change colour with the light.",
+   "behaviours": [
+    "floating",
+    "pulsing",
+    "changing colour"
+   ],
+   "emoji": "🐙",
+   "availableInMilestone": true,
+   "photoDifficulty": "medium",
+   "photographyTip": {
+    "hint": "Watch for a pulse of colour and shoot when the Jelly glows."
+   }
+  },
+  {
+   "id": "cave-glimmer",
+   "name": "Cave Glimmer",
+   "rarity": "common",
+   "habitat": "Glowing Caves",
+   "activeTime": "Day and night",
+   "funFact": "Cave Glimmers leave a trail of faint light behind them as they crawl along the cave walls.",
+   "behaviours": [
+    "crawling",
+    "glowing",
+    "resting on walls"
+   ],
+   "emoji": "🐛",
+   "availableInMilestone": true,
+   "photoDifficulty": "easy",
+   "photographyTip": {
+    "hint": "The Glimmer is slow - follow its trail and shoot when it rests."
+   }
+  },
+  {
+   "id": "echo-bat",
+   "name": "Echo Bat",
+   "rarity": "common",
+   "habitat": "Glowing Caves",
+   "activeTime": "Night",
+   "funFact": "Echo Bats sing high, gentle notes, and listen to the echoes to find their way through the dark.",
+   "behaviours": [
+    "flying",
+    "singing",
+    "hanging upside down"
+   ],
+   "emoji": "🦇",
+   "availableInMilestone": true,
+   "photoDifficulty": "hard",
+   "photographyTip": {
+    "hint": "Listen for the song and shoot when the Echo Bat settles on the ceiling."
+   }
+  }
+ ],
+ "commonMilestoneAnimalIds": [
+  "duck",
+  "frog",
+  "butterfly",
+  "rabbit",
+  "lizard",
+  "park-bird",
+  "forest-wren",
+  "forest-wallaby",
+  "forest-beetle",
+  "red-eared-slider",
+  "cane-toad",
+  "grey-squirrel",
+  "european-starling"
+ ],
+ "forestAnimalIds": [
+  "forest-wren",
+  "forest-wallaby",
+  "forest-beetle",
+  "cane-toad",
+  "european-starling"
+ ],
+ "photoCounts": {
+  "duck": 5,
+  "frog": 5,
+  "butterfly": 5,
+  "rabbit": 5,
+  "lizard": 5,
+  "park-bird": 5,
+  "rare-owl": 5,
+  "lost-puppy": 5,
+  "forest-wren": 5,
+  "forest-wallaby": 5,
+  "forest-beetle": 5,
+  "great-blue-heron": 5,
+  "beaver": 5,
+  "rainbow-trout": 5,
+  "loon": 5,
+  "dragonfly": 5,
+  "painted-turtle": 5
+ },
+ "facts": {
+  "duck": [
+   "Ducks have waterproof feathers - they spread natural oil from a gland to keep dry.",
+   "Baby ducklings can swim within hours of hatching.",
+   "Ducks \"dabble\" - tipping tail-up to reach pond plants without fully diving under.",
+   "A duck's quack barely echoes, which is a small mystery scientists still enjoy studying.",
+   "Ducks have excellent color vision, even better than humans in some ways."
+  ],
+  "frog": [
+   "Frogs breathe partly through their skin, so they need to stay moist.",
+   "Many frogs can leap over 20 times their own body length.",
+   "A group of frogs is sometimes called an \"army.\"",
+   "Frogs have lived on Earth for over 200 million years.",
+   "Some frogs shift color slightly depending on temperature and light."
+  ],
+  "butterfly": [
+   "Butterflies taste with their feet.",
+   "A butterfly's wings are actually clear - tiny scales create all their color.",
+   "Butterflies warm up in the sun before flying if they've gotten too cool.",
+   "Some butterflies, like monarchs, migrate thousands of miles.",
+   "A butterfly starts life as a caterpillar and transforms inside a chrysalis."
+  ],
+  "rabbit": [
+   "A rabbit's front teeth never stop growing, so they gnaw to keep them worn down.",
+   "Rabbits can see almost all the way around themselves without turning their head.",
+   "Baby rabbits are called kits.",
+   "Rabbits thump their back feet to signal or warn each other.",
+   "A joyful rabbit sometimes leaps and twists in the air - it is called a \"binky.\""
+  ],
+  "lizard": [
+   "Many lizards can drop their tail to escape danger and grow a new one later.",
+   "Lizards are cold-blooded, so they bask in the sun to warm up.",
+   "Some lizards can sprint on just their back legs for extra speed.",
+   "Tiny scales cover a lizard's skin and help it stay hydrated.",
+   "Geckos, a kind of lizard, can stick to almost any surface with tiny hairs on their feet."
+  ],
+  "park-bird": [
+   "A small bird like this one eats roughly half its body weight in food each day.",
+   "Birds have hollow bones, which helps keep them light for flying.",
+   "Many small birds take quick dust baths to keep their feathers clean.",
+   "A bird's song can mark its territory or attract a mate.",
+   "Some small birds can remember hundreds of hiding spots for their food."
+  ],
+  "rare-owl": [
+   "Owls can rotate their heads up to 270 degrees.",
+   "Special soft feathers let owls fly almost silently.",
+   "An owl's eyes do not move in their sockets - that is why it turns its whole head.",
+   "Owls have incredible hearing and can find prey in complete darkness.",
+   "A group of owls is sometimes called a \"parliament.\""
+  ],
+  "lost-puppy": [
+   "A wagging tail can mean a dog is happy, excited, or just saying hello.",
+   "A dog's sense of smell is tens of thousands of times stronger than a human's.",
+   "Puppies sleep a lot during the day - it helps them grow.",
+   "Dogs can learn many human words and read our tone of voice.",
+   "A reunited dog often shows its joy with excited jumps, licks, and a happy wiggle."
+  ],
+  "forest-wren": [
+   "Wrens are tiny, but their songs are surprisingly loud for their size.",
+   "Some wrens build several practice nests before choosing a final one.",
+   "Wrens often hold their tail feathers pointed straight up.",
+   "Wrens are curious and will investigate unfamiliar sounds in the forest.",
+   "Despite their small size, wrens fiercely defend their nesting area."
+  ],
+  "forest-wallaby": [
+   "Wallabies are relatives of kangaroos, just smaller.",
+   "Wallabies use their strong tail for balance while hopping.",
+   "Baby wallabies, called joeys, grow in their mother's pouch.",
+   "A wallaby can leap several times its own height.",
+   "Wallabies are most active at dawn and dusk, resting in shade during the heat of day."
+  ],
+  "forest-beetle": [
+   "Beetles make up about a quarter of all known animal species on Earth.",
+   "A beetle's shiny shell is a hardened pair of wings, protecting a second flying pair underneath.",
+   "Some beetles can carry many times their own body weight.",
+   "Beetles have existed for over 300 million years.",
+   "Many beetles help recycle fallen leaves and wood in the forest."
+  ],
+  "great-blue-heron": [
+   "A Great Blue Heron can stand motionless for minutes, then strike at a fish in a blink.",
+   "Herons fly with their necks folded into an S-shape, while cranes stretch theirs straight out.",
+   "Even with a wingspan of about two metres, a heron weighs only a few kilograms.",
+   "Herons often nest together in groups called colonies, high in the treetops.",
+   "A heron's long neck has a special kinked bone that lets it spring forward quickly."
+  ],
+  "beaver": [
+   "A beaver's front teeth never stop growing, and iron in them makes them orange.",
+   "Beaver dams turn streams into ponds that give many other animals a home.",
+   "A beaver's flat tail helps it steer, balance, and slap the water as a warning.",
+   "Beavers can hold their breath underwater for around fifteen minutes.",
+   "Clear eyelids work like swimming goggles, so beavers can see while they swim."
+  ],
+  "rainbow-trout": [
+   "The rainbow trout gets its name from the soft pink stripe along its sides.",
+   "Rainbow trout like cool, clean water with plenty of oxygen.",
+   "Trout often face upstream, holding still while food drifts to them.",
+   "Some rainbow trout, called steelhead, travel to the sea and return to freshwater to breed.",
+   "A line of tiny sensors along a trout's side feels the ripples of nearby movement."
+  ],
+  "loon": [
+   "Most birds have hollow bones, but loons have solid ones, which helps them dive.",
+   "A loon's wailing and yodelling calls can carry across a whole lake.",
+   "A loon's legs sit far back on its body - great for swimming, awkward on land.",
+   "Loons can dive deep and stay under for minutes while chasing fish.",
+   "Loon chicks sometimes ride on a parent's back to stay warm and safe."
+  ],
+  "dragonfly": [
+   "Dragonflies have been around for over 300 million years, long before the dinosaurs.",
+   "Most of a dragonfly's head is eye, so it can see nearly all the way around.",
+   "Each of a dragonfly's four wings moves on its own, so it can hover and fly backwards.",
+   "Young dragonflies, called nymphs, live underwater for months or even years.",
+   "Dragonflies hunt mosquitoes and other small insects while flying."
+  ],
+  "painted-turtle": [
+   "Painted turtles bask on logs in the sun to warm up.",
+   "Red and yellow markings along the shell edge and neck give the painted turtle its name.",
+   "In winter, painted turtles rest at the bottom of ponds, barely moving.",
+   "A painted turtle's smooth, flat shell helps it slip easily through the water.",
+   "The warmth of the nest decides whether painted turtle eggs hatch as boys or girls."
+  ]
+ },
+ "bonusFacts": {
+  "duck": [
+   "Ducks preen their feathers to spread the special waterproof oil evenly.",
+   "A duck's webbed feet act like paddles, helping it swim without much effort.",
+   "Mother ducks lead their ducklings in a line to keep them safe and together.",
+   "Ducks can sleep with one eye open and half their brain still alert for danger.",
+   "Some ducks migrate long distances between seasons, guided by the sun and stars."
+  ],
+  "frog": [
+   "A frog's long, sticky tongue can snap out and back in a fraction of a second.",
+   "Frogs shed their skin regularly, and many eat the old skin afterward.",
+   "Tadpoles breathe through gills before they grow lungs as adult frogs.",
+   "Frogs don't need to drink water - they absorb it through their skin.",
+   "A frog's bulging eyes help it see nearly all the way around without moving its head."
+  ],
+  "butterfly": [
+   "Butterflies have four wings, not two - two pairs that can move independently.",
+   "A butterfly's proboscis works like a curled-up drinking straw for nectar.",
+   "Butterflies rely on wind currents to help them glide long distances with less effort.",
+   "Some butterfly species can see ultraviolet colors invisible to human eyes.",
+   "A caterpillar's body is almost completely rebuilt during its time in the chrysalis."
+  ],
+  "rabbit": [
+   "Rabbits have a blind spot right in front of their nose, so they rely on whiskers there.",
+   "A rabbit's ears can rotate almost independently to listen in different directions.",
+   "Rabbits are most active at dawn and dusk, resting quietly during the hottest part of the day.",
+   "Wild rabbits dig burrow systems called warrens, with tunnels and separate rooms.",
+   "A rabbit's strong sense of smell helps it recognize family members and territory."
+  ],
+  "lizard": [
+   "Some lizards change color slightly to help regulate their body temperature.",
+   "A lizard's flicking tongue helps it smell and taste the air around it.",
+   "Many lizards can go without food for surprisingly long stretches when needed.",
+   "Lizard scales are made of keratin, the same material as human fingernails.",
+   "Some lizard species can run briefly on just two legs to move faster."
+  ],
+  "park-bird": [
+   "Small birds often puff up their feathers to trap warm air on cold mornings.",
+   "Many birds use landmarks and the position of the sun to find their way home.",
+   "A bird's beak shape usually reveals what kind of food it mostly eats.",
+   "Birds preen daily to keep their feathers aligned for smooth, efficient flight.",
+   "Some small birds can recognize and remember individual human faces."
+  ],
+  "rare-owl": [
+   "An owl's feathers have soft fringed edges that muffle the sound of its wingbeats.",
+   "Owls swallow small prey whole and later cough up pellets of fur and bones.",
+   "Large eyes let owls gather as much light as possible for night vision.",
+   "Owls can sit perfectly still for long stretches while watching for movement below.",
+   "Some owls can hear a small movement under snow or leaves from a good distance."
+  ],
+  "forest-wren": [
+   "Wrens often cock their tails upward as a signature part of their posture.",
+   "A wren's song can be surprisingly complex, with many different notes strung together.",
+   "Wrens dart quickly through undergrowth, rarely staying still for long.",
+   "Some wrens will scold much larger animals that wander too close to their nest.",
+   "Wrens use dense shrubs and tangles as safe cover from predators."
+  ],
+  "forest-wallaby": [
+   "Wallabies groom themselves often to stay clean and comfortable in the heat.",
+   "A wallaby's powerful hind legs let it change direction quickly while hopping.",
+   "Wallabies often thump the ground with a foot to warn others of danger.",
+   "Young wallabies stay close to their mother even after leaving the pouch.",
+   "Wallabies get most of the moisture they need directly from the plants they eat."
+  ],
+  "forest-beetle": [
+   "A beetle's hard outer shell protects its body like a suit of armor.",
+   "Many beetles can squeeze into tiny gaps thanks to their flattened bodies.",
+   "Some beetles play dead when threatened, staying still until danger passes.",
+   "Beetle larvae often look completely different from the adult beetle.",
+   "Beetles use their antennae to smell, touch, and sense the world around them."
+  ]
+ },
+ "biomes": [
+  {
+   "id": "lake",
+   "name": "Lake",
+   "saveKey": "lakeLocation",
+   "ambient": "lake",
+   "screenClassName": "lake-screen",
+   "eyebrow": "Lake",
+   "screenTitle": "Lake Arrival",
+   "arrivalMessage": "You have arrived quietly at the lake shore.",
+   "aboutTitle": "A calm lake",
+   "aboutText": "Visit the Shoreline, Open Water, and Reeds & Shallows, and photograph the six animals that live here. Watch quietly - every animal stays wild and free.",
+   "journalIcon": "🌊",
+   "journalTitle": "Lake Animals",
+   "locations": [
+    {
+     "name": "Shoreline",
+     "icon": "🏞️",
+     "description": "A quiet bank where herons stand watch and beavers rest.",
+     "animalIds": [
+      "great-blue-heron",
+      "beaver"
+     ]
+    },
+    {
+     "name": "Open Water",
+     "icon": "🌊",
+     "description": "Calm, open water where loons float and trout glint below.",
+     "animalIds": [
+      "loon",
+      "rainbow-trout"
+     ]
+    },
+    {
+     "name": "Reeds & Shallows",
+     "icon": "🌾",
+     "description": "Sheltered reeds and warm shallows, busy with small life.",
+     "animalIds": [
+      "dragonfly",
+      "painted-turtle"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mountains",
+   "name": "Mountains",
+   "saveKey": "mountainLocation",
+   "ambient": "mountains",
+   "screenClassName": "mountains-screen",
+   "eyebrow": "Mountains",
+   "screenTitle": "Mountain Arrival",
+   "arrivalMessage": "You have arrived quietly on the mountain trail.",
+   "aboutTitle": "High country",
+   "aboutText": "Walk the Rocky Trail, Alpine Meadow, and Lookout Ridge, and photograph the six animals that live here. Move slowly and watch from a distance - every animal stays wild and free.",
+   "journalIcon": "⛰️",
+   "journalTitle": "Mountain Animals",
+   "locations": [
+    {
+     "name": "Rocky Trail",
+     "icon": "🥾",
+     "description": "A stony path where sure-footed climbers and sunbathing marmots live.",
+     "animalIds": [
+      "mountain-goat",
+      "marmot"
+     ]
+    },
+    {
+     "name": "Alpine Meadow",
+     "icon": "🌼",
+     "description": "A cool, flowery meadow among the rocks, full of small busy animals.",
+     "animalIds": [
+      "pika",
+      "mountain-hare"
+     ]
+    },
+    {
+     "name": "Lookout Ridge",
+     "icon": "🏔️",
+     "description": "A high, windy ridge with wide views and birds riding the air.",
+     "animalIds": [
+      "golden-eagle",
+      "mountain-bluebird"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "safari",
+   "name": "Safari",
+   "saveKey": "safariLocation",
+   "ambient": "safari",
+   "screenClassName": "safari-screen",
+   "eyebrow": "Safari",
+   "screenTitle": "Safari Arrival",
+   "arrivalMessage": "You have arrived quietly at the edge of the savanna.",
+   "aboutTitle": "The wide savanna",
+   "aboutText": "Visit the Waterhole, Open Plains, and Acacia Grove, and photograph the six animals that live here. Keep a respectful distance and stay quiet - every animal stays wild and free.",
+   "journalIcon": "🦒",
+   "journalTitle": "Safari Animals",
+   "locations": [
+    {
+     "name": "Waterhole",
+     "icon": "💧",
+     "description": "A shared waterhole where big, gentle animals come to drink and cool off.",
+     "animalIds": [
+      "african-elephant",
+      "hippo"
+     ]
+    },
+    {
+     "name": "Open Plains",
+     "icon": "🌾",
+     "description": "Wide golden grassland stretching to the horizon, with herds grazing in the distance.",
+     "animalIds": [
+      "zebra",
+      "giraffe"
+     ]
+    },
+    {
+     "name": "Acacia Grove",
+     "icon": "🌳",
+     "description": "Flat-topped acacia trees casting shade over small, busy animals and bright birds.",
+     "animalIds": [
+      "meerkat",
+      "lilac-breasted-roller"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rainforest",
+   "name": "Rainforest",
+   "saveKey": "rainforestLocation",
+   "ambient": "rainforest",
+   "screenClassName": "rainforest-screen",
+   "eyebrow": "Rainforest",
+   "screenTitle": "Rainforest Arrival",
+   "arrivalMessage": "You have arrived quietly under the rainforest canopy.",
+   "aboutTitle": "Under the canopy",
+   "aboutText": "Explore the Forest Floor, Canopy Walk, and River Bank, and photograph the six animals that live here. Step softly and listen - every animal stays wild and free.",
+   "journalIcon": "🌴",
+   "journalTitle": "Rainforest Animals",
+   "locations": [
+    {
+     "name": "Forest Floor",
+     "icon": "🍃",
+     "description": "A damp, shady floor of fallen leaves, where tapirs forage and tiny frogs glow with colour.",
+     "animalIds": [
+      "tapir",
+      "poison-dart-frog"
+     ]
+    },
+    {
+     "name": "Canopy Walk",
+     "icon": "🌴",
+     "description": "A high walkway among the treetops, where sloths hang and macaws call.",
+     "animalIds": [
+      "sloth",
+      "scarlet-macaw"
+     ]
+    },
+    {
+     "name": "River Bank",
+     "icon": "🏞️",
+     "description": "A warm, muddy river bank where capybaras graze and iguanas bask above the water.",
+     "animalIds": [
+      "capybara",
+      "green-iguana"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "desert",
+   "name": "Desert",
+   "saveKey": "desertLocation",
+   "ambient": "desert",
+   "screenClassName": "desert-screen",
+   "eyebrow": "Desert",
+   "screenTitle": "Desert Arrival",
+   "arrivalMessage": "You have arrived quietly at the edge of the dunes.",
+   "aboutTitle": "Warm dunes, cool nights",
+   "aboutText": "Visit the Sand Dunes, Rocky Outcrop, and Oasis Edge, and photograph the six animals that live here. Keep still and give every animal space - each one stays wild and free.",
+   "journalIcon": "🏜️",
+   "journalTitle": "Desert Animals",
+   "locations": [
+    {
+     "name": "Sand Dunes",
+     "icon": "🏜️",
+     "description": "Rolling sand where small animals wait for the cool of the evening.",
+     "animalIds": [
+      "fennec-fox",
+      "sidewinder"
+     ]
+    },
+    {
+     "name": "Rocky Outcrop",
+     "icon": "⛰️",
+     "description": "Warm, sunny rocks where reptiles bask and slow walkers shelter.",
+     "animalIds": [
+      "desert-tortoise",
+      "chuckwalla"
+     ]
+    },
+    {
+     "name": "Oasis Edge",
+     "icon": "🌴",
+     "description": "Palms and a little water where desert animals come to rest and drink.",
+     "animalIds": [
+      "roadrunner",
+      "dromedary-camel"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "arctic",
+   "name": "Arctic",
+   "saveKey": "arcticLocation",
+   "ambient": "arctic",
+   "screenClassName": "arctic-screen",
+   "eyebrow": "Arctic",
+   "screenTitle": "Arctic Arrival",
+   "arrivalMessage": "You have arrived quietly on the snowy tundra.",
+   "aboutTitle": "Snow, ice, and open sky",
+   "aboutText": "Cross the Snowfield, Ice Edge, and Frozen Shore, and photograph the six animals that live here. Watch from a respectful distance - every animal stays wild and free.",
+   "journalIcon": "❄️",
+   "journalTitle": "Arctic Animals",
+   "locations": [
+    {
+     "name": "Snowfield",
+     "icon": "🌨️",
+     "description": "A wide white plain where white-coated animals hunt quietly.",
+     "animalIds": [
+      "arctic-fox",
+      "snowy-owl"
+     ]
+    },
+    {
+     "name": "Ice Edge",
+     "icon": "🧊",
+     "description": "Where the ice meets cold open water, home to big, calm sea animals.",
+     "animalIds": [
+      "polar-bear",
+      "walrus"
+     ]
+    },
+    {
+     "name": "Frozen Shore",
+     "icon": "🏔️",
+     "description": "A cold, stony shore with animals built for wind and ice.",
+     "animalIds": [
+      "muskox",
+      "harp-seal"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "coral-reef",
+   "name": "Coral Reef",
+   "saveKey": "coralReefLocation",
+   "ambient": "coral-reef",
+   "screenClassName": "coral-reef-screen",
+   "eyebrow": "Coral Reef",
+   "screenTitle": "Coral Reef Arrival",
+   "arrivalMessage": "You have arrived quietly at the edge of the reef.",
+   "aboutTitle": "Bright coral and calm water",
+   "aboutText": "Drift over the Shallow Reef, Coral Garden, and Deep Blue, and photograph the six animals that live here. Look but never touch - every animal stays wild and free.",
+   "journalIcon": "🐠",
+   "journalTitle": "Coral Reef Animals",
+   "locations": [
+    {
+     "name": "Shallow Reef",
+     "icon": "🌊",
+     "description": "Sunny, clear water full of colourful fish darting between the coral.",
+     "animalIds": [
+      "clownfish",
+      "blue-tang"
+     ]
+    },
+    {
+     "name": "Coral Garden",
+     "icon": "🌊",
+     "description": "A calm garden of coral where slow swimmers drift and graze.",
+     "animalIds": [
+      "green-sea-turtle",
+      "seahorse"
+     ]
+    },
+    {
+     "name": "Deep Blue",
+     "icon": "🌀",
+     "description": "The edge of the reef where the water turns deep blue and big animals glide by.",
+     "animalIds": [
+      "manta-ray",
+      "whale-shark"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wetlands",
+   "name": "Wetlands",
+   "saveKey": "wetlandsLocation",
+   "ambient": "wetlands",
+   "screenClassName": "wetlands-screen",
+   "eyebrow": "Wetlands",
+   "screenTitle": "Wetlands Arrival",
+   "arrivalMessage": "You have arrived quietly at the edge of the marsh.",
+   "aboutTitle": "Reeds, mangroves, and still water",
+   "aboutText": "Wade through the Mangroves, Still Marsh, and Mudflats, and photograph the six animals that live here. Stay quiet and watch from a distance - every animal stays wild and free.",
+   "journalIcon": "🦩",
+   "journalTitle": "Wetlands Animals",
+   "locations": [
+    {
+     "name": "Mangroves",
+     "icon": "🌿",
+     "description": "Tangled roots in shallow water, where small animals shelter.",
+     "animalIds": [
+      "mudskipper",
+      "roseate-spoonbill"
+     ]
+    },
+    {
+     "name": "Still Marsh",
+     "icon": "🌿",
+     "description": "Calm, glassy water among the reeds where patient birds stand watch.",
+     "animalIds": [
+      "river-otter",
+      "great-egret"
+     ]
+    },
+    {
+     "name": "Mudflats",
+     "icon": "🏖️",
+     "description": "Wide, soft mud at low tide, busy with small life and big flocks.",
+     "animalIds": [
+      "fiddler-crab",
+      "american-flamingo"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "coastal",
+   "name": "Coastal",
+   "saveKey": "coastalLocation",
+   "ambient": "coastal",
+   "screenClassName": "coastal-screen",
+   "eyebrow": "Coastal",
+   "screenTitle": "Coastal Arrival",
+   "arrivalMessage": "You have arrived quietly at the edge of the shore.",
+   "aboutTitle": "Tide pools and rocky shoreline",
+   "aboutText": "Explore the Tide Pools, Sea Cliffs, and Sandy Beach, and photograph the six animals that live here. Tread gently and leave the shore as you found it - every animal stays wild and free.",
+   "journalIcon": "🦀",
+   "journalTitle": "Coastal Animals",
+   "locations": [
+    {
+     "name": "Tide Pools",
+     "icon": "🐚",
+     "description": "Little pools of seawater left on the rocks, full of tiny life.",
+     "animalIds": [
+      "sea-star",
+      "hermit-crab"
+     ]
+    },
+    {
+     "name": "Sea Cliffs",
+     "icon": "⛰️",
+     "description": "Tall cliffs above the waves, where seabirds nest and fly.",
+     "animalIds": [
+      "atlantic-puffin",
+      "northern-gannet"
+     ]
+    },
+    {
+     "name": "Sandy Beach",
+     "icon": "🏖️",
+     "description": "A long beach where seals rest and small birds run along the waves.",
+     "animalIds": [
+      "harbor-seal",
+      "sanderling"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "grassland",
+   "name": "Grassland",
+   "saveKey": "grasslandLocation",
+   "ambient": "grassland",
+   "screenClassName": "grassland-screen",
+   "eyebrow": "Grassland",
+   "screenTitle": "Grassland Arrival",
+   "arrivalMessage": "You have arrived quietly at the edge of the prairie.",
+   "aboutTitle": "Open plains and rolling grass",
+   "aboutText": "Walk through the Tall Grass, Prairie Burrows, and Open Sky, and photograph the six animals that live here. Move slowly and keep your distance - every animal stays wild and free.",
+   "journalIcon": "🌾",
+   "journalTitle": "Grassland Animals",
+   "locations": [
+    {
+     "name": "Tall Grass",
+     "icon": "🌾",
+     "description": "Rolling grass that stretches to the horizon, grazed by large herds.",
+     "animalIds": [
+      "american-bison",
+      "pronghorn"
+     ]
+    },
+    {
+     "name": "Prairie Burrows",
+     "icon": "🕳️",
+     "description": "A hillside of burrows, where small animals pop up to look around.",
+     "animalIds": [
+      "prairie-dog",
+      "burrowing-owl"
+     ]
+    },
+    {
+     "name": "Open Sky",
+     "icon": "☁️",
+     "description": "The wide blue sky above the prairie, where birds sing and soar.",
+     "animalIds": [
+      "western-meadowlark",
+      "red-tailed-hawk"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "taiga",
+   "name": "Taiga",
+   "saveKey": "taigaLocation",
+   "ambient": "taiga",
+   "screenClassName": "taiga-screen",
+   "eyebrow": "Taiga",
+   "screenTitle": "Taiga Arrival",
+   "arrivalMessage": "You have arrived quietly among the snowy pines.",
+   "aboutTitle": "Cold pines and quiet wilderness",
+   "aboutText": "Walk through the Pine Forest, Frozen Stream, and Snowy Clearing, and photograph the six animals that live here. Be still and quiet - every animal stays wild and free.",
+   "journalIcon": "🌲",
+   "journalTitle": "Taiga Animals",
+   "locations": [
+    {
+     "name": "Pine Forest",
+     "icon": "🌲",
+     "description": "Tall, dark pines where big animals browse and owls listen.",
+     "animalIds": [
+      "moose",
+      "great-grey-owl"
+     ]
+    },
+    {
+     "name": "Frozen Stream",
+     "icon": "🧊",
+     "description": "A quiet stream with ice at its edges, where animals pass through.",
+     "animalIds": [
+      "lynx",
+      "snowshoe-hare"
+     ]
+    },
+    {
+     "name": "Snowy Clearing",
+     "icon": "❄️",
+     "description": "An open patch of snow among the trees, where small animals feed.",
+     "animalIds": [
+      "porcupine",
+      "red-crossbill"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "volcanic-highlands",
+   "name": "Volcanic Highlands",
+   "saveKey": "volcanicHighlandsLocation",
+   "ambient": "volcanic-highlands",
+   "screenClassName": "volcanic-highlands-screen",
+   "eyebrow": "Volcanic Highlands",
+   "screenTitle": "Volcanic Highlands Arrival",
+   "arrivalMessage": "You have arrived quietly beside the steaming hills.",
+   "aboutTitle": "Hot springs and steaming ground",
+   "aboutText": "Explore the Hot Springs, Steam Vents, and Lava Fields, and photograph the six animals that live here. Stay on the path and keep your distance - every animal stays wild and free.",
+   "journalIcon": "🌋",
+   "journalTitle": "Volcanic Highlands Animals",
+   "locations": [
+    {
+     "name": "Hot Springs",
+     "icon": "♨️",
+     "description": "Warm pools in the cold hills, where animals come to stay cosy.",
+     "animalIds": [
+      "japanese-macaque",
+      "mandarin-duck"
+     ]
+    },
+    {
+     "name": "Steam Vents",
+     "icon": "💨",
+     "description": "Cracks in the rock that puff warm steam over mossy ground.",
+     "animalIds": [
+      "lava-lizard",
+      "nene"
+     ]
+    },
+    {
+     "name": "Lava Fields",
+     "icon": "⛰️",
+     "description": "Dark, cooled lava rock with animals that thrive in harsh places.",
+     "animalIds": [
+      "marine-iguana",
+      "galapagos-tortoise"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "alien-planet",
+   "name": "Alien Planet",
+   "saveKey": "alienPlanetLocation",
+   "ambient": "alien-planet",
+   "screenClassName": "alien-planet-screen",
+   "eyebrow": "Alien Planet",
+   "screenTitle": "Alien Planet Arrival",
+   "arrivalMessage": "You have landed quietly on a glowing, faraway world.",
+   "aboutTitle": "A far-future mystery",
+   "aboutText": "Explore the Crystal Meadow, Floating Islands, and Glowing Caves, and photograph the six imaginary animals that live here. They are made up, but the rules are the same - watch quietly, and every animal stays wild and free.",
+   "journalIcon": "🪐",
+   "journalTitle": "Alien Animals",
+   "locations": [
+    {
+     "name": "Crystal Meadow",
+     "icon": "💎",
+     "description": "A glittering meadow of glassy crystals that hum softly in the starlight.",
+     "animalIds": [
+      "crystal-hopper",
+      "lumen-moth"
+     ]
+    },
+    {
+     "name": "Floating Islands",
+     "icon": "☁️",
+     "description": "Islands of rock and moss that drift gently high above the clouds.",
+     "animalIds": [
+      "sky-whale",
+      "cloud-jelly"
+     ]
+    },
+    {
+     "name": "Glowing Caves",
+     "icon": "🕳️",
+     "description": "Deep caves lit by soft, glowing mushrooms and streams of blue light.",
+     "animalIds": [
+      "cave-glimmer",
+      "echo-bat"
+     ]
+    }
+   ]
+  }
+ ],
+ "destinations": [
+  {
+   "id": "forest",
+   "name": "Forest",
+   "icon": "🌲",
+   "tagline": "Tall trees and hidden clearings",
+   "preview": "A future wildlife journey through shaded trails and quiet woodland habitats.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "mountains",
+   "name": "Mountains",
+   "icon": "⛰️",
+   "tagline": "High paths and rocky lookouts",
+   "preview": "A calm expedition up the Rocky Trail, Alpine Meadow, and Lookout Ridge to watch goats, marmots, pikas, hares, eagles, and bluebirds.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "lake",
+   "name": "Lake",
+   "icon": "🌊",
+   "tagline": "Reeds, shorelines, and open water",
+   "preview": "A calm journey to the Shoreline, Open Water, and Reeds & Shallows to photograph herons, beavers, loons, trout, dragonflies, and turtles.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "safari",
+   "name": "Safari",
+   "icon": "🦒",
+   "tagline": "Wide grasslands and distant wildlife",
+   "preview": "A calm trip to the Waterhole, Open Plains, and Acacia Grove to watch elephants, hippos, zebras, giraffes, meerkats, and rollers from a respectful distance.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "rainforest",
+   "name": "Rainforest",
+   "icon": "🌧️",
+   "tagline": "Dense leaves and layered habitats",
+   "preview": "A calm expedition through the Forest Floor, Canopy Walk, and River Bank to find tapirs, frogs, sloths, macaws, capybaras, and iguanas.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "alien-planet",
+   "name": "Alien Planet",
+   "icon": "🪐",
+   "tagline": "A special far-future mystery",
+   "preview": "A calm trip to the Crystal Meadow, Floating Islands, and Glowing Caves of a faraway world to photograph six imaginary animals: hoppers, moths, sky whales, jellies, glimmers, and echo bats.",
+   "status": "preview",
+   "quizEligible": false
+  },
+  {
+   "id": "desert",
+   "name": "Desert",
+   "icon": "🏜️",
+   "tagline": "Warm dunes and cool nights",
+   "preview": "A calm expedition across the Sand Dunes, Rocky Outcrop, and Oasis Edge to watch fennec foxes, sidewinders, tortoises, chuckwallas, roadrunners, and camels.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "arctic",
+   "name": "Arctic",
+   "icon": "❄️",
+   "tagline": "Snow, ice, and open sky",
+   "preview": "A calm journey across the Snowfield, Ice Edge, and Frozen Shore to watch arctic foxes, snowy owls, polar bears, walruses, muskoxen, and harp seals from a respectful distance.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "coral-reef",
+   "name": "Coral Reef",
+   "icon": "🐠",
+   "tagline": "Bright coral and calm blue water",
+   "preview": "A calm underwater trip over the Shallow Reef, Coral Garden, and Deep Blue to see clownfish, blue tangs, sea turtles, seahorses, manta rays, and whale sharks.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "wetlands",
+   "name": "Wetlands",
+   "icon": "🦩",
+   "tagline": "Reeds, mangroves, and still water",
+   "preview": "A calm journey through the Mangroves, Still Marsh, and Mudflats to watch mudskippers, spoonbills, otters, egrets, fiddler crabs, and flamingos.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "coastal",
+   "name": "Coastal",
+   "icon": "🦀",
+   "tagline": "Tide pools and rocky shoreline",
+   "preview": "A calm walk along the Tide Pools, Sea Cliffs, and Sandy Beach to watch sea stars, hermit crabs, puffins, gannets, seals, and sanderlings.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "grassland",
+   "name": "Grassland",
+   "icon": "🌾",
+   "tagline": "Open plains and rolling grass",
+   "preview": "A calm journey across the Tall Grass, Prairie Burrows, and Open Sky to watch bison, pronghorn, prairie dogs, burrowing owls, meadowlarks, and hawks.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "taiga",
+   "name": "Taiga",
+   "icon": "🐺",
+   "tagline": "Cold pines and quiet wilderness",
+   "preview": "A calm expedition through the Pine Forest, Frozen Stream, and Snowy Clearing to watch moose, great grey owls, lynx, snowshoe hares, porcupines, and crossbills.",
+   "status": "preview",
+   "quizEligible": true
+  },
+  {
+   "id": "volcanic-highlands",
+   "name": "Volcanic Highlands",
+   "icon": "🌋",
+   "tagline": "Hot springs and steaming ground",
+   "preview": "A calm expedition to the Hot Springs, Steam Vents, and Lava Fields to watch macaques, mandarin ducks, lava lizards, nene geese, marine iguanas, and giant tortoises.",
+   "status": "preview",
+   "quizEligible": true
+  }
+ ],
+ "roles": [
+  {
+   "id": "zoologist",
+   "name": "Zoologist",
+   "description": "Learns a bonus fact right on the first photo of every new species."
+  },
+  {
+   "id": "wildlife-photographer",
+   "name": "Wildlife Photographer",
+   "description": "Unlocks a bonus 6th photo to collect for every animal."
+  },
+  {
+   "id": "conservation-ranger",
+   "name": "Conservation Ranger",
+   "description": "Discovers twice as many facts about common wildlife."
+  },
+  {
+   "id": "explorer",
+   "name": "Explorer",
+   "description": "Gets an early glimpse of still-locked hidden places on the map."
+  },
+  {
+   "id": "animal-researcher",
+   "name": "Animal Researcher",
+   "description": "Finds rare animals easier to photograph, and learns twice as many facts about them."
+  },
+  {
+   "id": "custom-character",
+   "name": "Custom Character",
+   "description": "A flexible explorer role for later customisation."
+  }
+ ],
+ "parkLocations": [
+  {
+   "id": "park-entrance",
+   "name": "Park Entrance",
+   "icon": "🌿",
+   "status": "available",
+   "description": "A friendly sign welcomes new wildlife explorers to Tutorial Park.",
+   "gameplayNote": "Start exploring, check the journal, and talk to the puppy owner here."
+  },
+  {
+   "id": "duck-pond",
+   "name": "Duck Pond",
+   "icon": "🦆",
+   "status": "available",
+   "description": "Clear water, lily pads, ducks, frogs, and quiet animal sounds.",
+   "gameplayNote": "Photograph ducks and frogs here."
+  },
+  {
+   "id": "open-meadow",
+   "name": "Open Meadow",
+   "icon": "🌼",
+   "status": "available",
+   "description": "A sunny meadow with flowers, butterflies, rabbits, and soft grass.",
+   "gameplayNote": "Photograph butterflies and rabbits here. Pawprints may appear during the Lost Puppy quest."
+  },
+  {
+   "id": "forest-trail",
+   "name": "Forest Trail",
+   "icon": "🌲",
+   "status": "available",
+   "description": "A gentle trail with logs, leaves, lizards, park birds, and puppy clues.",
+   "gameplayNote": "Photograph lizards and park birds here. Quest clues can be found here too."
+  },
+  {
+   "id": "strange-old-tree",
+   "name": "Strange Old Tree",
+   "icon": "🌳",
+   "status": "available",
+   "description": "A rare natural tree with unusual branches, special leaves, bark marks, and a quiet owl perch.",
+   "gameplayNote": "Spot and photograph the Rare Owl here. This tree is natural, not magical."
+  },
+  {
+   "id": "whisper-grove",
+   "name": "Whisper Grove",
+   "icon": "🌺",
+   "status": "hidden",
+   "description": "A hidden quiet flower and wildlife area tucked behind natural vegetation.",
+   "gameplayNote": "A peaceful secret place discovered from the Strange Old Tree area."
+  }
+ ],
+ "parkMapCoordinates": {
+  "Park Entrance": {
+   "top": "82%",
+   "left": "50%"
+  },
+  "Duck Pond": {
+   "top": "63%",
+   "left": "18%"
+  },
+  "Open Meadow": {
+   "top": "64%",
+   "left": "80%"
+  },
+  "Forest Trail": {
+   "top": "42%",
+   "left": "50%"
+  },
+  "Strange Old Tree": {
+   "top": "12%",
+   "left": "24%"
+  },
+  "Whisper Grove": {
+   "top": "26%",
+   "left": "72%"
+  }
+ },
+ "lostPuppyQuest": {
+  "id": "lost-puppy",
+  "name": "Lost Puppy",
+  "description": "A friendly puppy wandered away from its owner. The puppy is not in danger. Follow gentle clues and help the puppy get back.",
+  "tone": "Helpful, gentle, positive, safe, and calm.",
+  "steps": [
+   "Talk to the owner at Park Entrance.",
+   "Find pawprints in Open Meadow.",
+   "Find the chew toy on Forest Trail.",
+   "Find the puppy on Forest Trail.",
+   "Return to Park Entrance for a gentle reunion."
+  ]
+ },
+ "achievements": {
+  "tutorial-park-ranger": {
+   "id": "tutorial-park-ranger",
+   "name": "Tutorial Park Ranger",
+   "icon": "🎖️",
+   "description": "Completed the Tutorial Park ranger quiz after finishing the park."
+  }
+ }
+}

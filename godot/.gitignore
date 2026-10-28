@@ -1,0 +1,5 @@
+.godot/
+assets/
+build/
+*.translation
+export_presets.cfg.bak
