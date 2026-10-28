@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · fix(ui): walkthrough of the remaining screens** — Opened the Park, Forest, Camper hub, photo
+  reveal, Journal, destination planner and the other four mini games at phone width. Fixed: picked answers
+  in the quiz-style mini games turned pale but kept white text (unreadable; now dark text); the Camper hub
+  and Journey Planner still said "Preview only" / "Other destinations remain previews" although every
+  destination is playable (now "Ready to visit"); Camper stations are kept clear of the floating buttons.
+  Not opened: Mountains, and the Park and Forest beyond their arrival views.
+
 - **2026-10-28 · fix(ui): phone-width and hover fixes from a full walkthrough** — Opened every biome, the camera
   and the mini games in 390px-wide frames. Fixed: the floating camera/journal/info buttons covered the first
   location card (now padded clear) and drew on top of open panels (panels now sit above them); hovering a

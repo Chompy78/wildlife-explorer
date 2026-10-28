@@ -337,3 +337,11 @@ button.secondary:hover:not(:disabled) { background: #cfe6c2; }
   .camera-card .shot-feedback { min-height: 1.2rem; margin: 0.2rem 0; }
 }
 @media (max-width: 700px) { .find-tile { min-height: 3.2rem; font-size: 1.9rem; } .find-grid { gap: 0.3rem; } }
+
+/* Keep the Camper stations and destination cards clear of the floating action buttons on a phone. */
+@media (max-width: 700px) { .camper-interior-wrap .station-grid { padding-right: 3.6rem; } }
+
+/* Picked answers turn pale, so their text must turn dark to stay readable. */
+.choice.right, .choice.tryagain, .choice.right:hover:not(:disabled), .choice.tryagain:hover:not(:disabled) { color: #19402b; }
+.choice.right:hover:not(:disabled) { background: #c8eed2; }
+.choice.tryagain:hover:not(:disabled) { background: #fde9c4; }

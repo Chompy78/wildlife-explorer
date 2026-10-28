@@ -14,7 +14,7 @@ import { PhotoWallSummary } from './PhotoWallSummary';
 type Props = { saveData: SaveData; onSaveChange: (saveData: SaveData) => void; onReturnToPark: () => void; onTravelToForest?: () => void; onTravelToBiome?: (id: BiomeId) => void; onGoHome: () => void };
 type PanelKey = 'journey' | 'about';
 const stationDetails: Record<CamperStationId, { name: string; icon: string; text: string }> = {
-  'route-map': { name: 'Route Map', icon: '🗺️', text: 'The route map shows future habitat regions. The Forest, the Lake, the Mountains and the Safari are ready to visit. Other destinations remain previews.' },
+  'route-map': { name: 'Route Map', icon: '🗺️', text: 'The route map shows every habitat you can visit. Pin one in the Journey Planner, then travel there.' },
   'field-desk': { name: 'Field Desk', icon: '📝', text: 'The field desk holds gentle expedition notes and space for future wildlife research.' },
   'gear-rack': { name: 'Gear Rack', icon: '🎒', text: 'The gear rack stores a camera bag, notebook, water bottle, and safe observation equipment.' },
   'photo-wall': { name: 'Photo Wall', icon: '🖼️', text: 'The photo wall celebrates discoveries without collecting or removing wildlife from habitats.' },
@@ -50,10 +50,10 @@ export function CamperScreen({ saveData, onSaveChange, onReturnToPark, onTravelT
       </section>
 
       {activePanel === 'journey' ? (
-        <PanelModal title="Future Destinations" eyebrow="Journey planner" onClose={() => setActivePanel(null)}>
-          <p className="muted">Pin a preview to the route map. Forest, Lake, Mountains and Safari travel are enabled. Other routes remain previews.</p>
-          <div className="destination-grid">{destinationPreviews.map((d) => <button key={d.id} className={saveData.selectedDestination === d.id ? 'destination-card selected' : 'destination-card'} onClick={() => chooseDestination(d.id)} aria-pressed={saveData.selectedDestination === d.id}><span aria-hidden="true">{d.icon}</span><strong>{d.name}</strong><small>{d.tagline}</small><em>{saveData.selectedDestination === d.id ? '✓ Selected - Preview only' : 'Preview only'}</em></button>)}</div>
-          <section className="destination-preview">{selected ? <><div className="destination-preview-icon" aria-hidden="true">{selected.icon}</div><h3>{selected.name} pinned to route map</h3><p>{selected.preview}</p>{selected.id === 'forest' && onTravelToForest ? <button onClick={onTravelToForest}>Travel to Forest</button> : null}{selectedBiome && onTravelToBiome ? <button onClick={() => onTravelToBiome(selectedBiome.id)}>Travel to {selectedBiome.name}</button> : null}<button className="secondary" onClick={clearDestination}>Clear pinned destination</button></> : <><h3>No destination pinned yet</h3><p>Choose a preview above to plan a future wildlife journey.</p></>}</section>
+        <PanelModal title="Destinations" eyebrow="Journey planner" onClose={() => setActivePanel(null)}>
+          <p className="muted">Pin a destination to the route map, then travel there. Every destination is ready to visit.</p>
+          <div className="destination-grid">{destinationPreviews.map((d) => <button key={d.id} className={saveData.selectedDestination === d.id ? 'destination-card selected' : 'destination-card'} onClick={() => chooseDestination(d.id)} aria-pressed={saveData.selectedDestination === d.id}><span aria-hidden="true">{d.icon}</span><strong>{d.name}</strong><small>{d.tagline}</small><em>{saveData.selectedDestination === d.id ? '✓ Selected - Ready to visit' : 'Ready to visit'}</em></button>)}</div>
+          <section className="destination-preview">{selected ? <><div className="destination-preview-icon" aria-hidden="true">{selected.icon}</div><h3>{selected.name} pinned to route map</h3><p>{selected.preview}</p>{selected.id === 'forest' && onTravelToForest ? <button onClick={onTravelToForest}>Travel to Forest</button> : null}{selectedBiome && onTravelToBiome ? <button onClick={() => onTravelToBiome(selectedBiome.id)}>Travel to {selectedBiome.name}</button> : null}<button className="secondary" onClick={clearDestination}>Clear pinned destination</button></> : <><h3>No destination pinned yet</h3><p>Choose a destination above to plan your next wildlife journey.</p></>}</section>
           <ExpeditionReadiness saveData={saveData} />
         </PanelModal>
       ) : null}
