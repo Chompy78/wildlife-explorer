@@ -5,6 +5,11 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(audio): synthesized sound effects with a mute toggle** — shutter click, Great Shot
+  chime and new-photo chime via the Web Audio API (`src/audio/sound.ts`), played only on a tap. A
+  "Sound on/off" button in the Camera panel; the choice persists in its own `localStorage` key, so no save
+  schema change. Why: `D-2026-10-28-synthesized-audio-outside-save`. Removed from SOMEDAY.
+
 - **2026-10-28 · feat(camera): day/dusk/night mood picker** — cosmetic only: a Day / Dusk / Night picker in
   the Camera panel re-tints the panel and flags animals whose `activeTime` matches ("Most active now").
   Held in component state, not saved (no schema change), and it never touches variant selection or Great

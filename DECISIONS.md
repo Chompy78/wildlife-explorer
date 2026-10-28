@@ -4,6 +4,15 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-synthesized-audio-outside-save · synthesized sound effects, mute kept outside SaveData
+
+**Status:** Active
+
+**Summary:** Sound effects (shutter, Great Shot chime, new-photo chime) are synthesized with the Web Audio
+  API instead of shipped as asset files, and the mute flag lives in its own `localStorage` key rather
+  than `SaveData` - it is a device preference, and this avoids a schema bump. Full record:
+  `decisions/2026/D-2026-10-28-synthesized-audio-outside-save.md`.
+
 ## D-2026-07-30-pr-gate-still-deferred · keep commit-straight-to-`main`, revisit later
 
 **Status:** Active

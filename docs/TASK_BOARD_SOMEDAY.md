@@ -33,5 +33,4 @@ Not urgent, not scheduled, but worth keeping on record so they aren't lost.
 - **PWA manifest and install icons** — the full Progressive Web App roadmap item, beyond just the
   favicon housekeeping task above.
 - **Localization / i18n** — not mentioned anywhere; only relevant if the game grows beyond English.
-- **Sound/audio system** — no audio exists or is planned; a natural fit for a calm nature game
-  eventually, but genuinely not started.
+- **Ambient audio loops** — sound effects shipped 2026-10-28 (`D-2026-10-28-synthesized-audio-outside-save`); looping habitat ambience and music are not built.

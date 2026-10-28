@@ -161,4 +161,14 @@ describe('CameraPanel', () => {
       expect(onPhotographAnimal).toHaveBeenCalledWith('duck', expect.any(Boolean));
     });
   });
+  describe('sound toggle', () => {
+    it('toggles and remembers the mute choice', () => {
+      window.localStorage.clear();
+      render(<CameraPanel animalsHere={[duck]} saveData={createDefaultSave()} onPhotographAnimal={vi.fn()} />);
+      fireEvent.click(screen.getByRole('button', { name: /Sound on/ }));
+      expect(screen.getByRole('button', { name: /Sound off/ })).toBeInTheDocument();
+      expect(window.localStorage.getItem('wildlife-explorer-sound-muted')).toBe('1');
+      window.localStorage.clear();
+    });
+  });
 });

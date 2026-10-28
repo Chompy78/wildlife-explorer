@@ -1,4 +1,5 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+import { playNewPhoto } from '../audio/sound';
 import { useModalFocus } from '../hooks/useModalFocus';
 import { getPhotoQualityLabel, getPhotoQualityStyle } from '../data/photoQuality';
 import type { Animal } from '../types/Animal';
@@ -21,6 +22,8 @@ export function PhotoReveal({ animal, photoUrl, collectedCount, totalCount, fact
   const closeRef = useRef<HTMLButtonElement>(null);
   const close = useCallback(onClose, [onClose]);
   useModalFocus(dialogRef, close, closeRef);
+  // A Great Shot already played its own chime when the shutter was tapped.
+  useEffect(() => { if (!greatShot) playNewPhoto(); }, [greatShot]);
   const complete = collectedCount >= totalCount;
   const qualityStyle = showPhotoQuality ? getPhotoQualityStyle(greatShot) : undefined;
   const qualityLabel = showPhotoQuality ? getPhotoQualityLabel(greatShot) : null;

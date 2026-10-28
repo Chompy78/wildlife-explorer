@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { isSoundMuted, playGreatShot, playShutter, setSoundMuted } from '../audio/sound';
 import { getPhotoVariantCount, getPhotoVariantUrl, isCollectionComplete } from '../data/animalPhotoVariants';
 import { effectivePhotoDifficulty } from '../data/roleBonuses';
 import { getMood, isActiveAt, timeOfDayMoods, type TimeOfDay } from '../data/timeOfDay';
@@ -82,6 +83,8 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
   const [reducedMotionGlow, setReducedMotionGlow] = useState<Partial<Record<AnimalId, boolean>>>({});
   // Cosmetic mood only - never read by the photo or timing logic below.
   const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('day');
+  const [soundMuted, setSoundMutedState] = useState<boolean>(() => isSoundMuted());
+  function toggleSound() { const next = !soundMuted; setSoundMuted(next); setSoundMutedState(next); }
 
   useEffect(() => {
     const totalCount = getTotalPhotographCount(saveData);
@@ -140,6 +143,9 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
             <span aria-hidden="true">{mood.icon}</span> {mood.label}
           </button>
         ))}
+        <button type="button" className="secondary mood-button" aria-pressed={!soundMuted} onClick={toggleSound}>
+          <span aria-hidden="true">{soundMuted ? '🔇' : '🔊'}</span> Sound {soundMuted ? 'off' : 'on'}
+        </button>
       </div>
       <p className="mood-description muted">{getMood(timeOfDay).description}</p>
       {animalsHere.length === 0 ? (
@@ -165,7 +171,7 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
                 <button
                   key={animal.id}
                   className={className}
-                  onClick={() => onPhotographAnimal(animal.id, greatShotNow)}
+                  onClick={() => { playShutter(); if (greatShotNow) playGreatShot(); onPhotographAnimal(animal.id, greatShotNow); }}
                   disabled={complete}
                 >
                   {hasPhotos ? (
