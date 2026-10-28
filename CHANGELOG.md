@@ -5,6 +5,14 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(rainforest): Rainforest is now playable (no photo art yet)** — Rainforest Arrival
+  screen with Forest Floor / Canopy Walk / River Bank (Tapir, Poison Dart Frog, Sloth, Scarlet Macaw,
+  Capybara, Green Iguana), "Travel to Rainforest" in the Journey Planner, a Rainforest Journal tab and an
+  ambient bed. Added through the new registry: one entry plus type lines. Save schema 12 -> 13
+  (`rainforestLocation`); the migration's valid-animal list is now derived from `animals.ts`. Brief for the
+  art: `docs/copilot-packages/08-rainforest-biome-animals.md`. Not checked by eye. Why:
+  `D-2026-10-28-rainforest-biome`.
+
 - **2026-10-28 · docs(art): Safari art brief** — `docs/copilot-packages/07-safari-biome-animals.md`, same shape as the Mountains brief (master prompt, subject lines, modifiers, 30 trigger lines, exact animal ids as filenames). The Mountains/Safari art board tasks now point at their briefs and drop a test reference made stale by the registry refactor.
 
 - **2026-10-28 · refactor(biomes): one registry drives Lake, Mountains and Safari** — `src/data/biomes.ts`

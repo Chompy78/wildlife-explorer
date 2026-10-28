@@ -58,7 +58,7 @@ Implemented features include:
 - Responsive and reduced-motion styling
 - Automated TypeScript, state, component, build and encoding checks
 
-The Lake (Shoreline, Open Water, Reeds & Shallows) the Mountains (Rocky Trail, Alpine Meadow, Lookout Ridge) and the Safari (Waterhole, Open Plains, Acacia Grove) are playable from the Wild Camper, 6 animals each (Mountains and Safari have no photos yet). Rainforest and Alien Planet remain preview-only.
+The Lake (Shoreline, Open Water, Reeds & Shallows) the Mountains (Rocky Trail, Alpine Meadow, Lookout Ridge) and the Safari (Waterhole, Open Plains, Acacia Grove) are playable from the Wild Camper, 6 animals each (Mountains and Safari have no photos yet). Rainforest (Forest Floor, Canopy Walk, River Bank) is playable too. Alien Planet and the other destinations remain preview-only.
 
 ## Playable Locations
 
@@ -181,7 +181,6 @@ Potential future development includes:
 
 - Milestone 5 hardening and browser-level testing
 - Expanded Forest content through separately approved milestones
-- Rainforest habitat
 - Advanced photography
 - Expanded wildlife journal features
 - Cooperative discovery systems

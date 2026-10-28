@@ -4,7 +4,7 @@ import type { LostPuppyQuestProgress } from './Quest';
 import type { BiomeId } from './Biome';
 import type { AnimalId, LocationName } from './Ids';
 
-export const CURRENT_SAVE_SCHEMA_VERSION = 12 as const;
+export const CURRENT_SAVE_SCHEMA_VERSION = 13 as const;
 export type GameScreen = 'start' | 'role-select' | 'park' | 'camper' | 'forest' | BiomeId;
 export type PlayArea = 'park' | 'camper' | 'forest' | BiomeId;
 
@@ -28,6 +28,7 @@ export type SaveData = {
   lakeLocation: string;
   mountainLocation: string;
   safariLocation: string;
+  rainforestLocation: string;
   reportedInvasiveSpecies: AnimalId[];
   // Collected photo variants, one entry per collected shot, e.g. "duck-3". See data/animalPhotoVariants.ts.
   collectedPhotoVariants: string[];

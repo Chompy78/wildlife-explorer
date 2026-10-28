@@ -80,6 +80,25 @@ export const biomes: BiomeDef[] = [
       { name: 'Acacia Grove', icon: '🌳', description: 'Flat-topped acacia trees casting shade over small, busy animals and bright birds.', animalIds: ['meerkat', 'lilac-breasted-roller'] },
     ],
   },
+  {
+    id: 'rainforest',
+    name: 'Rainforest',
+    saveKey: 'rainforestLocation',
+    ambient: 'rainforest',
+    screenClassName: 'rainforest-screen',
+    eyebrow: 'Rainforest',
+    screenTitle: 'Rainforest Arrival',
+    arrivalMessage: 'You have arrived quietly under the rainforest canopy.',
+    aboutTitle: 'Under the canopy',
+    aboutText: 'Explore the Forest Floor, Canopy Walk, and River Bank, and photograph the six animals that live here. Step softly and listen - every animal stays wild and free.',
+    journalIcon: '🌴',
+    journalTitle: 'Rainforest Animals',
+    locations: [
+      { name: 'Forest Floor', icon: '🍃', description: 'A damp, shady floor of fallen leaves, where tapirs forage and tiny frogs glow with colour.', animalIds: ['tapir', 'poison-dart-frog'] },
+      { name: 'Canopy Walk', icon: '🌴', description: 'A high walkway among the treetops, where sloths hang and macaws call.', animalIds: ['sloth', 'scarlet-macaw'] },
+      { name: 'River Bank', icon: '🏞️', description: 'A warm, muddy river bank where capybaras graze and iguanas bask above the water.', animalIds: ['capybara', 'green-iguana'] },
+    ],
+  },
 ];
 
 export function getBiome(id: string | null | undefined): BiomeDef | undefined {

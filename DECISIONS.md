@@ -4,6 +4,14 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-rainforest-biome · Rainforest becomes the fifth playable destination, via the registry
+
+**Status:** Active
+
+**Summary:** Built on the registry rather than copied: one registry entry, one SaveData field, six animals.
+  Save schema 12 -> 13. Emoji only until art exists. Migration's valid-animal list is now derived from
+  `animals.ts`. Full record: `decisions/2026/D-2026-10-28-rainforest-biome.md`.
+
 ## D-2026-10-28-biome-registry · one registry for the data-driven biomes
 
 **Status:** Active

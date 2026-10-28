@@ -63,7 +63,7 @@ Implemented:
 - No combat or harsh failure
 - Never catch, collect, harm or kill animals
 - The Lost Puppy is helped and reunited, never collected
-- Rainforest and Alien Planet remain preview-only. The Lake, Mountains and Safari became playable on 2026-10-28 at the user's explicit request (`D-2026-10-28-lake-biome-go-ahead`, `D-2026-10-28-mountains-biome-go-ahead`, `D-2026-10-28-safari-biome-go-ahead`).
+- Only Alien Planet (and the unbuilt destinations: Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga, Volcanic Highlands) remain preview-only. The Lake, Mountains, Safari and Rainforest became playable on 2026-10-28 at the user's explicit request (`D-2026-10-28-lake-biome-go-ahead`, `...-mountains-...`, `...-safari-...`, `D-2026-10-28-rainforest-biome`); they share the registry in `src/data/biomes.ts` (`D-2026-10-28-biome-registry`).
 
 ## Scope boundary
 

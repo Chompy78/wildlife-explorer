@@ -60,3 +60,5 @@ package says exactly which ones, kept well under the 20-file ceiling.
   without photos; this art is the missing piece. Wiring is the "Mountains art and photo wiring" board task.
 - `07-safari-biome-animals.md` — Safari animal art (6 animals × 5 photos), same shape as 06. Wiring is the
   "Safari art and photo wiring" board task.
+- `08-rainforest-biome-animals.md` — Rainforest animal art (6 animals × 5 photos), same shape as 06/07. Wiring is
+  the "Rainforest art and photo wiring" board task.

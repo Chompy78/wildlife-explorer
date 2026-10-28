@@ -63,4 +63,18 @@ Generate 30 Safari photos (6 animals x 5) and wire them in, same as the Mountain
 
 ---
 
+## Rainforest art and photo wiring — TODO
+Generate 30 Rainforest photos (6 animals x 5) and wire them in, same as the Mountains and Safari tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/08-rainforest-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Rainforest animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
 ---

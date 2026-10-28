@@ -95,6 +95,24 @@ describe('App travel and Continue restoration', () => {
     expect(screen.getByRole('button', { name: /Open Plains/ })).toHaveClass('active');
   });
 
+  it('completes Rainforest travel and restores the Rainforest on Continue', async () => {
+    const user = userEvent.setup();
+    seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'camper' });
+    const first = render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Continue' }));
+    await user.click(screen.getByRole('button', { name: /journey planner/i }));
+    await user.click(screen.getByRole('button', { name: /^Rainforest/ }));
+    await user.click(screen.getByRole('button', { name: 'Travel to Rainforest' }));
+    expect(screen.getByRole('heading', { name: 'Rainforest Arrival', level: 1 })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /Canopy Walk/ }));
+    first.unmount();
+
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Continue' }));
+    expect(screen.getByRole('heading', { name: 'Rainforest Arrival', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Canopy Walk/ })).toHaveClass('active');
+  });
+
   it('restores the Forest play area on Continue after Forest travel', async () => {
     const user = userEvent.setup();
     seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'forest', forestLocation: 'Fern Trail' });

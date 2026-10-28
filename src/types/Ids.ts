@@ -31,7 +31,13 @@ export type AnimalId =
   | 'zebra'
   | 'giraffe'
   | 'meerkat'
-  | 'lilac-breasted-roller';
+  | 'lilac-breasted-roller'
+  | 'tapir'
+  | 'poison-dart-frog'
+  | 'sloth'
+  | 'scarlet-macaw'
+  | 'capybara'
+  | 'green-iguana';
 
 export type LocationName =
   | 'Park Entrance'

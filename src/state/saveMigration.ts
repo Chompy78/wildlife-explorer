@@ -1,4 +1,5 @@
 import { defaultLostPuppyQuestProgress } from './saveDefaults';
+import { animals } from '../data/animals';
 import { validAchievementIds } from '../data/achievements';
 import { ALL_PHOTO_VARIANT_KEYS } from '../data/animalPhotoVariants';
 import { biomes, isBiomeId } from '../data/biomes';
@@ -8,7 +9,8 @@ import type { AnimalId, LocationName } from '../types/Ids';
 import type { DestinationId } from '../types/Destination';
 
 const validLocations: LocationName[] = ['Park Entrance', 'Duck Pond', 'Open Meadow', 'Forest Trail', 'Strange Old Tree', 'Whisper Grove'];
-const validAnimals: AnimalId[] = ['duck', 'frog', 'butterfly', 'rabbit', 'lizard', 'park-bird', 'rare-owl', 'lost-puppy', 'forest-wren', 'forest-wallaby', 'forest-beetle', 'red-eared-slider', 'cane-toad', 'grey-squirrel', 'european-starling', 'great-blue-heron', 'beaver', 'rainbow-trout', 'loon', 'dragonfly', 'painted-turtle', 'mountain-goat', 'marmot', 'pika', 'mountain-hare', 'golden-eagle', 'mountain-bluebird', 'african-elephant', 'hippo', 'zebra', 'giraffe', 'meerkat', 'lilac-breasted-roller'];
+// Every animal in animals.ts is a valid id, so a new animal (or biome) needs no edit here.
+const validAnimals: AnimalId[] = animals.map((animal) => animal.id);
 const validDestinations: DestinationId[] = ['forest', 'mountains', 'lake', 'safari', 'rainforest', 'alien-planet', 'desert', 'arctic', 'coral-reef', 'wetlands', 'coastal', 'grassland', 'taiga', 'volcanic-highlands'];
 
 export function migrateSaveData(input: unknown): SaveData {

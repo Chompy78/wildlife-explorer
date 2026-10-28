@@ -198,4 +198,17 @@ describe('save migration', () => {
       expect(migrateSaveData({ lastPlayArea: 'safari', wildCamperUnlocked: false }).lastPlayArea).toBe('park');
     });
   });
+
+  describe('Rainforest', () => {
+    it('defaults rainforestLocation for older saves and rejects garbage', () => {
+      expect(migrateSaveData({}).rainforestLocation).toBe('Forest Floor');
+      expect(migrateSaveData({ rainforestLocation: 'The Moon' }).rainforestLocation).toBe('Forest Floor');
+      expect(migrateSaveData({ rainforestLocation: 'River Bank' }).rainforestLocation).toBe('River Bank');
+    });
+
+    it('restores the Rainforest play area only once the Wild Camper is unlocked', () => {
+      expect(migrateSaveData({ lastPlayArea: 'rainforest', wildCamperUnlocked: true }).lastPlayArea).toBe('rainforest');
+      expect(migrateSaveData({ lastPlayArea: 'rainforest', wildCamperUnlocked: false }).lastPlayArea).toBe('park');
+    });
+  });
 });

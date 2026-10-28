@@ -69,7 +69,7 @@ export function playNewPhoto(): void {
 // A very quiet, slowly swelling filtered-noise bed per habitat (breeze, rustle, lapping water, high wind).
 // It starts only after the player has tapped something (entering a screen is always a tap), and follows
 // the same mute switch as the effects above.
-export type AmbientKind = 'park' | 'forest' | 'lake' | 'mountains' | 'safari';
+export type AmbientKind = 'park' | 'forest' | 'lake' | 'mountains' | 'safari' | 'rainforest';
 
 type AmbientRecipe = { filter: BiquadFilterType; freq: number; q: number; level: number; swellHz: number };
 const AMBIENT_RECIPES: Record<AmbientKind, AmbientRecipe> = {
@@ -77,6 +77,7 @@ const AMBIENT_RECIPES: Record<AmbientKind, AmbientRecipe> = {
   forest: { filter: 'bandpass', freq: 1400, q: 0.6, level: 0.03, swellHz: 0.18 },
   lake: { filter: 'lowpass', freq: 900, q: 0.8, level: 0.04, swellHz: 0.4 },
   mountains: { filter: 'lowpass', freq: 380, q: 0.5, level: 0.05, swellHz: 0.08 },
+  rainforest: { filter: 'bandpass', freq: 2200, q: 0.8, level: 0.03, swellHz: 0.25 },
   safari: { filter: 'bandpass', freq: 600, q: 0.5, level: 0.035, swellHz: 0.1 },
 };
 
