@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(camera, minigames): optional camera zoom and three more Mini Games** — Camera panel
+  Zoom dial (Wide / Close / Macro: faster sweep, smaller glowing zone, more points) with a running visit
+  score; Wide stays the default and nothing about the photo collection changes. Mini Games: Pattern Parade,
+  Count Them Up, Day or Night? (seven in all). Not checked by eye. Why:
+  `D-2026-10-28-camera-zoom-more-minigames`.
+
 - **2026-10-28 · feat(alien-planet, minigames, camera): Alien Planet, Mini Games and livelier photos** —
   Alien Planet is playable (Crystal Meadow / Floating Islands / Glowing Caves, six imaginary animals, no photo
   art yet; schema 14 -> 15). New Mini Games screen from the Start screen: Memory Match, Who Am I?, Spot the

@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { playNewPhoto, playShutter } from '../audio/sound';
-import { buildFindRound, buildHabitatRound, buildMemoryDeck, buildWhoAmIRound, type ChoiceRound } from '../data/miniGames';
+import { buildCountRound, buildFindRound, buildHabitatRound, buildMemoryDeck, buildPatternPad, buildTimeRound, buildWhoAmIRound, extendPattern, type ChoiceRound } from '../data/miniGames';
 import { SoundToggle } from './SoundToggle';
 
-type GameId = 'memory' | 'who' | 'find' | 'habitat';
+type GameId = 'memory' | 'who' | 'find' | 'habitat' | 'pattern' | 'count' | 'time';
 
 const GAMES: { id: GameId; icon: string; title: string; blurb: string }[] = [
   { id: 'memory', icon: '🃏', title: 'Memory Match', blurb: 'Flip the cards and find every matching pair of animals.' },
   { id: 'who', icon: '🔍', title: 'Who Am I?', blurb: 'Read the clue and guess which animal it is.' },
   { id: 'find', icon: '👀', title: 'Spot the Animal', blurb: 'One animal is different. Can you spot it in the group?' },
   { id: 'habitat', icon: '🗺️', title: 'Where Do I Live?', blurb: 'Pick the place each animal calls home.' },
+  { id: 'pattern', icon: '🎶', title: 'Pattern Parade', blurb: 'Watch the animals light up, then repeat the pattern.' },
+  { id: 'count', icon: '🔢', title: 'Count Them Up', blurb: 'How many of one animal are hiding in the crowd?' },
+  { id: 'time', icon: '🌗', title: 'Day or Night?', blurb: 'Pick when each animal is most active.' },
 ];
 
 type Props = { onGoHome: () => void };
@@ -44,6 +47,9 @@ export function MiniGames({ onGoHome }: Props) {
           {game === 'who' ? <ChoiceGame title="Who Am I?" build={buildWhoAmIRound} /> : null}
           {game === 'habitat' ? <ChoiceGame title="Where Do I Live?" build={buildHabitatRound} showEmoji /> : null}
           {game === 'find' ? <SpotTheAnimal /> : null}
+          {game === 'pattern' ? <PatternParade /> : null}
+          {game === 'count' ? <CountThemUp /> : null}
+          {game === 'time' ? <ChoiceGame title="Day or Night?" build={buildTimeRound} showEmoji /> : null}
         </section>
       )}
     </main>
@@ -156,6 +162,96 @@ function SpotTheAnimal() {
       </div>
       <p role="status" className="minigame-feedback">{found ? `✅ Found it - the ${round.target.name}!` : hint}</p>
       {found ? <button onClick={next}>Next</button> : null}
+    </div>
+  );
+}
+
+const STEP_MS = 700;
+const MAX_PATTERN = 8;
+
+// No losing here: a wrong tap just replays the same pattern.
+function PatternParade() {
+  const [pad] = useState(() => buildPatternPad());
+  const [sequence, setSequence] = useState(() => extendPattern([], 4));
+  const [phase, setPhase] = useState<'watch' | 'play'>('watch');
+  const [lit, setLit] = useState<number | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [message, setMessage] = useState('Watch the animals...');
+  const [replay, setReplay] = useState(0);
+
+  useEffect(() => {
+    if (phase !== 'watch') return undefined;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    sequence.forEach((padIndex, i) => {
+      timers.push(setTimeout(() => setLit(padIndex), 500 + i * STEP_MS));
+      timers.push(setTimeout(() => setLit(null), 500 + i * STEP_MS + STEP_MS * 0.6));
+    });
+    timers.push(setTimeout(() => { setPhase('play'); setProgress(0); setMessage('Your turn - repeat the pattern!'); }, 500 + sequence.length * STEP_MS));
+    return () => timers.forEach(clearTimeout);
+  }, [phase, sequence, replay]);
+
+  function tap(index: number) {
+    if (phase !== 'play') return;
+    playShutter();
+    if (sequence[progress] !== index) {
+      setMessage("Let's watch it once more.");
+      setProgress(0);
+      setPhase('watch');
+      setReplay((r) => r + 1);
+      return;
+    }
+    if (progress + 1 === sequence.length) {
+      playNewPhoto();
+      if (sequence.length >= MAX_PATTERN) { setMessage('🎉 You remembered the whole parade!'); setPhase('watch'); setSequence(extendPattern([], 4)); return; }
+      setMessage(`✅ Got it! Now ${sequence.length + 1} in a row.`);
+      setSequence(extendPattern(sequence, 4));
+      setPhase('watch');
+      return;
+    }
+    setProgress(progress + 1);
+  }
+
+  return (
+    <div>
+      <h2>Pattern Parade</h2>
+      <p className="muted">Pattern length: {sequence.length}</p>
+      <div className="pattern-pad">
+        {pad.map((animal, index) => (
+          <button key={animal.id} className={`pattern-button${lit === index ? ' lit' : ''}`} onClick={() => tap(index)} disabled={phase !== 'play'} aria-label={animal.name}>
+            <span aria-hidden="true">{animal.emoji}</span>
+          </button>
+        ))}
+      </div>
+      <p role="status" className="minigame-feedback">{message}</p>
+    </div>
+  );
+}
+
+function CountThemUp() {
+  const [round, setRound] = useState(buildCountRound);
+  const [picked, setPicked] = useState<number | null>(null);
+  const [score, setScore] = useState(0);
+  const solved = picked === round.answer;
+  function pick(n: number) {
+    if (solved) return;
+    setPicked(n);
+    if (n === round.answer) { playNewPhoto(); setScore((s) => s + 1); }
+  }
+  return (
+    <div>
+      <h2>Count Them Up</h2>
+      <p className="muted">Correct: {score}</p>
+      <p className="minigame-prompt">How many <strong>{round.target.name}</strong> <span aria-hidden="true">{round.target.emoji}</span> can you see?</p>
+      <div className="find-grid" aria-hidden="true">
+        {round.tiles.map((animal, index) => <span key={index} className="find-tile">{animal.emoji}</span>)}
+      </div>
+      <div className="choice-grid">
+        {round.choices.map((n) => (
+          <button key={n} className={picked === n ? (n === round.answer ? 'choice right' : 'choice tryagain') : 'choice'} onClick={() => pick(n)}>{n}</button>
+        ))}
+      </div>
+      <p role="status" className="minigame-feedback">{solved ? `✅ Yes, ${round.answer}!` : picked !== null ? 'Not quite - count again!' : ''}</p>
+      {solved ? <button onClick={() => { setRound(buildCountRound()); setPicked(null); }}>Next</button> : null}
     </div>
   );
 }

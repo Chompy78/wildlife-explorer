@@ -7,7 +7,7 @@ describe('MiniGames', () => {
   it('lists every game and opens one', async () => {
     const user = userEvent.setup();
     render(<MiniGames onGoHome={vi.fn()} />);
-    for (const name of ['Memory Match', 'Who Am I?', 'Spot the Animal', 'Where Do I Live?']) {
+    for (const name of ['Memory Match', 'Who Am I?', 'Spot the Animal', 'Where Do I Live?', 'Pattern Parade', 'Count Them Up', 'Day or Night?']) {
       expect(screen.getByRole('button', { name: new RegExp(name.replace('?', '\\?')) })).toBeInTheDocument();
     }
     await user.click(screen.getByRole('button', { name: /Memory Match/ }));
@@ -61,5 +61,36 @@ describe('MiniGames', () => {
     render(<MiniGames onGoHome={onGoHome} />);
     await userEvent.setup().click(screen.getByRole('button', { name: 'Home' }));
     expect(onGoHome).toHaveBeenCalled();
+  });
+
+  it('Count Them Up can be solved by trying the choices, with gentle wording on a miss', async () => {
+    const user = userEvent.setup();
+    render(<MiniGames onGoHome={vi.fn()} />);
+    await user.click(screen.getByRole('button', { name: /Count Them Up/ }));
+    const choices = screen.getAllByRole('button').filter((b) => b.className.includes('choice'));
+    for (const choice of choices) {
+      await user.click(choice);
+      if (screen.queryByText(/^✅ Yes/)) break;
+      expect(screen.getByText(/count again/)).toBeInTheDocument();
+    }
+    expect(screen.getByText(/^✅ Yes/)).toBeInTheDocument();
+  });
+
+  it('Day or Night? is solvable', async () => {
+    const user = userEvent.setup();
+    render(<MiniGames onGoHome={vi.fn()} />);
+    await user.click(screen.getByRole('button', { name: /Day or Night/ }));
+    for (const choice of screen.getAllByRole('button').filter((b) => b.className.includes('choice'))) {
+      await user.click(choice);
+      if (screen.queryByText(/^✅ Yes!/)) break;
+    }
+    expect(screen.getByText(/^✅ Yes!/)).toBeInTheDocument();
+  });
+
+  it('Pattern Parade starts by watching, then hands over to the player', async () => {
+    render(<MiniGames onGoHome={vi.fn()} />);
+    await userEvent.setup().click(screen.getByRole('button', { name: /Pattern Parade/ }));
+    expect(screen.getByText('Watch the animals...')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText(/Your turn/)).toBeInTheDocument(), { timeout: 4000 });
   });
 });

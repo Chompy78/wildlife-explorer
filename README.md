@@ -58,7 +58,7 @@ Implemented features include:
 - Responsive and reduced-motion styling
 - Automated TypeScript, state, component, build and encoding checks
 
-The Lake (Shoreline, Open Water, Reeds & Shallows) the Mountains (Rocky Trail, Alpine Meadow, Lookout Ridge) and the Safari (Waterhole, Open Plains, Acacia Grove) are playable from the Wild Camper, 6 animals each (Mountains and Safari have no photos yet). Rainforest (Forest Floor, Canopy Walk, River Bank) is playable too, as are Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga and Volcanic Highlands (6 animals each, no photos yet). The Alien Planet (imaginary animals) is playable too. A Mini Games screen on the Start screen has four calm games, and the camera now gives shot feedback (flash, Perfect, streaks).
+The Lake (Shoreline, Open Water, Reeds & Shallows) the Mountains (Rocky Trail, Alpine Meadow, Lookout Ridge) and the Safari (Waterhole, Open Plains, Acacia Grove) are playable from the Wild Camper, 6 animals each (Mountains and Safari have no photos yet). Rainforest (Forest Floor, Canopy Walk, River Bank) is playable too, as are Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga and Volcanic Highlands (6 animals each, no photos yet). The Alien Planet (imaginary animals) is playable too. A Mini Games screen on the Start screen has seven calm games, and the camera gives shot feedback (flash, Perfect, streaks) plus an optional Wide/Close/Macro zoom.
 
 ## Playable Locations
 

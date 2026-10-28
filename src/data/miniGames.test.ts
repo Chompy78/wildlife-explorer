@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { animals } from './animals';
-import { buildFindRound, buildHabitatRound, buildMemoryDeck, buildWhoAmIRound, gameAnimals, maskName, shuffle } from './miniGames';
+import { buildCountRound, buildFindRound, buildPatternPad, buildTimeRound, clearTimeOfDay, extendPattern, buildHabitatRound, buildMemoryDeck, buildWhoAmIRound, gameAnimals, maskName, shuffle } from './miniGames';
 
 // A small deterministic generator so the rounds are repeatable.
 function seeded(seed: number) {
@@ -58,5 +58,32 @@ describe('mini game helpers', () => {
 
   it('has enough animals for every game', () => {
     expect(animals.length).toBeGreaterThan(20);
+  });
+
+  it('count rounds hold exactly the answer number of targets and offer it as a choice', () => {
+    for (let seed = 1; seed <= 40; seed += 1) {
+      const round = buildCountRound(seeded(seed));
+      expect(round.tiles).toHaveLength(12);
+      expect(round.tiles.filter((a) => a.id === round.target.id)).toHaveLength(round.answer);
+      expect(round.choices).toContain(round.answer);
+    }
+  });
+
+  it('pattern pads have four distinct animals and patterns grow by one valid step', () => {
+    const pad = buildPatternPad(seeded(4));
+    expect(new Set(pad.map((a) => a.id)).size).toBe(4);
+    const longer = extendPattern([0, 1], pad.length, seeded(5));
+    expect(longer).toHaveLength(3);
+    expect(longer.every((n) => n >= 0 && n < pad.length)).toBe(true);
+  });
+
+  it('day or night rounds only use animals with one clear active time, and the answer is offered', () => {
+    expect(clearTimeOfDay({ activeTime: 'Day and night' })).toBeNull();
+    expect(clearTimeOfDay({ activeTime: 'Night' })).toBe('night');
+    for (let seed = 1; seed <= 40; seed += 1) {
+      const round = buildTimeRound(seeded(seed));
+      expect(round.choices).toContain(round.answer);
+      expect(clearTimeOfDay(round.animal)).not.toBeNull();
+    }
   });
 });

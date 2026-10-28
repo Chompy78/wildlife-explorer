@@ -4,6 +4,14 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-camera-zoom-more-minigames · Optional camera zoom and three more Mini Games
+
+**Status:** Active
+
+**Summary:** Camera gets an optional Wide/Close/Macro zoom (harder timing, more on-screen points, display-only
+  score). Mini Games grow to seven: Pattern Parade, Count Them Up, Day or Night? Full record:
+  `decisions/2026/D-2026-10-28-camera-zoom-more-minigames.md`.
+
 ## D-2026-10-28-alien-planet-minigames-photo-fun · Alien Planet, Mini Games and livelier photos
 
 **Status:** Active

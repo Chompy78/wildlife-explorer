@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { nextStreak, rateShot, shotMessage } from './shotRating';
+import { ZOOMS, nextStreak, rateShot, shotMessage, shotPoints } from './shotRating';
 
 describe('shot rating', () => {
   it('rates the middle of the sweet spot perfect, the rest of it great, and anything else nice', () => {
@@ -19,5 +19,13 @@ describe('shot rating', () => {
     expect(shotMessage('great', 1)).toBe('Great shot!');
     expect(shotMessage('perfect', 3)).toContain('3 in a row');
     expect(shotMessage('nice', 0)).not.toMatch(/miss|fail|wrong/i);
+  });
+
+  it('pays more for closer zoom, and every shot scores something', () => {
+    expect(shotPoints('perfect', 'wide')).toBe(100);
+    expect(shotPoints('great', 'close')).toBe(75);
+    expect(shotPoints('nice', 'macro')).toBe(20);
+    expect(ZOOMS.macro.speed).toBeLessThan(ZOOMS.wide.speed);
+    expect(ZOOMS.macro.width).toBeLessThan(ZOOMS.wide.width);
   });
 });

@@ -158,6 +158,19 @@ describe('CameraPanel', () => {
       expect(screen.getByText(/(Perfect|Great) shot!/)).toBeInTheDocument();
     });
   });
+  describe('zoom', () => {
+    it('defaults to Wide, scores each shot, and a closer zoom speeds up the sweep', () => {
+      render(<CameraPanel animalsHere={[duck]} saveData={createDefaultSave()} onPhotographAnimal={vi.fn()} />);
+      expect(screen.getByRole('button', { name: /Wide/ })).toHaveAttribute('aria-pressed', 'true');
+      fireEvent.click(screen.getByRole('button', { name: /Photograph Duck/i })); // plain shot at t=0: 10 points
+      expect(screen.getByText(/Score: 10/)).toBeInTheDocument();
+      fireEvent.click(screen.getByRole('button', { name: /Macro/ }));
+      expect(screen.getByRole('button', { name: /Macro/ })).toHaveAttribute('aria-pressed', 'true');
+      // Macro speeds the sweep to 0.6x, so Wide's t=400ms sweet spot has moved on.
+      act(() => { vi.advanceTimersByTime(400); });
+      expect(screen.getByRole('button', { name: /Photograph Duck|Retake Duck/i })).not.toHaveClass('pulse');
+    });
+  });
   describe('time-of-day mood', () => {
     it('switches the panel mood and flags animals that are active then, without changing photo behaviour', () => {
       const onPhotographAnimal = vi.fn();

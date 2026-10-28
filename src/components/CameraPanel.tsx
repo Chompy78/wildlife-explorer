@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { playGreatShot, playShutter } from '../audio/sound';
 import { getPhotoVariantCount, getPhotoVariantUrl, isCollectionComplete } from '../data/animalPhotoVariants';
-import { nextStreak, rateShot, shotMessage, type ShotRating } from '../data/shotRating';
+import { ZOOMS, ZOOM_LEVELS, nextStreak, rateShot, shotMessage, shotPoints, type ShotRating, type ZoomLevel } from '../data/shotRating';
 import { effectivePhotoDifficulty } from '../data/roleBonuses';
 import { getMood, isActiveAt, timeOfDayMoods, type TimeOfDay } from '../data/timeOfDay';
 import type { AnimalId } from '../types/Ids';
@@ -50,6 +50,12 @@ const SPECIES_MASTERY_SHOTS = 5;
 const GLOBAL_MASTERY_SHOTS = 60;
 const GLOBAL_BONUS_FRACTION = 0.15;
 
+// Zoom scales an animal's sweep speed and sweet-spot width (Wide leaves them untouched).
+function tuningFor(saveData: SaveData, animal: Animal, zoom: ZoomLevel) {
+  const base = FOCUS_TUNING[effectivePhotoDifficulty(saveData.selectedRole, animal)];
+  return { cycleMs: base.cycleMs * ZOOMS[zoom].speed, maxSweetSpotWidth: base.maxSweetSpotWidth * ZOOMS[zoom].width };
+}
+
 function getTotalPhotographCount(saveData: SaveData): number {
   return Object.values(saveData.photographCounts).reduce((sum: number, count) => sum + (count ?? 0), 0);
 }
@@ -88,6 +94,9 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
   // Fun feedback for each tap: streak of Great Shots, a bullseye "Perfect" and a quick flash. Display only.
   const [shot, setShot] = useState<{ rating: ShotRating; streak: number; count: number } | null>(null);
   const [bestStreak, setBestStreak] = useState(0);
+  // Optional challenge dial (see data/shotRating.ts) and a running score for this visit. Display only.
+  const [zoom, setZoom] = useState<ZoomLevel>('wide');
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     const totalCount = getTotalPhotographCount(saveData);
@@ -95,7 +104,7 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
     if (prefersReducedMotion()) {
       const timeouts: ReturnType<typeof setTimeout>[] = [];
       animalsHere.forEach((animal) => {
-        const { cycleMs, maxSweetSpotWidth } = FOCUS_TUNING[effectivePhotoDifficulty(saveData.selectedRole, animal)];
+        const { cycleMs, maxSweetSpotWidth } = tuningFor(saveData, animal, zoom);
         const speciesCount = saveData.photographCounts[animal.id] ?? 0;
         const width = getSweetSpotWidth(maxSweetSpotWidth, speciesCount, totalCount);
         const onMs = cycleMs * width;
@@ -112,7 +121,7 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
     const startTime = Date.now();
     const offsets: Partial<Record<AnimalId, number>> = {};
     animalsHere.forEach((animal) => {
-      const { cycleMs } = FOCUS_TUNING[effectivePhotoDifficulty(saveData.selectedRole, animal)];
+      const { cycleMs } = tuningFor(saveData, animal, zoom);
       offsets[animal.id] = Math.random() * cycleMs;
     });
     const intervalId = setInterval(() => {
@@ -120,7 +129,7 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
       setFocusPosition((prev) => {
         const next = { ...prev };
         animalsHere.forEach((animal) => {
-          const { cycleMs } = FOCUS_TUNING[effectivePhotoDifficulty(saveData.selectedRole, animal)];
+          const { cycleMs } = tuningFor(saveData, animal, zoom);
           next[animal.id] = triangleWave(now - startTime + (offsets[animal.id] ?? 0), cycleMs);
         });
         return next;
@@ -128,7 +137,7 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
     }, TICK_MS);
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animalIdsHere]);
+  }, [animalIdsHere, zoom]);
 
   const totalCount = getTotalPhotographCount(saveData);
 
@@ -136,6 +145,7 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
     const streak = nextStreak(shot?.streak ?? 0, rating);
     setShot({ rating, streak, count: (shot?.count ?? 0) + 1 });
     setBestStreak((best) => Math.max(best, streak));
+    setScore((total) => total + shotPoints(rating, zoom));
     playShutter();
     if (greatShotNow) playGreatShot();
     onPhotographAnimal(animalId, greatShotNow);
@@ -163,6 +173,14 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
       ) : (
         <>
           <p className="camera-hint muted">Tap the shutter while the marker is in the glowing zone for a Great Shot!</p>
+          <div className="zoom-picker" role="group" aria-label="Zoom">
+            {ZOOM_LEVELS.map((level) => (
+              <button key={level} type="button" className="secondary zoom-button" aria-pressed={zoom === level} onClick={() => setZoom(level)} title={ZOOMS[level].blurb}>
+                <span aria-hidden="true">{ZOOMS[level].icon}</span> {ZOOMS[level].label}
+              </button>
+            ))}
+          </div>
+          <p className="muted zoom-blurb">{ZOOMS[zoom].blurb} Score: {score}</p>
           <p className="shot-feedback" role="status">
             {shot ? shotMessage(shot.rating, shot.streak) : ''}
             {bestStreak >= 2 ? ` (Best streak: ${bestStreak})` : ''}
@@ -174,7 +192,7 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
               const hasPhotos = getPhotoVariantCount(animal.id) > 0;
               const complete = isCollectionComplete(animal.id, saveData.collectedPhotoVariants);
               const reducedMotion = prefersReducedMotion();
-              const { maxSweetSpotWidth } = FOCUS_TUNING[effectivePhotoDifficulty(saveData.selectedRole, animal)];
+              const { maxSweetSpotWidth } = tuningFor(saveData, animal, zoom);
               const speciesCount = saveData.photographCounts[animal.id] ?? 0;
               const sweetSpotWidth = getSweetSpotWidth(maxSweetSpotWidth, speciesCount, totalCount);
               const position = focusPosition[animal.id] ?? 0;

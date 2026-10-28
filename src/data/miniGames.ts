@@ -1,5 +1,6 @@
 import { animals } from './animals';
 import type { Animal } from '../types/Animal';
+import { isActiveAt, type TimeOfDay } from './timeOfDay';
 
 // Pure helpers behind the Mini Games screen. Nothing here touches the save: mini games are calm, have no
 // fail state, and award nothing, so the photo collection stays the only thing that grows.
@@ -63,4 +64,42 @@ export function buildFindRound(tileCount: number, rng: Rng = Math.random, pool: 
   const [target, decoy] = pickAnimals(2, rng, pool);
   const tiles = shuffle([target, ...Array.from({ length: tileCount - 1 }, () => decoy)], rng);
   return { target, tiles };
+}
+
+// Pattern Parade: a short run of animals to watch and then repeat. Four animals make the pad; the pattern
+// is picked from them (repeats allowed), so the pad stays the same all game.
+export type PatternRound = { pad: Animal[]; sequence: number[] };
+
+export function buildPatternPad(rng: Rng = Math.random, pool: readonly Animal[] = animals): Animal[] {
+  return pickAnimals(4, rng, pool);
+}
+
+export function extendPattern(sequence: readonly number[], padSize: number, rng: Rng = Math.random): number[] {
+  return [...sequence, Math.floor(rng() * padSize)];
+}
+
+// Count Them Up: how many of one animal are hiding in a crowd of another?
+export type CountRound = { target: Animal; tiles: Animal[]; answer: number; choices: number[] };
+
+export function buildCountRound(rng: Rng = Math.random, pool: readonly Animal[] = animals): CountRound {
+  const [target, decoy] = pickAnimals(2, rng, pool);
+  const answer = 2 + Math.floor(rng() * 5); // 2 to 6
+  const tiles = shuffle([...Array.from({ length: answer }, () => target), ...Array.from({ length: 12 - answer }, () => decoy)], rng);
+  const choices = [...new Set([answer, answer - 1, answer + 1, answer + 2].filter((n) => n >= 1))].sort((a, b) => a - b).slice(0, 4);
+  return { target, tiles, answer, choices };
+}
+
+// Day or Night?: only animals whose active time is clearly one of the three moods are used.
+const MOODS: TimeOfDay[] = ['day', 'dusk', 'night'];
+export function clearTimeOfDay(animal: Pick<Animal, 'activeTime'>): TimeOfDay | null {
+  const matches = MOODS.filter((mood) => isActiveAt(animal, mood));
+  return matches.length === 1 ? matches[0] : null;
+}
+
+export function buildTimeRound(rng: Rng = Math.random, pool: readonly Animal[] = animals): ChoiceRound {
+  const candidates = gameAnimals(pool).filter((a) => clearTimeOfDay(a) !== null);
+  const animal = candidates[Math.floor(rng() * candidates.length)];
+  const answer = clearTimeOfDay(animal)!;
+  const label = (mood: TimeOfDay) => ({ day: '☀️ Day', dusk: '🌅 Dusk', night: '🌙 Night' })[mood];
+  return { animal, prompt: `When is the ${animal.name} most active?`, answer: label(answer), choices: MOODS.map(label) };
 }
