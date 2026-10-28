@@ -28,6 +28,11 @@
   Planet, the camera zoom/Perfect feedback and the Mini Games menu and Memory Match were checked by eye.
   The other biome screens share the same component and were not each opened.
 
+- **2026-10-28 · feat(godot): private Android build** — `scripts/build-godot-android.sh` exports an APK (arm64,
+  about 76 MB, signed with the debug key, package `com.chompy78.wildlifeexplorer`, owl-photo icon) for installing
+  on a phone by hand. Checked with the Android tools (package, architecture, signature); not yet installed on a
+  phone. Not published anywhere.
+
 - **2026-10-28 · feat(godot): private Windows build** — `scripts/build-godot-windows.sh` exports the Godot version as a
   single Windows .exe (about 155 MB, 83 MB zipped; shows as a phone-shaped window). Chosen instead of hosting it
   publicly. Not run on Windows yet (no Windows or Wine here); the same project passes `npm run check:godot`.
