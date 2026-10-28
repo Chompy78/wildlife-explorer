@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getPhotoVariantCount, getPhotoVariantUrl, isCollectionComplete } from '../data/animalPhotoVariants';
 import { effectivePhotoDifficulty } from '../data/roleBonuses';
+import { getMood, isActiveAt, timeOfDayMoods, type TimeOfDay } from '../data/timeOfDay';
 import type { AnimalId } from '../types/Ids';
 import { hasPhotographedAnimal } from '../state/gameState';
 import type { Animal, PhotoDifficulty } from '../types/Animal';
@@ -79,6 +80,8 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
   // Reduced motion fallback: no moving marker (this preference is specifically about opting out of that
   // kind of movement) - instead the same calm on/off glow this game used before this mechanic existed.
   const [reducedMotionGlow, setReducedMotionGlow] = useState<Partial<Record<AnimalId, boolean>>>({});
+  // Cosmetic mood only - never read by the photo or timing logic below.
+  const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('day');
 
   useEffect(() => {
     const totalCount = getTotalPhotographCount(saveData);
@@ -124,7 +127,21 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
   const totalCount = getTotalPhotographCount(saveData);
 
   return (
-    <div className="camera-card">
+    <div className={`camera-card mood-${timeOfDay}`}>
+      <div className="mood-picker" role="group" aria-label="Time of day">
+        {timeOfDayMoods.map((mood) => (
+          <button
+            key={mood.id}
+            type="button"
+            className="secondary mood-button"
+            aria-pressed={timeOfDay === mood.id}
+            onClick={() => setTimeOfDay(mood.id)}
+          >
+            <span aria-hidden="true">{mood.icon}</span> {mood.label}
+          </button>
+        ))}
+      </div>
+      <p className="mood-description muted">{getMood(timeOfDay).description}</p>
       {animalsHere.length === 0 ? (
         <p>No common animals are ready to photograph here yet.</p>
       ) : (
@@ -172,6 +189,9 @@ export function CameraPanel({ animalsHere, saveData, onPhotographAnimal }: Camer
                         />
                         <span className="focus-marker" style={{ left: `${position * 100}%` }} />
                       </span>
+                    ) : null}
+                    {!complete && isActiveAt(animal, timeOfDay) ? (
+                      <span className="mood-active-note">Most active now</span>
                     ) : null}
                     {!complete && animal.photographyTip ? (
                       <span className="photography-tip">💡 {animal.photographyTip.hint}</span>

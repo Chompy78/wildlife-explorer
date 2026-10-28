@@ -247,3 +247,13 @@ button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
 
 /* Milestone 5 */
 .forest-screen{background:radial-gradient(circle at top left,rgba(219,238,174,.7),transparent 34rem),linear-gradient(135deg,#cde5b0,#e2f2d3 55%,#d8e8d1)}.forest-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,420px);gap:1rem;margin:0 auto;max-width:1240px}@media(max-width:850px){.forest-layout{grid-template-columns:1fr}}
+
+.mood-picker { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.mood-button[aria-pressed="true"] { box-shadow: 0 0 0 3px rgba(241, 184, 59, 0.75); }
+.mood-description { margin: 0.4rem 0 0.6rem; }
+.mood-active-note { font-size: 0.85rem; font-weight: 600; }
+.camera-card { transition: background 0.5s ease, color 0.5s ease; }
+.camera-card.mood-dusk { background: #f6e2c3; }
+.camera-card.mood-night { background: #26324d; color: #eef1fa; }
+.camera-card.mood-night .muted { color: #c8d0e6; }
+@media (prefers-reduced-motion: reduce) { .camera-card { transition: none; } }

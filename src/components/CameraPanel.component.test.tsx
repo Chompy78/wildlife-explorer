@@ -73,7 +73,7 @@ describe('CameraPanel', () => {
   it('shows a message and no photograph buttons when no animals are here', () => {
     render(<CameraPanel animalsHere={[]} saveData={createDefaultSave()} onPhotographAnimal={vi.fn()} />);
     expect(screen.getByText(/no common animals are ready/i)).toBeInTheDocument();
-    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /photograph|retake/i })).not.toBeInTheDocument();
   });
 
   it('paces the sweet-spot window per animal by photoDifficulty - a hard animal reaches (and leaves) it sooner than a medium one', () => {
@@ -146,5 +146,19 @@ describe('CameraPanel', () => {
     expect(button()).not.toHaveClass('pulse');
     act(() => { vi.advanceTimersByTime(1500); });
     expect(button()).toHaveClass('pulse');
+  });
+  describe('time-of-day mood', () => {
+    it('switches the panel mood and flags animals that are active then, without changing photo behaviour', () => {
+      const onPhotographAnimal = vi.fn();
+      const { container } = render(<CameraPanel animalsHere={[duck]} saveData={createDefaultSave()} onPhotographAnimal={onPhotographAnimal} />);
+      expect(container.querySelector('.camera-card')).toHaveClass('mood-day');
+      expect(screen.getByText('Most active now')).toBeInTheDocument();
+      fireEvent.click(screen.getByRole('button', { name: /Night/ }));
+      expect(container.querySelector('.camera-card')).toHaveClass('mood-night');
+      expect(screen.getByRole('button', { name: /Night/ })).toHaveAttribute('aria-pressed', 'true');
+      expect(screen.queryByText('Most active now')).not.toBeInTheDocument();
+      fireEvent.click(screen.getByRole('button', { name: /Photograph Duck/i }));
+      expect(onPhotographAnimal).toHaveBeenCalledWith('duck', expect.any(Boolean));
+    });
   });
 });

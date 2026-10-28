@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(camera): day/dusk/night mood picker** — cosmetic only: a Day / Dusk / Night picker in
+  the Camera panel re-tints the panel and flags animals whose `activeTime` matches ("Most active now").
+  Held in component state, not saved (no schema change), and it never touches variant selection or Great
+  Shot timing, so the "no duplicates, surprise reveal" collection design is intact. New
+  `src/data/timeOfDay.ts`. Graduated from `docs/TASK_BOARD_NOW.md`.
+
 - **2026-10-28 · chore(deps): vite 8.3.5 + vitest 4.1.12 — `npm audit` now clean** — bumped the two exact
   pins to clear the last 3 dev-tooling findings (vite, vitest/mocker, launch-editor). The local npm 9.2.0
   crashes on this lockfile ("edgesOut"), so the install ran via `npx npm@11`. `npm audit`: 0
