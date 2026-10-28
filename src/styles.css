@@ -311,3 +311,29 @@ button:focus-visible { outline: 4px solid #f1b83b; outline-offset: 3px; }
 .photo-target .great-shots-progress { color: #d3e6d8; }
 .photo-target .mood-active-note { color: #fff3c4; }
 .memory-grid, .find-grid { max-width: 34rem; }
+
+/* Hover must not turn light cards and secondary buttons dark green (the base button:hover would, leaving
+   dark text on a dark background). */
+button.secondary:hover:not(:disabled) { background: #cfe6c2; }
+.role-card:hover:not(:disabled), .location-card:hover:not(:disabled) { background: #eaf7e2; }
+.location-card.active:hover:not(:disabled) { background: #d3e8c6; }
+.location-card.preview:hover:not(:disabled) { background: #fff3c2; }
+.location-card.hidden:hover:not(:disabled) { background: #e3e7e2; }
+.memory-card.face-up:hover:not(:disabled), .memory-card.face-up:disabled { background: #fff6d6; }
+
+/* On a phone the floating action buttons sit on the right edge, so keep the location cards clear of them. */
+@media (max-width: 700px) { .biome-location-grid { padding-right: 3.6rem; } }
+@media (max-width: 480px) { .forest-location-grid { padding-right: 3.6rem; } }
+
+/* Panels (Camera, Journal, About) must sit above the floating action buttons. */
+.journal-overlay { z-index: 20; }
+
+/* On a phone, keep the camera's mood and zoom rows compact so the animals stay near the top. */
+@media (max-width: 700px) {
+  .journal-panel { padding: 1rem; }
+  .camera-card .mood-picker, .camera-card .zoom-picker { gap: 0.35rem; }
+  .camera-card .mood-button, .camera-card .zoom-button { padding: 0.35rem 0.6rem; font-size: 0.8rem; }
+  .camera-card .mood-description, .camera-card .zoom-blurb, .camera-card .camera-hint { margin: 0.2rem 0; font-size: 0.8rem; }
+  .camera-card .shot-feedback { min-height: 1.2rem; margin: 0.2rem 0; }
+}
+@media (max-width: 700px) { .find-tile { min-height: 3.2rem; font-size: 1.9rem; } .find-grid { gap: 0.3rem; } }

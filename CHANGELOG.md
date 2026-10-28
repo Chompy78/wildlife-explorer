@@ -5,6 +5,15 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · fix(ui): phone-width and hover fixes from a full walkthrough** — Opened every biome, the camera
+  and the mini games in 390px-wide frames. Fixed: the floating camera/journal/info buttons covered the first
+  location card (now padded clear) and drew on top of open panels (panels now sit above them); hovering a
+  secondary button, location card or role card turned it dark green with dark text (hover now keeps the
+  light colours); the camera's mood and zoom rows were too tall on a phone (now compact); Count Them Up
+  tiles were too tall on a phone. All 13 biomes use one screen, and eight of them were opened by eye
+  (Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga, Volcanic Highlands, Alien Planet, Lake,
+  Rainforest, Safari); Mountains was not opened separately.
+
 - **2026-10-28 · fix(ui): readable photo tips, tidier mini game grids; browser check now works** — Found by
   looking at the running app: the photography tip and Great Shots text were dark on the dark green photo
   buttons (now light), and the Memory Match / Spot the Animal grids stretched too wide (now capped). The
