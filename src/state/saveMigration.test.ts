@@ -1,3 +1,4 @@
+import { biomes } from '../data/biomes';
 import { describe, expect, it } from 'vitest';
 import { migrateSaveData } from './saveMigration';
 import { CURRENT_SAVE_SCHEMA_VERSION } from '../types/SaveData';
@@ -209,6 +210,19 @@ describe('save migration', () => {
     it('restores the Rainforest play area only once the Wild Camper is unlocked', () => {
       expect(migrateSaveData({ lastPlayArea: 'rainforest', wildCamperUnlocked: true }).lastPlayArea).toBe('rainforest');
       expect(migrateSaveData({ lastPlayArea: 'rainforest', wildCamperUnlocked: false }).lastPlayArea).toBe('park');
+    });
+  });
+  describe.each(biomes.filter((biome) => !['lake', 'mountains', 'safari', 'rainforest'].includes(biome.id)))('$name', (biome) => {
+    const [first, , last] = biome.locations;
+    it('defaults its remembered section for older saves and rejects garbage', () => {
+      expect(migrateSaveData({})[biome.saveKey]).toBe(first.name);
+      expect(migrateSaveData({ [biome.saveKey]: 'The Moon' })[biome.saveKey]).toBe(first.name);
+      expect(migrateSaveData({ [biome.saveKey]: last.name })[biome.saveKey]).toBe(last.name);
+    });
+
+    it('restores its play area only once the Wild Camper is unlocked', () => {
+      expect(migrateSaveData({ lastPlayArea: biome.id, wildCamperUnlocked: true }).lastPlayArea).toBe(biome.id);
+      expect(migrateSaveData({ lastPlayArea: biome.id, wildCamperUnlocked: false }).lastPlayArea).toBe('park');
     });
   });
 });

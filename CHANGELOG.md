@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(biomes): the remaining eight biomes are playable (no photo art yet)** — Desert, Arctic,
+  Coral Reef, Wetlands, Coastal, Grassland, Taiga and Volcanic Highlands, each with three sections and six
+  animals (48 new animals), a "Travel to ..." button, a Journal tab, an ambient bed and a background colour.
+  All added through the registry. Save schema 13 -> 14 (eight new remembered-section fields). Eight art
+  briefs (`docs/copilot-packages/09`-`16`) and eight board tasks. Alien Planet stays preview-only. Not
+  checked by eye. Why: `D-2026-10-28-remaining-biomes`.
+
 - **2026-10-28 · feat(rainforest): Rainforest is now playable (no photo art yet)** — Rainforest Arrival
   screen with Forest Floor / Canopy Walk / River Bank (Tapir, Poison Dart Frog, Sloth, Scarlet Macaw,
   Capybara, Green Iguana), "Travel to Rainforest" in the Journey Planner, a Rainforest Journal tab and an

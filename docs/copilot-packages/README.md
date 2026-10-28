@@ -62,3 +62,11 @@ package says exactly which ones, kept well under the 20-file ceiling.
   "Safari art and photo wiring" board task.
 - `08-rainforest-biome-animals.md` — Rainforest animal art (6 animals × 5 photos), same shape as 06/07. Wiring is
   the "Rainforest art and photo wiring" board task.
+- `09-desert-biome-animals.md` — Desert animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Desert art and photo wiring" board task.
+- `10-arctic-biome-animals.md` — Arctic animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Arctic art and photo wiring" board task.
+- `11-coral-reef-biome-animals.md` — Coral Reef animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Coral Reef art and photo wiring" board task.
+- `12-wetlands-biome-animals.md` — Wetlands animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Wetlands art and photo wiring" board task.
+- `13-coastal-biome-animals.md` — Coastal animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Coastal art and photo wiring" board task.
+- `14-grassland-biome-animals.md` — Grassland animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Grassland art and photo wiring" board task.
+- `15-taiga-biome-animals.md` — Taiga animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Taiga art and photo wiring" board task.
+- `16-volcanic-highlands-biome-animals.md` — Volcanic Highlands animal art (6 animals × 5 photos), same shape as 06-08. Wiring is the "Volcanic Highlands art and photo wiring" board task.

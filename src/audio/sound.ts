@@ -69,7 +69,7 @@ export function playNewPhoto(): void {
 // A very quiet, slowly swelling filtered-noise bed per habitat (breeze, rustle, lapping water, high wind).
 // It starts only after the player has tapped something (entering a screen is always a tap), and follows
 // the same mute switch as the effects above.
-export type AmbientKind = 'park' | 'forest' | 'lake' | 'mountains' | 'safari' | 'rainforest';
+export type AmbientKind = 'park' | 'forest' | 'lake' | 'mountains' | 'safari' | 'rainforest' | 'desert' | 'arctic' | 'coral-reef' | 'wetlands' | 'coastal' | 'grassland' | 'taiga' | 'volcanic-highlands';
 
 type AmbientRecipe = { filter: BiquadFilterType; freq: number; q: number; level: number; swellHz: number };
 const AMBIENT_RECIPES: Record<AmbientKind, AmbientRecipe> = {
@@ -79,6 +79,14 @@ const AMBIENT_RECIPES: Record<AmbientKind, AmbientRecipe> = {
   mountains: { filter: 'lowpass', freq: 380, q: 0.5, level: 0.05, swellHz: 0.08 },
   rainforest: { filter: 'bandpass', freq: 2200, q: 0.8, level: 0.03, swellHz: 0.25 },
   safari: { filter: 'bandpass', freq: 600, q: 0.5, level: 0.035, swellHz: 0.1 },
+  desert: { filter: 'bandpass', freq: 700, q: 0.4, level: 0.03, swellHz: 0.06 },
+  arctic: { filter: 'bandpass', freq: 1800, q: 0.3, level: 0.03, swellHz: 0.05 },
+  'coral-reef': { filter: 'lowpass', freq: 600, q: 1.2, level: 0.04, swellHz: 0.3 },
+  wetlands: { filter: 'bandpass', freq: 1000, q: 0.7, level: 0.03, swellHz: 0.2 },
+  coastal: { filter: 'lowpass', freq: 1100, q: 0.4, level: 0.06, swellHz: 0.15 },
+  grassland: { filter: 'bandpass', freq: 900, q: 0.4, level: 0.03, swellHz: 0.12 },
+  taiga: { filter: 'lowpass', freq: 500, q: 0.6, level: 0.04, swellHz: 0.1 },
+  'volcanic-highlands': { filter: 'lowpass', freq: 250, q: 1.0, level: 0.05, swellHz: 0.35 },
 };
 
 let wantedAmbient: AmbientKind | null = null;

@@ -1,3 +1,4 @@
+import { biomes } from './data/biomes';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -111,6 +112,25 @@ describe('App travel and Continue restoration', () => {
     await user.click(screen.getByRole('button', { name: 'Continue' }));
     expect(screen.getByRole('heading', { name: 'Rainforest Arrival', level: 1 })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Canopy Walk/ })).toHaveClass('active');
+  });
+
+  it.each(biomes.filter((biome) => !['lake', 'mountains', 'safari', 'rainforest'].includes(biome.id)))('completes $name travel and restores it on Continue', async (biome) => {
+    const user = userEvent.setup();
+    seedSave({ selectedRole: 'explorer', wildCamperUnlocked: true, camperVisited: true, camperIntroductionSeen: true, lastPlayArea: 'camper' });
+    const first = render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Continue' }));
+    await user.click(screen.getByRole('button', { name: /journey planner/i }));
+    await user.click(screen.getByRole('button', { name: new RegExp(`^${biome.name}`) }));
+    await user.click(screen.getByRole('button', { name: `Travel to ${biome.name}` }));
+    expect(screen.getByRole('heading', { name: biome.screenTitle, level: 1 })).toBeInTheDocument();
+    const second = biome.locations[1].name;
+    await user.click(screen.getByRole('button', { name: new RegExp(second.replace(/[&]/g, '\\$&')) }));
+    first.unmount();
+
+    render(<App />);
+    await user.click(screen.getByRole('button', { name: 'Continue' }));
+    expect(screen.getByRole('heading', { name: biome.screenTitle, level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: new RegExp(second) })).toHaveClass('active');
   });
 
   it('restores the Forest play area on Continue after Forest travel', async () => {

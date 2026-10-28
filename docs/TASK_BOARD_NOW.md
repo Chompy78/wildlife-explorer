@@ -78,3 +78,139 @@ Generate 30 Rainforest photos (6 animals x 5) and wire them in, same as the Moun
 **Done when:** all six Rainforest animals reveal a photo and a fact when photographed, and `npm run check` passes.
 
 ---
+
+---
+
+## Desert art and photo wiring — TODO
+Generate 30 Desert photos (6 animals x 5) and wire them in, same as the Mountains, Safari and Rainforest tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/09-desert-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Desert animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
+
+---
+
+## Arctic art and photo wiring — TODO
+Generate 30 Arctic photos (6 animals x 5) and wire them in, same as the Mountains, Safari and Rainforest tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/10-arctic-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Arctic animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
+
+---
+
+## Coral Reef art and photo wiring — TODO
+Generate 30 Coral Reef photos (6 animals x 5) and wire them in, same as the Mountains, Safari and Rainforest tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/11-coral-reef-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Coral Reef animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
+
+---
+
+## Wetlands art and photo wiring — TODO
+Generate 30 Wetlands photos (6 animals x 5) and wire them in, same as the Mountains, Safari and Rainforest tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/12-wetlands-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Wetlands animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
+
+---
+
+## Coastal art and photo wiring — TODO
+Generate 30 Coastal photos (6 animals x 5) and wire them in, same as the Mountains, Safari and Rainforest tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/13-coastal-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Coastal animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
+
+---
+
+## Grassland art and photo wiring — TODO
+Generate 30 Grassland photos (6 animals x 5) and wire them in, same as the Mountains, Safari and Rainforest tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/14-grassland-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Grassland animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
+
+---
+
+## Taiga art and photo wiring — TODO
+Generate 30 Taiga photos (6 animals x 5) and wire them in, same as the Mountains, Safari and Rainforest tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/15-taiga-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Taiga animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
+
+---
+
+## Volcanic Highlands art and photo wiring — TODO
+Generate 30 Volcanic Highlands photos (6 animals x 5) and wire them in, same as the Mountains, Safari and Rainforest tasks.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Art brief is written: docs/copilot-packages/16-volcanic-highlands-biome-animals.md. Hand it to Copilot.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. No test change needed; biomeState.test.ts handles animals with photos.
+```
+
+**Done when:** all six Volcanic Highlands animals reveal a photo and a fact when photographed, and `npm run check` passes.
+

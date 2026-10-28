@@ -4,6 +4,14 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-remaining-biomes · The other eight biomes become playable at once
+
+**Status:** Active
+
+**Summary:** Desert, Arctic, Coral Reef, Wetlands, Coastal, Grassland, Taiga and Volcanic Highlands added
+  through the registry (48 animals, emoji only). Save schema 13 -> 14. Alien Planet left preview-only.
+  Full record: `decisions/2026/D-2026-10-28-remaining-biomes.md`.
+
 ## D-2026-10-28-rainforest-biome · Rainforest becomes the fifth playable destination, via the registry
 
 **Status:** Active
