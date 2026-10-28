@@ -4,6 +4,15 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-biome-registry · one registry for the data-driven biomes
+
+**Status:** Active
+
+**Summary:** Lake, Mountains and Safari now come from one list in `src/data/biomes.ts` driving a single
+  `BiomeScreen`, state module, Journal tab generator, camper travel button and migration loop. Nine files
+  deleted; SaveData field names and schema version 12 unchanged. Lists exactly what a new biome needs.
+  Full record: `decisions/2026/D-2026-10-28-biome-registry.md`.
+
 ## D-2026-10-28-safari-biome-go-ahead · Safari becomes the fourth playable destination, without photo art
 
 **Status:** Active

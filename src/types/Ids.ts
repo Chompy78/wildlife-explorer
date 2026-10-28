@@ -41,6 +41,3 @@ export type LocationName =
   | 'Strange Old Tree'
   | 'Whisper Grove';
 
-export type LakeLocationName = 'Shoreline' | 'Open Water' | 'Reeds & Shallows';
-export type MountainLocationName = 'Rocky Trail' | 'Alpine Meadow' | 'Lookout Ridge';
-export type SafariLocationName = 'Waterhole' | 'Open Plains' | 'Acacia Grove';

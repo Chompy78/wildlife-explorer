@@ -65,18 +65,4 @@ Generate 30 Safari photos (6 animals x 5) and wire them in, same as the Mountain
 
 ---
 
-## Biome registry refactor — TODO
-Replace the per-biome copy-paste (save field, state module, journal tab, camper travel prop) with one registry, before biome number five.
-**Effort:** medium · **Risk:** medium — touches save migration, which `npm run check` only partly protects.
-
-```text
-1. Add src/data/biomes.ts: one entry per data-driven biome (id, name, icon, locations, save-field key,
-   ambient kind, config text). Lake, Mountains and Safari first; leave Forest alone.
-2. Derive from it: journal tabs, camper travel buttons, App screen routing, migration validation.
-3. Keep SaveData field names (lakeLocation, mountainLocation, safariLocation) so existing saves still load.
-4. Keep every existing test passing unchanged.
-```
-
-**Done when:** adding a fourth data-driven biome needs only one registry entry plus its data file, existing saves still migrate, and `npm run check` passes.
-
 ---

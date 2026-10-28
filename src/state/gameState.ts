@@ -7,9 +7,7 @@ export * from './animalState';
 export * from './camperState';
 export * from './locationState';
 export * from './forestState';
-export * from './lakeState';
-export * from './mountainsState';
-export * from './safariState';
+export * from './biomeState';
 export * from './progressionState';
 export * from './questState';
 

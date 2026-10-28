@@ -1,9 +1,16 @@
 import type { LostPuppyQuestProgress } from '../types/Quest';
+import { biomes } from '../data/biomes';
+import type { BiomeLocationKey } from '../types/Biome';
 import { CURRENT_SAVE_SCHEMA_VERSION, type SaveData } from '../types/SaveData';
 
 export const defaultLostPuppyQuestProgress: LostPuppyQuestProgress = {
   started: false, foundPawprints: false, foundToy: false, foundPuppy: false, completed: false,
 };
+
+// Every data-driven biome starts in its first section.
+export function defaultBiomeLocations(): Pick<SaveData, BiomeLocationKey> {
+  return Object.fromEntries(biomes.map((biome) => [biome.saveKey, biome.locations[0].name])) as Pick<SaveData, BiomeLocationKey>;
+}
 
 export const defaultSaveData: SaveData = {
   schemaVersion: CURRENT_SAVE_SCHEMA_VERSION,
@@ -21,9 +28,7 @@ export const defaultSaveData: SaveData = {
   selectedDestination: null,
   lastPlayArea: 'park',
   forestLocation: 'Forest Arrival',
-  lakeLocation: 'Shoreline',
-  mountainLocation: 'Rocky Trail',
-  safariLocation: 'Waterhole',
+  ...defaultBiomeLocations(),
   reportedInvasiveSpecies: [],
   collectedPhotoVariants: [],
   photographCounts: {},

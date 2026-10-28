@@ -5,6 +5,13 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · refactor(biomes): one registry drives Lake, Mountains and Safari** — `src/data/biomes.ts`
+  replaces nine per-biome files (location data, state modules, screen wrappers); a generic `BiomeScreen`,
+  `biomeState.ts`, Journal tab generator, camper travel button and migration loop read from it. No
+  behaviour change: all existing biome tests pass unchanged, save field names and schema version 12 are
+  kept, so saves load as before. New `biomes.test.ts` guards registry entries. Why:
+  `D-2026-10-28-biome-registry`. Graduated "Biome registry refactor" from `docs/TASK_BOARD_NOW.md`.
+
 - **2026-10-28 · feat(safari): Safari is now playable (no photo art yet)** — Safari Arrival screen with
   Waterhole / Open Plains / Acacia Grove (African Elephant, Hippo, Zebra, Giraffe, Meerkat, Lilac-breasted
   Roller), "Travel to Safari" in the Journey Planner, a Safari tab in the Journal, and a dry-savanna ambient

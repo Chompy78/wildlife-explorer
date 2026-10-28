@@ -1,7 +1,5 @@
 import type { Animal } from '../types/Animal';
-import { lakeAnimalIds } from './lakeLocations';
-import { mountainAnimalIds } from './mountainLocations';
-import { safariAnimalIds } from './safariLocations';
+import { allBiomeAnimalIds } from './biomes';
 
 export const animals: Animal[] = [
   {
@@ -518,5 +516,5 @@ export const animals: Animal[] = [
 ];
 
 export const commonMilestoneAnimals = animals.filter(
-  (animal) => animal.rarity === 'common' && animal.availableInMilestone && !lakeAnimalIds.includes(animal.id) && !mountainAnimalIds.includes(animal.id) && !safariAnimalIds.includes(animal.id)
+  (animal) => animal.rarity === 'common' && animal.availableInMilestone && !allBiomeAnimalIds.includes(animal.id)
 );

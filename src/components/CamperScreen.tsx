@@ -1,5 +1,7 @@
 import { useCallback, useState } from 'react';
 import { assetUrl } from '../assetUrl';
+import { getBiome } from '../data/biomes';
+import type { BiomeId } from '../types/Biome';
 import { destinationPreviews, getDestinationById } from '../data/destinations';
 import { acknowledgeCamperIntroduction, clearDestinationPreview, selectDestinationPreview } from '../state/camperState';
 import type { CamperStationId, DestinationId } from '../types/Destination';
@@ -9,7 +11,7 @@ import { ExpeditionReadiness } from './ExpeditionReadiness';
 import { PanelModal } from './PanelModal';
 import { PhotoWallSummary } from './PhotoWallSummary';
 
-type Props = { saveData: SaveData; onSaveChange: (saveData: SaveData) => void; onReturnToPark: () => void; onTravelToForest?: () => void; onTravelToLake?: () => void; onTravelToMountains?: () => void; onTravelToSafari?: () => void; onGoHome: () => void };
+type Props = { saveData: SaveData; onSaveChange: (saveData: SaveData) => void; onReturnToPark: () => void; onTravelToForest?: () => void; onTravelToBiome?: (id: BiomeId) => void; onGoHome: () => void };
 type PanelKey = 'journey' | 'about';
 const stationDetails: Record<CamperStationId, { name: string; icon: string; text: string }> = {
   'route-map': { name: 'Route Map', icon: '🗺️', text: 'The route map shows future habitat regions. The Forest, the Lake, the Mountains and the Safari are ready to visit. Other destinations remain previews.' },
@@ -18,11 +20,12 @@ const stationDetails: Record<CamperStationId, { name: string; icon: string; text
   'photo-wall': { name: 'Photo Wall', icon: '🖼️', text: 'The photo wall celebrates discoveries without collecting or removing wildlife from habitats.' },
 };
 
-export function CamperScreen({ saveData, onSaveChange, onReturnToPark, onTravelToForest, onTravelToLake, onTravelToMountains, onTravelToSafari, onGoHome }: Props) {
+export function CamperScreen({ saveData, onSaveChange, onReturnToPark, onTravelToForest, onTravelToBiome, onGoHome }: Props) {
   const [station, setStation] = useState<CamperStationId>('route-map');
   const [activePanel, setActivePanel] = useState<PanelKey | null>(null);
   const [announcement, setAnnouncement] = useState('Route Map selected.');
   const selected = getDestinationById(saveData.selectedDestination);
+  const selectedBiome = getBiome(saveData.selectedDestination);
   const detail = stationDetails[station];
   const closeIntroduction = useCallback(() => onSaveChange(acknowledgeCamperIntroduction(saveData)), [onSaveChange, saveData]);
   function selectStation(id: CamperStationId) { setStation(id); setAnnouncement(`${stationDetails[id].name} selected.`); }
@@ -50,7 +53,7 @@ export function CamperScreen({ saveData, onSaveChange, onReturnToPark, onTravelT
         <PanelModal title="Future Destinations" eyebrow="Journey planner" onClose={() => setActivePanel(null)}>
           <p className="muted">Pin a preview to the route map. Forest, Lake, Mountains and Safari travel are enabled. Other routes remain previews.</p>
           <div className="destination-grid">{destinationPreviews.map((d) => <button key={d.id} className={saveData.selectedDestination === d.id ? 'destination-card selected' : 'destination-card'} onClick={() => chooseDestination(d.id)} aria-pressed={saveData.selectedDestination === d.id}><span aria-hidden="true">{d.icon}</span><strong>{d.name}</strong><small>{d.tagline}</small><em>{saveData.selectedDestination === d.id ? '✓ Selected - Preview only' : 'Preview only'}</em></button>)}</div>
-          <section className="destination-preview">{selected ? <><div className="destination-preview-icon" aria-hidden="true">{selected.icon}</div><h3>{selected.name} pinned to route map</h3><p>{selected.preview}</p>{selected.id === 'forest' && onTravelToForest ? <button onClick={onTravelToForest}>Travel to Forest</button> : null}{selected.id === 'lake' && onTravelToLake ? <button onClick={onTravelToLake}>Travel to Lake</button> : null}{selected.id === 'mountains' && onTravelToMountains ? <button onClick={onTravelToMountains}>Travel to Mountains</button> : null}{selected.id === 'safari' && onTravelToSafari ? <button onClick={onTravelToSafari}>Travel to Safari</button> : null}<button className="secondary" onClick={clearDestination}>Clear pinned destination</button></> : <><h3>No destination pinned yet</h3><p>Choose a preview above to plan a future wildlife journey.</p></>}</section>
+          <section className="destination-preview">{selected ? <><div className="destination-preview-icon" aria-hidden="true">{selected.icon}</div><h3>{selected.name} pinned to route map</h3><p>{selected.preview}</p>{selected.id === 'forest' && onTravelToForest ? <button onClick={onTravelToForest}>Travel to Forest</button> : null}{selectedBiome && onTravelToBiome ? <button onClick={() => onTravelToBiome(selectedBiome.id)}>Travel to {selectedBiome.name}</button> : null}<button className="secondary" onClick={clearDestination}>Clear pinned destination</button></> : <><h3>No destination pinned yet</h3><p>Choose a preview above to plan a future wildlife journey.</p></>}</section>
           <ExpeditionReadiness saveData={saveData} />
         </PanelModal>
       ) : null}
