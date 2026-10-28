@@ -5,6 +5,8 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · docs(art): Safari art brief** — `docs/copilot-packages/07-safari-biome-animals.md`, same shape as the Mountains brief (master prompt, subject lines, modifiers, 30 trigger lines, exact animal ids as filenames). The Mountains/Safari art board tasks now point at their briefs and drop a test reference made stale by the registry refactor.
+
 - **2026-10-28 · refactor(biomes): one registry drives Lake, Mountains and Safari** — `src/data/biomes.ts`
   replaces nine per-biome files (location data, state modules, screen wrappers); a generic `BiomeScreen`,
   `biomeState.ts`, Journal tab generator, camper travel button and migration loop read from it. No

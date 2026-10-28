@@ -37,13 +37,12 @@ Generate 30 Mountains photos (6 animals x 5) and wire them in so Mountains gets 
 **Effort:** medium · **Risk:** low — additive: animals already exist and work without photos; only the art counts and the fact lists are added.
 
 ```text
-1. Write a docs/copilot-packages/ art brief like 04-lake-biome-animals.md for: mountain-goat, marmot, pika,
-   mountain-hare, golden-eagle, mountain-bluebird (Rocky Trail / Alpine Meadow / Lookout Ridge).
+1. Art brief is written: docs/copilot-packages/06-mountains-biome-animals.md. Hand it to Copilot.
 2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
 3. Add each id with count 5 to PHOTO_VARIANT_COUNTS in src/data/animalPhotoVariants.ts.
 4. Add 5 facts per animal to ANIMAL_FACTS in src/data/animalFacts.ts (NOT BONUS_FACTS).
-5. Update tests: the Mountains state test that asserts getPhotoVariantCount('marmot') === 0, and the App
-   test that expects no photo dialog for the Marmot.
+5. Update the App test in src/App.test.tsx that expects no photo dialog for the Marmot (the table-driven
+   biomeState.test.ts already handles animals with photos).
 ```
 
 **Done when:** all six Mountains animals reveal a photo and a fact when photographed, and `npm run check` passes.
@@ -53,12 +52,11 @@ Generate 30 Safari photos (6 animals x 5) and wire them in, same as the Mountain
 **Effort:** medium · **Risk:** low — additive: the animals already work without photos.
 
 ```text
-1. Write docs/copilot-packages/07-safari-biome-animals.md, modelled on 06-mountains-biome-animals.md, for:
-   african-elephant, hippo, zebra, giraffe, meerkat, lilac-breasted-roller.
+1. Art brief is written: docs/copilot-packages/07-safari-biome-animals.md. Hand it to Copilot.
 2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
 3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
 4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
-5. Update the Safari state test that asserts getPhotoVariantCount('zebra') === 0.
+5. No test change needed; biomeState.test.ts handles animals with photos.
 ```
 
 **Done when:** all six Safari animals reveal a photo and a fact when photographed, and `npm run check` passes.

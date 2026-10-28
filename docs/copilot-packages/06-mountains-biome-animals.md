@@ -128,7 +128,7 @@ fresh Copilot chat, paste the master prompt + table once first.
 Already a task: see "Mountains art and photo wiring" in `docs/TASK_BOARD_NOW.md`. Short version: copy the 30 JPEGs
 into `public/assets/animals/`, add the 6 ids at count 5 to `PHOTO_VARIANT_COUNTS`
 (`src/data/animalPhotoVariants.ts`), add 5 facts each to `ANIMAL_FACTS` (`src/data/animalFacts.ts` — not
-`BONUS_FACTS`), and update the two tests that currently assert the Marmot has no photos.
+`BONUS_FACTS`), and update the App test in `src/App.test.tsx` that expects no photo dialog for the Marmot (the table-driven `src/state/biomeState.test.ts` already handles animals with photos).
 
 ---
 

@@ -58,3 +58,5 @@ package says exactly which ones, kept well under the 20-file ceiling.
   generates the art a follow-up task needs to wire in the real photo.
 - `06-mountains-biome-animals.md` — Mountains animal art (6 animals × 5 photos). The Mountains are playable
   without photos; this art is the missing piece. Wiring is the "Mountains art and photo wiring" board task.
+- `07-safari-biome-animals.md` — Safari animal art (6 animals × 5 photos), same shape as 06. Wiring is the
+  "Safari art and photo wiring" board task.
