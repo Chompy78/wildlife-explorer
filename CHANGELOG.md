@@ -5,6 +5,12 @@
 > `docs/sessions/WILDLIFE_EXPLORER_SESSION_LOG_2026-07-20.md` and `MILESTONE_5_NOTES.md`, not
 > contemporaneous logging.
 
+- **2026-10-28 · feat(safari): Safari is now playable (no photo art yet)** — Safari Arrival screen with
+  Waterhole / Open Plains / Acacia Grove (African Elephant, Hippo, Zebra, Giraffe, Meerkat, Lilac-breasted
+  Roller), "Travel to Safari" in the Journey Planner, a Safari tab in the Journal, and a dry-savanna ambient
+  sound. Emoji only for now. Save schema 11 -> 12 (`safariLocation`, `'safari'` play area). Not checked by
+  eye. Why: `D-2026-10-28-safari-biome-go-ahead`.
+
 - **2026-10-28 · docs(art): Mountains art brief** — `docs/copilot-packages/06-mountains-biome-animals.md`: master prompt, subject lines, variation modifiers and trigger list for the 30 Mountains photos, using exact animal ids as filenames (avoids the Lake batch's `heron-*` rename). Handoff for the "Mountains art and photo wiring" board task.
 
 - **2026-10-28 · feat(mountains): Mountains is now playable (no photo art yet)** — Mountain Arrival screen

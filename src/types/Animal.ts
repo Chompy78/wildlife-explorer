@@ -1,5 +1,5 @@
 import type { DestinationId } from './Destination';
-import type { AnimalId, LakeLocationName, LocationName, MountainLocationName } from './Ids';
+import type { AnimalId, LakeLocationName, LocationName, MountainLocationName, SafariLocationName } from './Ids';
 
 export type AnimalRarity = 'common' | 'rare' | 'quest';
 
@@ -26,7 +26,7 @@ export type Animal = {
   id: AnimalId;
   name: string;
   rarity: AnimalRarity;
-  habitat: LocationName | LakeLocationName | MountainLocationName;
+  habitat: LocationName | LakeLocationName | MountainLocationName | SafariLocationName;
   activeTime: string;
   funFact: string;
   behaviours: string[];

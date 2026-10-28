@@ -1,6 +1,7 @@
 import type { Animal } from '../types/Animal';
 import { lakeAnimalIds } from './lakeLocations';
 import { mountainAnimalIds } from './mountainLocations';
+import { safariAnimalIds } from './safariLocations';
 
 export const animals: Animal[] = [
   {
@@ -424,8 +425,98 @@ export const animals: Animal[] = [
       hint: 'The Mountain Bluebird perches on fence posts and low branches - shoot when it is still.',
     },
   },
+  {
+    id: 'african-elephant',
+    name: 'African Elephant',
+    rarity: 'common',
+    habitat: 'Waterhole',
+    activeTime: 'Morning and evening',
+    funFact: 'African Elephants use their trunks to drink, smell, and gently greet one another.',
+    behaviours: ['drinking', 'spraying water', 'walking in a herd'],
+    emoji: '🐘',
+    availableInMilestone: true,
+    photoDifficulty: 'easy',
+    photographyTip: {
+      hint: 'The Elephant is calm at the waterhole - shoot when it lifts its trunk.',
+    },
+  },
+  {
+    id: 'hippo',
+    name: 'Hippo',
+    rarity: 'common',
+    habitat: 'Waterhole',
+    activeTime: 'Evening and night',
+    funFact: 'Hippos spend the day in the water to keep cool, and come out to graze on grass at dusk.',
+    behaviours: ['wallowing', 'yawning', 'grazing at dusk'],
+    emoji: '🦛',
+    availableInMilestone: true,
+    photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'The Hippo mostly shows its eyes and ears - wait for a wide yawn.',
+    },
+  },
+  {
+    id: 'zebra',
+    name: 'Zebra',
+    rarity: 'common',
+    habitat: 'Open Plains',
+    activeTime: 'Day',
+    funFact: 'Every zebra has its own pattern of stripes, just like a fingerprint.',
+    behaviours: ['grazing', 'standing in a herd', 'trotting'],
+    emoji: '🦓',
+    availableInMilestone: true,
+    photoDifficulty: 'medium',
+    photographyTip: {
+      hint: 'Shoot the Zebra when its herd is calm and it lifts its head.',
+    },
+  },
+  {
+    id: 'giraffe',
+    name: 'Giraffe',
+    rarity: 'common',
+    habitat: 'Open Plains',
+    activeTime: 'Morning and afternoon',
+    funFact: "A giraffe's tongue is dark and about forty-five centimetres long, perfect for pulling leaves off thorny branches.",
+    behaviours: ['browsing treetops', 'walking slowly', 'drinking'],
+    emoji: '🦒',
+    availableInMilestone: true,
+    photoDifficulty: 'easy',
+    photographyTip: {
+      hint: 'The Giraffe moves slowly - shoot when it stretches up to feed.',
+    },
+  },
+  {
+    id: 'meerkat',
+    name: 'Meerkat',
+    rarity: 'common',
+    habitat: 'Acacia Grove',
+    activeTime: 'Day',
+    funFact: 'Meerkats take turns standing guard on their hind legs while the rest of the group digs and eats.',
+    behaviours: ['standing guard', 'digging', 'sunbathing'],
+    emoji: '🐾',
+    availableInMilestone: true,
+    photoDifficulty: 'hard',
+    photographyTip: {
+      hint: 'The Meerkat sentry stands up straight - catch it mid-watch.',
+    },
+  },
+  {
+    id: 'lilac-breasted-roller',
+    name: 'Lilac-breasted Roller',
+    rarity: 'common',
+    habitat: 'Acacia Grove',
+    activeTime: 'Day',
+    funFact: 'Lilac-breasted Rollers get their name from the rolling, tumbling flights they do in the air.',
+    behaviours: ['perching', 'swooping', 'catching insects'],
+    emoji: '🐦',
+    availableInMilestone: true,
+    photoDifficulty: 'hard',
+    photographyTip: {
+      hint: 'Look for the Roller on a high branch, then shoot as it perches still.',
+    },
+  },
 ];
 
 export const commonMilestoneAnimals = animals.filter(
-  (animal) => animal.rarity === 'common' && animal.availableInMilestone && !lakeAnimalIds.includes(animal.id) && !mountainAnimalIds.includes(animal.id)
+  (animal) => animal.rarity === 'common' && animal.availableInMilestone && !lakeAnimalIds.includes(animal.id) && !mountainAnimalIds.includes(animal.id) && !safariAnimalIds.includes(animal.id)
 );

@@ -23,6 +23,7 @@ export const defaultSaveData: SaveData = {
   forestLocation: 'Forest Arrival',
   lakeLocation: 'Shoreline',
   mountainLocation: 'Rocky Trail',
+  safariLocation: 'Waterhole',
   reportedInvasiveSpecies: [],
   collectedPhotoVariants: [],
   photographCounts: {},

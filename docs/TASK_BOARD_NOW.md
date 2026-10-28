@@ -48,4 +48,35 @@ Generate 30 Mountains photos (6 animals x 5) and wire them in so Mountains gets 
 
 **Done when:** all six Mountains animals reveal a photo and a fact when photographed, and `npm run check` passes.
 
+## Safari art and photo wiring — TODO
+Generate 30 Safari photos (6 animals x 5) and wire them in, same as the Mountains task.
+**Effort:** medium · **Risk:** low — additive: the animals already work without photos.
+
+```text
+1. Write docs/copilot-packages/07-safari-biome-animals.md, modelled on 06-mountains-biome-animals.md, for:
+   african-elephant, hippo, zebra, giraffe, meerkat, lilac-breasted-roller.
+2. Generate 5 square variants per animal; convert PNG -> JPEG; name <animal-id>-<n>.jpg in public/assets/animals/.
+3. Add each id with count 5 to PHOTO_VARIANT_COUNTS (src/data/animalPhotoVariants.ts).
+4. Add 5 facts per animal to ANIMAL_FACTS (src/data/animalFacts.ts, NOT BONUS_FACTS).
+5. Update the Safari state test that asserts getPhotoVariantCount('zebra') === 0.
+```
+
+**Done when:** all six Safari animals reveal a photo and a fact when photographed, and `npm run check` passes.
+
+---
+
+## Biome registry refactor — TODO
+Replace the per-biome copy-paste (save field, state module, journal tab, camper travel prop) with one registry, before biome number five.
+**Effort:** medium · **Risk:** medium — touches save migration, which `npm run check` only partly protects.
+
+```text
+1. Add src/data/biomes.ts: one entry per data-driven biome (id, name, icon, locations, save-field key,
+   ambient kind, config text). Lake, Mountains and Safari first; leave Forest alone.
+2. Derive from it: journal tabs, camper travel buttons, App screen routing, migration validation.
+3. Keep SaveData field names (lakeLocation, mountainLocation, safariLocation) so existing saves still load.
+4. Keep every existing test passing unchanged.
+```
+
+**Done when:** adding a fourth data-driven biome needs only one registry entry plus its data file, existing saves still migrate, and `npm run check` passes.
+
 ---

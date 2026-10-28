@@ -25,7 +25,13 @@ export type AnimalId =
   | 'pika'
   | 'mountain-hare'
   | 'golden-eagle'
-  | 'mountain-bluebird';
+  | 'mountain-bluebird'
+  | 'african-elephant'
+  | 'hippo'
+  | 'zebra'
+  | 'giraffe'
+  | 'meerkat'
+  | 'lilac-breasted-roller';
 
 export type LocationName =
   | 'Park Entrance'
@@ -37,3 +43,4 @@ export type LocationName =
 
 export type LakeLocationName = 'Shoreline' | 'Open Water' | 'Reeds & Shallows';
 export type MountainLocationName = 'Rocky Trail' | 'Alpine Meadow' | 'Lookout Ridge';
+export type SafariLocationName = 'Waterhole' | 'Open Plains' | 'Acacia Grove';

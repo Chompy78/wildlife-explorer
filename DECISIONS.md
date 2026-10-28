@@ -4,6 +4,15 @@
 > **Context → Options → Decision → Why → Status.** Newest at the TOP.
 > `CHANGELOG.md` records *what* changed; this records *why*.
 
+## D-2026-10-28-safari-biome-go-ahead · Safari becomes the fourth playable destination, without photo art
+
+**Status:** Active
+
+**Summary:** Third emoji-only biome on the shared `BiomeScreen`: Waterhole, Open Plains, Acacia Grove, six
+  native animals. Save schema 11 -> 12. Notes that each new biome still touches about a dozen files and
+  suggests a biome registry before biome number five. Full record:
+  `decisions/2026/D-2026-10-28-safari-biome-go-ahead.md`.
+
 ## D-2026-10-28-mountains-biome-go-ahead · Mountains becomes the third playable destination, without photo art
 
 **Status:** Active

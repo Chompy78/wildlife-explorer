@@ -9,6 +9,7 @@ export * from './locationState';
 export * from './forestState';
 export * from './lakeState';
 export * from './mountainsState';
+export * from './safariState';
 export * from './progressionState';
 export * from './questState';
 

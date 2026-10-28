@@ -2,13 +2,14 @@ import { defaultLostPuppyQuestProgress } from './saveDefaults';
 import { validAchievementIds } from '../data/achievements';
 import { ALL_PHOTO_VARIANT_KEYS } from '../data/animalPhotoVariants';
 import { CURRENT_SAVE_SCHEMA_VERSION, type PlayArea, type SaveData } from '../types/SaveData';
-import type { AnimalId, LakeLocationName, LocationName, MountainLocationName } from '../types/Ids';
+import type { AnimalId, LakeLocationName, LocationName, MountainLocationName, SafariLocationName } from '../types/Ids';
 import type { DestinationId } from '../types/Destination';
 
 const validLocations: LocationName[] = ['Park Entrance', 'Duck Pond', 'Open Meadow', 'Forest Trail', 'Strange Old Tree', 'Whisper Grove'];
-const validAnimals: AnimalId[] = ['duck', 'frog', 'butterfly', 'rabbit', 'lizard', 'park-bird', 'rare-owl', 'lost-puppy', 'forest-wren', 'forest-wallaby', 'forest-beetle', 'red-eared-slider', 'cane-toad', 'grey-squirrel', 'european-starling', 'great-blue-heron', 'beaver', 'rainbow-trout', 'loon', 'dragonfly', 'painted-turtle', 'mountain-goat', 'marmot', 'pika', 'mountain-hare', 'golden-eagle', 'mountain-bluebird'];
+const validAnimals: AnimalId[] = ['duck', 'frog', 'butterfly', 'rabbit', 'lizard', 'park-bird', 'rare-owl', 'lost-puppy', 'forest-wren', 'forest-wallaby', 'forest-beetle', 'red-eared-slider', 'cane-toad', 'grey-squirrel', 'european-starling', 'great-blue-heron', 'beaver', 'rainbow-trout', 'loon', 'dragonfly', 'painted-turtle', 'mountain-goat', 'marmot', 'pika', 'mountain-hare', 'golden-eagle', 'mountain-bluebird', 'african-elephant', 'hippo', 'zebra', 'giraffe', 'meerkat', 'lilac-breasted-roller'];
 const validLakeLocations: LakeLocationName[] = ['Shoreline', 'Open Water', 'Reeds & Shallows'];
 const validMountainLocations: MountainLocationName[] = ['Rocky Trail', 'Alpine Meadow', 'Lookout Ridge'];
+const validSafariLocations: SafariLocationName[] = ['Waterhole', 'Open Plains', 'Acacia Grove'];
 const validDestinations: DestinationId[] = ['forest', 'mountains', 'lake', 'safari', 'rainforest', 'alien-planet', 'desert', 'arctic', 'coral-reef', 'wetlands', 'coastal', 'grassland', 'taiga', 'volcanic-highlands'];
 
 export function migrateSaveData(input: unknown): SaveData {
@@ -39,10 +40,11 @@ export function migrateSaveData(input: unknown): SaveData {
     camperVisited: wildCamperUnlocked && Boolean(parsed.camperVisited),
     camperIntroductionSeen: wildCamperUnlocked && Boolean(parsed.camperIntroductionSeen),
     selectedDestination,
-    lastPlayArea: requestedArea === 'forest' && wildCamperUnlocked ? 'forest' : requestedArea === 'lake' && wildCamperUnlocked ? 'lake' : requestedArea === 'mountains' && wildCamperUnlocked ? 'mountains' : requestedArea === 'camper' && wildCamperUnlocked ? 'camper' : 'park',
+    lastPlayArea: requestedArea === 'forest' && wildCamperUnlocked ? 'forest' : requestedArea === 'lake' && wildCamperUnlocked ? 'lake' : requestedArea === 'mountains' && wildCamperUnlocked ? 'mountains' : requestedArea === 'safari' && wildCamperUnlocked ? 'safari' : requestedArea === 'camper' && wildCamperUnlocked ? 'camper' : 'park',
     forestLocation: parsed.forestLocation === 'Fern Trail' ? 'Fern Trail' : 'Forest Arrival',
     lakeLocation: validLakeLocations.includes(parsed.lakeLocation as LakeLocationName) ? parsed.lakeLocation as LakeLocationName : 'Shoreline',
     mountainLocation: validMountainLocations.includes(parsed.mountainLocation as MountainLocationName) ? parsed.mountainLocation as MountainLocationName : 'Rocky Trail',
+    safariLocation: validSafariLocations.includes(parsed.safariLocation as SafariLocationName) ? parsed.safariLocation as SafariLocationName : 'Waterhole',
     reportedInvasiveSpecies: filterKnown(parsed.reportedInvasiveSpecies, validAnimals),
     collectedPhotoVariants: filterKnown(parsed.collectedPhotoVariants, ALL_PHOTO_VARIANT_KEYS),
     photographCounts: migratePhotographCounts(parsed.photographCounts, validAnimals),

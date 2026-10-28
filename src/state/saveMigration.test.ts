@@ -185,4 +185,17 @@ describe('save migration', () => {
       expect(migrateSaveData({ lastPlayArea: 'mountains', wildCamperUnlocked: false }).lastPlayArea).toBe('park');
     });
   });
+
+  describe('Safari', () => {
+    it('defaults safariLocation for older saves and rejects garbage', () => {
+      expect(migrateSaveData({}).safariLocation).toBe('Waterhole');
+      expect(migrateSaveData({ safariLocation: 'The Moon' }).safariLocation).toBe('Waterhole');
+      expect(migrateSaveData({ safariLocation: 'Open Plains' }).safariLocation).toBe('Open Plains');
+    });
+
+    it('restores the Safari play area only once the Wild Camper is unlocked', () => {
+      expect(migrateSaveData({ lastPlayArea: 'safari', wildCamperUnlocked: true }).lastPlayArea).toBe('safari');
+      expect(migrateSaveData({ lastPlayArea: 'safari', wildCamperUnlocked: false }).lastPlayArea).toBe('park');
+    });
+  });
 });
